@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // App
+    <string name="app_name">Nichtraucher</string>
+    <string name="yes">OK</string>
+    <string name="no">NEIN</string>
+    <string name="permissions">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bildschirmfoto
+        gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
+        Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
+        nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Wetter. Im Bereich Berechtigungen kannst
+        dann die entsprechende Einstellung vornehmen.</string>
+
+
+    //Share
+    <string name="share_text">Gute Neuigkeiten: ich rauche nicht mehr seit</string>
+    <string name="share_text2">und</string>
+    <string name="share_text3">Ich habe gespart:</string>
+    <string name="share_text4">Zigaretten</string>
+    <string name="share_text5">und</string>
+    <string name="share_text6">an Zeit.</string>
+    <string name="share_subject">Ich habe mit dem Rauchen aufgehört</string>
+    <string name="share_subject2">Mein Tagebuch</string>
+
+
+    // Menu
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_share">Teilen</string>
+    <string name="action_health">Gesundheit</string>
+    <string name="action_overview">Übersicht</string>
+    <string name="action_diary">Tagebuch</string>
+    <string name="action_date">Füge aktuelles Datum ein</string>
+    <string name="action_time">Füge aktuelle Zeit ein</string>
+    <string name="action_line">Füge Trennlinie ein</string>
+    <string name="action_backup">Tagebuch sichern</string>
+
+
+    // Main Activity
+    <string name="not_set">Bitte einstellen</string>
+    <string name="not_set2">0.0</string>
+
+    <string name="money_euro">€</string>
+    <string name="money_dollar">$</string>
+    <string name="money_pound">£</string>
+    <string name="money_yen">¥</string>
+
+    <string name="time_days">Tagen</string>
+    <string name="time_hours">Stunden</string>
+    <string name="time_minutes">Minuten</string>
+
+    <string name="last_time_date">Aufgehört zu rauchen am:</string>
+    <string name="last_since">Nicht geraucht seit:</string>
+    <string name="stat">Gespart:</string>
+    <string name="stat_h">h</string>
+
+
+    // Health Activity
+    <string name="health_congratulations">Glückwunsch - das hast du geschafft!</string>
+    <string name="health_reached">Erreicht in:</string>
+
+    <string name="health_header1">Blutdruck</string>
+    <string name="health_description1">Blutdruck, Körpertemperatur und Herzfrequenz normalisieren sich. (20 Minuten)</string>
+
+    <string name="health_header2">Kohlenmonoxid</string>
+    <string name="health_description2">Der Raucheratem verschwindet. Das Giftgas Kohlenmonoxid blockiert
+        bei einem Raucher etwa 10% der roten Blutkörperchen. Diese Blutkörperchen sind jetzt wieder verfügbar
+        für Sauerstoff. (8 Stunden)</string>
+
+    <string name="health_header3">Herzinfarkt</string>
+    <string name="health_description3">Das Risiko für einen plötzlichen Herztod sinkt. (1 Tag)</string>
+
+    <string name="health_header4">Geruchssinn</string>
+    <string name="health_description4">Der Geruchssinn und die Geschmacksnerven werden wieder sensibler; das Riechen
+        und Schmecken verfeinert sich. (2 Tage)</string>
+
+    <string name="health_header5">Atmen</string>
+    <string name="health_description5">Das Atmen fällt leichter. (3 Tage)</string>
+
+    <string name="health_header6">Nikotinentzug</string>
+    <string name="health_description6">Der körperliche Nikotinentzug ist geschafft. (1 Woche)</string>
+
+    <string name="health_header7">Leistungsfähigkeit</string>
+    <string name="health_description7">Der gesamte Blutkreislauf verbessert sich. Die Lungenkapazität erhöht
+        sich um bis zu 30\%, sie kann wieder mehr Sauerstoff aufnehmen. Dadurch erhöht sich die körperliche
+        Leistungsfähigkeit. (3 Monate)</string>
+
+    <string name="health_header8">Lungenhärchen</string>
+    <string name="health_description8">Spätestens jetzt sind die feinen Härchen in der Lunge nachgewachsen,
+        der Raucherhusten verschwindet. Abgespanntheit und Kurzatmigkeit verbessern sich zunehmend. (9 Monate)</string>
+
+    <string name="health_header9">Herzkranzgefäße</string>
+    <string name="health_description9">Das Risiko für Erkrankungen an den Herzkranzgefäßen sinkt um die Hälfte.
+        (1 Jahr)</string>
+
+    <string name="health_header10">Herzinfarkt</string>
+    <string name="health_description10">Das Risiko für einen Herzinfarkt sinkt deutlich. (2 Jahre)</string>
+
+    <string name="health_header11">Schlaganfall</string>
+    <string name="health_description11">Das Risiko, einen Schlaganfall zu bekommen oder an einem Lungenkrebs
+        zu sterben, ist wesentlich geringer als früher. Auch das Risiko für Krebserkrankungen im Mundbereich ist
+        reduziert. (5 Jahre)</string>
+
+    <string name="health_header12">Lungenkrebs</string>
+    <string name="health_description12">Die Lungenkrebsgefahr ist so hoch wie bei einem Nichtraucher. Die Lunge
+        hat sich fast vollständig erholt, präkanzeröse Zellen sind durch gesunde Zellen ersetzt worden. (10 Jahre)</string>
+
+    <string name="health_header13">Herzinfarkt</string>
+    <string name="health_description13">Das Herzinfarktrisiko ist kaum höher als bei einem Nichtraucher. (15 Jahre)</string>
+
+
+    // Diary
+    <string name="edit_diary">Nach unten wischen um Tagebuch zu laden</string>
+    <string name="backup_diary">Erfolgreich gesichert</string>
+
+
+    // Settings
+    <string name="settings_category_1">Einstellungen</string>
+    <string name="settings_category_2">Über die App</string>
+
+    <string name="settings_cig">Zigaretten</string>
+    <string name="settings_costs">Geld</string>
+    <string name="settings_currency">Währung</string>
+    <string name="settings_date">Datum</string>
+    <string name="settings_time">Zeit</string>
+    <string name="settings_duration">Dauer</string>
+
+    <string name="settings_cig_summary">Gerauchte Zigaretten pro Tag, um nicht gerauchte Zigaretten zu berechnen</string>
+    <string name="settings_costs_summary">Kosten einer Zigarette, um das gesparte Geld zu berechnen.</string>
+    <string name="settings_currency_summary">Wähle deine bevurzugte Währungseinheit</string>
+    <string name="settings_date_summary">An welchem Tag hast du aufgehört zu rauchen?</string>
+    <string name="settings_time_summary">Um wieviel Uhr hast du aufgehört zu rauchen?</string>
+    <string name="settings_duration_summary">Die Zeit die du brauchst um eine Zigarette zu rauchen</string>
+
+    <string name="settings_cig_hint">Anzahl der täglich gerauchten Zigaretten</string>
+    <string name="settings_cost_hint">Was kostet eine Zigarette?</string>
+    <string name="settings_date_hint">Benutze Format: 2016–04–30</string>
+    <string name="settings_time_hint">Benutze das 24h Format: 22:22</string>
+    <string name="settings_duration_hint">Zeit in Stunden: 0.2</string>
+
+    <string name="settings_changelog">Changelog</string>
+    <string name="settings_changelog_summary">Was gibt es neues?</string>
+    <string name="settings_license">Lizenz</string>
+    <string name="settings_license_summary">App ist unter der GPL3-Lizenz lizenziert.</string>
+
+
+    //License Dialog
+    <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
+    <string name="about_text">
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see http://www.gnu.org/licenses.
+    </string>
+
+
+    //Changelog Dialog
+    <string name="changelog_text">
+        &lt;i>For more informations visit the project site on github:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+
+        &lt;b>v1.0:&lt;/b>&lt;br>
+        &#8226; first release
+    </string>
+
+
+    //String arrays
+    <string-array name="listCurrency">
+        <item>Euro (€)</item>
+        <item>Dollar ($)</item>
+        <item>Pfund (£)</item>
+        <item>Yen (¥)</item>
+    </string-array>
+
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_category_1">
+
+        <EditTextPreference android:title="@string/settings_cig"
+            android:key="cig"
+            android:inputType="number"
+            android:hint="@string/settings_cig_hint"
+            android:summary="@string/settings_cig_summary">
+        </EditTextPreference>
+
+        <EditTextPreference android:title="@string/settings_date"
+            android:key="date"
+            android:inputType="date"
+            android:hint="@string/settings_date_hint"
+            android:summary="@string/settings_date_summary">
+        </EditTextPreference>
+
+        <EditTextPreference android:title="@string/settings_time"
+            android:key="time"
+            android:inputType="time"
+            android:hint="@string/settings_time_hint"
+            android:summary="@string/settings_time_summary">
+        </EditTextPreference>
+
+        <EditTextPreference android:title="@string/settings_costs"
+            android:key="costs"
+            android:inputType="numberDecimal"
+            android:hint="@string/settings_cost_hint"
+            android:summary="@string/settings_costs_summary">
+        </EditTextPreference>
+
+        <EditTextPreference android:title="@string/settings_duration"
+            android:key="duration"
+            android:inputType="numberDecimal"
+            android:hint="@string/settings_duration_hint"
+            android:summary="@string/settings_duration_summary">
+        </EditTextPreference>
+
+        <ListPreference
+            android:title="@string/settings_currency"
+            android:summary="@string/settings_currency_summary"
+            android:key="currency"
+            android:defaultValue="1"
+            android:entries="@array/listCurrency"
+            android:entryValues="@array/listValuesCurrency" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_2">
+
+        <Preference
+            android:title="@string/settings_license"
+            android:summary="@string/settings_license_summary"
+            android:key="license" />
+
+        <Preference
+            android:title="@string/settings_changelog"
+            android:summary="@string/settings_changelog_summary"
+            android:key="changelog" />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

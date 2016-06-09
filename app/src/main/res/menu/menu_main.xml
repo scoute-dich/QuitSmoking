@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.baumann.quitsmoking.MainActivity">
+
+    <item
+        android:id="@+id/action_date"
+        android:orderInCategory="100"
+        android:title="@string/action_date"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_time"
+        android:orderInCategory="100"
+        android:title="@string/action_time"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_line"
+        android:orderInCategory="100"
+        android:title="@string/action_line"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:title="@string/action_share"
+        android:icon="@drawable/menu_share"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_backup"
+        android:orderInCategory="100"
+        android:icon="@drawable/menu_backup"
+        android:title="@string/action_backup"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+</menu>
