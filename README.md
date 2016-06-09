@@ -9,6 +9,6 @@ A small android application to help smokers to quit smoking. Features:
 "android.permission.WRITE_EXTERNAL_STORAGE" to backup diary on sdcard.
 
 ### Links:
-- Download [APK](https://github.com/scoute-dich/QuitSmoking/releases)
+- Download [Releases](https://github.com/scoute-dich/QuitSmoking/releases)
 - Watch [Changelog](https://github.com/scoute-dich/QuitSmoking/blob/master/CHANGELOG.md)
 - See [license](https://github.com/scoute-dich/QuitSmoking/blob/master/LICENSE.md)
