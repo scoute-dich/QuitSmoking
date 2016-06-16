@@ -28,6 +28,7 @@
     <string name="action_health">Health</string>
     <string name="action_overview">Overview</string>
     <string name="action_diary">Diary</string>
+    <string name="action_goal">Goal</string>
     <string name="action_date">Add current date</string>
     <string name="action_time">Add current time</string>
     <string name="action_line">Add a separator line</string>

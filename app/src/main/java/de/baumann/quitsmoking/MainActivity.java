@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentOverview(), String.valueOf(getString(R.string.action_overview)));
         adapter.addFragment(new FragmentHealth(), String.valueOf(getString(R.string.action_health)));
+        adapter.addFragment(new FragmentGoal(), String.valueOf(getString(R.string.action_goal)));
         adapter.addFragment(new FragmentDiary(), String.valueOf(getString(R.string.action_diary)));
         // can add more tabs here
         viewPager.setAdapter(adapter);

@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="de.baumann.quitsmoking.MainActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="de.baumann.quitsmoking.MainActivity"
+        android:foregroundGravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        tools:ignore="UselessParent"
+        android:layout_marginBottom="?attr/actionBarSize">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/text_header1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/health_header1"
+                android:gravity="center_vertical"
+                android:textSize="24sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="46dp" />
+
+            <TextView
+                android:id="@+id/text_description1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/health_description1"
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_below="@+id/text_header1"
+                android:layout_alignParentStart="true" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="3dip"
+                android:maxHeight="3dip"
+                android:layout_marginTop="4dp"
+                android:id="@+id/progressBar"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@+id/text_description1" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:id="@+id/imageView"
+                android:scaleType="fitCenter"
+                android:layout_below="@+id/progressBar"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="46dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Picture"
+                android:id="@+id/btnSelectPhoto"
+                android:layout_x="111dp"
+                android:layout_y="305dp"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

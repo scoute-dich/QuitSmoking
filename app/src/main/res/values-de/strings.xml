@@ -29,6 +29,7 @@
     <string name="action_health">Gesundheit</string>
     <string name="action_overview">Übersicht</string>
     <string name="action_diary">Tagebuch</string>
+    <string name="action_goal">Ziel</string>
     <string name="action_date">Füge aktuelles Datum ein</string>
     <string name="action_time">Füge aktuelle Zeit ein</string>
     <string name="action_line">Füge Trennlinie ein</string>
