@@ -4,28 +4,32 @@
     <PreferenceCategory
         android:title="@string/settings_category_1">
 
-        <EditTextPreference android:title="@string/settings_cig"
+        <EditTextPreference
+            android:title="@string/settings_cig"
             android:key="cig"
             android:inputType="number"
             android:hint="@string/settings_cig_hint"
             android:summary="@string/settings_cig_summary">
         </EditTextPreference>
 
-        <EditTextPreference android:title="@string/settings_date"
+        <EditTextPreference
+            android:title="@string/settings_date"
             android:key="date"
             android:inputType="date"
             android:hint="@string/settings_date_hint"
             android:summary="@string/settings_date_summary">
         </EditTextPreference>
 
-        <EditTextPreference android:title="@string/settings_time"
+        <EditTextPreference
+            android:title="@string/settings_time"
             android:key="time"
             android:inputType="time"
             android:hint="@string/settings_time_hint"
             android:summary="@string/settings_time_summary">
         </EditTextPreference>
 
-        <EditTextPreference android:title="@string/settings_costs"
+        <EditTextPreference
+            android:title="@string/settings_costs"
             android:key="costs"
             android:inputType="numberDecimal"
             android:hint="@string/settings_cost_hint"
@@ -51,6 +55,24 @@
 
     <PreferenceCategory
         android:title="@string/settings_category_2">
+
+        <EditTextPreference
+            android:title="@string/settings_goalTitle"
+            android:summary="@string/settings_goalTitle_summary"
+            android:hint="@string/settings_goalTitle_hint"
+            android:key="goalTitle" />
+
+        <EditTextPreference
+            android:title="@string/settings_goalCosts"
+            android:summary="@string/settings_goalCosts_summary"
+            android:hint="@string/settings_goalCosts_hint"
+            android:inputType="number"
+            android:key="goalCosts" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_category_3">
 
         <Preference
             android:title="@string/settings_license"

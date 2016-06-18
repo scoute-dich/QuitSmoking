@@ -35,6 +35,25 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_imageDelete"
+        android:orderInCategory="100"
+        android:title="@string/action_imageDelete"
+        android:icon="@drawable/menu_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_imageRotate"
+        android:orderInCategory="100"
+        android:title="@string/action_imageRotate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_imageLoad"
+        android:orderInCategory="100"
+        android:title="@string/action_imageLoad"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

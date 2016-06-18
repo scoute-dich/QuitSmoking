@@ -1,36 +1,37 @@
 package de.baumann.quitsmoking;
 
-import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+
 import android.os.Bundle;
 import android.os.Environment;
+
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by juergen on 09.06.16. Licensed under GPL.
- */
+
 public class FragmentDiary extends Fragment {
 
     private EditText mEditText;
@@ -39,8 +40,6 @@ public class FragmentDiary extends Fragment {
     private static final String MyPREFERENCES = "MyPrefs";
     private static final String diaryText = "diaryTextKey";
     private SharedPreferences sharedpreferences;
-
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,57 +79,65 @@ public class FragmentDiary extends Fragment {
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_imageDelete).setVisible(false);
+        menu.findItem(R.id.action_imageRotate).setVisible(false);
+        menu.findItem(R.id.action_imageLoad).setVisible(false);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
 
         int id = item.getItemId();
 
         if (id == R.id.action_backup) {
 
-            if (android.os.Build.VERSION.SDK_INT >= 23) {
-                int hasWRITE_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(getActivity(),(Manifest.permission.WRITE_EXTERNAL_STORAGE));
-                if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                    if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(R.string.permissions)
-                                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (android.os.Build.VERSION.SDK_INT >= 23)
-                                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                    REQUEST_CODE_ASK_PERMISSIONS);
-                                    }
-                                })
-                                .setNegativeButton(getString(R.string.no), null)
-                                .show();
-                        return (true);
+            final CharSequence[] options = {getString(R.string.action_backup),getString(R.string.action_restore), getString(R.string.action_delete),getString(R.string.goal_cancel)};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setItems(options, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    if (options[item].equals(getString(R.string.action_backup))) {
+
+                        Date date = new Date();
+                        DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd_HH-mm", Locale.getDefault());
+                        String editText = mEditText.getText().toString();
+
+                        try
+                        {
+                            File storageDirectory = new File((Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/diary_backup_"
+                                    + dateFormat.format(date) + ".txt"));
+                            FileOutputStream fout = new FileOutputStream(storageDirectory);
+                            OutputStreamWriter myoutwriter = new OutputStreamWriter(fout);
+                            myoutwriter.append(editText);
+                            myoutwriter.close();
+                            Snackbar.make(swipeView, R.string.backup_diary, Snackbar.LENGTH_LONG).show();
+                        }
+                        catch (Exception e)
+                        {
+                            Snackbar.make(swipeView, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                        }
+                    } else if (options[item].equals(getString(R.string.action_restore))) {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("text/*");
+                        startActivityForResult(intent, 1);
+
+                    } else if (options[item].equals(getString(R.string.action_delete))) {
+                        String editText = mEditText.getText().toString();
+                        mEditText.setText("");
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(diaryText, editText);
+                        editor.apply();
+
+                    } else if (options[item].equals(getString(R.string.goal_cancel))) {
+                        dialog.dismiss();
                     }
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            REQUEST_CODE_ASK_PERMISSIONS);
-                    return (true);
                 }
-            }
-
-            Date date = new Date();
-            DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd_HH-mm", Locale.getDefault());
-            String editText = mEditText.getText().toString();
-
-            try
-            {
-                File storageDirectory = new File((Environment.getExternalStorageDirectory() + "/diary_backup_"
-                        + dateFormat.format(date) + ".txt"));
-                FileOutputStream fout = new FileOutputStream(storageDirectory);
-                OutputStreamWriter myoutwriter = new OutputStreamWriter(fout);
-                myoutwriter.append(editText);
-                myoutwriter.close();
-                Snackbar.make(swipeView, R.string.backup_diary, Snackbar.LENGTH_LONG).show();
-            }
-            catch (Exception e)
-            {
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            });
+            builder.show();
         }
 
         if (id == R.id.action_share) {
@@ -162,5 +169,33 @@ public class FragmentDiary extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) {
+
+                String FilePath = data.getData().getPath();
+                File file = new File(FilePath);
+                StringBuilder text = new StringBuilder();
+
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        text.append(line);
+                        text.append('\n');
+                    }
+                    br.close();
+                }
+                catch (IOException e) {
+                    Snackbar.make(swipeView, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                }
+                mEditText.setText(text.toString());
+            }
+        }
     }
 }

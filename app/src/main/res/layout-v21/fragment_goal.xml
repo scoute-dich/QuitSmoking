@@ -69,6 +69,10 @@
                 android:maxHeight="3dip"
                 android:layout_marginTop="4dp"
                 android:id="@+id/progressBar"
+                android:progressBackgroundTint="@color/colorPrimary"
+                android:progressBackgroundTintMode="src_over"
+                android:progressTint="@color/colorAccent"
+                android:progressTintMode="src_over"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="8dp"
                 android:layout_below="@+id/text_description2" />

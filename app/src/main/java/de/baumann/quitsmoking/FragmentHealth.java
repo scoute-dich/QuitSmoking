@@ -16,9 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by juergen on 09.06.16. Licensed under GPL.
- */
 public class FragmentHealth extends Fragment {
 
     @Override
@@ -833,6 +830,9 @@ public class FragmentHealth extends Fragment {
         menu.findItem(R.id.action_time).setVisible(false);
         menu.findItem(R.id.action_line).setVisible(false);
         menu.findItem(R.id.action_backup).setVisible(false);
+        menu.findItem(R.id.action_imageDelete).setVisible(false);
+        menu.findItem(R.id.action_imageRotate).setVisible(false);
+        menu.findItem(R.id.action_imageLoad).setVisible(false);
     }
 
 }
