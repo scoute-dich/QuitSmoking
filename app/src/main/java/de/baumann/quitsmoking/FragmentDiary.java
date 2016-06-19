@@ -126,8 +126,8 @@ public class FragmentDiary extends Fragment {
                         startActivityForResult(intent, 1);
 
                     } else if (options[item].equals(getString(R.string.action_delete))) {
-                        String editText = mEditText.getText().toString();
                         mEditText.setText("");
+                        String editText = mEditText.getText().toString();
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putString(diaryText, editText);
                         editor.apply();

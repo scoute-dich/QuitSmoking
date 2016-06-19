@@ -54,54 +54,54 @@
     <string name="health_congratulations">Congratulations - you did it!</string>
     <string name="health_reached">Reached in:</string>
 
-    <string name="health_header1">Blutdruck</string>
-    <string name="health_description1">Blutdruck, Körpertemperatur und Herzfrequenz normalisieren sich. (20 minutes)</string>
+    <string name="health_header1">Blood pressure</string>
+    <string name="health_description1">Blood pressure, body temperature and heart rate return to normal. (20 minutes)</string>
 
-    <string name="health_header2">Kohlenmonoxid</string>
-    <string name="health_description2">Der Raucheratem verschwindet. Das Giftgas Kohlenmonoxid blockiert
-        bei einem Raucher etwa 10% der roten Blutkörperchen. Diese Blutkörperchen sind jetzt wieder verfügbar
-        für Sauerstoff. (8 hours)</string>
+    <string name="health_header2">Carbon monoxide</string>
+    <string name="health_description2">The smoker breath disappears. The poisonous gas carbon monoxide blocks
+         for a smoker about 10% of the red blood cells. These cells are now available again
+         for oxygen. (8 hours)</string>
 
-    <string name="health_header3">Herzinfarkt</string>
-    <string name="health_description3">Das Risiko für einen plötzlichen Herztod sinkt. (1 day)</string>
+    <string name="health_header3">Heart attack</string>
+    <string name="health_description3">The risk of sudden cardiac death decreases. (1 day)</string>
 
-    <string name="health_header4">Geruchssinn</string>
-    <string name="health_description4">Der Geruchssinn und die Geschmacksnerven werden wieder sensibler; das Riechen
-        und Schmecken verfeinert sich. (2 days)</string>
+    <string name="health_header4">Sense of smell</string>
+    <string name="health_description4">The sense of smell and the taste buds becoming more sensitive; smelling
+         and taste is refined. (2 days)</string>
 
-    <string name="health_header5">Atmen</string>
-    <string name="health_description5">Das Atmen fällt leichter. (3 days)</string>
+    <string name="health_header5">Breathing</string>
+    <string name="health_description5">Breathing becomes easier. (3 days)</string>
 
-    <string name="health_header6">Nikotinentzug</string>
-    <string name="health_description6">Der körperliche Nikotinentzug ist geschafft. (1 week)</string>
+    <string name="health_header6">Nicotine withdrawal</string>
+    <string name="health_description6">The physical nicotine withdrawal is made. (1 week)</string>
 
-    <string name="health_header7">Leistungsfähigkeit</string>
-    <string name="health_description7">Der gesamte Blutkreislauf verbessert sich. Die Lungenkapazität erhöht
-        sich um bis zu 30\%, sie kann wieder mehr Sauerstoff aufnehmen. Dadurch erhöht sich die körperliche
-        Leistungsfähigkeit. (3 months)</string>
+    <string name="health_header7">Capacity</string>
+    <string name="health_description7">The entire blood circulation improves. The increased lung capacity
+         by up to 30 \%, they can absorb more oxygen again. This increases the physical
+         Performance. (3 months)</string>
 
-    <string name="health_header8">Lungenhärchen</string>
-    <string name="health_description8">Spätestens jetzt sind die feinen Härchen in der Lunge nachgewachsen,
-        der Raucherhusten verschwindet. Abgespanntheit und Kurzatmigkeit verbessern sich zunehmend. (9 months)</string>
+    <string name="health_header8">Lung hairs</string>
+    <string name="health_description8">By now, the fine hairs are regrow in the lungs, the smokers cough
+        disappears. Exhaustion and shortness of breath improve progressively. (9 months)</string>
 
-    <string name="health_header9">Herzkranzgefäße</string>
-    <string name="health_description9">Das Risiko für Erkrankungen an den Herzkranzgefäßen sinkt um die Hälfte.
+    <string name="health_header9">Coronary arteries</string>
+    <string name="health_description9">The risk of diseases of the coronary vessels is reduced by half.
         (1 year)</string>
 
-    <string name="health_header10">Herzinfarkt</string>
-    <string name="health_description10">Das Risiko für einen Herzinfarkt sinkt deutlich. (2 years)</string>
+    <string name="health_header10">Heart attack</string>
+    <string name="health_description10">The risk of heart attack drops significantly. (2 years)</string>
 
-    <string name="health_header11">Schlaganfall</string>
-    <string name="health_description11">Das Risiko, einen Schlaganfall zu bekommen oder an einem Lungenkrebs
-        zu sterben, ist wesentlich geringer als früher. Auch das Risiko für Krebserkrankungen im Mundbereich ist
-        reduziert. (5 years)</string>
+    <string name="health_header11">Stroke</string>
+    <string name="health_description11">The risk of having a stroke or a lung cancer
+         die, is substantially lower than earlier. Also the risk of cancers of the mouth is
+         reduced. (5 years)</string>
 
-    <string name="health_header12">Lungenkrebs</string>
-    <string name="health_description12">Die Lungenkrebsgefahr ist so hoch wie bei einem Nichtraucher. Die Lunge
-        hat sich fast vollständig erholt, präkanzeröse Zellen sind durch gesunde Zellen ersetzt worden. (10 years)</string>
+    <string name="health_header12">Lung cancer</string>
+    <string name="health_description12">The lung cancer risk is as high as a Non smoking. The lung
+         has almost fully recovered, pre-cancerous cells are replaced by healthy cells. (10 years)</string>
 
-    <string name="health_header13">Herzinfarkt</string>
-    <string name="health_description13">Das Herzinfarktrisiko ist kaum höher als bei einem Nichtraucher. (15 years)</string>
+    <string name="health_header13">Heart attack</string>
+    <string name="health_description13">The risk of heart attack is barely higher than in a Non smoking. (15 years)</string>
 
 
     // Diary
@@ -188,7 +188,8 @@
         https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
 
         &lt;b>v1.1:&lt;/b>&lt;br>
-        &#8226; added goal tab&lt;br>&lt;br>
+        &#8226; added goal tab&lt;br>
+        &#8226; completed english translation&lt;br>&lt;br>
 
         &lt;b>v1.0:&lt;/b>&lt;br>
         &#8226; first release
