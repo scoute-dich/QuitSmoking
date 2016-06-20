@@ -19,14 +19,26 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+    private static final String SPtimeDiffDays = "SPtimeDiffDays";
+    private static final String SPtimeDiffHours = "SPtimeDifHours";
+    private static final String SPtimeDiffMinutes = "SPtimeDiffMinutes";
+
+    private static final String SPcigSavedString = "SPcigSavedString";
+    private static final String SPmoneySavedString = "SPmoneySavedString";
+    private static final String SPtimeSavedString = "SPtimeSavedString";
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
@@ -41,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         assert tabLayout != null;
         tabLayout.setupWithViewPager(viewPager);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPref.getBoolean ("first_run", true)){
-            sharedPref.edit()
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
+        if (SP.getBoolean ("first_run", true)){
+            SP.edit()
                     .putBoolean("first_run", false)
                     .apply();
             Intent intent_in = new Intent(MainActivity.this, UserSettingsActivity.class);
@@ -80,6 +92,129 @@ public class MainActivity extends AppCompatActivity {
         if (!directory.exists()) {
             directory.mkdirs();
         }
+
+        calculate();
+    }
+
+    private void calculate () {
+
+        final SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String dateFormat = SP.getString("dateFormat", "1");
+        String cigNumb = SP.getString("cig", "");
+        String dateQuit = SP.getString("date", "");
+        String timeQuit = SP.getString("time", "");
+        String savedMoney = SP.getString("costs", "");
+        String savedTime = SP.getString("duration", "");
+
+        switch (dateFormat) {
+            case "1":
+                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+
+                String dateStart = dateQuit + " " + timeQuit;
+                String dateStop = format.format(date);
+
+                try {
+                    Date d1 = format.parse(dateStart);
+                    Date d2 = format.parse(dateStop);
+
+                    //Time Difference
+                    long timeDiff = d2.getTime() - d1.getTime();
+                    long timeDiffMinutes = timeDiff / (60 * 1000) % 60;
+                    long timeDiffHours = timeDiff / (60 * 60 * 1000) % 24;
+                    long timeDiffDays = timeDiff / (24 * 60 * 60 * 1000);
+                    String timeDiffDaysString = Long.toString(timeDiffDays);
+                    String timeDiffHoursString = Long.toString(timeDiffHours);
+                    String timeDiffMinutesString = Long.toString(timeDiffMinutes);
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
+                    SP.edit().apply();
+
+                    //Saved Cigarettes
+                    long cigNumber = Long.parseLong(cigNumb);
+                    long cigDay = 86400000 / cigNumber;
+                    long savedCig = timeDiff / cigDay;
+                    String cigSavedString = Long.toString(savedCig);
+                    SP.edit().putString(SPcigSavedString, cigSavedString);
+                    SP.edit().apply();
+
+                    //Saved Money
+                    double costCig = Double.valueOf(savedMoney.trim());
+                    double sa = Long.parseLong(cigSavedString);
+                    double moneySaved = sa * costCig;
+                    String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
+                    SP.edit().putString(SPmoneySavedString, moneySavedString);
+                    SP.edit().apply();
+
+                    //Saved Time
+                    double timeMin = Double.valueOf(savedTime.trim());
+                    double time = sa * timeMin;
+                    String timeSavedString = String.format(Locale.US, "%.1f", time);
+                    SP.edit().putString(SPtimeSavedString, timeSavedString);
+                    SP.edit().apply();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "2":
+                Date date2 = new Date();
+                SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+
+                String dateStart2 = dateQuit + " " + timeQuit;
+                String dateStop2 = format2.format(date2);
+
+                try {
+                    Date d1 = format2.parse(dateStart2);
+                    Date d2 = format2.parse(dateStop2);
+
+                    //Time Difference
+                    long timeDiff = d2.getTime() - d1.getTime();
+                    long timeDiffMinutes = timeDiff / (60 * 1000) % 60;
+                    long timeDiffHours = timeDiff / (60 * 60 * 1000) % 24;
+                    long timeDiffDays = timeDiff / (24 * 60 * 60 * 1000);
+                    String timeDiffDaysString = Long.toString(timeDiffDays);
+                    String timeDiffHoursString = Long.toString(timeDiffHours);
+                    String timeDiffMinutesString = Long.toString(timeDiffMinutes);
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
+                    SP.edit().apply();
+
+                    //Saved Cigarettes
+                    long cigNumber = Long.parseLong(cigNumb);
+                    long cigDay = 86400000 / cigNumber;
+                    long savedCig = timeDiff / cigDay;
+                    String cigSavedString = Long.toString(savedCig);
+                    SP.edit().putString(SPcigSavedString, cigSavedString);
+                    SP.edit().apply();
+
+                    //Saved Money
+                    double costCig = Double.valueOf(savedMoney.trim());
+                    double sa = Long.parseLong(cigSavedString);
+                    double moneySaved = sa * costCig;
+                    String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
+                    SP.edit().putString(SPmoneySavedString, moneySavedString);
+                    SP.edit().apply();
+
+                    //Saved Time
+                    double timeMin = Double.valueOf(savedTime.trim());
+                    double time = sa * timeMin;
+                    String timeSavedString = String.format(Locale.US, "%.1f", time);
+                    SP.edit().putString(SPtimeSavedString, timeSavedString);
+                    SP.edit().apply();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                break;
+        }
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
