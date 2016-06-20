@@ -1,5 +1,6 @@
 package de.baumann.quitsmoking;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -38,6 +39,7 @@ public class FragmentGoal extends Fragment {
     private ImageView viewImage;
     private String rotate;
 
+    @SuppressLint("CutPasteId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,104 +80,383 @@ public class FragmentGoal extends Fragment {
         }
 
         String currency = SP.getString("currency", "1");
+        String dateFormat = SP.getString("dateFormat", "1");
         String cigNumb = SP.getString("cig", "");
         String dateQuit = SP.getString("date", "");
         String timeQuit = SP.getString("time", "");
         String savedMoney = SP.getString("costs", "");
         String goalCosts = SP.getString("goalCosts", "");
+        String goalDate = SP.getString("goalDate", "");
 
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        switch (dateFormat) {
+            case "1":
+                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
-        String dateStart = dateQuit + " " + timeQuit;
-        String dateStop = format.format(date);
+                String dateStart = dateQuit + " " + timeQuit;
+                String dateStop = format.format(date);
+                String dateGoal = goalDate + " " + "00:00";
 
-        try {
-            Date d1 = format.parse(dateStart);
-            Date d2 = format.parse(dateStop);
+                try {
 
-            //Time Difference
-            long diff = d2.getTime() - d1.getTime();
+                    if (goalDate.isEmpty()) {
 
-            //Number of Cigarettes
-            long cigNumber = Long.parseLong(cigNumb);
-            long cigDay = 86400000 / cigNumber;
-            long diffCig = diff / cigDay;
-            String cigSaved = Long.toString(diffCig);
+                        //Time Difference
+                        Date d1 = format.parse(dateStart);
+                        Date d2 = format.parse(dateStop);
+                        long diff = d2.getTime() - d1.getTime();
 
-            //Saved Money
-            double costCig = Double.valueOf(savedMoney.trim());
-            double sa = Long.parseLong(cigSaved);
-            double cost = sa * costCig;
-            String costString = String.format(Locale.US, "%.2f", cost);
+                        //Number of Cigarettes
+                        long cigNumber = Long.parseLong(cigNumb);
+                        long cigDay = 86400000 / cigNumber;
+                        long diffCig = diff / cigDay;
+                        String cigSaved = Long.toString(diffCig);
 
-            //Remaining costs
-            double goalCost = Long.parseLong(goalCosts);
-            double remCost = goalCost - cost;
-            String remCostString = String.format(Locale.US, "%.2f", remCost);
-            String goalCostString = String.format(Locale.US, "%.2f", goalCost);
+                        //Saved Money
+                        double costCig = Double.valueOf(savedMoney.trim());
+                        double sa = Long.parseLong(cigSaved);
+                        double cost = sa * costCig;
+                        String costString = String.format(Locale.US, "%.2f", cost);
 
-            //Remaining time
+                        //Remaining costs
+                        double goalCost = Long.parseLong(goalCosts);
+                        double remCost = goalCost - cost;
+                        String remCostString = String.format(Locale.US, "%.2f", remCost);
+                        String goalCostString = String.format(Locale.US, "%.2f", goalCost);
 
-            double savedMoneyDay = cigNumber * costCig;
-            double remTime = remCost / savedMoneyDay;
+                        //Remaining time
 
-            String remTimeString = String.format(Locale.US, "%.1f", remTime);
+                        double savedMoneyDay = cigNumber * costCig;
+                        double remTime = remCost / savedMoneyDay;
 
-            TextView textView_goalCost;
-            textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
-            if (goalTitle.isEmpty()) {
-                textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
-            } else {
-                switch (currency) {
-                    case "1":
-                        textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_euro) +
-                                " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_euro) +
-                                " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_euro))));
-                        break;
-                    case "2":
-                        textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_dollar) +
-                                " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_dollar) +
-                                " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_dollar))));
-                        break;
-                    case "3":
-                        textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_pound) +
-                                " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_pound) +
-                                " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_pound))));
-                        break;
-                    case "4":
-                        textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_yen) +
-                                " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_yen) +
-                                " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_yen))));
-                        break;
+                        String remTimeString = String.format(Locale.US, "%.1f", remTime);
+
+                        TextView textView_goalCost;
+                        textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            switch (currency) {
+                                case "1":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_euro))));
+                                    break;
+                                case "2":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_dollar))));
+                                    break;
+                                case "3":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_pound))));
+                                    break;
+                                case "4":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_yen))));
+                                    break;
+                            }
+                        }
+
+                        TextView textView_goalTime;
+                        textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            if (remTime < 0) {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_congratulations)));
+                            } else {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_reached) + " "
+                                        + remTimeString + " " + getString(R.string.time_days)));
+                            }
+                        }
+
+                        ProgressBar progressBar;
+                        progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                        assert progressBar != null;
+                        int max = (int) (goalCost);
+                        int actual = (int) (cost);
+                        progressBar.setMax(max);
+                        progressBar.setProgress(actual);
+
+                    } else {
+
+                        //Time Difference
+                        Date d1 = format.parse(dateGoal);
+                        Date d2 = format.parse(dateStop);
+                        long diff = d2.getTime() - d1.getTime();
+
+                        //Number of Cigarettes
+                        long cigNumber = Long.parseLong(cigNumb);
+                        long cigDay = 86400000 / cigNumber;
+                        long diffCig = diff / cigDay;
+                        String cigSaved = Long.toString(diffCig);
+
+                        //Saved Money
+                        double costCig = Double.valueOf(savedMoney.trim());
+                        double sa = Long.parseLong(cigSaved);
+                        double cost = sa * costCig;
+                        String costString = String.format(Locale.US, "%.2f", cost);
+
+                        //Remaining costs
+                        double goalCost = Long.parseLong(goalCosts);
+                        double remCost = goalCost - cost;
+                        String remCostString = String.format(Locale.US, "%.2f", remCost);
+                        String goalCostString = String.format(Locale.US, "%.2f", goalCost);
+
+                        //Remaining time
+
+                        double savedMoneyDay = cigNumber * costCig;
+                        double remTime = remCost / savedMoneyDay;
+
+                        String remTimeString = String.format(Locale.US, "%.1f", remTime);
+
+                        TextView textView_goalCost;
+                        textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            switch (currency) {
+                                case "1":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_euro))));
+                                    break;
+                                case "2":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_dollar))));
+                                    break;
+                                case "3":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_pound))));
+                                    break;
+                                case "4":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_yen))));
+                                    break;
+                            }
+                        }
+
+                        TextView textView_goalTime;
+                        textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            if (remTime < 0) {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_congratulations)));
+                            } else {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_reached) + " "
+                                        + remTimeString + " " + getString(R.string.time_days)));
+                            }
+                        }
+
+                        ProgressBar progressBar;
+                        progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                        assert progressBar != null;
+                        int max = (int) (goalCost);
+                        int actual = (int) (cost);
+                        progressBar.setMax(max);
+                        progressBar.setProgress(actual);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }
 
-            TextView textView_goalTime;
-            textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
-            if (goalTitle.isEmpty()) {
-                textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
-            } else {
-                if (remTime < 0) {
-                    textView_goalTime.setText(String.valueOf(getString(R.string.health_congratulations)));
-                } else {
-                    textView_goalTime.setText(String.valueOf(getString(R.string.health_reached) + " "
-                            + remTimeString + " " + getString(R.string.time_days)));
+                break;
+
+            case "2":
+
+                Date date2 = new Date();
+                SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+
+                String dateStart2 = dateQuit + " " + timeQuit;
+                String dateStop2 = format2.format(date2);
+                String dateGoal2 = goalDate + " " + "00:00";
+
+                try {
+
+                    if (goalDate.isEmpty()) {
+
+                        //Time Difference
+                        Date d1 = format2.parse(dateStart2);
+                        Date d2 = format2.parse(dateStop2);
+                        long diff = d2.getTime() - d1.getTime();
+
+                        //Number of Cigarettes
+                        long cigNumber = Long.parseLong(cigNumb);
+                        long cigDay = 86400000 / cigNumber;
+                        long diffCig = diff / cigDay;
+                        String cigSaved = Long.toString(diffCig);
+
+                        //Saved Money
+                        double costCig = Double.valueOf(savedMoney.trim());
+                        double sa = Long.parseLong(cigSaved);
+                        double cost = sa * costCig;
+                        String costString = String.format(Locale.US, "%.2f", cost);
+
+                        //Remaining costs
+                        double goalCost = Long.parseLong(goalCosts);
+                        double remCost = goalCost - cost;
+                        String remCostString = String.format(Locale.US, "%.2f", remCost);
+                        String goalCostString = String.format(Locale.US, "%.2f", goalCost);
+
+                        //Remaining time
+
+                        double savedMoneyDay = cigNumber * costCig;
+                        double remTime = remCost / savedMoneyDay;
+
+                        String remTimeString = String.format(Locale.US, "%.1f", remTime);
+
+                        TextView textView_goalCost;
+                        textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            switch (currency) {
+                                case "1":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_euro))));
+                                    break;
+                                case "2":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_dollar))));
+                                    break;
+                                case "3":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_pound))));
+                                    break;
+                                case "4":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_yen))));
+                                    break;
+                            }
+                        }
+
+                        TextView textView_goalTime;
+                        textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            if (remTime < 0) {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_congratulations)));
+                            } else {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_reached) + " "
+                                        + remTimeString + " " + getString(R.string.time_days)));
+                            }
+                        }
+
+                        ProgressBar progressBar2;
+                        progressBar2 = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                        assert progressBar2 != null;
+                        int max = (int) (goalCost);
+                        int actual = (int) (cost);
+                        progressBar2.setMax(max);
+                        progressBar2.setProgress(actual);
+
+                    } else {
+
+                        //Time Difference
+                        Date d1 = format2.parse(dateGoal2);
+                        Date d2 = format2.parse(dateStop2);
+                        long diff = d2.getTime() - d1.getTime();
+
+                        //Number of Cigarettes
+                        long cigNumber = Long.parseLong(cigNumb);
+                        long cigDay = 86400000 / cigNumber;
+                        long diffCig = diff / cigDay;
+                        String cigSaved = Long.toString(diffCig);
+
+                        //Saved Money
+                        double costCig = Double.valueOf(savedMoney.trim());
+                        double sa = Long.parseLong(cigSaved);
+                        double cost = sa * costCig;
+                        String costString = String.format(Locale.US, "%.2f", cost);
+
+                        //Remaining costs
+                        double goalCost = Long.parseLong(goalCosts);
+                        double remCost = goalCost - cost;
+                        String remCostString = String.format(Locale.US, "%.2f", remCost);
+                        String goalCostString = String.format(Locale.US, "%.2f", goalCost);
+
+                        //Remaining time
+
+                        double savedMoneyDay = cigNumber * costCig;
+                        double remTime = remCost / savedMoneyDay;
+
+                        String remTimeString = String.format(Locale.US, "%.1f", remTime);
+
+                        TextView textView_goalCost;
+                        textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            switch (currency) {
+                                case "1":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_euro) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_euro))));
+                                    break;
+                                case "2":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_dollar) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_dollar))));
+                                    break;
+                                case "3":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_pound) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_pound))));
+                                    break;
+                                case "4":
+                                    textView_goalCost.setText(String.valueOf((String.valueOf(getString(R.string.costs) + " " + goalCostString) + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.alreadySaved) + " " + costString + " " + getString(R.string.money_yen) +
+                                            " | " + getString(R.string.costsRemaining) + " " + remCostString + " " + getString(R.string.money_yen))));
+                                    break;
+                            }
+                        }
+
+                        TextView textView_goalTime;
+                        textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
+                        if (goalTitle.isEmpty()) {
+                            textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
+                        } else {
+                            if (remTime < 0) {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_congratulations)));
+                            } else {
+                                textView_goalTime.setText(String.valueOf(getString(R.string.health_reached) + " "
+                                        + remTimeString + " " + getString(R.string.time_days)));
+                            }
+                        }
+
+                        ProgressBar progressBar2;
+                        progressBar2 = (ProgressBar) rootView.findViewById(R.id.progressBar);
+                        assert progressBar2 != null;
+                        int max = (int) (goalCost);
+                        int actual = (int) (cost);
+                        progressBar2.setMax(max);
+                        progressBar2.setProgress(actual);
+                    }
+
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }
 
-            ProgressBar progressBar;
-            progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
-            assert progressBar != null;
-            int max = (int) (goalCost);
-            int actual = (int) (cost);
-            progressBar.setMax(max);
-            progressBar.setProgress(actual);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
+                break;
         }
+
+
 
         return rootView;
     }

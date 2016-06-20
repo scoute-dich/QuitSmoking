@@ -33,86 +33,168 @@ public class FragmentOverview extends Fragment {
         setHasOptionsMenu(true);
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String startType = SP.getString("currency", "1");
+        String currency = SP.getString("currency", "1");
+        String dateFormat = SP.getString("dateFormat", "1");
         String cigNumb = SP.getString("cig", "");
         String dateQuit = SP.getString("date", "");
         String timeQuit = SP.getString("time", "");
         String savedMoney = SP.getString("costs", "");
         String savedTime = SP.getString("duration", "");
 
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        switch (dateFormat) {
+            case "1":
+                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
-        String dateStart = dateQuit + " " + timeQuit;
-        String dateStop = format.format(date);
+                String dateStart = dateQuit + " " + timeQuit;
+                String dateStop = format.format(date);
 
-        try {
-            Date d1 = format.parse(dateStart);
-            Date d2 = format.parse(dateStop);
+                try {
+                    Date d1 = format.parse(dateStart);
+                    Date d2 = format.parse(dateStop);
 
-            //Time Difference
-            long diff = d2.getTime() - d1.getTime();
-            long diffMinutes = diff / (60 * 1000) % 60;
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-            String days = Long.toString(diffDays);
-            String hours = Long.toString(diffHours);
-            String minutes = Long.toString(diffMinutes);
+                    //Time Difference
+                    long diff = d2.getTime() - d1.getTime();
+                    long diffMinutes = diff / (60 * 1000) % 60;
+                    long diffHours = diff / (60 * 60 * 1000) % 24;
+                    long diffDays = diff / (24 * 60 * 60 * 1000);
+                    String days = Long.toString(diffDays);
+                    String hours = Long.toString(diffHours);
+                    String minutes = Long.toString(diffMinutes);
 
-            TextView textView_date2 = (TextView) rootView.findViewById(R.id.text_date2);
-            TextView textView_date3 = (TextView) rootView.findViewById(R.id.text_date3);
+                    TextView textView_date2 = (TextView) rootView.findViewById(R.id.text_date2);
+                    TextView textView_date3 = (TextView) rootView.findViewById(R.id.text_date3);
 
-            textView_time2 = (TextView) rootView.findViewById(R.id.text_time2);
-            textView_time3 = (TextView) rootView.findViewById(R.id.text_time3);
-            textView_time4 = (TextView) rootView.findViewById(R.id.text_time4);
+                    textView_time2 = (TextView) rootView.findViewById(R.id.text_time2);
+                    textView_time3 = (TextView) rootView.findViewById(R.id.text_time3);
+                    textView_time4 = (TextView) rootView.findViewById(R.id.text_time4);
 
-            textView_time2.setText(String.valueOf(days + " " + getString(R.string.time_days)));
-            textView_time3.setText(String.valueOf(hours + " " + getString(R.string.time_hours)));
-            textView_time4.setText(String.valueOf(minutes + " " + getString(R.string.time_minutes)));
+                    textView_time2.setText(String.valueOf(days + " " + getString(R.string.time_days)));
+                    textView_time3.setText(String.valueOf(hours + " " + getString(R.string.time_hours)));
+                    textView_time4.setText(String.valueOf(minutes + " " + getString(R.string.time_minutes)));
 
-            assert textView_date2 != null;
-            textView_date2.setText(String.valueOf(dateQuit));
-            assert textView_date3 != null;
-            textView_date3.setText(String.valueOf(timeQuit));
+                    assert textView_date2 != null;
+                    textView_date2.setText(String.valueOf(dateQuit));
+                    assert textView_date3 != null;
+                    textView_date3.setText(String.valueOf(timeQuit));
 
-            //Number of Cigarettes
-            long cigNumber = Long.parseLong(cigNumb);
-            long cigDay = 86400000 / cigNumber;
-            long diffCig = diff / cigDay;
-            String cigSaved = Long.toString(diffCig);
-            textView_cig2 = (TextView) rootView.findViewById(R.id.text_cigs2);
-            textView_cig2.setText(String.valueOf(cigSaved));
+                    //Number of Cigarettes
+                    long cigNumber = Long.parseLong(cigNumb);
+                    long cigDay = 86400000 / cigNumber;
+                    long diffCig = diff / cigDay;
+                    String cigSaved = Long.toString(diffCig);
+                    textView_cig2 = (TextView) rootView.findViewById(R.id.text_cigs2);
+                    textView_cig2.setText(String.valueOf(cigSaved));
 
-            //Saved Money
-            double costCig = Double.valueOf(savedMoney.trim());
-            double sa = Long.parseLong(cigSaved);
-            double cost = sa * costCig;
-            String cigCost = String.format(Locale.US, "%.2f", cost);
-            textView_cig2_cost = (TextView) rootView.findViewById(R.id.text_cigs2_cost);
-            switch (startType) {
-                case "1":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_euro)));
-                    break;
-                case "2":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_dollar)));
-                    break;
-                case "3":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_pound)));
-                    break;
-                case "4":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_yen)));
-                    break;
-            }
+                    //Saved Money
+                    double costCig = Double.valueOf(savedMoney.trim());
+                    double sa = Long.parseLong(cigSaved);
+                    double cost = sa * costCig;
+                    String cigCost = String.format(Locale.US, "%.2f", cost);
+                    textView_cig2_cost = (TextView) rootView.findViewById(R.id.text_cigs2_cost);
+                    switch (currency) {
+                        case "1":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_euro)));
+                            break;
+                        case "2":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_dollar)));
+                            break;
+                        case "3":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_pound)));
+                            break;
+                        case "4":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_yen)));
+                            break;
+                    }
 
-            //Saved Time
-            double timeMin = Double.valueOf(savedTime.trim());
-            double time = sa * timeMin;
-            String savedTimeMinutes = String.format(Locale.US, "%.1f", time);
-            textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
-            textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));
+                    //Saved Time
+                    double timeMin = Double.valueOf(savedTime.trim());
+                    double time = sa * timeMin;
+                    String savedTimeMinutes = String.format(Locale.US, "%.1f", time);
+                    textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
+                    textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));
 
-        } catch (Exception e) {
-            e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "2":
+                Date date2 = new Date();
+                SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+
+                String dateStart2 = dateQuit + " " + timeQuit;
+                String dateStop2 = format2.format(date2);
+
+                try {
+                    Date d1 = format2.parse(dateStart2);
+                    Date d2 = format2.parse(dateStop2);
+
+                    //Time Difference
+                    long diff = d2.getTime() - d1.getTime();
+                    long diffMinutes = diff / (60 * 1000) % 60;
+                    long diffHours = diff / (60 * 60 * 1000) % 24;
+                    long diffDays = diff / (24 * 60 * 60 * 1000);
+                    String days = Long.toString(diffDays);
+                    String hours = Long.toString(diffHours);
+                    String minutes = Long.toString(diffMinutes);
+
+                    TextView textView_date2 = (TextView) rootView.findViewById(R.id.text_date2);
+                    TextView textView_date3 = (TextView) rootView.findViewById(R.id.text_date3);
+
+                    textView_time2 = (TextView) rootView.findViewById(R.id.text_time2);
+                    textView_time3 = (TextView) rootView.findViewById(R.id.text_time3);
+                    textView_time4 = (TextView) rootView.findViewById(R.id.text_time4);
+
+                    textView_time2.setText(String.valueOf(days + " " + getString(R.string.time_days)));
+                    textView_time3.setText(String.valueOf(hours + " " + getString(R.string.time_hours)));
+                    textView_time4.setText(String.valueOf(minutes + " " + getString(R.string.time_minutes)));
+
+                    assert textView_date2 != null;
+                    textView_date2.setText(String.valueOf(dateQuit));
+                    assert textView_date3 != null;
+                    textView_date3.setText(String.valueOf(timeQuit));
+
+                    //Number of Cigarettes
+                    long cigNumber = Long.parseLong(cigNumb);
+                    long cigDay = 86400000 / cigNumber;
+                    long diffCig = diff / cigDay;
+                    String cigSaved = Long.toString(diffCig);
+                    textView_cig2 = (TextView) rootView.findViewById(R.id.text_cigs2);
+                    textView_cig2.setText(String.valueOf(cigSaved));
+
+                    //Saved Money
+                    double costCig = Double.valueOf(savedMoney.trim());
+                    double sa = Long.parseLong(cigSaved);
+                    double cost = sa * costCig;
+                    String cigCost = String.format(Locale.GERMANY, "%.2f", cost);
+                    textView_cig2_cost = (TextView) rootView.findViewById(R.id.text_cigs2_cost);
+                    switch (currency) {
+                        case "1":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_euro)));
+                            break;
+                        case "2":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_dollar)));
+                            break;
+                        case "3":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_pound)));
+                            break;
+                        case "4":
+                            textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_yen)));
+                            break;
+                    }
+
+                    //Saved Time
+                    double timeMin = Double.valueOf(savedTime.trim());
+                    double time = sa * timeMin;
+                    String savedTimeMinutes = String.format(Locale.GERMANY, "%.1f", time);
+                    textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
+                    textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
 
         return rootView;

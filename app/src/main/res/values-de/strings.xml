@@ -129,31 +129,54 @@
 
 
     // Settings
-    <string name="settings_category_1">Einstellungen</string>
-    <string name="settings_category_2">Dein persönliches Ziel</string>
-    <string name="settings_category_3">Über die App</string>
+    <string name="settings_category_0">Tabs</string>
+    <string name="settings_category_1">Statistiken</string>
+    <string name="settings_category_2">Ziel Tab</string>
+    <string name="settings_category_3">Anwendung</string>
 
     <string name="settings_cig">Zigaretten</string>
     <string name="settings_costs">Geld</string>
     <string name="settings_currency">Währung</string>
+    <string name="settings_dateFormat">Datumsformat</string>
     <string name="settings_date">Datum</string>
     <string name="settings_time">Zeit</string>
     <string name="settings_duration">Dauer</string>
     <string name="settings_goalTitle">Ziel</string>
     <string name="settings_goalCosts">Kosten deines Ziels</string>
+    <string name="settings_goalDate">Nächstes Ziel</string>
+    <string name="settings_tab_overview">Übersichtstab</string>
+    <string name="settings_tab_health">Gesundheitstab</string>
+    <string name="settings_tab_goal">Zieltab</string>
+    <string name="settings_tab_diary">Tagebuchtab</string>
 
     <string name="settings_cig_summary">Gerauchte Zigaretten pro Tag, um nicht gerauchte Zigaretten zu berechnen</string>
     <string name="settings_costs_summary">Die Kosten einer einzelnen Zigarette. Wird gebraucht um das bis jetzt gesparte Geld zu berechnen.</string>
     <string name="settings_currency_summary">Wähle deine bevorzugte Währungseinheit</string>
+    <string name="settings_dateFormat_summary">Wähle dein bevorzugtes Datumsformat. Benutze es bei jeder Datumseingabe.</string>
     <string name="settings_date_summary">An welchem Tag hast du aufgehört zu rauchen?</string>
     <string name="settings_time_summary">Um wieviel Uhr hast du aufgehört zu rauchen?</string>
-    <string name="settings_duration_summary">Die Zeit die du brauchst um eine Zigarette zu rauchen. Wird benutzt um die gesparte Zeit zu berechnen.</string>
+    <string name="settings_duration_summary">Die Zeit die du brauchst um eine Zigarette zu rauchen. Wird benutzt um die gesparte
+            Zeit zu berechnen.</string>
     <string name="settings_goalTitle_summary">Was ist dein Ziel? Wofür willst du das gesparte Geld nutzen?</string>
-    <string name="settings_goalCosts_summary">Wieviel kostet dein Ziel? Gib bitte eine ganze zahl an. Wird gebraucht um den Zeitpunkt zu berechnen, wann du dein Ziel erreicht hast.</string>
+    <string name="settings_goalCosts_summary">Wieviel kostet dein Ziel? Gib bitte eine ganze Zahl an. Wird gebraucht um den
+            Zeitpunkt zu berechnen, wann du dein Ziel erreicht hast.</string>
+    <string name="settings_goalDate_summary">Wenn du dein aktuelles Ziel erreicht hast, kannst du hier das Startdatum für dein
+        nächstes Ziel einstellen. Dies ist notwendig um den Zeitpunkt, wann du dein nächstes Ziel erreichen wirst, zu
+        berechnen und gleichzeitig die Gesamtstatistiken in der Übersicht zu behalten.</string>
+    <string name="settings_tab_overview_summary">Möchtest du den Übersichtstab verwenden? Dort werden grundlegende Statistiken
+        angezeigt:
+        Zeit als Nichtraucher, gespartes Geld und so weiter.</string>
+    <string name="settings_tab_health_summary">Möchtest du den Gesundheitstab verweden? Dort werden Fortschritte angezeigt, die
+        deine Gesundheit
+        betreffen: Wahrscheinlichkeit eines Herzinfarktes, Verbesserung der Lungentätigkeit und so weiter.</string>
+    <string name="settings_tab_goal_summary">Möchtest du den Zieltab verwenden? Hier kannst du dir ein persönliches Ziel setzen. Etwas
+        wofür du das gesparte Geld ausgeben möchtest.</string>
+    <string name="settings_tab_diary_summary">Möchtest du den Tagebuchtab verwenden? Hier kannst du deine Gedanken, Gefühle oder
+        ähnliches notieren. Vielleicht hilft es dir.</string>
 
     <string name="settings_cig_hint">Anzahl der täglich gerauchten Zigaretten</string>
     <string name="settings_cost_hint">Was kostet eine Zigarette?</string>
-    <string name="settings_date_hint">Benutze Format: 2016–04–30</string>
+    <string name="settings_date_hint">Benutze dein bevorzugtes Datumsformat</string>
     <string name="settings_time_hint">Benutze das 24h Format: 22:22</string>
     <string name="settings_duration_hint">Zeit in Stunden: 0.2</string>
     <string name="settings_goalTitle_hint">Name deines Ziels</string>
@@ -211,4 +234,15 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+    <string-array name="listDate">
+        <item>International (2016–06–20)</item>
+        <item>Deutsch (20.06.2016)</item>
+    </string-array>
+
+    <string-array name="listValuesDate">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>

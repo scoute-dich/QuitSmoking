@@ -4,8 +4,10 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +41,17 @@ public class MainActivity extends AppCompatActivity {
         assert tabLayout != null;
         tabLayout.setupWithViewPager(viewPager);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPref.getBoolean ("first_run", true)){
+            sharedPref.edit()
+                    .putBoolean("first_run", false)
+                    .apply();
+            Intent intent_in = new Intent(MainActivity.this, UserSettingsActivity.class);
+            startActivity(intent_in);
+            overridePendingTransition(0, 0);
+            finish();
+        }
+
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
@@ -71,11 +84,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentOverview(), String.valueOf(getString(R.string.action_overview)));
-        adapter.addFragment(new FragmentHealth(), String.valueOf(getString(R.string.action_health)));
-        adapter.addFragment(new FragmentGoal(), String.valueOf(getString(R.string.action_goal)));
-        adapter.addFragment(new FragmentDiary(), String.valueOf(getString(R.string.action_diary)));
-        // can add more tabs here
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (sharedPref.getBoolean("tab_overview", false)) {
+            adapter.addFragment(new FragmentOverview(), String.valueOf(getString(R.string.action_overview)));
+        }
+        if (sharedPref.getBoolean("tab_health", false)) {
+            adapter.addFragment(new FragmentHealth(), String.valueOf(getString(R.string.action_health)));
+        }
+        if (sharedPref.getBoolean("tab_goal", false)) {
+            adapter.addFragment(new FragmentGoal(), String.valueOf(getString(R.string.action_goal)));
+        }
+        if (sharedPref.getBoolean("tab_diary", false)) {
+            adapter.addFragment(new FragmentDiary(), String.valueOf(getString(R.string.action_diary)));
+        }
+
         viewPager.setAdapter(adapter);
     }
 

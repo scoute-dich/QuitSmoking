@@ -2,6 +2,36 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+        android:title="@string/settings_category_0">
+
+        <CheckBoxPreference
+            android:title="@string/settings_tab_overview"
+            android:summary="@string/settings_tab_overview_summary"
+            android:key="tab_overview"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_tab_health"
+            android:summary="@string/settings_tab_health_summary"
+            android:key="tab_health"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_tab_goal"
+            android:summary="@string/settings_tab_goal_summary"
+            android:key="tab_goal"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_tab_diary"
+            android:summary="@string/settings_tab_diary_summary"
+            android:key="tab_diary"
+            android:defaultValue="true" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/settings_category_1">
 
         <EditTextPreference
@@ -11,6 +41,14 @@
             android:hint="@string/settings_cig_hint"
             android:summary="@string/settings_cig_summary">
         </EditTextPreference>
+
+        <ListPreference
+            android:title="@string/settings_dateFormat"
+            android:summary="@string/settings_dateFormat_summary"
+            android:key="dateFormat"
+            android:defaultValue="1"
+            android:entries="@array/listDate"
+            android:entryValues="@array/listValuesDate" />
 
         <EditTextPreference
             android:title="@string/settings_date"
@@ -69,6 +107,14 @@
             android:inputType="number"
             android:key="goalCosts" />
 
+        <EditTextPreference
+            android:title="@string/settings_goalDate"
+            android:key="goalDate"
+            android:inputType="date"
+            android:hint="@string/settings_date_hint"
+            android:summary="@string/settings_goalDate_summary">
+        </EditTextPreference>
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -85,7 +131,5 @@
             android:key="changelog" />
 
     </PreferenceCategory>
-
-
 
 </PreferenceScreen>

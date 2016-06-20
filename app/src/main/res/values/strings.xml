@@ -128,31 +128,52 @@
 
 
     // Settings
-    <string name="settings_category_1">Settings</string>
-    <string name="settings_category_2">Your personal goal</string>
-    <string name="settings_category_3">About app</string>
+    <string name="settings_category_0">Tabs</string>
+    <string name="settings_category_1">Statistics</string>
+    <string name="settings_category_2">Goal tab</string>
+    <string name="settings_category_3">App</string>
 
     <string name="settings_cig">Cigarettes</string>
     <string name="settings_costs">Money</string>
     <string name="settings_currency">Currency</string>
+    <string name="settings_dateFormat">Date format</string>
     <string name="settings_date">Date</string>
     <string name="settings_time">Time</string>
     <string name="settings_duration">Duration</string>
     <string name="settings_goalTitle">Goal</string>
     <string name="settings_goalCosts">Costs of your goal</string>
+    <string name="settings_goalDate">Next goal</string>
+    <string name="settings_tab_overview">Overview tab</string>
+    <string name="settings_tab_health">Health tab</string>
+    <string name="settings_tab_goal">Goal tab</string>
+    <string name="settings_tab_diary">Diary tab</string>
 
     <string name="settings_cig_summary">Set number of daily smoked cigarettes, to calculate not smoked cigarettes</string>
     <string name="settings_costs_summary">Costs of a single cigarette. This is used to calculate the saved money since quitting.</string>
     <string name="settings_currency_summary">Set your preferred currency</string>
+    <string name="settings_dateFormat_summary">Set your preferred date format. Use it always, when you enter a date.</string>
     <string name="settings_date_summary">Set date of last smoked cigarette</string>
     <string name="settings_time_summary">Set time of last smoked cigarette</string>
-    <string name="settings_duration_summary">The time you need to smoke one cigarette. This is user to calculate the saved time since quitting.</string>
+    <string name="settings_duration_summary">The time you need to smoke one cigarette. This is user to calculate the saved
+        time since quitting.</string>
     <string name="settings_goalTitle_summary">Set the title of your goal. For what will you use the saved money?</string>
-    <string name="settings_goalCosts_summary">What are the costs of your goal? Use a integer number. Used to calculate the time when you reach your goal.</string>
+    <string name="settings_goalCosts_summary">What are the costs of your goal? Use a integer number. Used to calculate the
+        time when you reach your goal.</string>
+    <string name="settings_goalDate_summary">If you reached your current goal, you can set here a start date for your next goal. This
+        is necessary to calculate the new time when you reach the next goal, while keeping the right statistics from the
+        overview tab.</string>
+    <string name="settings_tab_overview_summary">Do you want to use the overview tab? In this tab the main statistics are presented:
+        the time of quitting, saved cigarettes, saved money and so on.</string>
+    <string name="settings_tab_health_summary">Do you want to use the health tab? In this tab the progress of your health benefits are
+        presented: risk oh heart attack, cancer and so on.</string>
+    <string name="settings_tab_goal_summary">Do you want to use the goal tab? Here you can set a personal goal. Something you want to use the
+        saved money for.</string>
+    <string name="settings_tab_diary_summary">Do you want to use the diary tab? Here you can write a diary with your thoughts,
+        problems and something like this. Perhaps it will help you.</string>
 
     <string name="settings_cig_hint">Number off daily smoked cigarettes</string>
     <string name="settings_cost_hint">What costs one cigarette?</string>
-    <string name="settings_date_hint">Use format: 2016–04–30</string>
+    <string name="settings_date_hint">Use your preferred date format</string>
     <string name="settings_time_hint">Use 24h format: 22:22</string>
     <string name="settings_duration_hint">Time in hours: 0.2</string>
     <string name="settings_goalTitle_hint">Name of your goal</string>
@@ -209,5 +230,15 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
+
+    <string-array name="listDate">
+        <item>International (2016–06–20)</item>
+        <item>German (20.06.2016)</item>
+    </string-array>
+
+    <string-array name="listValuesDate">
+        <item>1</item>
+        <item>2</item>
     </string-array>
 </resources>
