@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 
@@ -122,7 +123,9 @@ public class FragmentDiary extends Fragment {
                         }
                     } else if (options[item].equals(getString(R.string.action_restore))) {
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("text/*");
+                        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+                                + "/Android/data/de.baumann.quitsmoking/");
+                        intent.setDataAndType(uri, "text/*");
                         startActivityForResult(intent, 1);
 
                     } else if (options[item].equals(getString(R.string.action_delete))) {
@@ -195,6 +198,10 @@ public class FragmentDiary extends Fragment {
                     Snackbar.make(swipeView, e.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
                 mEditText.setText(text.toString());
+                String editText = mEditText.getText().toString();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(diaryText, editText);
+                editor.apply();
             }
         }
     }
