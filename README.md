@@ -12,3 +12,4 @@ A small android application to help smokers to quit smoking. Features:
 - Download [Releases](https://github.com/scoute-dich/QuitSmoking/releases)
 - Watch [Changelog](https://github.com/scoute-dich/QuitSmoking/blob/master/CHANGELOG.md)
 - See [license](https://github.com/scoute-dich/QuitSmoking/blob/master/LICENSE.md)
+- Watch [screenshots](https://github.com/scoute-dich/QuitSmoking/blob/master/SCREENSHOTS.md)
