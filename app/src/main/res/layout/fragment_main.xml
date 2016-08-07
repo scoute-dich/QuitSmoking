@@ -20,8 +20,7 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentBottom="false"
         android:layout_centerInParent="true"
-        tools:ignore="UselessParent"
-        android:layout_marginBottom="?attr/actionBarSize">
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"

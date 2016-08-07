@@ -17,8 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        tools:ignore="UselessParent"
-        android:layout_marginBottom="?attr/actionBarSize">
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
