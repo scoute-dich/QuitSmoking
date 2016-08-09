@@ -1,3 +1,5 @@
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdid=de.baumann.quitsmoking)
+
 # Quit Smoking
 A small android application to help smokers to quit smoking. Features:
 
