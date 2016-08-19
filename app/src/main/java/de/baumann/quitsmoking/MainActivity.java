@@ -92,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
             directory.mkdirs();
         }
 
+        File file = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/.nomedia");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
         calculate();
     }
 
