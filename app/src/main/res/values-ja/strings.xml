@@ -75,7 +75,7 @@
     <string name="health_header6">ニコチン離脱</string>
     <string name="health_description6">身体的なニコチン離脱が行われます。 (1 週間)</string>
 
-    <string name="health_header7">Capacity</string>
+    <string name="health_header7">肺活量</string>
     <string name="health_description7">全身の血液循環が改善します。 肺活量が最大 30 \%増加し、再び、
          より多くの酸素を吸収することができます。これにより、身体的なパフォーマンスが向上します。
          (3 ヶ月)</string>
@@ -91,7 +91,7 @@
     <string name="health_header10">心臓発作</string>
     <string name="health_description10">心臓発作のリスクが大幅に低下します。 (2 年)</string>
 
-    <string name="health_header11">Stroke</string>
+    <string name="health_header11">脳卒中</string>
     <string name="health_description11">脳卒中または肺がん死のリスクは、実質的に以前よりも
          低くなります。また、口のがんのリスクも低減されます。 (5 年)</string>
 
