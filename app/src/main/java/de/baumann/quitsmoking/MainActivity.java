@@ -131,33 +131,29 @@ public class MainActivity extends AppCompatActivity {
                     String timeDiffDaysString = Long.toString(timeDiffDays);
                     String timeDiffHoursString = Long.toString(timeDiffHours);
                     String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
 
                     //Saved Cigarettes
                     long cigNumber = Long.parseLong(cigNumb);
                     long cigDay = 86400000 / cigNumber;
                     long savedCig = timeDiff / cigDay;
                     String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
 
                     //Saved Money
                     double costCig = Double.valueOf(savedMoney.trim());
                     double sa = Long.parseLong(cigSavedString);
                     double moneySaved = sa * costCig;
                     String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
                     double time = sa * timeMin;
                     String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -183,33 +179,29 @@ public class MainActivity extends AppCompatActivity {
                     String timeDiffDaysString = Long.toString(timeDiffDays);
                     String timeDiffHoursString = Long.toString(timeDiffHours);
                     String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
 
                     //Saved Cigarettes
                     long cigNumber = Long.parseLong(cigNumb);
                     long cigDay = 86400000 / cigNumber;
                     long savedCig = timeDiff / cigDay;
                     String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
 
                     //Saved Money
                     double costCig = Double.valueOf(savedMoney.trim());
                     double sa = Long.parseLong(cigSavedString);
                     double moneySaved = sa * costCig;
                     String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
                     double time = sa * timeMin;
                     String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -259,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }

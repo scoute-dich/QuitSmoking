@@ -1,3 +1,7 @@
+### v 1.2:
+- maintenance release
+- Android N support
+
 ### v1.1.3
 
 - Japanese translation (Thanks to naofum)

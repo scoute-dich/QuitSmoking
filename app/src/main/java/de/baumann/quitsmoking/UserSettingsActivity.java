@@ -45,7 +45,15 @@ public class UserSettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceClick(Preference pref)
                 {
 
-                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.changelog_text)));
+                    SpannableString s;
+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        s = new SpannableString(Html.fromHtml(getString(R.string.changelog_text),Html.FROM_HTML_MODE_LEGACY));
+                    } else {
+                        //noinspection deprecation
+                        s = new SpannableString(Html.fromHtml(getString(R.string.changelog_text)));
+                    }
+
                     Linkify.addLinks(s, Linkify.WEB_URLS);
 
                     final AlertDialog d = new AlertDialog.Builder(getActivity())
@@ -71,7 +79,15 @@ public class UserSettingsActivity extends AppCompatActivity {
             reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference pref) {
 
-                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
+                    SpannableString s;
+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        s = new SpannableString(Html.fromHtml(getString(R.string.about_text),Html.FROM_HTML_MODE_LEGACY));
+                    } else {
+                        //noinspection deprecation
+                        s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
+                    }
+
                     Linkify.addLinks(s, Linkify.WEB_URLS);
 
                     final AlertDialog d = new AlertDialog.Builder(getActivity())
