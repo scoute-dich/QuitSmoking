@@ -8,8 +8,8 @@ android {
         applicationId "de.baumann.quitsmoking"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.2"
+        versionCode 7
+        versionName "1.2.1"
     }
     buildTypes {
         release {
