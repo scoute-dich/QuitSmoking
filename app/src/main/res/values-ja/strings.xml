@@ -1,17 +1,23 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     // App
+
     <string name="app_name">禁煙</string>
     <string name="yes">OK</string>
     <string name="no">いいえ</string>
-    <string name="permissions">\"ストレージのアクセス許可\" を付与して、SD カードからダイアリーのバックアップと復元、
-        および写真を読み込みできるようにする必要があります。 その後、
-        アプリを完全に閉じるか、電話を再起動する必要があります。 ストレージのアクセスを許可しないで、スクリーンショットの機能を 
-        後で使用する場合は、後でアクセス許可を付与することもできます。 システム設定 - アプリ - weather を開いて、 
-        アクセス許可のセクションで \"ストレージの書き込みアクセス許可\" 付与することができます。</string> 
+    <string name="app_permissions_title">Used permission</string>
+    <string name="app_permissions">
+
+        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
+        &#8226; Diary: backup and restore to/from sd-card.&lt;br>
+        &#8226; Goal: load and save images for your personal goal.&lt;br>&lt;br>
+
+        &lt;i>Grant permissions later:&lt;/i>&lt;br>
+        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
 
 
     //Share
+
     <string name="share_text">素晴らしい: </string>
     <string name="share_text2">から喫煙をやめて</string>
     <string name="share_text3">私は:</string>
@@ -19,10 +25,10 @@
     <string name="share_text5">と</string>
     <string name="share_text6">の時間を節約しました。</string>
     <string name="share_subject">禁煙しました</string>
-    <string name="share_subject2">マイ ダイアリー</string>
 
 
     // Menu
+
     <string name="action_settings">設定</string>
     <string name="action_share">共有</string>
     <string name="action_health">健康</string>
@@ -32,6 +38,7 @@
 
 
     // Main Activity
+
     <string name="not_set">設定で構成</string>
     <string name="not_set2">0.0</string>
 
@@ -51,6 +58,7 @@
 
 
     // Health Activity
+
     <string name="health_congratulations">おめでとうございます - やりました!</string>
     <string name="health_reached">達成:</string>
 
@@ -58,7 +66,7 @@
     <string name="health_description1">血圧、体温、心拍数が通常に戻ります。 (20 分)</string>
 
     <string name="health_header2">一酸化炭素</string>
-    <string name="health_description2">喫煙者の呼吸がなくなります。 有毒ガスの一酸化炭素が喫煙者の赤血球の約
+    <string name="health_description2" tools:ignore="StringFormatCount">喫煙者の呼吸がなくなります。 有毒ガスの一酸化炭素が喫煙者の赤血球の約
          10% をブロックします。 これらの細胞が再び酸素のために利用できるようになりました。
          (8 時間)</string>
 
@@ -104,20 +112,71 @@
 
 
     // Diary
-    <string name="edit_diary">下にスワイプしてダイアリーを読み込む</string>
-    <string name="backup_diary">バックアップに成功しました</string>
-    <string name="action_date">現在の日付を追加</string>
-    <string name="action_time">現在の時刻を追加</string>
-    <string name="action_line">区切り行を追加</string>
+
     <string name="action_backup">ダイアリーをバックアップ</string>
     <string name="action_restore">ダイアリーを復元</string>
     <string name="action_delete">ダイアリーを削除</string>
 
 
+    // Notes
+
+    <string name="note_delete_confirmation">All entries will be deleted. OK?</string>
+    <string name="note_remove_confirmation">Note will be romoved. OK?</string>
+    <string name="note_remove_cannot">You need at least one entry!</string>
+    <string name="note_remove_note">Delete entry</string>
+    <string name="note_edit">Edit entry</string>
+    <string name="note_share">Share entry</string>
+    <string name="note_share_2">Share with:</string>
+    <string name="title_hint">Title</string>
+    <string name="text_hint">Content</string>
+    <string name="toast_extension">No supported file extension</string>
+    <string name="toast_install_app">Please install an app to perform action.</string>
+    <string name="action_note">New diary entry</string>
+    <string name="note_attachment">Attachment</string>
+
+    <string name="text_tit_1">Neutral</string>
+    <string name="text_tit_2">Happy</string>
+    <string name="text_tit_3">Sad</string>
+    <string name="text_tit_4">Smiling</string>
+    <string name="text_tit_5">Cool</string>
+    <string name="text_tit_6">Dead</string>
+    <string name="text_tit_7">Excited</string>
+    <string name="text_tit_8">Tongue</string>
+    <string name="text_tit_9">Devil</string>
+
+    <string name="toast_backup">Backup successfully.</string>
+    <string name="toast_restore">Restore successfully.</string>
+    <string name="toast_backup_not">Backup failed.</string>
+    <string name="toast_restore_not">Restore failed.</string>
+
+    <string name="paste_date">Paste actual date</string>
+    <string name="paste_time">Paste actual time</string>
+    <string name="paste_line">Paste line</string>
+
+    <string name="action_sort">Sort entries</string>
+    <string name="action_sort_title">Sort by title</string>
+    <string name="action_sort_edit">Sort by editing</string>
+    <string name="action_sort_icon">Sort by emoticon</string>
+
+
+    // Camera
+
+    <string name="cam_fail">Failed to take picture</string>
+    <string name="cam_success">Picture saved</string>
+    <string name="cam_start">Take a picture, then choose it as attachment.</string>
+
+
+    //File chooser
+
+    <string name="title_choose">Choose</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="choose_att">Choose attachment</string>
+
+
     // Goal
-    <string name="goal_gallery">ギャラリーから選択</string>
-    <string name="goal_camera">写真を撮影</string>
+
     <string name="goal_cancel">キャンセル</string>
+    <string name="action_image">画像を</string>
     <string name="action_imageLoad">画像を読み込む</string>
     <string name="action_imageRotate">画像を回転</string>
     <string name="action_imageDelete">画像を削除</string>
@@ -127,37 +186,22 @@
 
 
     // Settings
+
     <string name="settings_category_0">タブ</string>
     <string name="settings_category_1">統計情報</string>
     <string name="settings_category_2">目標タブ</string>
     <string name="settings_category_3">アプリ</string>
 
-    <string name="settings_cig">タバコ</string>
     <string name="settings_costs">お金</string>
     <string name="settings_currency">通貨</string>
-    <string name="settings_dateFormat">日付書式</string>
-    <string name="settings_date">日付</string>
-    <string name="settings_time">時刻</string>
-    <string name="settings_duration">期限</string>
-    <string name="settings_goalTitle">目標</string>
-    <string name="settings_goalCosts">目標の費用</string>
     <string name="settings_goalDate">次の目標</string>
     <string name="settings_tab_overview">概要タブ</string>
     <string name="settings_tab_health">健康タブ</string>
     <string name="settings_tab_goal">目標タブ</string>
     <string name="settings_tab_diary">ダイアリータブ</string>
 
-    <string name="settings_cig_summary">毎日吸ったタバコの数を設定して、吸わなかったタバコを計算します</string>
     <string name="settings_costs_summary">一本のタバコの費用。やめてから節約したお金を計算するために使用されます。</string>
     <string name="settings_currency_summary">ご希望の通貨を設定します</string>
-    <string name="settings_dateFormat_summary">ご希望の日付書式を設定します。日付を入力するときに、常にそれを使用します。</string>
-    <string name="settings_date_summary">最後にタバコを吸った日付を設定します</string>
-    <string name="settings_time_summary">最後にタバコを吸った時刻を設定します</string>
-    <string name="settings_duration_summary">あなたがタバコを 1 本吸うのに必要な時間。 やめてから節約した時間を計算するために
-        使用されます。</string>
-    <string name="settings_goalTitle_summary">目標のタイトルを設定します。 節約したお金を何のために使用しますか?</string>
-    <string name="settings_goalCosts_summary">目標の費用はいくらですか? 整数を使用してください。 目標に到達するまでの時間を
-        計算するために使用されます。</string>
     <string name="settings_goalDate_summary">現在の目標に到達した場合、次の目標の開始日を設定することができます。
         これは、概要タブから正しい統計情報を維持しながら、あなたが次の目標に到達する新しい時間を計算するために必要です。
         </string>
@@ -170,23 +214,47 @@
     <string name="settings_tab_diary_summary">ダイアリータブを使用したいですか? ここには、あなたの考え、問題などの日記を
         書くことができます。 おそらくあなたの役に立つでしょう。</string>
 
-    <string name="settings_cig_hint">毎日吸ったタバコの本数</string>
     <string name="settings_cost_hint">1 本のタバコの費用?</string>
-    <string name="settings_date_hint">ご希望の日付形式を使用します</string>
-    <string name="settings_time_hint">24 時間形式を使用します: 22:22</string>
-    <string name="settings_duration_hint">時間で: 0.2</string>
     <string name="settings_goalTitle_hint">あなたの目標の名前</string>
     <string name="settings_goalCosts_hint">整数を使用します: 199</string>
 
-    <string name="settings_changelog">変更履歴</string>
-    <string name="settings_changelog_summary">新着情報?</string>
-    <string name="settings_license">ライセンス</string>
-    <string name="settings_license_summary">アプリは GPL3 の下でライセンスされます。</string>
+    <string name="a_goal">Personal goal</string>
+    <string name="a_goal_summary">For what will you use the saved money? Please enter title and the costs of your personal goal.</string>
+
+    <string name="a_cig">Smoke habits</string>
+    <string name="a_cig_summary">Enter the number of smoked cigarettes per day und the time it took to smoke one cigarette.</string>
+    <string name="a_cig_hintNumb">Number of cigarettes</string>
+    <string name="a_cig_hintTime">Time in hours (e.g. 0,2)</string>
+
+    <string name="a_time">Time</string>
+    <string name="a_time_summary">When did you stop smoking? Please enter date and time.</string>
+    <string name="a_time_hintDate">Date (preferred date format)</string>
+    <string name="a_time_hintTime">Time (24h format: 22:22)</string>
+
+    <string name="a_dateFormat">Date format</string>
+    <string name="a_dateFormat_summary">Set your preferred date format. Use it always, when you enter a date.</string>
+
+    <string name="a_changelog">Changelog</string>
+    <string name="a_changelog_summary">What is new? … (opens a website)</string>
+
+    <string name="a_license">License</string>
+    <string name="a_license_summary">The app is completely open source and licensed under GPL3.</string>
+
+    <string name="a_donate">Donate</string>
+    <string name="a_donate_summary">If you like the app, you can donate to me via Paypal.</string>
+
+    <string name="a_openSettings">App info</string>
+    <string name="a_openSettings_summary">Open via the system settings the app info of the app. There you can,
+        depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
 
 
     //License Dialog
+
     <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
     <string name="about_text">
+         &lt;i>詳細は Github のプロジェクトサイトをご覧ください:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+
         このプログラムはフリーソフトウェアです。あなたはこれを、フリーソフ
         トウェア財団によって発行されたGNU 一般公衆利用許諾書(バージョン3か、
         それ以降のバージョンのうちどれか)が定める条件の下で再頒布または改変
@@ -198,29 +266,23 @@
 
         あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部
         受け取っているはずです。
-        もし受け取っていなければ http://www.gnu.org/licenses/ をご覧ください。
-    </string>
+        もし受け取っていなければ http://www.gnu.org/licenses/ をご覧ください。&lt;br>&lt;br>
 
+        &lt;b>Used open source projects:&lt;/b>&lt;br>&lt;br>
 
-    //Changelog Dialog
-    <string name="changelog_text">
-        &lt;i>詳細は github のプロジェクトサイトをご覧ください:&lt;br>
-        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+        &lt;i>android-file-chooser&lt;br>
+        https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
 
-        &lt;b>v 1.1.3:&lt;/b>&lt;br>
-        &#8226; Japanese translation (Thanks to naofum)&lt;br>&lt;br>
+        browser&lt;br>
+        https://github.com/yoshihiroando/browser&lt;br>&lt;br>
 
-        &lt;b>v 1.1 - v 1.1.2:&lt;/b>&lt;br>
-        &#8226; ツールバーレイアウトを修正&lt;br>
-        &#8226; 目標タブを追加&lt;br>
-        &#8226; 英語翻訳を完了&lt;br>&lt;br>
-
-        &lt;b>v 1.0:&lt;/b>&lt;br>
-        &#8226; 初回リリース
+        MaterialDesignIcons&lt;br>
+        https://github.com/Templarian/MaterialDesign&lt;/i>
     </string>
 
 
     //String arrays
+
     <string-array name="listCurrency">
         <item>ユーロ (€)</item>
         <item>ドル ($)</item>

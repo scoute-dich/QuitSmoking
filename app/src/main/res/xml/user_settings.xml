@@ -6,24 +6,28 @@
 
         <CheckBoxPreference
             android:title="@string/settings_tab_overview"
+            android:icon="@drawable/chart_bar"
             android:summary="@string/settings_tab_overview_summary"
             android:key="tab_overview"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:title="@string/settings_tab_health"
+            android:icon="@drawable/heart_pulse"
             android:summary="@string/settings_tab_health_summary"
             android:key="tab_health"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:title="@string/settings_tab_goal"
+            android:icon="@drawable/trophy_award"
             android:summary="@string/settings_tab_goal_summary"
             android:key="tab_goal"
             android:defaultValue="true" />
 
         <CheckBoxPreference
             android:title="@string/settings_tab_diary"
+            android:icon="@drawable/book_open_page_variant"
             android:summary="@string/settings_tab_diary_summary"
             android:key="tab_diary"
             android:defaultValue="true" />
@@ -34,86 +38,58 @@
     <PreferenceCategory
         android:title="@string/settings_category_1">
 
-        <EditTextPreference
-            android:title="@string/settings_cig"
-            android:key="cig"
-            android:inputType="number"
-            android:hint="@string/settings_cig_hint"
-            android:summary="@string/settings_cig_summary">
-        </EditTextPreference>
-
         <ListPreference
-            android:title="@string/settings_dateFormat"
-            android:summary="@string/settings_dateFormat_summary"
+            android:title="@string/a_dateFormat"
+            android:icon="@drawable/calendar_question"
+            android:summary="@string/a_dateFormat_summary"
             android:key="dateFormat"
             android:defaultValue="1"
             android:entries="@array/listDate"
             android:entryValues="@array/listValuesDate" />
 
-        <EditTextPreference
-            android:title="@string/settings_date"
-            android:key="date"
-            android:inputType="date"
-            android:hint="@string/settings_date_hint"
-            android:summary="@string/settings_date_summary">
-        </EditTextPreference>
-
-        <EditTextPreference
-            android:title="@string/settings_time"
+        <Preference
+            android:title="@string/a_time"
+            android:icon="@drawable/timer"
             android:key="time"
-            android:inputType="time"
-            android:hint="@string/settings_time_hint"
-            android:summary="@string/settings_time_summary">
-        </EditTextPreference>
+            android:summary="@string/a_time_summary" />
 
-        <EditTextPreference
-            android:title="@string/settings_costs"
-            android:key="costs"
-            android:inputType="numberDecimal"
-            android:hint="@string/settings_cost_hint"
-            android:summary="@string/settings_costs_summary">
-        </EditTextPreference>
-
-        <EditTextPreference android:title="@string/settings_duration"
-            android:key="duration"
-            android:inputType="numberDecimal"
-            android:hint="@string/settings_duration_hint"
-            android:summary="@string/settings_duration_summary">
-        </EditTextPreference>
+        <Preference
+            android:title="@string/a_cig"
+            android:icon="@drawable/smoking"
+            android:key="cig"
+            android:summary="@string/a_cig_summary" />
 
         <ListPreference
             android:title="@string/settings_currency"
             android:summary="@string/settings_currency_summary"
+            android:icon="@drawable/currency_usd"
             android:key="currency"
             android:defaultValue="1"
             android:entries="@array/listCurrency"
             android:entryValues="@array/listValuesCurrency" />
+
+        <Preference
+            android:title="@string/settings_costs"
+            android:icon="@drawable/wallet"
+            android:key="costs"
+            android:summary="@string/settings_costs_summary" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/settings_category_2">
 
-        <EditTextPreference
-            android:title="@string/settings_goalTitle"
-            android:summary="@string/settings_goalTitle_summary"
-            android:hint="@string/settings_goalTitle_hint"
+        <Preference
+            android:title="@string/a_goal"
+            android:icon="@drawable/trophy_award"
+            android:summary="@string/a_goal_summary"
             android:key="goalTitle" />
 
-        <EditTextPreference
-            android:title="@string/settings_goalCosts"
-            android:summary="@string/settings_goalCosts_summary"
-            android:hint="@string/settings_goalCosts_hint"
-            android:inputType="number"
-            android:key="goalCosts" />
-
-        <EditTextPreference
+        <Preference
             android:title="@string/settings_goalDate"
+            android:icon="@drawable/arrow_right"
             android:key="goalDate"
-            android:inputType="date"
-            android:hint="@string/settings_date_hint"
-            android:summary="@string/settings_goalDate_summary">
-        </EditTextPreference>
+            android:summary="@string/settings_goalDate_summary" />
 
     </PreferenceCategory>
 
@@ -121,14 +97,28 @@
         android:title="@string/settings_category_3">
 
         <Preference
-            android:title="@string/settings_license"
-            android:summary="@string/settings_license_summary"
+            android:title="@string/a_openSettings"
+            android:icon="@drawable/settings"
+            android:summary="@string/a_openSettings_summary"
+            android:key="clearCache" />
+
+        <Preference
+            android:title="@string/a_license"
+            android:icon="@drawable/copyright"
+            android:summary="@string/a_license_summary"
             android:key="license" />
 
         <Preference
-            android:title="@string/settings_changelog"
-            android:summary="@string/settings_changelog_summary"
+            android:title="@string/a_changelog"
+            android:icon="@drawable/format_list_bulleted2"
+            android:summary="@string/a_changelog_summary"
             android:key="changelog" />
+
+        <Preference
+            android:title="@string/a_donate"
+            android:icon="@drawable/coin"
+            android:summary="@string/a_donate_summary"
+            android:key="donate" />
 
     </PreferenceCategory>
 

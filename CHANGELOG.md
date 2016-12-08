@@ -1,3 +1,8 @@
+### v 1.3: (WIP)
+- improved: UI
+- improved: Settings screen
+- improved: complete new diary
+
 ### v 1.2:
 - maintenance release
 - Android N support
@@ -11,12 +16,10 @@
 - fixed toolbar layout
 - added screenshots
 
-
 ### v1.1
 
 - added goal tab
 - completed english translation
-
 
 ### v1.0
 

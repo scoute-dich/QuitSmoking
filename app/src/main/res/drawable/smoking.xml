@@ -1,0 +1,8 @@
+<!-- drawable/smoking.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path android:fillColor="#fafafa" android:pathData="M7,19H22V15H7M2,19H5V15H2M10,4V5A3,3 0 0,1 7,8A5,5 0 0,0 2,13H4A3,3 0 0,1 7,10A5,5 0 0,0 12,5V4H10Z" />
+</vector>
