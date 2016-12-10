@@ -39,6 +39,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -49,8 +51,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import de.baumann.quitsmoking.helper.Database_Notes;
 import de.baumann.quitsmoking.helper.helper_main;
@@ -84,6 +89,7 @@ public class FragmentNotes extends Fragment {
                 final String seqnoStr = map.get("seqno");
                 final String icon = map.get("icon");
                 final String attachment = map.get("attachment");
+                final String create = map.get("createDate");
 
                 final Button attachment2;
                 final TextView textInput;
@@ -184,6 +190,7 @@ public class FragmentNotes extends Fragment {
                                         .putString("handleTextIcon", icon)
                                         .putString("handleTextSeqno", seqnoStr)
                                         .putString("handleTextAttachment", attachment)
+                                        .putString("handleTextCreate", create)
                                         .apply();
                                 helper_notes.editNote(getActivity());
                             }
@@ -203,6 +210,7 @@ public class FragmentNotes extends Fragment {
                 final String cont = map.get("cont");
                 final String icon = map.get("icon");
                 final String attachment = map.get("attachment");
+                final String create = map.get("createDate");
 
                 final CharSequence[] options = {
                         getString(R.string.note_edit),
@@ -225,6 +233,7 @@ public class FragmentNotes extends Fragment {
                                             .putString("handleTextIcon", icon)
                                             .putString("handleTextSeqno", seqnoStr)
                                             .putString("handleTextAttachment", attachment)
+                                            .putString("handleTextAttachment", create)
                                             .apply();
                                     helper_notes.editNote(getActivity());
                                 }
@@ -409,42 +418,143 @@ public class FragmentNotes extends Fragment {
 
         if (id == R.id.action_sort) {
 
-            final CharSequence[] options = {
-                    getString(R.string.action_sort_title),
-                    getString(R.string.action_sort_edit),
-                    getString(R.string.action_sort_icon)};
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setItems(options, new DialogInterface.OnClickListener() {
+            View dialogView = View.inflate(getActivity(), R.layout.dialog_sort, null);
+
+            final CheckBox ch_title = (CheckBox) dialogView.findViewById(R.id.checkBoxTitle);
+            final CheckBox ch_create = (CheckBox) dialogView.findViewById(R.id.checkBoxCreate);
+            final CheckBox ch_edit = (CheckBox) dialogView.findViewById(R.id.checkBoxEdit);
+            final CheckBox ch_icon = (CheckBox) dialogView.findViewById(R.id.checkBoxIcon);
+            final CheckBox ch_att = (CheckBox) dialogView.findViewById(R.id.checkBoxAtt);
+
+
+            if (sharedPref.getString("sortDB", "title").equals("title")) {
+                ch_title.setChecked(true);
+            } else {
+                ch_title.setChecked(false);
+            }
+            if (sharedPref.getString("sortDB", "title").equals("create")) {
+                ch_create.setChecked(true);
+            } else {
+                ch_create.setChecked(false);
+            }
+            if (sharedPref.getString("sortDB", "title").equals("seqno")) {
+                ch_edit.setChecked(true);
+            } else {
+                ch_edit.setChecked(false);
+            }
+            if (sharedPref.getString("sortDB", "title").equals("icon")) {
+                ch_icon.setChecked(true);
+            } else {
+                ch_icon.setChecked(false);
+            }
+            if (sharedPref.getString("sortDB", "title").equals("attachment")) {
+                ch_att.setChecked(true);
+            } else {
+                ch_att.setChecked(false);
+            }
+
+
+            ch_title.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
                 @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    if (options[item].equals(getString(R.string.action_sort_title))) {
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if(isChecked){
+                        ch_create.setChecked(false);
+                        ch_edit.setChecked(false);
+                        ch_icon.setChecked(false);
+                        ch_att.setChecked(false);
                         sharedPref.edit().putString("sortDB", "title").apply();
                         setNotesList();
                     }
+                }
+            });
+            ch_create.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-                    if (options[item].equals(getString(R.string.action_sort_edit))) {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if(isChecked){
+                        ch_edit.setChecked(false);
+                        ch_icon.setChecked(false);
+                        ch_title.setChecked(false);
+                        ch_att.setChecked(false);
+                        sharedPref.edit().putString("sortDB", "create").apply();
+                        setNotesList();
+                    }
+                }
+            });
+            ch_edit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if(isChecked){
+                        ch_create.setChecked(false);
+                        ch_icon.setChecked(false);
+                        ch_title.setChecked(false);
+                        ch_att.setChecked(false);
                         sharedPref.edit().putString("sortDB", "seqno").apply();
                         setNotesList();
                     }
+                }
+            });
+            ch_icon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-                    if (options[item].equals(getString(R.string.action_sort_icon))) {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if(isChecked){
+                        ch_create.setChecked(false);
+                        ch_edit.setChecked(false);
+                        ch_title.setChecked(false);
+                        ch_att.setChecked(false);
                         sharedPref.edit().putString("sortDB", "icon").apply();
                         setNotesList();
                     }
                 }
             });
-            builder.setPositiveButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
+            ch_att.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if(isChecked){
+                        ch_create.setChecked(false);
+                        ch_edit.setChecked(false);
+                        ch_title.setChecked(false);
+                        ch_icon.setChecked(false);
+                        sharedPref.edit().putString("sortDB", "attachment").apply();
+                        setNotesList();
+                    }
+                }
+            });
+
+            builder.setView(dialogView);
+            builder.setTitle(R.string.action_sort);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dialog.dismiss();
                 }
             });
-            builder.show();
+
+            final AlertDialog dialog2 = builder.create();
+            // Display the custom alert dialog on interface
+            dialog2.show();
+            return true;
         }
 
         if (id == R.id.action_note) {
+            Date date = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+
+            String dateCreate = format.format(date);
+            sharedPref.edit().putString("handleTextCreate", dateCreate).apply();
+
             helper_notes.editNote(getActivity());
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -471,6 +581,7 @@ public class FragmentNotes extends Fragment {
                 map.put("cont", strAry[2]);
                 map.put("icon", strAry[3]);
                 map.put("attachment", strAry[4]);
+                map.put("createDate", strAry[5]);
                 mapList.add(map);
             }
 
@@ -478,8 +589,8 @@ public class FragmentNotes extends Fragment {
                     getActivity(),
                     mapList,
                     R.layout.list_item_notes,
-                    new String[] {"title", "cont"},
-                    new int[] {R.id.textView_title_notes, R.id.textView_des_notes}
+                    new String[] {"title", "cont", "createDate"},
+                    new int[] {R.id.textView_title_notes, R.id.textView_des_notes, R.id.textView_create_notes}
             ) {
                 @Override
                 public View getView (final int position, View convertView, ViewGroup parent) {
@@ -491,6 +602,7 @@ public class FragmentNotes extends Fragment {
                     final String seqnoStr = map.get("seqno");
                     final String icon = map.get("icon");
                     final String attachment = map.get("attachment");
+                    final String create = map.get("createDate");
 
                     View v = super.getView(position, convertView, parent);
                     ImageView i=(ImageView) v.findViewById(R.id.icon_notes);
@@ -587,25 +699,25 @@ public class FragmentNotes extends Fragment {
 
                                         public void onClick(DialogInterface dialog, int item) {
                                             if (item == 0) {
-                                                changeIcon(seqnoStr, title, cont, "1", attachment);
+                                                changeIcon(seqnoStr, title, cont, "1", attachment, create);
                                             } else if (item == 1) {
-                                                changeIcon(seqnoStr, title, cont, "2", attachment);
+                                                changeIcon(seqnoStr, title, cont, "2", attachment, create);
                                             } else if (item == 2) {
-                                                changeIcon(seqnoStr, title, cont, "3", attachment);
+                                                changeIcon(seqnoStr, title, cont, "3", attachment, create);
                                             } else if (item == 3) {
-                                                changeIcon(seqnoStr, title, cont, "4", attachment);
+                                                changeIcon(seqnoStr, title, cont, "4", attachment, create);
                                             } else if (item == 4) {
-                                                changeIcon(seqnoStr, title, cont, "5", attachment);
+                                                changeIcon(seqnoStr, title, cont, "5", attachment, create);
                                             } else if (item == 5) {
-                                                changeIcon(seqnoStr, title, cont, "6", attachment);
+                                                changeIcon(seqnoStr, title, cont, "6", attachment, create);
                                             } else if (item == 6) {
-                                                changeIcon(seqnoStr, title, cont, "7", attachment);
+                                                changeIcon(seqnoStr, title, cont, "7", attachment, create);
                                             } else if (item == 7) {
-                                                changeIcon(seqnoStr, title, cont, "8", attachment);
+                                                changeIcon(seqnoStr, title, cont, "8", attachment, create);
                                             } else if (item == 8) {
-                                                changeIcon(seqnoStr, title, cont, "9", attachment);
+                                                changeIcon(seqnoStr, title, cont, "9", attachment, create);
                                             } else if (item == 9) {
-                                                changeIcon(seqnoStr, title, cont, "10", attachment);
+                                                changeIcon(seqnoStr, title, cont, "10", attachment, create);
                                             }
                                         }
                                     }).show();
@@ -630,12 +742,12 @@ public class FragmentNotes extends Fragment {
         }
     }
 
-    private void changeIcon(String seqno, String title, String url, String icon, String attachment) {
+    private void changeIcon(String seqno, String title, String url, String icon, String attachment, String create) {
         try {
 
             final Database_Notes db = new Database_Notes(getActivity());
             db.deleteNote((Integer.parseInt(seqno)));
-            db.addBookmark(title, url, icon, attachment);
+            db.addBookmark(title, url, icon, attachment, create);
             db.close();
         } catch (Exception e) {
             e.printStackTrace();

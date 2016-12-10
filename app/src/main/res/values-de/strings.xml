@@ -159,6 +159,8 @@
     <string name="action_sort_title">Sortiere nach Titel</string>
     <string name="action_sort_edit">Sortiere nach Änderungszeit</string>
     <string name="action_sort_icon">Sortiere nach Smiley</string>
+    <string name="action_sort_create">Sortiere nach Erstellungszeit</string>
+    <string name="action_sort_att">Sortiere nach Anhängen</string>
 
 
     // Camera
@@ -274,6 +276,9 @@
 
         You should have received a copy of the GNU General Public License
         along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>
+
+        &lt;b>Übersetzungen&lt;/b>&lt;br>
+        &lt;i>Japanisch: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
 
         &lt;b>Benutzte Open Source Projekte:&lt;/b>&lt;br>&lt;br>
 

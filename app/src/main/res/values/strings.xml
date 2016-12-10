@@ -158,6 +158,8 @@
     <string name="action_sort_title">Sort by title</string>
     <string name="action_sort_edit">Sort by editing</string>
     <string name="action_sort_icon">Sort by emoticon</string>
+    <string name="action_sort_create">Sort by creation</string>
+    <string name="action_sort_att">Sort by attachment</string>
 
 
     // Camera
@@ -270,6 +272,9 @@
 
         You should have received a copy of the GNU General Public License
         along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>
+
+        &lt;b>Translations&lt;/b>&lt;br>
+        &lt;i>Japanese: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
 
         &lt;b>Used open source projects:&lt;/b>&lt;br>&lt;br>
 

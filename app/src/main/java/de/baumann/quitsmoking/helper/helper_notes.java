@@ -386,8 +386,9 @@ public class helper_notes {
                             String inputTitle = titleInput.getText().toString().trim();
                             String inputContent = textInput.getText().toString().trim();
                             String attachment = sharedPref.getString("handleTextAttachment", "");
+                            String create = sharedPref.getString("handleTextCreate", "");
 
-                            db.addBookmark(inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment);
+                            db.addBookmark(inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment, create);
                             db.close();
 
                             if (seqno.length() > 0) {
@@ -405,6 +406,7 @@ public class helper_notes {
                                 .putString("handleTextText", "")
                                 .putString("handleTextIcon", "")
                                 .putString("handleTextAttachment", "")
+                                .putString("handleTextCreate", "")
                                 .putString("editTextFocus", "")
                                 .apply();
                         helper_notes.setNotesList(from);
@@ -419,6 +421,7 @@ public class helper_notes {
                                 .putString("handleTextText", "")
                                 .putString("handleTextIcon", "")
                                 .putString("handleTextAttachment", "")
+                                .putString("handleTextCreate", "")
                                 .putString("editTextFocus", "")
                                 .apply();
                         dialog.cancel();
@@ -431,6 +434,7 @@ public class helper_notes {
                                 .putString("handleTextText", "")
                                 .putString("handleTextIcon", "")
                                 .putString("handleTextAttachment", "")
+                                .putString("handleTextCreate", "")
                                 .putString("editTextFocus", "")
                                 .apply();
             }
@@ -474,6 +478,7 @@ public class helper_notes {
                 map.put("cont", strAry[2]);
                 map.put("icon", strAry[3]);
                 map.put("attachment", strAry[4]);
+                map.put("createDate", strAry[5]);
                 mapList.add(map);
             }
 
@@ -481,8 +486,8 @@ public class helper_notes {
                     from,
                     mapList,
                     R.layout.list_item_notes,
-                    new String[] {"title", "cont"},
-                    new int[] {R.id.textView_title_notes, R.id.textView_des_notes}
+                    new String[] {"title", "cont", "createDate"},
+                    new int[] {R.id.textView_title_notes, R.id.textView_des_notes, R.id.textView_create_notes}
             ) {
                 @Override
                 public View getView (final int position, View convertView, ViewGroup parent) {

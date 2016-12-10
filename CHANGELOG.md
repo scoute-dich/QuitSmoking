@@ -1,5 +1,5 @@
-### v 1.3: (WIP)
-- improved: UI
+### v 1.3:
+- improved: UI (xml icons, dialogs, fragments, ...)
 - improved: Settings screen
 - improved: complete new diary
 

@@ -36,6 +36,7 @@ import de.baumann.quitsmoking.R;
 public class FragmentGoal extends Fragment {
 
     private ImageView viewImage;
+    @SuppressWarnings("unused")
     private String rotate;
     private SharedPreferences SP;
     private String goalTitle;
