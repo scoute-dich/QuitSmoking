@@ -1,4 +1,4 @@
-### v 1.3:
+### v 1.3:scoute-dich
 - improved: UI (xml icons, dialogs, fragments, ...)
 - improved: Settings screen
 - improved: complete new diary
