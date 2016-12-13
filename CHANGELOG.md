@@ -1,3 +1,7 @@
+### v 1.4:
+
+- fixed: F-Droid build error
+
 ### v 1.3:scoute-dich
 - improved: UI (xml icons, dialogs, fragments, ...)
 - improved: Settings screen
