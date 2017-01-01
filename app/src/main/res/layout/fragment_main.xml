@@ -1,195 +1,185 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.baumann.quitsmoking.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <ScrollView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="de.baumann.quitsmoking.MainActivity"
-        android:foregroundGravity="center"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentBottom="false"
-        android:layout_centerInParent="true"
-        tools:ignore="UselessParent">
+        android:layout_gravity="center_vertical|center_horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:text="@string/last_time_date"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp" />
 
+        <TextView
+            android:id="@+id/text_date2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_set"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="28sp"
+            android:layout_below="@+id/text_date"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/text_date"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/last_time_date"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textColor="@color/colorAccent"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="12dp" />
+        <TextView
+            android:id="@+id/text_date3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_set"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="28sp"
+            android:layout_below="@+id/text_date2"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/text_date2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_set"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="36sp"
-                android:layout_below="@+id/text_date"
-                android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_since"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/text_date3"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="12dp" />
 
-            <TextView
-                android:id="@+id/text_date3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_set"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="36sp"
-                android:layout_below="@+id/text_date2"
-                android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text_time2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_set"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="28sp"
+            android:layout_below="@+id/text_time"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/text_time"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/last_since"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textColor="@color/colorAccent"
-                android:layout_below="@+id/text_date3"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="46dp"
-                android:layout_marginBottom="12dp" />
+        <TextView
+            android:id="@+id/text_time3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_set"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="28sp"
+            android:layout_below="@+id/text_time2"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/text_time2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_set"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="36sp"
-                android:layout_below="@+id/text_time"
-                android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/text_time4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/not_set"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="28sp"
+            android:layout_below="@+id/text_time3"
+            android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/text_time3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_set"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="36sp"
-                android:layout_below="@+id/text_time2"
-                android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stat"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/text_time4"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="12dp" />
 
-            <TextView
-                android:id="@+id/text_time4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/not_set"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="36sp"
-                android:layout_below="@+id/text_time3"
-                android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:id="@+id/icons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/textView3">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/smoking_off"
+                android:scaleType="fitCenter"
+                tools:ignore="ContentDescription"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                android:id="@+id/imageView"
+                app:srcCompat="@drawable/wallet"
+                android:scaleType="fitCenter"
+                tools:ignore="ContentDescription"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/timer"
+                android:scaleType="fitCenter"
+                tools:ignore="ContentDescription"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/icons">
 
             <TextView
                 android:id="@+id/text_cigs2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textIsSelectable="false"
+                android:textSize="18sp"
                 android:text="@string/not_set2"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/text_cigs2_cost"
-                android:layout_toStartOf="@+id/text_cigs2_cost"
-                android:layout_marginStart="24dp" />
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"/>
 
             <TextView
                 android:id="@+id/text_cigs2_cost"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/not_set2"
                 android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textIsSelectable="false"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/imageView"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:id="@+id/imageView"
-                android:src="@drawable/main_money"
-                android:scaleType="fitCenter"
-                android:layout_marginLeft="36dp"
-                android:layout_marginRight="36dp"
-                android:layout_below="@+id/textView3"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="12dp"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/main_time"
-                android:scaleType="fitCenter"
-                android:layout_alignTop="@+id/imageView"
-                android:layout_alignStart="@+id/text_duration"
-                android:layout_alignEnd="@+id/text_duration"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/main_cig"
-                android:scaleType="fitCenter"
-                android:layout_alignTop="@+id/imageView"
-                android:layout_alignStart="@+id/text_cigs2"
-                android:layout_toStartOf="@+id/text_cigs2_cost"
-                tools:ignore="ContentDescription" />
+                android:textSize="18sp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp" />
 
             <TextView
                 android:id="@+id/text_duration"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/not_set2"
                 android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textIsSelectable="false"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="24dp"
-                android:layout_toEndOf="@+id/text_cigs2_cost" />
+                android:textSize="18sp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/stat"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="24sp"
-                android:textColor="@color/colorAccent"
-                android:layout_below="@+id/text_time4"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="46dp"
-                android:layout_marginBottom="24dp" />
+        </LinearLayout>
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-    </ScrollView>
-
-</RelativeLayout>
+</ScrollView>

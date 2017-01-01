@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     // App
+
     <string name="app_name">Nichtraucher</string>
     <string name="yes">OK</string>
     <string name="no">NEIN</string>
-    <string name="permissions">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Tagebuch gesichert und
-        wiederhergestellt werden kann und damit Bilder von deiner SD-Karte geladen werden können.
-        Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
-        Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
-        nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Wetter. Im Bereich Berechtigungen kannst
-        dann die entsprechende Einstellung vornehmen.</string>
+    <string name="app_permissions_title">Verlangte Berechtigung</string>
+    <string name="app_permissions">
+
+        &lt;i>Zugriff auf SD Karte:&lt;/i>&lt;br>
+        &#8226; Tagebuch: um dein Tagebuch zu sichern bzw. wiederherzustellen.&lt;br>
+        &#8226; Ziel: um ein Bild für dein persönliches Ziel zu laden und zu speichern.&lt;br>&lt;br>
+
+        &lt;i>Berechtigung nachträglich erteilen:&lt;/i>&lt;br>
+        Wenn du die Berechtigung verweigerst, kannst du sie nachträglich erteilen, indem du \"Einstellungen -> App Info\" öffnest und
+        dort den Bereich \"Berechtigungen\" auswählst.</string>
 
 
     //Share
+
     <string name="share_text">Gute Neuigkeiten: ich rauche nicht mehr seit</string>
     <string name="share_text2">und</string>
     <string name="share_text3">Ich habe gespart:</string>
@@ -20,10 +26,10 @@
     <string name="share_text5">und</string>
     <string name="share_text6">an Zeit.</string>
     <string name="share_subject">Ich habe mit dem Rauchen aufgehört</string>
-    <string name="share_subject2">Mein Tagebuch</string>
 
 
     // Menu
+
     <string name="action_settings">Einstellungen</string>
     <string name="action_share">Teilen</string>
     <string name="action_health">Gesundheit</string>
@@ -33,6 +39,7 @@
 
 
     // Main Activity
+
     <string name="not_set">Bitte einstellen</string>
     <string name="not_set2">0.0</string>
 
@@ -52,6 +59,7 @@
 
 
     // Health Activity
+
     <string name="health_congratulations">Glückwunsch - das hast du geschafft!</string>
     <string name="health_reached">Erreicht in:</string>
 
@@ -106,20 +114,73 @@
 
 
     // Diary
-    <string name="edit_diary">Nach unten wischen um Tagebuch zu laden</string>
-    <string name="backup_diary">Erfolgreich gesichert</string>
-    <string name="action_date">Füge aktuelles Datum ein</string>
-    <string name="action_time">Füge aktuelle Zeit ein</string>
-    <string name="action_line">Füge Trennlinie ein</string>
+
     <string name="action_backup">Tagebuch sichern</string>
     <string name="action_restore">Tagebuch wiederherstellen</string>
     <string name="action_delete">Tagebuch löschen</string>
 
 
+    // Notes
+
+    <string name="note_delete_confirmation">Alle Einträge werden gelöscht. OK?</string>
+    <string name="note_remove_confirmation">Eintrag wird entfernt. OK?</string>
+    <string name="note_remove_cannot">Du brauchst mindestens eine Notiz!</string>
+    <string name="note_remove_note">Lösche Eintrag</string>
+    <string name="note_edit">Eintrag bearbeiten</string>
+    <string name="note_share">Teile Eintrag</string>
+    <string name="note_share_2">Eintrag teilen mit:</string>
+    <string name="title_hint">Titel</string>
+    <string name="text_hint">Inhalt</string>
+    <string name="toast_extension">Keine unterstützte Dateiendung</string>
+    <string name="toast_install_app">Bitte eine App installieren um die Aktion ausführen zu können.</string>
+    <string name="action_note">Neuer Tagebucheintrag</string>
+    <string name="note_attachment">Anhang</string>
+
+    <string name="text_tit_1">Neutral</string>
+    <string name="text_tit_2">Glücklich</string>
+    <string name="text_tit_3">Traurig</string>
+    <string name="text_tit_4">Lächelnd</string>
+    <string name="text_tit_5">Cool</string>
+    <string name="text_tit_6">Tot</string>
+    <string name="text_tit_7">Erregt</string>
+    <string name="text_tit_8">Zunge</string>
+    <string name="text_tit_9">Teufel</string>
+
+    <string name="toast_backup">Sicherung erfolgreich.</string>
+    <string name="toast_restore">Wiederherstellung erfolgreich.</string>
+    <string name="toast_backup_not">Sicherung nicht erfolgreich.</string>
+    <string name="toast_restore_not">Wiederherstellung nicht erfolgreich.</string>
+
+    <string name="paste_date">Aktuelles Datum einfügen</string>
+    <string name="paste_time">Aktuelle Zeit einfügen</string>
+    <string name="paste_line">Trennlinie einfügen</string>
+
+    <string name="action_sort">Einträge sortieren</string>
+    <string name="action_sort_title">Sortiere nach Titel</string>
+    <string name="action_sort_edit">Sortiere nach Änderungszeit</string>
+    <string name="action_sort_icon">Sortiere nach Smiley</string>
+    <string name="action_sort_create">Sortiere nach Erstellungszeit</string>
+    <string name="action_sort_att">Sortiere nach Anhängen</string>
+
+
+    // Camera
+
+    <string name="cam_fail">Konnte Bild nicht erstellen</string>
+    <string name="cam_success">Bild gespeichert</string>
+    <string name="cam_start">Mache ein Bild und wähle es dann als Anhang.</string>
+
+
+    //File chooser
+
+    <string name="title_choose">Auswählen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="choose_att">Anhang auswählen</string>
+
+
     // Goal
-    <string name="goal_gallery">Bild aus Galerie</string>
-    <string name="goal_camera">Foto machen</string>
+
     <string name="goal_cancel">Abbrechen</string>
+    <string name="action_image">Bild</string>
     <string name="action_imageLoad">Bild laden</string>
     <string name="action_imageRotate">Bild drehen</string>
     <string name="action_imageDelete">Bild löschen</string>
@@ -128,38 +189,20 @@
     <string name="costsRemaining">Noch übrig:</string>
 
 
+
     // Settings
+
     <string name="settings_category_0">Tabs</string>
     <string name="settings_category_1">Statistiken</string>
     <string name="settings_category_2">Ziel Tab</string>
     <string name="settings_category_3">Anwendung</string>
 
-    <string name="settings_cig">Zigaretten</string>
-    <string name="settings_costs">Geld</string>
-    <string name="settings_currency">Währung</string>
-    <string name="settings_dateFormat">Datumsformat</string>
-    <string name="settings_date">Datum</string>
-    <string name="settings_time">Zeit</string>
-    <string name="settings_duration">Dauer</string>
-    <string name="settings_goalTitle">Ziel</string>
-    <string name="settings_goalCosts">Kosten deines Ziels</string>
     <string name="settings_goalDate">Nächstes Ziel</string>
     <string name="settings_tab_overview">Übersichtstab</string>
     <string name="settings_tab_health">Gesundheitstab</string>
     <string name="settings_tab_goal">Zieltab</string>
     <string name="settings_tab_diary">Tagebuchtab</string>
 
-    <string name="settings_cig_summary">Gerauchte Zigaretten pro Tag, um nicht gerauchte Zigaretten zu berechnen</string>
-    <string name="settings_costs_summary">Die Kosten einer einzelnen Zigarette. Wird gebraucht um das bis jetzt gesparte Geld zu berechnen.</string>
-    <string name="settings_currency_summary">Wähle deine bevorzugte Währungseinheit</string>
-    <string name="settings_dateFormat_summary">Wähle dein bevorzugtes Datumsformat. Benutze es bei jeder Datumseingabe.</string>
-    <string name="settings_date_summary">An welchem Tag hast du aufgehört zu rauchen?</string>
-    <string name="settings_time_summary">Um wieviel Uhr hast du aufgehört zu rauchen?</string>
-    <string name="settings_duration_summary">Die Zeit die du brauchst um eine Zigarette zu rauchen. Wird benutzt um die gesparte
-            Zeit zu berechnen.</string>
-    <string name="settings_goalTitle_summary">Was ist dein Ziel? Wofür willst du das gesparte Geld nutzen?</string>
-    <string name="settings_goalCosts_summary">Wieviel kostet dein Ziel? Gib bitte eine ganze Zahl an. Wird gebraucht um den
-            Zeitpunkt zu berechnen, wann du dein Ziel erreicht hast.</string>
     <string name="settings_goalDate_summary">Wenn du dein aktuelles Ziel erreicht hast, kannst du hier das Startdatum für dein
         nächstes Ziel einstellen. Dies ist notwendig um den Zeitpunkt, wann du dein nächstes Ziel erreichen wirst, zu
         berechnen und gleichzeitig die Gesamtstatistiken in der Übersicht zu behalten.</string>
@@ -174,23 +217,53 @@
     <string name="settings_tab_diary_summary">Möchtest du den Tagebuchtab verwenden? Hier kannst du deine Gedanken, Gefühle oder
         ähnliches notieren. Vielleicht hilft es dir.</string>
 
-    <string name="settings_cig_hint">Anzahl der täglich gerauchten Zigaretten</string>
-    <string name="settings_cost_hint">Was kostet eine Zigarette?</string>
-    <string name="settings_date_hint">Benutze dein bevorzugtes Datumsformat</string>
-    <string name="settings_time_hint">Benutze das 24h Format: 22:22</string>
-    <string name="settings_duration_hint">Zeit in Stunden: 0.2</string>
+    <string name="a_goal">Persönliches Ziel</string>
+    <string name="a_goal_summary">Für was willst du das gesparte Geld nutzen? Gib Namen und Kosten deines persönlichen Ziels an.</string>
     <string name="settings_goalTitle_hint">Name deines Ziels</string>
-    <string name="settings_goalCosts_hint">Bitte eine ganze Zahl eingeben: 199</string>
+    <string name="settings_goalCosts_hint">Kosten (ganze Zahl eingeben): 199</string>
 
-    <string name="settings_changelog">Changelog</string>
-    <string name="settings_changelog_summary">Was gibt es neues?</string>
-    <string name="settings_license">Lizenz</string>
-    <string name="settings_license_summary">App ist unter der GPL3-Lizenz lizenziert.</string>
+    <string name="settings_costs">Kosten</string>
+    <string name="settings_costs_summary">Die Kosten einer einzelnen Zigarette. Wird gebraucht um das bis jetzt gesparte Geld zu berechnen.</string>
+    <string name="settings_cost_hint">Was kostet eine Zigarette?</string>
+
+    <string name="settings_currency">Währung</string>
+    <string name="settings_currency_summary">Wähle deine bevorzugte Währungseinheit</string>
+
+    <string name="a_cig">Rauchgewohnheiten</string>
+    <string name="a_cig_summary">Gib die Anzahl der Zigaretten, die du am Tag geraucht hast und die Zeit, die du für eine Zigarette
+        gebraucht hast, an.</string>
+    <string name="a_cig_hintNumb">Anzahl der Zigaretten</string>
+    <string name="a_cig_hintTime">Zeit in Stunden (z.B. 0,2)</string>
+
+    <string name="a_time">Zeitpunkt</string>
+    <string name="a_time_summary">Wann hast du mit Rauchen aufgehört? Gib Datum und Uhrzeit an.</string>
+    <string name="a_time_hintDate">Datum (bevorzugtes Datumsformat)</string>
+    <string name="a_time_hintTime">Uhrzeit (24h Format: 22:22)</string>
+
+    <string name="a_dateFormat">Datumsformat</string>
+    <string name="a_dateFormat_summary">Wähle dein bevorzgtes Datumsformat. Benutze es immer, wenn du ein Datum eingibst.</string>
+
+    <string name="a_changelog">Changelog</string>
+    <string name="a_changelog_summary">Was gibt es neues? … (öffnet eine Internetseite)</string>
+
+    <string name="a_license">Lizenz</string>
+    <string name="a_license_summary">Die App ist komplett frei und unter der GPL3-Lizenz lizenziert.</string>
+
+    <string name="a_donate">Spenden</string>
+    <string name="a_donate_summary">Wenn dir die App gefällt, würde ich mich über eine Spende (Paypal) freuen.</string>
+
+    <string name="a_openSettings">App Info</string>
+    <string name="a_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
+        kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
 
 
     //License Dialog
+
     <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
     <string name="about_text">
+        &lt;i>Besuche für mehr Informationen die Projektseite suf Github:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
         the Free Software Foundation, either version 3 of the License, or
@@ -202,29 +275,26 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.
-    </string>
+        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>
 
+        &lt;b>Übersetzungen&lt;/b>&lt;br>
+        &lt;i>Japanisch: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
 
-    //Changelog Dialog
-    <string name="changelog_text">
-        &lt;i>For more informations visit the project site on github:&lt;br>
-        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+        &lt;b>Benutzte Open Source Projekte:&lt;/b>&lt;br>&lt;br>
 
-        &lt;b>v 1.1.3:&lt;/b>&lt;br>
-        &#8226; Japanische Übersetzung (Thanks to naofum)&lt;br>&lt;br>
+        &lt;i>android-file-chooser&lt;br>
+        https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
 
-        &lt;b>v 1.1 - v 1.1.2:&lt;/b>&lt;br>
-        &#8226; fixed Toolbar Layout&lt;br>
-        &#8226; Ziel Tab hinzugefügt&lt;br>
-        &#8226; Englische Übersetzung vervollständigt&lt;br>&lt;br>
+        browser&lt;br>
+        https://github.com/yoshihiroando/browser&lt;br>&lt;br>
 
-        &lt;b>v 1.0:&lt;/b>&lt;br>
-        &#8226; first release
+        MaterialDesignIcons&lt;br>
+        https://github.com/Templarian/MaterialDesign&lt;/i>
     </string>
 
 
     //String arrays
+
     <string-array name="listCurrency">
         <item>Euro (€)</item>
         <item>Dollar ($)</item>

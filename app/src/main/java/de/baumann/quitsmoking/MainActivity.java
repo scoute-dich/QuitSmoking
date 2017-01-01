@@ -27,6 +27,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import de.baumann.quitsmoking.fragments.FragmentGoal;
+import de.baumann.quitsmoking.fragments.FragmentHealth;
+import de.baumann.quitsmoking.fragments.FragmentNotes;
+import de.baumann.quitsmoking.fragments.FragmentOverview;
+import de.baumann.quitsmoking.helper.helper_main;
+
 public class MainActivity extends AppCompatActivity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -39,24 +45,29 @@ public class MainActivity extends AppCompatActivity {
     private static final String SPmoneySavedString = "SPmoneySavedString";
     private static final String SPtimeSavedString = "SPtimeSavedString";
 
+    private SharedPreferences SP;
+
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        PreferenceManager.setDefaultValues(MainActivity.this, R.xml.user_settings, false);
+        SP = PreferenceManager.getDefaultSharedPreferences(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         assert tabLayout != null;
         tabLayout.setupWithViewPager(viewPager);
 
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
         if (SP.getBoolean ("first_run", true)){
-            SP.edit()
-                    .putBoolean("first_run", false)
-                    .apply();
+            SP.edit().putBoolean("first_run", false).apply();
             Intent intent_in = new Intent(MainActivity.this, UserSettingsActivity.class);
             startActivity(intent_in);
             overridePendingTransition(0, 0);
@@ -68,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
             if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
                 if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(R.string.permissions)
+                            .setTitle(R.string.app_permissions_title)
+                            .setMessage(helper_main.textSpannable(getString(R.string.app_permissions)))
                             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -87,14 +99,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/");
+        File directory = new File(Environment.getExternalStorageDirectory() + "/QuitSmoking/");
         if (!directory.exists()) {
             directory.mkdirs();
-        }
-
-        File file = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/.nomedia");
-        if (!file.exists()) {
-            file.mkdirs();
         }
 
         calculate();
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void calculate () {
 
-        final SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
+        SP = PreferenceManager.getDefaultSharedPreferences(this);
 
         String dateFormat = SP.getString("dateFormat", "1");
         String cigNumb = SP.getString("cig", "");
@@ -131,33 +138,29 @@ public class MainActivity extends AppCompatActivity {
                     String timeDiffDaysString = Long.toString(timeDiffDays);
                     String timeDiffHoursString = Long.toString(timeDiffHours);
                     String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
 
                     //Saved Cigarettes
                     long cigNumber = Long.parseLong(cigNumb);
                     long cigDay = 86400000 / cigNumber;
                     long savedCig = timeDiff / cigDay;
                     String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
 
                     //Saved Money
                     double costCig = Double.valueOf(savedMoney.trim());
                     double sa = Long.parseLong(cigSavedString);
                     double moneySaved = sa * costCig;
                     String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
                     double time = sa * timeMin;
                     String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -183,33 +186,29 @@ public class MainActivity extends AppCompatActivity {
                     String timeDiffDaysString = Long.toString(timeDiffDays);
                     String timeDiffHoursString = Long.toString(timeDiffHours);
                     String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString);
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString);
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
+                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
+                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
 
                     //Saved Cigarettes
                     long cigNumber = Long.parseLong(cigNumb);
                     long cigDay = 86400000 / cigNumber;
                     long savedCig = timeDiff / cigDay;
                     String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
 
                     //Saved Money
                     double costCig = Double.valueOf(savedMoney.trim());
                     double sa = Long.parseLong(cigSavedString);
                     double moneySaved = sa * costCig;
                     String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
                     double time = sa * timeMin;
                     String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString);
-                    SP.edit().apply();
+                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -223,19 +222,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (sharedPref.getBoolean("tab_overview", false)) {
+        if (SP.getBoolean("tab_overview", false)) {
             adapter.addFragment(new FragmentOverview(), String.valueOf(getString(R.string.action_overview)));
         }
-        if (sharedPref.getBoolean("tab_health", false)) {
+        if (SP.getBoolean("tab_health", false)) {
             adapter.addFragment(new FragmentHealth(), String.valueOf(getString(R.string.action_health)));
         }
-        if (sharedPref.getBoolean("tab_goal", false)) {
+        if (SP.getBoolean("tab_goal", false)) {
             adapter.addFragment(new FragmentGoal(), String.valueOf(getString(R.string.action_goal)));
         }
-        if (sharedPref.getBoolean("tab_diary", false)) {
-            adapter.addFragment(new FragmentDiary(), String.valueOf(getString(R.string.action_diary)));
+        if (SP.getBoolean("tab_diary", false)) {
+            adapter.addFragment(new FragmentNotes(), String.valueOf(getString(R.string.action_diary)));
         }
 
         viewPager.setAdapter(adapter);
@@ -245,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        private ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -259,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
