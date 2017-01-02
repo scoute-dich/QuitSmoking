@@ -1,8 +1,13 @@
+### v1.4.1
+
+- updated Japanese translation (Thanks to naofum)
+
+
 ### v 1.4:
 
 - fixed: F-Droid build error
 
-### v 1.3:scoute-dich
+### v 1.3:
 - improved: UI (xml icons, dialogs, fragments, ...)
 - improved: Settings screen
 - improved: complete new diary
