@@ -5,15 +5,15 @@
     <string name="app_name">禁煙</string>
     <string name="yes">OK</string>
     <string name="no">いいえ</string>
-    <string name="app_permissions_title">Used permission</string>
+    <string name="app_permissions_title">使用するアクセス許可</string>
     <string name="app_permissions">
 
-        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
-        &#8226; Diary: backup and restore to/from sd-card.&lt;br>
-        &#8226; Goal: load and save images for your personal goal.&lt;br>&lt;br>
+        &lt;i>ストレージのアクセス許可:&lt;/i>&lt;br>
+        &#8226; ダイアリー: SD カードから/へバックアップと復元します。&lt;br>
+        &#8226; 目標: 個人目標の画像を読み込みと保存します。&lt;br>&lt;br>
 
-        &lt;i>Grant permissions later:&lt;/i>&lt;br>
-        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
+        &lt;i>後でアクセス許可を付与:&lt;/i>&lt;br>
+        今すぐに許可しない場合、後で許可することができます。 \"設定 -> アプリ情報\" を開いて \"アクセス許可\" を選択してください。</string>
 
 
     //Share
@@ -120,59 +120,59 @@
 
     // Notes
 
-    <string name="note_delete_confirmation">All entries will be deleted. OK?</string>
-    <string name="note_remove_confirmation">Note will be romoved. OK?</string>
-    <string name="note_remove_cannot">You need at least one entry!</string>
-    <string name="note_remove_note">Delete entry</string>
-    <string name="note_edit">Edit entry</string>
-    <string name="note_share">Share entry</string>
-    <string name="note_share_2">Share with:</string>
-    <string name="title_hint">Title</string>
-    <string name="text_hint">Content</string>
-    <string name="toast_extension">No supported file extension</string>
-    <string name="toast_install_app">Please install an app to perform action.</string>
-    <string name="action_note">New diary entry</string>
-    <string name="note_attachment">Attachment</string>
+    <string name="note_delete_confirmation">すべてのエントリーが削除されます。 OK?</string>
+    <string name="note_remove_confirmation">メモが削除されます。 OK?</string>
+    <string name="note_remove_cannot">エントリーが少なくとも一つ必要です!</string>
+    <string name="note_remove_note">エントリーを削除</string>
+    <string name="note_edit">エントリーを編集</string>
+    <string name="note_share">エントリーを共有</string>
+    <string name="note_share_2">共有:</string>
+    <string name="title_hint">タイトル</string>
+    <string name="text_hint">内容</string>
+    <string name="toast_extension">サポートされていないファイルの拡張子</string>
+    <string name="toast_install_app">操作を実行するアプリをインストールしてください。</string>
+    <string name="action_note">新しい日記のエントリー</string>
+    <string name="note_attachment">添付</string>
 
-    <string name="text_tit_1">Neutral</string>
-    <string name="text_tit_2">Happy</string>
-    <string name="text_tit_3">Sad</string>
-    <string name="text_tit_4">Smiling</string>
-    <string name="text_tit_5">Cool</string>
-    <string name="text_tit_6">Dead</string>
-    <string name="text_tit_7">Excited</string>
-    <string name="text_tit_8">Tongue</string>
-    <string name="text_tit_9">Devil</string>
+    <string name="text_tit_1">中間</string>
+    <string name="text_tit_2">幸せ</string>
+    <string name="text_tit_3">悲しい</string>
+    <string name="text_tit_4">にこやか</string>
+    <string name="text_tit_5">クール</string>
+    <string name="text_tit_6">死亡</string>
+    <string name="text_tit_7">わくわくする</string>
+    <string name="text_tit_8">饒舌</string>
+    <string name="text_tit_9">悪魔</string>
 
-    <string name="toast_backup">Backup successfully.</string>
-    <string name="toast_restore">Restore successfully.</string>
-    <string name="toast_backup_not">Backup failed.</string>
-    <string name="toast_restore_not">Restore failed.</string>
+    <string name="toast_backup">バックアップに成功しました。</string>
+    <string name="toast_restore">復元に成功しました。</string>
+    <string name="toast_backup_not">バックアップに失敗しました。</string>
+    <string name="toast_restore_not">復元に失敗しました。</string>
 
-    <string name="paste_date">Paste actual date</string>
-    <string name="paste_time">Paste actual time</string>
-    <string name="paste_line">Paste line</string>
+    <string name="paste_date">実際の日付を貼り付け</string>
+    <string name="paste_time">実際の時間を貼り付け</string>
+    <string name="paste_line">行を貼り付け</string>
 
-    <string name="action_sort">Sort entries</string>
-    <string name="action_sort_title">Sort by title</string>
-    <string name="action_sort_edit">Sort by editing</string>
-    <string name="action_sort_icon">Sort by emoticon</string>
-    <string name="action_sort_create">Sort by creation</string>
-    <string name="action_sort_att">Sort by attachment</string>
+    <string name="action_sort">エントリーの並び替え</string>
+    <string name="action_sort_title">タイトル順に並び替え</string>
+    <string name="action_sort_edit">編集順に並び替え</string>
+    <string name="action_sort_icon">絵文字で並び替え</string>
+    <string name="action_sort_create">作成順に並び替え</string>
+    <string name="action_sort_att">添付で並び替え</string>
 
 
     // Camera
 
-    <string name="cam_fail">Failed to take picture</string>
-    <string name="cam_success">Picture saved</string>
-    <string name="cam_start">Take a picture, then choose it as attachment.</string>
+    <string name="cam_fail">写真の撮影に失敗しました</string>
+    <string name="cam_success">写真を保存しました</string>
+    <string name="cam_start">写真を撮って、その後添付として選択します。</string>
 
 
     //File chooser
 
-    <string name="title_choose">Choose</string>
-    <string name="dialog_cancel">Cancel</string>
-    <string name="choose_att">Choose attachment</string>
+    <string name="title_choose">選択</string>
+    <string name="dialog_cancel">キャンセル</string>
+    <string name="choose_att">添付を選択</string>
 
 
     // Goal
@@ -220,34 +220,34 @@
     <string name="settings_goalTitle_hint">あなたの目標の名前</string>
     <string name="settings_goalCosts_hint">整数を使用します: 199</string>
 
-    <string name="a_goal">Personal goal</string>
-    <string name="a_goal_summary">For what will you use the saved money? Please enter title and the costs of your personal goal.</string>
+    <string name="a_goal">個人目標</string>
+    <string name="a_goal_summary">節約したお金を何に使いますか? 個人目標のタイトルとコストを入力してください。</string>
 
-    <string name="a_cig">Smoke habits</string>
-    <string name="a_cig_summary">Enter the number of smoked cigarettes per day und the time it took to smoke one cigarette.</string>
-    <string name="a_cig_hintNumb">Number of cigarettes</string>
-    <string name="a_cig_hintTime">Time in hours (e.g. 0,2)</string>
+    <string name="a_cig">喫煙の習慣</string>
+    <string name="a_cig_summary">1 日あたり喫煙したタバコの数とタバコを 1 本吸う時間を入力してください。</string>
+    <string name="a_cig_hintNumb">タバコの数</string>
+    <string name="a_cig_hintTime">時間 (時間で) (例 0,2)</string>
 
-    <string name="a_time">Time</string>
-    <string name="a_time_summary">When did you stop smoking? Please enter date and time.</string>
-    <string name="a_time_hintDate">Date (preferred date format)</string>
-    <string name="a_time_hintTime">Time (24h format: 22:22)</string>
+    <string name="a_time">時間</string>
+    <string name="a_time_summary">あなたはいつ禁煙しましたか? 日時を入力してください。</string>
+    <string name="a_time_hintDate">日付 (希望の日付形式)</string>
+    <string name="a_time_hintTime">時間 (24時間形式: 22:22)</string>
 
-    <string name="a_dateFormat">Date format</string>
-    <string name="a_dateFormat_summary">Set your preferred date format. Use it always, when you enter a date.</string>
+    <string name="a_dateFormat">日付形式</string>
+    <string name="a_dateFormat_summary">希望する日付形式を設定します。 日付を入力するときは、常にそれを使用します。</string>
 
-    <string name="a_changelog">Changelog</string>
-    <string name="a_changelog_summary">What is new? … (opens a website)</string>
+    <string name="a_changelog">変更履歴</string>
+    <string name="a_changelog_summary">新着情報? … (Webサイトを開きます)</string>
 
-    <string name="a_license">License</string>
-    <string name="a_license_summary">The app is completely open source and licensed under GPL3.</string>
+    <string name="a_license">ライセンス</string>
+    <string name="a_license_summary">アプリは完全にオープンソースで、ライセンスは GPL3 に基づきます。</string>
 
-    <string name="a_donate">Donate</string>
-    <string name="a_donate_summary">If you like the app, you can donate to me via Paypal.</string>
+    <string name="a_donate">寄付</string>
+    <string name="a_donate_summary">アプリを気に入っていただけたら、Paypal で寄付することができます。</string>
 
-    <string name="a_openSettings">App info</string>
-    <string name="a_openSettings_summary">Open via the system settings the app info of the app. There you can,
-        depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
+    <string name="a_openSettings">アプリ情報</string>
+    <string name="a_openSettings_summary">システム設定で、アプリ情報を開きます。
+        お使いの Android バージョンに応じて、いくつか管理できることがあります (ストレージ、ネットワーク通信、アクセス許可 …)。</string>
 
 
     //License Dialog
@@ -270,10 +270,10 @@
         受け取っているはずです。
         もし受け取っていなければ http://www.gnu.org/licenses/ をご覧ください。&lt;br>&lt;br>
 
-        &lt;b>Translations&lt;/b>&lt;br>
-        &lt;i>Japanese: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
+        &lt;b>翻訳&lt;/b>&lt;br>
+        &lt;i>日本語: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
 
-        &lt;b>Used open source projects:&lt;/b>&lt;br>&lt;br>
+        &lt;b>使用したオープンソース プロジェクト:&lt;/b>&lt;br>&lt;br>
 
         &lt;i>android-file-chooser&lt;br>
         https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
