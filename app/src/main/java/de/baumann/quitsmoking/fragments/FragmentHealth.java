@@ -217,7 +217,7 @@ public class FragmentHealth extends Fragment {
         menu.findItem(R.id.action_share).setVisible(false);
         menu.findItem(R.id.action_backup).setVisible(false);
         menu.findItem(R.id.action_image).setVisible(false);
-        menu.findItem(R.id.action_note).setVisible(false);
+        menu.findItem(R.id.action_filter).setVisible(false);
         menu.findItem(R.id.action_sort).setVisible(false);
     }
 

@@ -28,12 +28,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_margin="24dp" />
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"/>
 
             <LinearLayout
+                android:id="@+id/att"
                 android:layout_below="@+id/note_text_input"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -43,7 +47,7 @@
                     android:layout_height="46dp"
                     android:gravity="center_vertical"
                     android:id="@+id/imageButtonPri"
-                    app:srcCompat="@drawable/emoticon"
+                    app:srcCompat="@drawable/emoticon_neutral"
                     android:background="?android:selectableItemBackground"
                     tools:ignore="ContentDescription"
                     android:layout_marginEnd="16dp"
@@ -59,6 +63,18 @@
                     android:layout_marginStart="4dp" />
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/attImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/att"
+                android:visibility="gone"
+                android:scaleType="fitCenter"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 

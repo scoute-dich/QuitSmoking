@@ -19,55 +19,81 @@
 
 package de.baumann.quitsmoking.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.FilterQueryProvider;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
-import de.baumann.quitsmoking.helper.Database_Notes;
+import de.baumann.quitsmoking.helper.DbAdapter_Notes;
+import de.baumann.quitsmoking.helper.Popup_camera;
+import de.baumann.quitsmoking.helper.Popup_files;
 import de.baumann.quitsmoking.helper.helper_main;
-import de.baumann.quitsmoking.helper.helper_notes;
 
 import de.baumann.quitsmoking.R;
 
 
 public class FragmentNotes extends Fragment {
 
-    private ListView listView = null;
+    //calling variables
+    private DbAdapter_Notes db;
+    private SimpleCursorAdapter adapter;
+
+    private ListView lv = null;
+    private EditText filter;
     private SharedPreferences sharedPref;
+    private RelativeLayout filter_layout;
+
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,58 +102,269 @@ public class FragmentNotes extends Fragment {
 
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        filter_layout = (RelativeLayout) rootView.findViewById(R.id.filter_layout);
+        filter_layout.setVisibility(View.GONE);
+        lv = (ListView) rootView.findViewById(R.id.listNotes);
+        filter = (EditText) rootView.findViewById(R.id.myFilter);
+        viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
+        setTitle();
+
+        ImageButton ib_hideKeyboard =(ImageButton) rootView.findViewById(R.id.ib_hideKeyboard);
+        ib_hideKeyboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                filter_layout.setVisibility(View.GONE);
+                setNotesList();
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedPref.edit().putString("handleTextCreate", helper_main.createDate()).apply();
+                newNote(getActivity());
+            }
+        });
+
+        //calling Notes_DbAdapter
+        db = new DbAdapter_Notes(getActivity());
+        db.open();
+
+        setNotesList();
         setHasOptionsMenu(true);
 
-        listView = (ListView)rootView.findViewById(R.id.notes);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                @SuppressWarnings("unchecked")
-                HashMap<String,String> map = (HashMap<String,String>)listView.getItemAtPosition(position);
+        return rootView;
+    }
 
-                final String title = map.get("title");
-                final String cont = map.get("cont");
-                final String seqnoStr = map.get("seqno");
-                final String icon = map.get("icon");
-                final String attachment = map.get("attachment");
-                final String create = map.get("createDate");
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed() && viewPager.getCurrentItem() == 3) {
+            setNotesList();
+            if (sharedPref.getString("newIntent", "false").equals("true")) {
+                newNote(getActivity());
+            }
+        }
+    }
 
-                final Button attachment2;
+    @Override
+    public void onResume() {
+        super.onResume();
+        setNotesList();
+        if (sharedPref.getString("newIntent", "false").equals("true")) {
+            newNote(getActivity());
+        }
+    }
+
+    private void setNotesList() {
+
+        //display data
+        final int layoutstyle=R.layout.list_item_notes;
+        int[] xml_id = new int[] {
+                R.id.textView_title_notes,
+                R.id.textView_des_notes,
+                R.id.textView_create_notes
+        };
+        String[] column = new String[] {
+                "note_title",
+                "note_content",
+                "note_creation"
+        };
+        final Cursor row = db.fetchAllData(getActivity());
+        adapter = new SimpleCursorAdapter(getActivity(), layoutstyle,row,column, xml_id, 0) {
+            @Override
+            public View getView (final int position, View convertView, ViewGroup parent) {
+
+                Cursor row2 = (Cursor) lv.getItemAtPosition(position);
+                final String note_icon = row2.getString(row2.getColumnIndexOrThrow("note_icon"));
+                final String note_attachment = row2.getString(row2.getColumnIndexOrThrow("note_attachment"));
+
+                View v = super.getView(position, convertView, parent);
+                ImageView iv_icon = (ImageView) v.findViewById(R.id.icon_notes);
+                ImageView iv_attachment = (ImageView) v.findViewById(R.id.att_notes);
+
+                switch (note_icon) {
+                    case "1":
+                        iv_icon.setImageResource(R.drawable.emoticon_neutral);
+                        sharedPref.edit().putString("handleTextIcon", "1").apply();
+                        break;
+                    case "2":
+                        iv_icon.setImageResource(R.drawable.emoticon_happy);
+                        sharedPref.edit().putString("handleTextIcon", "2").apply();
+                        break;
+                    case "3":
+                        iv_icon.setImageResource(R.drawable.emoticon_sad);
+                        sharedPref.edit().putString("handleTextIcon", "3").apply();
+                        break;
+                    case "4":
+                        iv_icon.setImageResource(R.drawable.emoticon);
+                        sharedPref.edit().putString("handleTextIcon", "4").apply();
+                        break;
+                    case "5":
+                        iv_icon.setImageResource(R.drawable.emoticon_cool);
+                        sharedPref.edit().putString("handleTextIcon", "5").apply();
+                        break;
+                    case "6":
+                        iv_icon.setImageResource(R.drawable.emoticon_dead);
+                        sharedPref.edit().putString("handleTextIcon", "6").apply();
+                        break;
+                    case "7":
+                        iv_icon.setImageResource(R.drawable.emoticon_excited);
+                        sharedPref.edit().putString("handleTextIcon", "7").apply();
+                        break;
+                    case "8":
+                        iv_icon.setImageResource(R.drawable.emoticon_tongue);
+                        sharedPref.edit().putString("handleTextIcon", "8").apply();
+                        break;
+                    case "9":
+                        iv_icon.setImageResource(R.drawable.emoticon_devil);
+                        sharedPref.edit().putString("handleTextIcon", "9").apply();
+                        break;
+                    case "":
+                        iv_icon.setImageResource(R.drawable.emoticon_neutral);
+                        sharedPref.edit()
+                                .putString("handleTextIcon", "")
+                                .apply();
+                        break;
+                }
+
+                switch (note_attachment) {
+                    case "":
+                        iv_attachment.setVisibility(View.GONE);
+                        break;
+                    default:
+                        iv_attachment.setVisibility(View.VISIBLE);
+                        iv_attachment.setImageResource(R.drawable.ic_attachment);
+                        break;
+                }
+
+                File file = new File(note_attachment);
+                if (!file.exists()) {
+                    iv_attachment.setVisibility(View.GONE);
+                }
+                return v;
+            }
+        };
+
+        //display data by filter
+        final String note_search = sharedPref.getString("filter_noteBY", "note_title");
+        sharedPref.edit().putString("filter_noteBY", "note_title").apply();
+        filter.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s.toString());
+            }
+        });
+        adapter.setFilterQueryProvider(new FilterQueryProvider() {
+            public Cursor runQuery(CharSequence constraint) {
+                return db.fetchDataByFilter(constraint.toString(),note_search);
+            }
+        });
+
+        lv.setAdapter(adapter);
+        //onClick function
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterview, View view, int position, long id) {
+
+                Cursor row2 = (Cursor) lv.getItemAtPosition(position);
+                final String _id = row2.getString(row2.getColumnIndexOrThrow("_id"));
+                final String note_title = row2.getString(row2.getColumnIndexOrThrow("note_title"));
+                final String note_content = row2.getString(row2.getColumnIndexOrThrow("note_content"));
+                final String note_icon = row2.getString(row2.getColumnIndexOrThrow("note_icon"));
+                final String note_attachment = row2.getString(row2.getColumnIndexOrThrow("note_attachment"));
+                final String note_creation = row2.getString(row2.getColumnIndexOrThrow("note_creation"));
+
+                final Button attachment;
                 final TextView textInput;
 
                 LayoutInflater inflater = getActivity().getLayoutInflater();
 
                 final ViewGroup nullParent = null;
-                View dialogView = inflater.inflate(R.layout.dialog_note_show, nullParent);
+                final View dialogView = inflater.inflate(R.layout.dialog_note_show, nullParent);
 
-                final String attName = attachment.substring(attachment.lastIndexOf("/")+1);
+                final String attName = note_attachment.substring(note_attachment.lastIndexOf("/")+1);
                 final String att = getString(R.string.note_attachment) + ": " + attName;
 
-                attachment2 = (Button) dialogView.findViewById(R.id.button_att);
+                attachment = (Button) dialogView.findViewById(R.id.button_att);
                 if (attName.equals("")) {
-                    attachment2.setVisibility(View.GONE);
+                    attachment.setVisibility(View.GONE);
                 } else {
-                    attachment2.setText(att);
+                    attachment.setText(att);
                 }
-                File file2 = new File(attachment);
+                File file2 = new File(note_attachment);
                 if (!file2.exists()) {
-                    attachment2.setVisibility(View.GONE);
+                    attachment.setVisibility(View.GONE);
                 }
 
                 textInput = (TextView) dialogView.findViewById(R.id.note_text_input);
-                textInput.setText(cont);
+                if (note_content.isEmpty()) {
+                    textInput.setVisibility(View.GONE);
+                } else {
+                    textInput.setText(note_content);
+                    Linkify.addLinks(textInput, Linkify.WEB_URLS);
+                }
 
-                attachment2.setOnClickListener(new View.OnClickListener() {
+                attachment.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View arg0) {
-                        openAtt(attachment);
+                        helper_main.openAtt(getActivity(), textInput, note_attachment);
                     }
                 });
 
                 final ImageView be = (ImageView) dialogView.findViewById(R.id.imageButtonPri);
-                assert be != null;
+                final ImageView attImage = (ImageView) dialogView.findViewById(R.id.attImage);
 
-                switch (icon) {
+                if (note_attachment.contains(".gif") ||
+                        note_attachment.contains(".bmp") ||
+                        note_attachment.contains(".tiff") ||
+                        note_attachment.contains(".png") ||
+                        note_attachment.contains(".jpg") ||
+                        note_attachment.contains(".JPG") ||
+                        note_attachment.contains(".jpeg") ||
+                        note_attachment.contains(".mpeg") ||
+                        note_attachment.contains(".mp4") ||
+                        note_attachment.contains(".3gp") ||
+                        note_attachment.contains(".3g2") ||
+                        note_attachment.contains(".avi") ||
+                        note_attachment.contains(".flv") ||
+                        note_attachment.contains(".h261") ||
+                        note_attachment.contains(".h263") ||
+                        note_attachment.contains(".h264") ||
+                        note_attachment.contains(".asf") ||
+                        note_attachment.contains(".wmv")) {
+                    attImage.setVisibility(View.VISIBLE);
+                    try {
+                        Glide.with(getActivity())
+                                .load(note_attachment) // or URI/path
+                                .into(attImage); //imageView to set thumbnail to
+                    } catch (Exception e) {
+                        Log.w("HHS_Moodle", "Error load thumbnail", e);
+                        attImage.setVisibility(View.GONE);
+                    }
+
+                    Bitmap myBitmap = BitmapFactory.decodeFile(note_attachment);
+                    attImage.setImageBitmap(myBitmap);
+
+                    attImage.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View arg0) {
+                            helper_main.openAtt(getActivity(), attImage, note_attachment);
+                        }
+                    });
+                }
+
+                switch (note_icon) {
                     case "1":
                         be.setImageResource(R.drawable.emoticon_neutral);
                         sharedPref.edit().putString("handleTextIcon", "1").apply();
@@ -172,8 +409,8 @@ public class FragmentNotes extends Fragment {
                         break;
                 }
 
-                android.app.AlertDialog.Builder dialog = new android.app.AlertDialog.Builder(getActivity())
-                        .setTitle(title)
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
+                        .setTitle(note_title)
                         .setView(dialogView)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -185,42 +422,40 @@ public class FragmentNotes extends Fragment {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 sharedPref.edit()
-                                        .putString("handleTextTitle", title)
-                                        .putString("handleTextText", cont)
-                                        .putString("handleTextIcon", icon)
-                                        .putString("handleTextSeqno", seqnoStr)
-                                        .putString("handleTextAttachment", attachment)
-                                        .putString("handleTextCreate", create)
+                                        .putString("handleTextTitle", note_title)
+                                        .putString("handleTextText", note_content)
+                                        .putString("handleTextIcon", note_icon)
+                                        .putString("handleTextSeqno", _id)
+                                        .putString("handleTextAttachment", note_attachment)
+                                        .putString("handleTextCreate", note_creation)
                                         .apply();
-                                helper_notes.editNote(getActivity());
+                                editNote(getActivity());
                             }
                         });
                 dialog.show();
             }
         });
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                @SuppressWarnings("unchecked")
-                HashMap<String,String> map = (HashMap<String,String>)listView.getItemAtPosition(position);
-
-                final String seqnoStr = map.get("seqno");
-                final String title = map.get("title");
-                final String cont = map.get("cont");
-                final String icon = map.get("icon");
-                final String attachment = map.get("attachment");
-                final String create = map.get("createDate");
+                Cursor row2 = (Cursor) lv.getItemAtPosition(position);
+                final String _id = row2.getString(row2.getColumnIndexOrThrow("_id"));
+                final String note_title = row2.getString(row2.getColumnIndexOrThrow("note_title"));
+                final String note_content = row2.getString(row2.getColumnIndexOrThrow("note_content"));
+                final String note_icon = row2.getString(row2.getColumnIndexOrThrow("note_icon"));
+                final String note_attachment = row2.getString(row2.getColumnIndexOrThrow("note_attachment"));
+                final String note_creation = row2.getString(row2.getColumnIndexOrThrow("note_creation"));
 
                 final CharSequence[] options = {
                         getString(R.string.note_edit),
                         getString(R.string.note_share),
                         getString(R.string.note_remove_note)};
                 new AlertDialog.Builder(getActivity())
-                        .setPositiveButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
                             }
                         })
                         .setItems(options, new DialogInterface.OnClickListener() {
@@ -228,56 +463,35 @@ public class FragmentNotes extends Fragment {
                             public void onClick(DialogInterface dialog, int item) {
                                 if (options[item].equals(getString(R.string.note_edit))) {
                                     sharedPref.edit()
-                                            .putString("handleTextTitle", title)
-                                            .putString("handleTextText", cont)
-                                            .putString("handleTextIcon", icon)
-                                            .putString("handleTextSeqno", seqnoStr)
-                                            .putString("handleTextAttachment", attachment)
-                                            .putString("handleTextAttachment", create)
+                                            .putString("handleTextTitle", note_title)
+                                            .putString("handleTextText", note_content)
+                                            .putString("handleTextIcon", note_icon)
+                                            .putString("handleTextSeqno", _id)
+                                            .putString("handleTextAttachment", note_attachment)
+                                            .putString("handleTextCreate", note_creation)
                                             .apply();
-                                    helper_notes.editNote(getActivity());
+                                    editNote(getActivity());
                                 }
 
                                 if (options[item].equals (getString(R.string.note_share))) {
                                     Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                                     sharingIntent.setType("text/plain");
-                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, title);
-                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, cont);
+                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, note_title);
+                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, note_content);
                                     startActivity(Intent.createChooser(sharingIntent, (getString(R.string.note_share_2))));
                                 }
 
                                 if (options[item].equals(getString(R.string.note_remove_note))) {
-                                    try {
-                                        Database_Notes db = new Database_Notes(getActivity());
-                                        final int count = db.getRecordCount();
-                                        db.close();
-
-                                        if (count == 1) {
-                                            Snackbar snackbar = Snackbar
-                                                    .make(listView, R.string.note_remove_cannot, Snackbar.LENGTH_LONG);
-                                            snackbar.show();
-
-                                        } else {
-                                            Snackbar snackbar = Snackbar
-                                                    .make(listView, R.string.note_remove_confirmation, Snackbar.LENGTH_LONG)
-                                                    .setAction(R.string.yes, new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View view) {
-                                                            try {
-                                                                Database_Notes db = new Database_Notes(getActivity());
-                                                                db.deleteNote(Integer.parseInt(seqnoStr));
-                                                                db.close();
-                                                                setNotesList();
-                                                            } catch (PackageManager.NameNotFoundException e) {
-                                                                e.printStackTrace();
-                                                            }
-                                                        }
-                                                    });
-                                            snackbar.show();
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
+                                    Snackbar snackbar = Snackbar
+                                            .make(lv, R.string.note_remove_confirmation, Snackbar.LENGTH_LONG)
+                                            .setAction(R.string.yes, new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    db.delete(Integer.parseInt(_id));
+                                                    setNotesList();
+                                                }
+                                            });
+                                    snackbar.show();
                                 }
                             }
                         }).show();
@@ -285,16 +499,27 @@ public class FragmentNotes extends Fragment {
                 return true;
             }
         });
+    }
 
-        setHasOptionsMenu(true);
-        setNotesList();
-        return rootView;
+    private static class Item{
+        public final String text;
+        public final int icon;
+        Item(String text, Integer icon) {
+            this.text = text;
+            this.icon = icon;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onPrepareOptionsMenu(menu);
+
         menu.findItem(R.id.action_image).setVisible(false);
         menu.findItem(R.id.action_share).setVisible(false);
     }
@@ -302,597 +527,927 @@ public class FragmentNotes extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
+        TabLayout.Tab tab = tabLayout.getTabAt(3);
 
-        if (id == R.id.action_backup) {
+        switch (item.getItemId()) {
 
-            final CharSequence[] options = {
-                    getString(R.string.action_backup),
-                    getString(R.string.action_restore),
-                    getString(R.string.action_delete)};
+            case R.id.filter_title:
+                sharedPref.edit().putString("filter_noteBY", "note_title").apply();
+                setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
+                filter.setText("");
+                filter.setHint(R.string.action_filter_title);
+                filter.requestFocus();
+                helper_main.showKeyboard(getActivity(), filter);
+                return true;
+            case R.id.filter_content:
+                sharedPref.edit().putString("filter_noteBY", "note_content").apply();
+                setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
+                filter.setText("");
+                filter.setHint(R.string.action_filter_cont);
+                filter.requestFocus();
+                helper_main.showKeyboard(getActivity(), filter);
+                return true;
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setItems(options, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    if (options[item].equals(getString(R.string.action_backup))) {
+            case R.id.filter_today:
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar cal = Calendar.getInstance();
+                final String search = dateFormat.format(cal.getTime());
+                sharedPref.edit().putString("filter_noteBY", "note_creation").apply();
+                assert tab != null;
+                tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_today));
+                setNotesList();
+                filter.setText(search);
+                return true;
+            case R.id.filter_yesterday:
+                DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar cal2 = Calendar.getInstance();
+                cal2.add(Calendar.DATE, -1);
+                final String search2 = dateFormat2.format(cal2.getTime());
+                sharedPref.edit().putString("filter_noteBY", "note_creation").apply();
+                assert tab != null;
+                tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_yesterday));
+                setNotesList();
+                filter.setText(search2);
+                return true;
+            case R.id.filter_before:
+                DateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar cal3 = Calendar.getInstance();
+                cal3.add(Calendar.DATE, -2);
+                final String search3 = dateFormat3.format(cal3.getTime());
+                sharedPref.edit().putString("filter_noteBY", "note_creation").apply();
+                assert tab != null;
+                tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_before));
+                setNotesList();
+                filter.setText(search3);
+                return true;
+            case R.id.filter_month:
+                DateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
+                Calendar cal4 = Calendar.getInstance();
+                final String search4 = dateFormat4.format(cal4.getTime());
+                sharedPref.edit().putString("filter_noteBY", "note_creation").apply();
+                assert tab != null;
+                tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_month));
+                setNotesList();
+                filter.setText(search4);
+                return true;
+            case R.id.filter_own:
+                sharedPref.edit().putString("filter_noteBY", "note_creation").apply();
+                assert tab != null;
+                tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_own));
+                setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
+                filter.setText("");
+                filter.setHint(R.string.action_filter_create);
+                filter.requestFocus();
+                helper_main.showKeyboard(getActivity(), filter);
+                return true;
+            case R.id.filter_clear:
+                filter.setText("");
+                setTitle();
+                setNotesList();
+                return true;
 
-                        sharedPref.edit().putString("sortDB", "title").apply();
-                        setNotesList();
+            case R.id.sort_title:
+                sharedPref.edit().putString("sortDB", "title").apply();
+                setTitle();
+                setNotesList();
+                return true;
+            case R.id.sort_icon:
+                sharedPref.edit().putString("sortDB", "icon").apply();
+                setTitle();
+                setNotesList();
+                return true;
+            case R.id.sort_creation:
+                sharedPref.edit().putString("sortDB", "create").apply();
+                setTitle();
+                setNotesList();
+                return true;
 
-                        File directory = new File(Environment.getExternalStorageDirectory() + "/QuitSmoking/backup/");
-                        if (!directory.exists()) {
-                            //noinspection ResultOfMethodCallIgnored
-                            directory.mkdirs();
-                        }
+            case R.id.backup_backup:
+                File directory = new File(Environment.getExternalStorageDirectory() + "/QuitSmoking/backup/");
+                if (!directory.exists()) {
+                    //noinspection ResultOfMethodCallIgnored
+                    directory.mkdirs();
+                }
 
-                        try {
-                            File sd = Environment.getExternalStorageDirectory();
-                            File data = Environment.getDataDirectory();
+                try {
+                    File sd = Environment.getExternalStorageDirectory();
+                    File data = Environment.getDataDirectory();
 
-                            if (sd.canWrite()) {
+                    if (sd.canWrite()) {
+                        String currentDBPath = "//data//" + "de.baumann.quitsmoking"
+                                + "//databases//" + "notes_DB_v01.db";
+                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking//" + "//backup//" + "notes_DB_v01.db";
+                        File currentDB = new File(data, currentDBPath);
+                        File backupDB = new File(sd, backupDBPath);
 
-                                String currentDBPath2 = "//data//" + "de.baumann.quitsmoking"
-                                        + "//databases//" + "notes.db";
-                                String backupDBPath2 = "//QuitSmoking//" + "//backup//" + "notes.db";
-                                File currentDB2 = new File(data, currentDBPath2);
-                                File backupDB2 = new File(sd, backupDBPath2);
-
-                                FileChannel src2 = new FileInputStream(currentDB2).getChannel();
-                                FileChannel dst2 = new FileOutputStream(backupDB2).getChannel();
-                                dst2.transferFrom(src2, 0, src2.size());
-                                src2.close();
-                                dst2.close();
-
-                                Snackbar snackbar = Snackbar
-                                        .make(listView, R.string.toast_backup, Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                            }
-                        } catch (Exception e) {
-                            Snackbar snackbar = Snackbar
-                                    .make(listView, R.string.toast_backup_not, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                        }
-                    }
-
-                    if (options[item].equals(getString(R.string.action_restore))) {
-
-                        sharedPref.edit().putString("sortDB", "seqno").apply();
-                        setNotesList();
-
-                        try {
-                            File sd = Environment.getExternalStorageDirectory();
-                            File data = Environment.getDataDirectory();
-
-                            if (sd.canWrite()) {
-
-                                String currentDBPath2 = "//data//" + "de.baumann.quitsmoking"
-                                        + "//databases//" + "notes.db";
-                                String backupDBPath2 = "//QuitSmoking//" + "//backup//" + "notes.db";
-                                File currentDB2 = new File(data, currentDBPath2);
-                                File backupDB2 = new File(sd, backupDBPath2);
-
-                                FileChannel src2 = new FileInputStream(backupDB2).getChannel();
-                                FileChannel dst2 = new FileOutputStream(currentDB2).getChannel();
-                                dst2.transferFrom(src2, 0, src2.size());
-                                src2.close();
-                                dst2.close();
-                                Snackbar snackbar = Snackbar
-                                        .make(listView, R.string.toast_restore, Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                                setNotesList();
-                            }
-                        } catch (Exception e) {
-                            Snackbar snackbar = Snackbar
-                                    .make(listView, R.string.toast_restore_not, Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                        }
-                    }
-
-                    if (options[item].equals(getString(R.string.action_delete))) {
-
-                        sharedPref.edit().putString("sortDB", "icon").apply();
-                        setNotesList();
+                        FileChannel src = new FileInputStream(currentDB).getChannel();
+                        FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                        dst.transferFrom(src, 0, src.size());
+                        src.close();
+                        dst.close();
 
                         Snackbar snackbar = Snackbar
-                                .make(listView, R.string.note_delete_confirmation, Snackbar.LENGTH_LONG)
-                                .setAction(R.string.yes, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        getActivity().deleteDatabase("notes.db");
-                                        setNotesList();
-                                    }
-                                });
+                                .make(lv, R.string.toast_backup, Snackbar.LENGTH_LONG);
                         snackbar.show();
                     }
+                } catch (Exception e) {
+                    Snackbar snackbar = Snackbar
+                            .make(lv, R.string.toast_backup_not, Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
-            });
-            builder.setPositiveButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
-        }
+                return true;
+            case R.id.backup_restore:
 
-        if (id == R.id.action_sort) {
+                try {
+                    File sd = Environment.getExternalStorageDirectory();
+                    File data = Environment.getDataDirectory();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            View dialogView = View.inflate(getActivity(), R.layout.dialog_sort, null);
+                    if (sd.canWrite()) {
 
-            final CheckBox ch_title = (CheckBox) dialogView.findViewById(R.id.checkBoxTitle);
-            final CheckBox ch_create = (CheckBox) dialogView.findViewById(R.id.checkBoxCreate);
-            final CheckBox ch_edit = (CheckBox) dialogView.findViewById(R.id.checkBoxEdit);
-            final CheckBox ch_icon = (CheckBox) dialogView.findViewById(R.id.checkBoxIcon);
-            final CheckBox ch_att = (CheckBox) dialogView.findViewById(R.id.checkBoxAtt);
+                        String currentDBPath = "//data//" + "de.baumann.quitsmoking"
+                                + "//databases//" + "notes_DB_v01.db";
+                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking//" + "//backup//" + "notes_DB_v01.db";
+                        File currentDB = new File(data, currentDBPath);
+                        File backupDB = new File(sd, backupDBPath);
 
+                        FileChannel src = new FileInputStream(backupDB).getChannel();
+                        FileChannel dst = new FileOutputStream(currentDB).getChannel();
+                        dst.transferFrom(src, 0, src.size());
+                        src.close();
+                        dst.close();
 
-            if (sharedPref.getString("sortDB", "title").equals("title")) {
-                ch_title.setChecked(true);
-            } else {
-                ch_title.setChecked(false);
-            }
-            if (sharedPref.getString("sortDB", "title").equals("create")) {
-                ch_create.setChecked(true);
-            } else {
-                ch_create.setChecked(false);
-            }
-            if (sharedPref.getString("sortDB", "title").equals("seqno")) {
-                ch_edit.setChecked(true);
-            } else {
-                ch_edit.setChecked(false);
-            }
-            if (sharedPref.getString("sortDB", "title").equals("icon")) {
-                ch_icon.setChecked(true);
-            } else {
-                ch_icon.setChecked(false);
-            }
-            if (sharedPref.getString("sortDB", "title").equals("attachment")) {
-                ch_att.setChecked(true);
-            } else {
-                ch_att.setChecked(false);
-            }
-
-
-            ch_title.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,
-                                             boolean isChecked) {
-                    if(isChecked){
-                        ch_create.setChecked(false);
-                        ch_edit.setChecked(false);
-                        ch_icon.setChecked(false);
-                        ch_att.setChecked(false);
-                        sharedPref.edit().putString("sortDB", "title").apply();
-                        setNotesList();
+                        Snackbar snackbar = Snackbar
+                                .make(lv, R.string.toast_restore, Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
+                } catch (Exception e) {
+                    Snackbar snackbar = Snackbar
+                            .make(lv, R.string.toast_restore_not, Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
-            });
-            ch_create.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                return true;
 
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,
-                                             boolean isChecked) {
-                    if(isChecked){
-                        ch_edit.setChecked(false);
-                        ch_icon.setChecked(false);
-                        ch_title.setChecked(false);
-                        ch_att.setChecked(false);
-                        sharedPref.edit().putString("sortDB", "create").apply();
-                        setNotesList();
-                    }
-                }
-            });
-            ch_edit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,
-                                             boolean isChecked) {
-                    if(isChecked){
-                        ch_create.setChecked(false);
-                        ch_icon.setChecked(false);
-                        ch_title.setChecked(false);
-                        ch_att.setChecked(false);
-                        sharedPref.edit().putString("sortDB", "seqno").apply();
-                        setNotesList();
-                    }
-                }
-            });
-            ch_icon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,
-                                             boolean isChecked) {
-                    if(isChecked){
-                        ch_create.setChecked(false);
-                        ch_edit.setChecked(false);
-                        ch_title.setChecked(false);
-                        ch_att.setChecked(false);
-                        sharedPref.edit().putString("sortDB", "icon").apply();
-                        setNotesList();
-                    }
-                }
-            });
-            ch_att.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,
-                                             boolean isChecked) {
-                    if(isChecked){
-                        ch_create.setChecked(false);
-                        ch_edit.setChecked(false);
-                        ch_title.setChecked(false);
-                        ch_icon.setChecked(false);
-                        sharedPref.edit().putString("sortDB", "attachment").apply();
-                        setNotesList();
-                    }
-                }
-            });
-
-            builder.setView(dialogView);
-            builder.setTitle(R.string.action_sort);
-            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                }
-            });
-
-            final AlertDialog dialog2 = builder.create();
-            // Display the custom alert dialog on interface
-            dialog2.show();
-            return true;
-        }
-
-        if (id == R.id.action_note) {
-            Date date = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-
-            String dateCreate = format.format(date);
-            sharedPref.edit().putString("handleTextCreate", dateCreate).apply();
-
-            helper_notes.editNote(getActivity());
-
+            case R.id.backup_delete:
+                Snackbar snackbar = Snackbar
+                        .make(lv, R.string.toast_delete, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.yes, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getActivity().deleteDatabase("notes_DB_v01.db");
+                                setNotesList();
+                            }
+                        });
+                snackbar.show();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void setNotesList() {
+    private void setTitle() {
 
-        ArrayList<HashMap<String,String>> mapList = new ArrayList<>();
+        TabLayout.Tab tab = tabLayout.getTabAt(3);
 
-        try {
-            Database_Notes db = new Database_Notes(getActivity());
-            ArrayList<String[]> bookmarkList = new ArrayList<>();
-            db.getBookmarks(bookmarkList, getActivity());
-            if (bookmarkList.size() == 0) {
-                db.loadInitialData();
-                db.getBookmarks(bookmarkList, getActivity());
-            }
-            db.close();
-
-            for (String[] strAry : bookmarkList) {
-                HashMap<String, String> map = new HashMap<>();
-                map.put("seqno", strAry[0]);
-                map.put("title", strAry[1]);
-                map.put("cont", strAry[2]);
-                map.put("icon", strAry[3]);
-                map.put("attachment", strAry[4]);
-                map.put("createDate", strAry[5]);
-                mapList.add(map);
-            }
-
-            SimpleAdapter simpleAdapter = new SimpleAdapter(
-                    getActivity(),
-                    mapList,
-                    R.layout.list_item_notes,
-                    new String[] {"title", "cont", "createDate"},
-                    new int[] {R.id.textView_title_notes, R.id.textView_des_notes, R.id.textView_create_notes}
-            ) {
-                @Override
-                public View getView (final int position, View convertView, ViewGroup parent) {
-
-                    @SuppressWarnings("unchecked")
-                    HashMap<String,String> map = (HashMap<String,String>)listView.getItemAtPosition(position);
-                    final String title = map.get("title");
-                    final String cont = map.get("cont");
-                    final String seqnoStr = map.get("seqno");
-                    final String icon = map.get("icon");
-                    final String attachment = map.get("attachment");
-                    final String create = map.get("createDate");
-
-                    View v = super.getView(position, convertView, parent);
-                    ImageView i=(ImageView) v.findViewById(R.id.icon_notes);
-                    ImageView i2=(ImageView) v.findViewById(R.id.att_notes);
-
-                    switch (icon) {
-                        case "1":
-                            i.setImageResource(R.drawable.emoticon_neutral);
-                            break;
-                        case "2":
-                            i.setImageResource(R.drawable.emoticon_happy);
-                            break;
-                        case "3":
-                            i.setImageResource(R.drawable.emoticon_sad);
-                            break;
-                        case "4":
-                            i.setImageResource(R.drawable.emoticon);
-                            break;
-                        case "5":
-                            i.setImageResource(R.drawable.emoticon_cool);
-                            break;
-                        case "6":
-                            i.setImageResource(R.drawable.emoticon_dead);
-                            break;
-                        case "7":
-                            i.setImageResource(R.drawable.emoticon_excited);
-                            break;
-                        case "8":
-                            i.setImageResource(R.drawable.emoticon_tongue);
-                            break;
-                        case "9":
-                            i.setImageResource(R.drawable.emoticon_devil);
-                            break;
-                    }
-                    switch (attachment) {
-                        case "":
-                            i2.setVisibility(View.GONE);
-                            break;
-                        default:
-                            i2.setVisibility(View.VISIBLE);
-                            break;
-                    }
-
-                    File file = new File(attachment);
-                    if (!file.exists()) {
-                        i2.setVisibility(View.GONE);
-                    }
-
-                    i.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View arg0) {
-
-                            final FragmentNotes.Item[] items = {
-                                    new FragmentNotes.Item(getString(R.string.text_tit_1), R.drawable.emoticon_neutral),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_2), R.drawable.emoticon_happy),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_3), R.drawable.emoticon_sad),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_4), R.drawable.emoticon),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_5), R.drawable.emoticon_cool),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_6), R.drawable.emoticon_dead),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_7), R.drawable.emoticon_excited),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_8), R.drawable.emoticon_tongue),
-                                    new FragmentNotes.Item(getString(R.string.text_tit_9), R.drawable.emoticon_devil)
-                            };
-
-                            ListAdapter adapter = new ArrayAdapter<FragmentNotes.Item>(
-                                    getActivity(),
-                                    android.R.layout.select_dialog_item,
-                                    android.R.id.text1,
-                                    items){
-                                @NonNull
-                                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                                    //Use super class to create the View
-                                    View v = super.getView(position, convertView, parent);
-                                    TextView tv = (TextView)v.findViewById(android.R.id.text1);
-                                    tv.setTextSize(18);
-                                    tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
-                                    //Add margin between image and text (support various screen densities)
-                                    int dp5 = (int) (24 * getResources().getDisplayMetrics().density + 0.5f);
-                                    tv.setCompoundDrawablePadding(dp5);
-
-                                    return v;
-                                }
-                            };
-
-                            new AlertDialog.Builder(getActivity())
-                                    .setPositiveButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
-
-                                            public void onClick(DialogInterface dialog, int whichButton) {
-                                                dialog.dismiss();
-                                                }
-                                    })
-                                    .setAdapter(adapter, new DialogInterface.OnClickListener() {
-
-                                        public void onClick(DialogInterface dialog, int item) {
-                                            if (item == 0) {
-                                                changeIcon(seqnoStr, title, cont, "1", attachment, create);
-                                            } else if (item == 1) {
-                                                changeIcon(seqnoStr, title, cont, "2", attachment, create);
-                                            } else if (item == 2) {
-                                                changeIcon(seqnoStr, title, cont, "3", attachment, create);
-                                            } else if (item == 3) {
-                                                changeIcon(seqnoStr, title, cont, "4", attachment, create);
-                                            } else if (item == 4) {
-                                                changeIcon(seqnoStr, title, cont, "5", attachment, create);
-                                            } else if (item == 5) {
-                                                changeIcon(seqnoStr, title, cont, "6", attachment, create);
-                                            } else if (item == 6) {
-                                                changeIcon(seqnoStr, title, cont, "7", attachment, create);
-                                            } else if (item == 7) {
-                                                changeIcon(seqnoStr, title, cont, "8", attachment, create);
-                                            } else if (item == 8) {
-                                                changeIcon(seqnoStr, title, cont, "9", attachment, create);
-                                            } else if (item == 9) {
-                                                changeIcon(seqnoStr, title, cont, "10", attachment, create);
-                                            }
-                                        }
-                                    }).show();
-                        }
-                    });
-                    i2.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View arg0) {
-                            openAtt(attachment);
-                        }
-                    });
-
-                    return v;
-                }
-            };
-
-            listView.setAdapter(simpleAdapter);
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+        if (sharedPref.getString("sortDB", "title").equals("title")) {
+            assert tab != null;
+            tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.sort_title));
+        } else if (sharedPref.getString("sortDB", "title").equals("icon")) {
+            assert tab != null;
+            tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.sort_pri));
+        }  else if (sharedPref.getString("sortDB", "title").equals("create")) {
+            assert tab != null;
+            tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.sort_date));
         }
     }
 
-    private void changeIcon(String seqno, String title, String url, String icon, String attachment, String create) {
-        try {
+    private void editNote(final Activity from) {
 
-            final Database_Notes db = new Database_Notes(getActivity());
-            db.deleteNote((Integer.parseInt(seqno)));
-            db.addBookmark(title, url, icon, attachment, create);
-            db.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        final Button attachment;
+        final ImageButton attachmentRem;
+        final ImageButton attachmentCam;
+        final EditText titleInput;
+        final EditText textInput;
+        final String priority = sharedPref.getString("handleTextIcon", "");
+
+        LayoutInflater inflater = from.getLayoutInflater();
+
+        final ViewGroup nullParent = null;
+        View dialogView = inflater.inflate(R.layout.dialog_note_edit, nullParent);
+
+        String file = sharedPref.getString("handleTextAttachment", "");
+        final String attName = file.substring(file.lastIndexOf("/")+1);
+
+        attachmentRem = (ImageButton) dialogView.findViewById(R.id.button_rem);
+        attachmentRem.setImageResource(R.drawable.close_red);
+        attachment = (Button) dialogView.findViewById(R.id.button_att);
+        attachmentCam = (ImageButton) dialogView.findViewById(R.id.button_cam);
+        attachmentCam.setImageResource(R.drawable.camera);
+
+        if (attName.equals("")) {
+            attachment.setText(R.string.choose_att);
+            attachmentRem.setVisibility(View.GONE);
+            attachmentCam.setVisibility(View.VISIBLE);
+        } else {
+            attachment.setText(attName);
+            attachmentRem.setVisibility(View.VISIBLE);
+            attachmentCam.setVisibility(View.GONE);
         }
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
+        File file2 = new File(file);
+        if (!file2.exists()) {
+            attachment.setText(R.string.choose_att);
+            attachmentRem.setVisibility(View.GONE);
+            attachmentCam.setVisibility(View.VISIBLE);
+        }
+
+        titleInput = (EditText) dialogView.findViewById(R.id.note_title_input);
+        textInput = (EditText) dialogView.findViewById(R.id.note_text_input);
+        titleInput.setText(sharedPref.getString("handleTextTitle", ""));
+        titleInput.setSelection(titleInput.getText().length());
+        textInput.setText(sharedPref.getString("handleTextText", ""));
+        textInput.setSelection(textInput.getText().length());
+
+        titleInput.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                sharedPref.edit().putString("editTextFocus", "title").apply();
+                return false;
+            }
+        });
+
+        textInput.setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                sharedPref.edit().putString("editTextFocus", "text").apply();
+                return false;
+            }
+        });
+
+        attachment.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent mainIntent = new Intent(getActivity(), Popup_files.class);
+                mainIntent.setAction("file_chooseAttachment");
+                startActivity(mainIntent);
+
+                attachment.setText(getActivity().getString(R.string.note_att));
+                attachmentRem.setVisibility(View.VISIBLE);
+                attachmentCam.setVisibility(View.GONE);
+            }
+        });
+
+        attachmentRem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                sharedPref.edit().putString("handleTextAttachment", "").apply();
+                attachment.setText(R.string.choose_att);
+                attachmentRem.setVisibility(View.GONE);
+                attachmentCam.setVisibility(View.VISIBLE);
+            }
+        });
+
+        attachmentCam.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                File f = helper_main.newFile();
+                final String fileName = f.getAbsolutePath();
+                String attName = fileName.substring(fileName.lastIndexOf("/")+1);
+                String att = from.getString(R.string.note_attachment) + ": " + attName;
+                attachment.setText(att);
+                attachmentRem.setVisibility(View.VISIBLE);
+                attachmentCam.setVisibility(View.GONE);
+                sharedPref.edit().putString("handleTextAttachment", fileName).apply();
+
+                InputMethodManager imm = (InputMethodManager)from.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(titleInput.getWindowToken(), 0);
+                helper_main.switchToActivity(from, Popup_camera.class, false);
+            }
+        });
+        helper_main.showKeyboard(from,titleInput);
+
+        final ImageButton be = (ImageButton) dialogView.findViewById(R.id.imageButtonPri);
+        ImageButton ib_paste = (ImageButton) dialogView.findViewById(R.id.imageButtonPaste);
+        assert be != null;
+
+        switch (priority) {
+            case "1":
+                be.setImageResource(R.drawable.emoticon_neutral);
+                sharedPref.edit().putString("handleTextIcon", "1").apply();
+                break;
+            case "2":
+                be.setImageResource(R.drawable.emoticon_happy);
+                sharedPref.edit().putString("handleTextIcon", "2").apply();
+                break;
+            case "3":
+                be.setImageResource(R.drawable.emoticon_sad);
+                sharedPref.edit().putString("handleTextIcon", "3").apply();
+                break;
+            case "4":
+                be.setImageResource(R.drawable.emoticon);
+                sharedPref.edit().putString("handleTextIcon", "4").apply();
+                break;
+            case "5":
+                be.setImageResource(R.drawable.emoticon_cool);
+                sharedPref.edit().putString("handleTextIcon", "5").apply();
+                break;
+            case "6":
+                be.setImageResource(R.drawable.emoticon_dead);
+                sharedPref.edit().putString("handleTextIcon", "6").apply();
+                break;
+            case "7":
+                be.setImageResource(R.drawable.emoticon_excited);
+                sharedPref.edit().putString("handleTextIcon", "7").apply();
+                break;
+            case "8":
+                be.setImageResource(R.drawable.emoticon_tongue);
+                sharedPref.edit().putString("handleTextIcon", "8").apply();
+                break;
+            case "9":
+                be.setImageResource(R.drawable.emoticon_devil);
+                sharedPref.edit().putString("handleTextIcon", "9").apply();
+                break;
+            case "":
+                be.setImageResource(R.drawable.emoticon_neutral);
+                sharedPref.edit().putString("handleTextIcon", "1").apply();
+                break;
+        }
+
+        be.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                final Item[] items = {
+                        new Item(from.getString(R.string.text_tit_1), R.drawable.emoticon_neutral),
+                        new Item(from.getString(R.string.text_tit_2), R.drawable.emoticon_happy),
+                        new Item(from.getString(R.string.text_tit_3), R.drawable.emoticon_sad),
+                        new Item(from.getString(R.string.text_tit_4), R.drawable.emoticon),
+                        new Item(from.getString(R.string.text_tit_5), R.drawable.emoticon_cool),
+                        new Item(from.getString(R.string.text_tit_6), R.drawable.emoticon_dead),
+                        new Item(from.getString(R.string.text_tit_7), R.drawable.emoticon_excited),
+                        new Item(from.getString(R.string.text_tit_8), R.drawable.emoticon_tongue),
+                        new Item(from.getString(R.string.text_tit_9), R.drawable.emoticon_devil)
+                };
+
+                ListAdapter adapter = new ArrayAdapter<Item>(
+                        from,
+                        android.R.layout.select_dialog_item,
+                        android.R.id.text1,
+                        items){
+                    @NonNull
+                    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                        //Use super class to create the View
+                        View v = super.getView(position, convertView, parent);
+                        TextView tv = (TextView)v.findViewById(android.R.id.text1);
+                        tv.setTextSize(18);
+                        tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
+                        //Add margin between image and text (support various screen densities)
+                        int dp5 = (int) (24 * from.getResources().getDisplayMetrics().density + 0.5f);
+                        tv.setCompoundDrawablePadding(dp5);
+
+                        return v;
+                    }
+                };
+
+                new android.app.AlertDialog.Builder(from)
+                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (item == 0) {
+                                    be.setImageResource(R.drawable.emoticon_neutral);
+                                    sharedPref.edit().putString("handleTextIcon", "1").apply();
+                                } else if (item == 1) {
+                                    be.setImageResource(R.drawable.emoticon_happy);
+                                    sharedPref.edit().putString("handleTextIcon", "2").apply();
+                                } else if (item == 2) {
+                                    be.setImageResource(R.drawable.emoticon_sad);
+                                    sharedPref.edit().putString("handleTextIcon", "3").apply();
+                                } else if (item == 3) {
+                                    be.setImageResource(R.drawable.emoticon);
+                                    sharedPref.edit().putString("handleTextIcon", "4").apply();
+                                } else if (item == 4) {
+                                    be.setImageResource(R.drawable.emoticon_cool);
+                                    sharedPref.edit().putString("handleTextIcon", "5").apply();
+                                } else if (item == 5) {
+                                    be.setImageResource(R.drawable.emoticon_dead);
+                                    sharedPref.edit().putString("handleTextIcon", "6").apply();
+                                } else if (item == 6) {
+                                    be.setImageResource(R.drawable.emoticon_excited);
+                                    sharedPref.edit().putString("handleTextIcon", "7").apply();
+                                } else if (item == 7) {
+                                    be.setImageResource(R.drawable.emoticon_tongue);
+                                    sharedPref.edit().putString("handleTextIcon", "8").apply();
+                                } else if (item == 8) {
+                                    be.setImageResource(R.drawable.emoticon_devil);
+                                    sharedPref.edit().putString("handleTextIcon", "9").apply();
+                                }
+                            }
+                        }).show();
+            }
+        });
+
+        ib_paste.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                final CharSequence[] options = {
+                        from.getString(R.string.paste_date),
+                        from.getString(R.string.paste_time),
+                        from.getString(R.string.paste_line)};
+                new android.app.AlertDialog.Builder(from)
+                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (options[item].equals(from.getString(R.string.paste_date))) {
+                                    String dateFormat = sharedPref.getString("dateFormat", "1");
+
+                                    switch (dateFormat) {
+                                        case "1":
+
+                                            Date date = new Date();
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                                            String dateNow = format.format(date);
+
+                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow);
+                                            } else {
+                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow);
+                                            }
+                                            break;
+
+                                        case "2":
+
+                                            Date date2 = new Date();
+                                            SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                                            String dateNow2 = format2.format(date2);
+
+                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow2);
+                                            } else {
+                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow2);
+                                            }
+                                            break;
+                                    }
+                                }
+
+                                if (options[item].equals (from.getString(R.string.paste_time))) {
+                                    Date date = new Date();
+                                    SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                                    String timeNow = format.format(date);
+                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                        textInput.getText().insert(textInput.getSelectionStart(), timeNow);
+                                    } else {
+                                        titleInput.getText().insert(titleInput.getSelectionStart(), timeNow);
+                                    }
+                                }
+
+                                if (options[item].equals (from.getString(R.string.paste_line))) {
+                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                        textInput.getText().insert(textInput.getSelectionStart(), "==========");
+                                    } else {
+                                        titleInput.getText().insert(titleInput.getSelectionStart(), "==========");
+                                    }
+                                }
+                            }
+                        }).show();
+            }
+        });
+
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(from);
+        builder.setTitle(R.string.note_edit);
+        builder.setView(dialogView);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                DbAdapter_Notes db = new DbAdapter_Notes(from);
+                db.open();
+
+                String inputTitle = titleInput.getText().toString().trim();
+                String inputContent = textInput.getText().toString().trim();
+                String attachment = sharedPref.getString("handleTextAttachment", "");
+                String create = sharedPref.getString("handleTextCreate", "");
+                String seqno = sharedPref.getString("handleTextSeqno", "");
+
+                db.update(Integer.parseInt(seqno), inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment, create);
+                dialog.dismiss();
                 setNotesList();
             }
-        }, 500);
+        })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        sharedPref.edit()
+                                .putString("handleTextTitle", "")
+                                .putString("handleTextText", "")
+                                .putString("handleTextIcon", "")
+                                .putString("handleTextAttachment", "")
+                                .putString("handleTextCreate", "")
+                                .putString("editTextFocus", "")
+                                .apply();
+                        dialog.cancel();
+                    }
+                });
+
+        final android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        helper_main.showKeyboard(getActivity(), titleInput);
     }
 
-    private void openAtt (String fileString) {
-        File file = new File(fileString);
-        final String fileExtension = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("."));
-        String text = (getActivity().getString(R.string.toast_extension) + ": " + fileExtension);
+    private void newNote(final Activity from) {
 
-        switch (fileExtension) {
-            case ".gif":
-            case ".bmp":
-            case ".tiff":
-            case ".svg":
-            case ".png":
-            case ".jpg":
-            case ".jpeg":
-                helper_main.openFile(getActivity(), file, "image/*", listView);
-                break;
-            case ".m3u8":
-            case ".mp3":
-            case ".wma":
-            case ".midi":
-            case ".wav":
-            case ".aac":
-            case ".aif":
-            case ".amp3":
-            case ".weba":
-                helper_main.openFile(getActivity(), file, "audio/*", listView);
-                break;
-            case ".mpeg":
-            case ".mp4":
-            case ".ogg":
-            case ".webm":
-            case ".qt":
-            case ".3gp":
-            case ".3g2":
-            case ".avi":
-            case ".f4v":
-            case ".flv":
-            case ".h261":
-            case ".h263":
-            case ".h264":
-            case ".asf":
-            case ".wmv":
-                helper_main.openFile(getActivity(), file, "video/*", listView);
-                break;
-            case ".rtx":
-            case ".csv":
-            case ".txt":
-            case ".vcs":
-            case ".vcf":
-            case ".css":
-            case ".ics":
-            case ".conf":
-            case ".config":
-            case ".java":
-                helper_main.openFile(getActivity(), file, "text/*", listView);
-                break;
-            case ".html":
-                helper_main.openFile(getActivity(), file, "text/html", listView);
-                break;
-            case ".apk":
-                helper_main.openFile(getActivity(), file, "application/vnd.android.package-archive", listView);
-                break;
-            case ".pdf":
-                helper_main.openFile(getActivity(), file, "application/pdf", listView);
-                break;
-            case ".doc":
-                helper_main.openFile(getActivity(), file, "application/msword", listView);
-                break;
-            case ".xls":
-                helper_main.openFile(getActivity(), file, "application/vnd.ms-excel", listView);
-                break;
-            case ".ppt":
-                helper_main.openFile(getActivity(), file, "application/vnd.ms-powerpoint", listView);
-                break;
-            case ".docx":
-                helper_main.openFile(getActivity(), file, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", listView);
-                break;
-            case ".pptx":
-                helper_main.openFile(getActivity(), file, "application/vnd.openxmlformats-officedocument.presentationml.presentation", listView);
-                break;
-            case ".xlsx":
-                helper_main.openFile(getActivity(), file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", listView);
-                break;
-            case ".odt":
-                helper_main.openFile(getActivity(), file, "application/vnd.oasis.opendocument.text", listView);
-                break;
-            case ".ods":
-                helper_main.openFile(getActivity(), file, "application/vnd.oasis.opendocument.spreadsheet", listView);
-                break;
-            case ".odp":
-                helper_main.openFile(getActivity(), file, "application/vnd.oasis.opendocument.presentation", listView);
-                break;
-            case ".zip":
-                helper_main.openFile(getActivity(), file, "application/zip", listView);
-                break;
-            case ".rar":
-                helper_main.openFile(getActivity(), file, "application/x-rar-compressed", listView);
-                break;
-            case ".epub":
-                helper_main.openFile(getActivity(), file, "application/epub+zip", listView);
-                break;
-            case ".cbz":
-                helper_main.openFile(getActivity(), file, "application/x-cbz", listView);
-                break;
-            case ".cbr":
-                helper_main.openFile(getActivity(), file, "application/x-cbr", listView);
-                break;
-            case ".fb2":
-                helper_main.openFile(getActivity(), file, "application/x-fb2", listView);
-                break;
-            case ".rtf":
-                helper_main.openFile(getActivity(), file, "application/rtf", listView);
-                break;
-            case ".opml":
-                helper_main.openFile(getActivity(), file, "application/opml", listView);
-                break;
+        final Button attachment;
+        final ImageButton attachmentRem;
+        final ImageButton attachmentCam;
+        final EditText titleInput;
+        final EditText textInput;
+        final String priority = sharedPref.getString("handleTextIcon", "");
 
-            default:
-                Snackbar snackbar = Snackbar
-                        .make(listView, text, Snackbar.LENGTH_LONG);
-                snackbar.show();
+        if (!sharedPref.getString("newIntent", "false").equals("true")) {
+            sharedPref.edit().putString("handleTextText", "").apply();
+        }
+
+        sharedPref.edit()
+                .putString("handleTextTitle", "")
+                .putString("handleTextIcon", "")
+                .putString("handleTextAttachment", "")
+                .putString("handleTextCreate", "")
+                .putString("editTextFocus", "")
+                .putString("newIntent", "false")
+                .apply();
+
+        LayoutInflater inflater = from.getLayoutInflater();
+
+        final ViewGroup nullParent = null;
+        View dialogView = inflater.inflate(R.layout.dialog_note_edit, nullParent);
+
+        String file = sharedPref.getString("handleTextAttachment", "");
+        final String attName = file.substring(file.lastIndexOf("/")+1);
+
+        attachmentRem = (ImageButton) dialogView.findViewById(R.id.button_rem);
+        attachmentRem.setImageResource(R.drawable.close_red);
+        attachment = (Button) dialogView.findViewById(R.id.button_att);
+        attachmentCam = (ImageButton) dialogView.findViewById(R.id.button_cam);
+        attachmentCam.setImageResource(R.drawable.camera);
+
+        if (attName.equals("")) {
+            attachment.setText(R.string.choose_att);
+            attachmentRem.setVisibility(View.GONE);
+            attachmentCam.setVisibility(View.VISIBLE);
+        } else {
+            attachment.setText(attName);
+            attachmentRem.setVisibility(View.VISIBLE);
+            attachmentCam.setVisibility(View.GONE);
+        }
+        File file2 = new File(file);
+        if (!file2.exists()) {
+            attachment.setText(R.string.choose_att);
+            attachmentRem.setVisibility(View.GONE);
+            attachmentCam.setVisibility(View.VISIBLE);
+        }
+
+        titleInput = (EditText) dialogView.findViewById(R.id.note_title_input);
+        textInput = (EditText) dialogView.findViewById(R.id.note_text_input);
+        titleInput.setText(sharedPref.getString("handleTextTitle", ""));
+        titleInput.setSelection(titleInput.getText().length());
+        textInput.setText(sharedPref.getString("handleTextText", ""));
+        textInput.setSelection(textInput.getText().length());
+
+        titleInput.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                sharedPref.edit().putString("editTextFocus", "title").apply();
+                return false;
+            }
+        });
+
+        textInput.setOnTouchListener(new View.OnTouchListener(){
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                sharedPref.edit().putString("editTextFocus", "text").apply();
+                return false;
+            }
+        });
+
+        attachment.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent mainIntent = new Intent(getActivity(), Popup_files.class);
+                mainIntent.setAction("file_chooseAttachment");
+                startActivity(mainIntent);
+
+                attachment.setText(getActivity().getString(R.string.note_att));
+                attachmentRem.setVisibility(View.VISIBLE);
+                attachmentCam.setVisibility(View.GONE);
+            }
+        });
+
+        attachmentRem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                sharedPref.edit().putString("handleTextAttachment", "").apply();
+                attachment.setText(R.string.choose_att);
+                attachmentRem.setVisibility(View.GONE);
+                attachmentCam.setVisibility(View.VISIBLE);
+            }
+        });
+
+        attachmentCam.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                File f = helper_main.newFile();
+                final String fileName = f.getAbsolutePath();
+                String attName = fileName.substring(fileName.lastIndexOf("/")+1);
+                String att = from.getString(R.string.note_att) + ": " + attName;
+                attachment.setText(att);
+                attachmentRem.setVisibility(View.VISIBLE);
+                attachmentCam.setVisibility(View.GONE);
+                sharedPref.edit().putString("handleTextAttachment", fileName).apply();
+
+                InputMethodManager imm = (InputMethodManager)from.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(titleInput.getWindowToken(), 0);
+                helper_main.switchToActivity(from, Popup_camera.class, false);
+            }
+        });
+        helper_main.showKeyboard(from,titleInput);
+
+        final ImageButton be = (ImageButton) dialogView.findViewById(R.id.imageButtonPri);
+        ImageButton ib_paste = (ImageButton) dialogView.findViewById(R.id.imageButtonPaste);
+        assert be != null;
+
+        switch (priority) {
+            case "1":
+                be.setImageResource(R.drawable.emoticon_neutral);
+                sharedPref.edit().putString("handleTextIcon", "1").apply();
+                break;
+            case "2":
+                be.setImageResource(R.drawable.emoticon_happy);
+                sharedPref.edit().putString("handleTextIcon", "2").apply();
+                break;
+            case "3":
+                be.setImageResource(R.drawable.emoticon_sad);
+                sharedPref.edit().putString("handleTextIcon", "3").apply();
+                break;
+            case "4":
+                be.setImageResource(R.drawable.emoticon);
+                sharedPref.edit().putString("handleTextIcon", "4").apply();
+                break;
+            case "5":
+                be.setImageResource(R.drawable.emoticon_cool);
+                sharedPref.edit().putString("handleTextIcon", "5").apply();
+                break;
+            case "6":
+                be.setImageResource(R.drawable.emoticon_dead);
+                sharedPref.edit().putString("handleTextIcon", "6").apply();
+                break;
+            case "7":
+                be.setImageResource(R.drawable.emoticon_excited);
+                sharedPref.edit().putString("handleTextIcon", "7").apply();
+                break;
+            case "8":
+                be.setImageResource(R.drawable.emoticon_tongue);
+                sharedPref.edit().putString("handleTextIcon", "8").apply();
+                break;
+            case "9":
+                be.setImageResource(R.drawable.emoticon_devil);
+                sharedPref.edit().putString("handleTextIcon", "9").apply();
+                break;
+            case "":
+                be.setImageResource(R.drawable.emoticon_neutral);
+                sharedPref.edit().putString("handleTextIcon", "1").apply();
                 break;
         }
-    }
 
-    public static class Item{
-        public final String text;
-        public final int icon;
-        Item(String text, Integer icon) {
-            this.text = text;
-            this.icon = icon;
-        }
-        @Override
-        public String toString() {
-            return text;
-        }
+        be.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                final Item[] items = {
+                        new Item(from.getString(R.string.text_tit_1), R.drawable.emoticon_neutral),
+                        new Item(from.getString(R.string.text_tit_2), R.drawable.emoticon_happy),
+                        new Item(from.getString(R.string.text_tit_3), R.drawable.emoticon_sad),
+                        new Item(from.getString(R.string.text_tit_4), R.drawable.emoticon),
+                        new Item(from.getString(R.string.text_tit_5), R.drawable.emoticon_cool),
+                        new Item(from.getString(R.string.text_tit_6), R.drawable.emoticon_dead),
+                        new Item(from.getString(R.string.text_tit_7), R.drawable.emoticon_excited),
+                        new Item(from.getString(R.string.text_tit_8), R.drawable.emoticon_tongue),
+                        new Item(from.getString(R.string.text_tit_9), R.drawable.emoticon_devil)
+                };
+
+                ListAdapter adapter = new ArrayAdapter<Item>(
+                        from,
+                        android.R.layout.select_dialog_item,
+                        android.R.id.text1,
+                        items){
+                    @NonNull
+                    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                        //Use super class to create the View
+                        View v = super.getView(position, convertView, parent);
+                        TextView tv = (TextView)v.findViewById(android.R.id.text1);
+                        tv.setTextSize(18);
+                        tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
+                        //Add margin between image and text (support various screen densities)
+                        int dp5 = (int) (24 * from.getResources().getDisplayMetrics().density + 0.5f);
+                        tv.setCompoundDrawablePadding(dp5);
+
+                        return v;
+                    }
+                };
+
+                new android.app.AlertDialog.Builder(from)
+                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (item == 0) {
+                                    be.setImageResource(R.drawable.emoticon_neutral);
+                                    sharedPref.edit().putString("handleTextIcon", "1").apply();
+                                } else if (item == 1) {
+                                    be.setImageResource(R.drawable.emoticon_happy);
+                                    sharedPref.edit().putString("handleTextIcon", "2").apply();
+                                } else if (item == 2) {
+                                    be.setImageResource(R.drawable.emoticon_sad);
+                                    sharedPref.edit().putString("handleTextIcon", "3").apply();
+                                } else if (item == 3) {
+                                    be.setImageResource(R.drawable.emoticon);
+                                    sharedPref.edit().putString("handleTextIcon", "4").apply();
+                                } else if (item == 4) {
+                                    be.setImageResource(R.drawable.emoticon_cool);
+                                    sharedPref.edit().putString("handleTextIcon", "5").apply();
+                                } else if (item == 5) {
+                                    be.setImageResource(R.drawable.emoticon_dead);
+                                    sharedPref.edit().putString("handleTextIcon", "6").apply();
+                                } else if (item == 6) {
+                                    be.setImageResource(R.drawable.emoticon_excited);
+                                    sharedPref.edit().putString("handleTextIcon", "7").apply();
+                                } else if (item == 7) {
+                                    be.setImageResource(R.drawable.emoticon_tongue);
+                                    sharedPref.edit().putString("handleTextIcon", "8").apply();
+                                } else if (item == 8) {
+                                    be.setImageResource(R.drawable.emoticon_devil);
+                                    sharedPref.edit().putString("handleTextIcon", "9").apply();
+                                }
+                            }
+                        }).show();
+            }
+        });
+
+
+        ib_paste.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                final CharSequence[] options = {
+                        from.getString(R.string.paste_date),
+                        from.getString(R.string.paste_time),
+                        from.getString(R.string.paste_line)};
+                new android.app.AlertDialog.Builder(from)
+                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
+                                if (options[item].equals(from.getString(R.string.paste_date))) {
+                                    String dateFormat = sharedPref.getString("dateFormat", "1");
+
+                                    switch (dateFormat) {
+                                        case "1":
+
+                                            Date date = new Date();
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                                            String dateNow = format.format(date);
+
+                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow);
+                                            } else {
+                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow);
+                                            }
+                                            break;
+
+                                        case "2":
+
+                                            Date date2 = new Date();
+                                            SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                                            String dateNow2 = format2.format(date2);
+
+                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow2);
+                                            } else {
+                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow2);
+                                            }
+                                            break;
+                                    }
+                                }
+
+                                if (options[item].equals (from.getString(R.string.paste_time))) {
+                                    Date date = new Date();
+                                    SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                                    String timeNow = format.format(date);
+                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                        textInput.getText().insert(textInput.getSelectionStart(), timeNow);
+                                    } else {
+                                        titleInput.getText().insert(titleInput.getSelectionStart(), timeNow);
+                                    }
+                                }
+
+                                if (options[item].equals (from.getString(R.string.paste_line))) {
+                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
+                                        textInput.getText().insert(textInput.getSelectionStart(), "==========");
+                                    } else {
+                                        titleInput.getText().insert(titleInput.getSelectionStart(), "==========");
+                                    }
+                                }
+                            }
+                        }).show();
+            }
+        });
+
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(from);
+        builder.setTitle(R.string.note_edit);
+        builder.setView(dialogView);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        sharedPref.edit()
+                                .putString("handleTextTitle", "")
+                                .putString("handleTextText", "")
+                                .putString("handleTextIcon", "")
+                                .putString("handleTextAttachment", "")
+                                .putString("handleTextCreate", "")
+                                .putString("editTextFocus", "")
+                                .putString("newIntent", "false")
+                                .apply();
+                        dialog.cancel();
+                    }
+                });
+
+        final android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(android.support.v7.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Do stuff, possibly set wantToCloseDialog to true then...
+
+                DbAdapter_Notes db = new DbAdapter_Notes(from);
+                db.open();
+
+                String inputTitle = titleInput.getText().toString().trim();
+                String inputContent = textInput.getText().toString().trim();
+                String attachment = sharedPref.getString("handleTextAttachment", "");
+
+                try {
+                    if(db.isExist(inputTitle)){
+                        Snackbar.make(titleInput, getString(R.string.toast_newTitle), Snackbar.LENGTH_LONG).show();
+                    }else{
+                        db.insert(inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment, helper_main.createDate());
+                        dialog.dismiss();
+                        setNotesList();
+                    }
+                } catch (Exception e) {
+                    Log.w("HHS_Moodle", "Error Package name not found ", e);
+                    Snackbar snackbar = Snackbar
+                            .make(titleInput, R.string.toast_notSave, Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            }
+        });
+
+        helper_main.showKeyboard(getActivity(), titleInput);
     }
 }

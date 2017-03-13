@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        File directory = new File(Environment.getExternalStorageDirectory() + "/QuitSmoking/");
+        File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/backup/");
         if (!directory.exists()) {
             directory.mkdirs();
         }
@@ -223,6 +223,15 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
+        String tab_diary;
+        if (SP.getString("sortDB", "title").equals("title")) {
+            tab_diary = getString(R.string.action_diary) + " | " + getString(R.string.sort_title);
+        } else if (SP.getString("sortDB", "title").equals("icon")) {
+            tab_diary = getString(R.string.action_diary) + " | " + getString(R.string.sort_pri);
+        }  else {
+            tab_diary = getString(R.string.action_diary) + " | " + getString(R.string.sort_date);
+        }
+
         if (SP.getBoolean("tab_overview", false)) {
             adapter.addFragment(new FragmentOverview(), String.valueOf(getString(R.string.action_overview)));
         }
@@ -233,13 +242,13 @@ public class MainActivity extends AppCompatActivity {
             adapter.addFragment(new FragmentGoal(), String.valueOf(getString(R.string.action_goal)));
         }
         if (SP.getBoolean("tab_diary", false)) {
-            adapter.addFragment(new FragmentNotes(), String.valueOf(getString(R.string.action_diary)));
+            adapter.addFragment(new FragmentNotes(), tab_diary);
         }
 
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 

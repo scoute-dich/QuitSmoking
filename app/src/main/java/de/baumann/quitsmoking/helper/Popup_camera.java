@@ -40,8 +40,6 @@ public class Popup_camera extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toast.makeText(Popup_camera.this, R.string.cam_start, Toast.LENGTH_LONG).show();
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File f = helper_main.newFile();
 

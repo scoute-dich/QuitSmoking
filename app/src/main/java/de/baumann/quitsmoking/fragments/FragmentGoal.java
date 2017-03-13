@@ -1,12 +1,9 @@
 package de.baumann.quitsmoking.fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +26,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import de.baumann.quitsmoking.R;
 
@@ -57,10 +57,15 @@ public class FragmentGoal extends Fragment {
             viewImage.setRotation(90);
         }
 
-        File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/goal_picture.jpg");
+        File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
+
         if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            viewImage.setImageBitmap(myBitmap);
+            Glide.with(getActivity())
+                    .load(imgFile)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .fitCenter()
+                    .into(viewImage); //imageView to set thumbnail to
         }
 
         goalTitle = SP.getString("goalTitle", "");
@@ -98,7 +103,7 @@ public class FragmentGoal extends Fragment {
                 BitmapDrawable drawable = (BitmapDrawable) viewImage.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
 
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/goal_picture.jpg");
+                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
 
                 // Encode the file as a PNG image.
                 FileOutputStream outStream;
@@ -122,8 +127,8 @@ public class FragmentGoal extends Fragment {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_backup).setVisible(false);
         menu.findItem(R.id.action_share).setVisible(false);
-        menu.findItem(R.id.action_note).setVisible(false);
         menu.findItem(R.id.action_sort).setVisible(false);
+        menu.findItem(R.id.action_filter).setVisible(false);
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -135,49 +140,26 @@ public class FragmentGoal extends Fragment {
 
         int id = item.getItemId();
 
-        if (id == R.id.action_image) {
-            final CharSequence[] options = {
-                    getString(R.string.action_imageLoad),
-                    getString(R.string.action_imageRotate),
-                    getString(R.string.action_imageDelete)};
+        if (id == R.id.action_imageLoad) {
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 1);
+        }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setItems(options, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    if (options[item].equals(getString(R.string.action_imageLoad))) {
-
-                        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(intent, 1);
-                    }
-
-                    if (options[item].equals(getString(R.string.action_imageRotate))) {
-
-                        if (SP.getBoolean (rotate, true)){
-                            viewImage.setRotation(90);
-                            SP.edit().putBoolean(rotate, false).apply();
-                        } else {
-                            viewImage.setRotation(0);
-                            SP.edit().putBoolean(rotate, true).apply();
-                        }
-                    }
-
-                    if (options[item].equals(getString(R.string.action_imageDelete))) {
-
-                        File f = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/goal_picture.jpg");
-                        if(f.exists()){
-                            f.delete();
-                        }
-                    }
-                }
-            });
-            builder.setPositiveButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
+        if (id == R.id.action_imageRotate) {
+            if (SP.getBoolean (rotate, true)){
+                viewImage.setRotation(90);
+                SP.edit().putBoolean(rotate, false).apply();
+            } else {
+                viewImage.setRotation(0);
+                SP.edit().putBoolean(rotate, true).apply();
+            }
+        }
+        if (id == R.id.action_imageDelete) {
+            File f = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
+            if(f.exists()){
+                f.delete();
+                viewImage.setImageResource(R.drawable.file_image_dark);
+            }
         }
 
         return super.onOptionsItemSelected(item);

@@ -11,32 +11,91 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_note"
+        android:id="@+id/action_filter"
         android:orderInCategory="100"
-        android:title="@string/action_note"
-        android:icon="@drawable/pencil"
-        app:showAsAction="ifRoom" />
+        android:title="@string/action_filter"
+        android:icon="@drawable/ic_magnify"
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/filter_title"
+                android:title="@string/action_filter_title" />
+            <item android:id="@+id/filter_content"
+                android:title="@string/action_filter_cont" />
+            <item
+                android:id="@+id/filter_creation"
+                android:orderInCategory="100"
+                android:title="@string/action_filter_create"
+                app:showAsAction="ifRoom" >
+                <!-- "file" submenu -->
+                <menu>
+                    <item android:id="@+id/filter_clear"
+                        android:title="@string/filter_clear" />
+                    <item android:id="@+id/filter_own"
+                        android:title="@string/filter_own" />
+                    <item android:id="@+id/filter_month"
+                        android:title="@string/filter_month" />
+                    <item android:id="@+id/filter_before"
+                        android:title="@string/filter_before" />
+                    <item android:id="@+id/filter_yesterday"
+                        android:title="@string/filter_yesterday" />
+                    <item android:id="@+id/filter_today"
+                        android:title="@string/filter_today" />
+                </menu>
+            </item>
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_sort"
         android:orderInCategory="100"
         android:title="@string/action_sort"
         android:icon="@drawable/sort_descending"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/sort_title"
+                android:title="@string/action_sort_title" />
+            <item android:id="@+id/sort_icon"
+                android:title="@string/action_sort_icon" />
+            <item android:id="@+id/sort_creation"
+                android:title="@string/action_sort_create" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_backup"
         android:orderInCategory="100"
         android:icon="@drawable/backup_restore"
         android:title="@string/action_backup"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/backup_backup"
+                android:title="@string/action_backup" />
+            <item android:id="@+id/backup_restore"
+                android:title="@string/action_restore" />
+            <item android:id="@+id/backup_delete"
+                android:title="@string/action_delete" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_image"
         android:orderInCategory="100"
         android:icon="@drawable/image"
         android:title="@string/action_image"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/action_imageLoad"
+                android:title="@string/action_imageLoad" />
+            <item android:id="@+id/action_imageRotate"
+                android:title="@string/action_imageRotate" />
+            <item android:id="@+id/action_imageDelete"
+                android:title="@string/action_imageDelete" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_settings"

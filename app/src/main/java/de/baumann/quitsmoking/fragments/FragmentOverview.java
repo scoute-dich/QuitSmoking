@@ -217,7 +217,7 @@ public class FragmentOverview extends Fragment {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_backup).setVisible(false);
         menu.findItem(R.id.action_image).setVisible(false);
-        menu.findItem(R.id.action_note).setVisible(false);
+        menu.findItem(R.id.action_filter).setVisible(false);
         menu.findItem(R.id.action_sort).setVisible(false);
     }
 

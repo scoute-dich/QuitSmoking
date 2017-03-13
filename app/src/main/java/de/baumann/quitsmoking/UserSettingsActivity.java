@@ -12,15 +12,12 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import de.baumann.quitsmoking.about.About_activity;
+import de.baumann.quitsmoking.helper.Activity_intro;
 import de.baumann.quitsmoking.helper.helper_main;
 
 
@@ -37,6 +34,16 @@ public class UserSettingsActivity extends AppCompatActivity {
             setTitle(R.string.action_settings);
         }
 
+        PreferenceManager.setDefaultValues(UserSettingsActivity.this, R.xml.user_settings, false);
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean show = SP.getBoolean("intro_notShow", true);
+
+        if (show){
+            Intent mainIntent = new Intent(UserSettingsActivity.this, Activity_intro.class);
+            startActivity(mainIntent);
+            overridePendingTransition(0,0);
+        }
+
         // Display the fragment as the fragment_main content
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
@@ -45,19 +52,6 @@ public class UserSettingsActivity extends AppCompatActivity {
 
     public static class SettingsFragment extends PreferenceFragment {
 
-        private void addChangelogListener() {
-
-            Preference reset = findPreference("changelog");
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-
-                    Uri uri = Uri.parse("https://github.com/scoute-dich/QuitSmoking/blob/master/CHANGELOG.md"); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                    return true;
-                }
-            });
-        }
 
         private void addLicenseListener() {
 
@@ -65,43 +59,10 @@ public class UserSettingsActivity extends AppCompatActivity {
             reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference pref) {
 
-                    SpannableString s;
+                    Intent intent_in = new Intent(getActivity(), About_activity.class);
+                    startActivity(intent_in);
+                    getActivity().overridePendingTransition(0, 0);
 
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        s = new SpannableString(Html.fromHtml(getString(R.string.about_text),Html.FROM_HTML_MODE_LEGACY));
-                    } else {
-                        //noinspection deprecation
-                        s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
-                    }
-
-                    Linkify.addLinks(s, Linkify.WEB_URLS);
-
-                    final AlertDialog d = new AlertDialog.Builder(getActivity())
-                            .setTitle(R.string.about_title)
-                            .setMessage(s)
-                            .setPositiveButton(getString(R.string.yes),
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    }).show();
-                    d.show();
-                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-
-                    return true;
-                }
-            });
-        }
-
-        private void addDonateListListener() {
-
-            Preference reset = findPreference("donate");
-            reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                public boolean onPreferenceClick(Preference pref) {
-
-                    Uri uri = Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NP6TGYDYP9SHY"); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
                     return true;
                 }
             });
@@ -386,9 +347,7 @@ public class UserSettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
 
             addPreferencesFromResource(R.xml.user_settings);
-            addChangelogListener();
             addLicenseListener();
-            addDonateListListener();
             addClearCacheListener();
             addDateListener();
             addCigListener();

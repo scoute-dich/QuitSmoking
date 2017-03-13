@@ -4,7 +4,7 @@
 
     <string name="app_name">Nichtraucher</string>
     <string name="yes">OK</string>
-    <string name="no">NEIN</string>
+    <string name="no">Abbrechen</string>
     <string name="app_permissions_title">Verlangte Berechtigung</string>
     <string name="app_permissions">
 
@@ -122,9 +122,7 @@
 
     // Notes
 
-    <string name="note_delete_confirmation">Alle Einträge werden gelöscht. OK?</string>
     <string name="note_remove_confirmation">Eintrag wird entfernt. OK?</string>
-    <string name="note_remove_cannot">Du brauchst mindestens eine Notiz!</string>
     <string name="note_remove_note">Lösche Eintrag</string>
     <string name="note_edit">Eintrag bearbeiten</string>
     <string name="note_share">Teile Eintrag</string>
@@ -133,7 +131,6 @@
     <string name="text_hint">Inhalt</string>
     <string name="toast_extension">Keine unterstützte Dateiendung</string>
     <string name="toast_install_app">Bitte eine App installieren um die Aktion ausführen zu können.</string>
-    <string name="action_note">Neuer Tagebucheintrag</string>
     <string name="note_attachment">Anhang</string>
 
     <string name="text_tit_1">Neutral</string>
@@ -157,23 +154,18 @@
 
     <string name="action_sort">Einträge sortieren</string>
     <string name="action_sort_title">Sortiere nach Titel</string>
-    <string name="action_sort_edit">Sortiere nach Änderungszeit</string>
     <string name="action_sort_icon">Sortiere nach Smiley</string>
     <string name="action_sort_create">Sortiere nach Erstellungszeit</string>
-    <string name="action_sort_att">Sortiere nach Anhängen</string>
 
 
     // Camera
 
     <string name="cam_fail">Konnte Bild nicht erstellen</string>
     <string name="cam_success">Bild gespeichert</string>
-    <string name="cam_start">Mache ein Bild und wähle es dann als Anhang.</string>
 
 
     //File chooser
 
-    <string name="title_choose">Auswählen</string>
-    <string name="dialog_cancel">Abbrechen</string>
     <string name="choose_att">Anhang auswählen</string>
 
 
@@ -243,18 +235,81 @@
     <string name="a_dateFormat">Datumsformat</string>
     <string name="a_dateFormat_summary">Wähle dein bevorzgtes Datumsformat. Benutze es immer, wenn du ein Datum eingibst.</string>
 
-    <string name="a_changelog">Changelog</string>
-    <string name="a_changelog_summary">Was gibt es neues? … (öffnet eine Internetseite)</string>
-
-    <string name="a_license">Lizenz</string>
-    <string name="a_license_summary">Die App ist komplett frei und unter der GPL3-Lizenz lizenziert.</string>
-
-    <string name="a_donate">Spenden</string>
-    <string name="a_donate_summary">Wenn dir die App gefällt, würde ich mich über eine Spende (Paypal) freuen.</string>
-
     <string name="a_openSettings">App Info</string>
     <string name="a_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
         kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
+
+
+    <string name="note_att">Datei ausgewählt. Bitte speichern.</string>
+
+    <string name="toast_newTitle">Titel existiert bereits.</string>
+    <string name="toast_notSave">Kann Eintrag nicht speichern.</string>
+    <string name="toast_directory">Kann Verzeichnis nicht öffnen.</string>
+    <string name="toast_files">Keine Dateien im Verzeichnis.</string>
+    <string name="toast_delete">Alle Einträge werden gelöscht.</string>
+
+    <string name="action_filter">Suche</string>
+    <string name="action_filter_title">Suche nach Titel</string>
+    <string name="action_filter_cont">Suche nach Eintrag</string>
+    <string name="action_filter_create">Suche nach Datum</string>
+
+    <string name="filter_today">Heute</string>
+    <string name="filter_yesterday">Gestern</string>
+    <string name="filter_before">Vorgestern</string>
+    <string name="filter_month">Dieser Monat</string>
+    <string name="filter_own">Eigene Suche</string>
+    <string name="filter_clear">Suche abbrechen</string>
+
+    <string name="sort_title">Titel</string>
+    <string name="sort_date">Datum</string>
+    <string name="sort_pri">Smiley</string>
+
+
+    //Intro
+
+    <string name="intro1_title">Nichtraucher</string>
+    <string name="intro1_text">Danke, dass du dich für \"Nichtraucher\" entschieden hast. \"Nichtraucher\ ist quelloffen und
+        komplett frei (wie in Freiheit).</string>
+
+    <string name="intro2_title">Funktionen</string>
+    <string name="intro2_text">\"Nichtraucher\ zeigt dir eine Übersicht mit einigen Statistiken und deine gesundheitlichen
+        Fortschritte an. Zusätzlich kannst du dir ein Ziel setzen (Wofür nutzt du das gesparte Geld?) und ein Tagebuch führen. </string>
+
+    <string name="intro3_title">Einstellungen</string>
+    <string name="intro3_text">Bitte fülle ein paar Informationen zu deinen Rauchgewohnheiten in den Einstellungen aus. Es gibt
+        dort ebenfalls einige einfache Einstellungen (Datumsformat, Währungseinheit, …). So, und jetzt geht\'s los …</string>
+
+
+    // About
+
+    <string name="about_settings">Über die App … und Anderes</string>
+    <string name="about_settings_text">Changelog, Hilfe, Lizenz, benutzte Bibliotheken und mehr.</string>
+
+    <string name="about_title_dev">Entwickler</string>
+    <string name="about_title_libs">Benutzte Ressourcen</string>
+    <string name="about_title_ext">Beteiligte</string>
+    <string name="about_title_ext3">Japanische Übersetzung</string>
+
+    <string name="about_changelog">Änderungen</string>
+    <string name="about_changelog_summary">Öffne die Github Seite und schaue, was es Neues gibt … (braucht eine Internetverbindung)</string>
+
+    <string name="about_license">Lizenz</string>
+    <string name="about_license_summary">Die App steht unter der GPL Lizenz und ist komplett frei (wie in Freiheit). Der Quellcode kann
+        eingesehen werden.</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Öffne mein Github Profil (braucht eine Internetverbindung).</string>
+
+    <string name="about_intro">Einführung</string>
+    <string name="about_intro_summary">Zeige noch einmal die Einführung an.</string>
+
+    <string name="about_donate">Spende</string>
+    <string name="about_donate_summary">Wenn dir die App gefällt, kannst du mir gerne etwas über Paypal spenden (braucht eine
+        Internetverbindung).</string>
+
+    <string name="about_license_3">Gebraucht um den \"Introschirm\" zu erstellen.</string>
+    <string name="about_license_7">Gebraucht um den \"About screen\" zu erstellen.</string>
+    <string name="about_license_8">Die Quelle von fast allen Icons.</string>
 
 
     //License Dialog
@@ -275,21 +330,7 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br>&lt;br>
-
-        &lt;b>Übersetzungen&lt;/b>&lt;br>
-        &lt;i>Japanisch: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
-
-        &lt;b>Benutzte Open Source Projekte:&lt;/b>&lt;br>&lt;br>
-
-        &lt;i>android-file-chooser&lt;br>
-        https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
-
-        browser&lt;br>
-        https://github.com/yoshihiroando/browser&lt;br>&lt;br>
-
-        MaterialDesignIcons&lt;br>
-        https://github.com/Templarian/MaterialDesign&lt;/i>
+        along with this program.  If not, see http://www.gnu.org/licenses.
     </string>
 
 

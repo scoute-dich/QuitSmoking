@@ -103,22 +103,10 @@
             android:key="clearCache" />
 
         <Preference
-            android:title="@string/a_license"
-            android:icon="@drawable/copyright"
-            android:summary="@string/a_license_summary"
+            android:title="@string/about_settings"
+            android:icon="@drawable/information_outline"
+            android:summary="@string/about_settings_text"
             android:key="license" />
-
-        <Preference
-            android:title="@string/a_changelog"
-            android:icon="@drawable/format_list_bulleted2"
-            android:summary="@string/a_changelog_summary"
-            android:key="changelog" />
-
-        <Preference
-            android:title="@string/a_donate"
-            android:icon="@drawable/coin"
-            android:summary="@string/a_donate_summary"
-            android:key="donate" />
 
     </PreferenceCategory>
 

@@ -1,10 +1,16 @@
-### v1.4.1
+### v 1.5 (WIP)
+- new: about screen
+- new: intro screen
+- new: database model
+- new: search in diary
+- improved: file picker
+- improved: loading image (goal)
+- improved: some UI tweaks
 
+### v 1.4.1
 - updated Japanese translation (Thanks to naofum)
 
-
 ### v 1.4:
-
 - fixed: F-Droid build error
 
 ### v 1.3:
@@ -16,20 +22,16 @@
 - maintenance release
 - Android N support
 
-### v1.1.3
-
+### v 1.1.3
 - Japanese translation (Thanks to naofum)
 
-### v1.1.1 - v1.1.2
-
+### v 1.1.1 - v1.1.2
 - fixed toolbar layout
 - added screenshots
 
-### v1.1
-
+### v 1.1
 - added goal tab
 - completed english translation
 
-### v1.0
-
+### v 1.0
 - first release

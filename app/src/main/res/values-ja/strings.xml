@@ -120,9 +120,7 @@
 
     // Notes
 
-    <string name="note_delete_confirmation">すべてのエントリーが削除されます。 OK?</string>
     <string name="note_remove_confirmation">メモが削除されます。 OK?</string>
-    <string name="note_remove_cannot">エントリーが少なくとも一つ必要です!</string>
     <string name="note_remove_note">エントリーを削除</string>
     <string name="note_edit">エントリーを編集</string>
     <string name="note_share">エントリーを共有</string>
@@ -131,7 +129,6 @@
     <string name="text_hint">内容</string>
     <string name="toast_extension">サポートされていないファイルの拡張子</string>
     <string name="toast_install_app">操作を実行するアプリをインストールしてください。</string>
-    <string name="action_note">新しい日記のエントリー</string>
     <string name="note_attachment">添付</string>
 
     <string name="text_tit_1">中間</string>
@@ -155,23 +152,18 @@
 
     <string name="action_sort">エントリーの並び替え</string>
     <string name="action_sort_title">タイトル順に並び替え</string>
-    <string name="action_sort_edit">編集順に並び替え</string>
     <string name="action_sort_icon">絵文字で並び替え</string>
     <string name="action_sort_create">作成順に並び替え</string>
-    <string name="action_sort_att">添付で並び替え</string>
 
 
     // Camera
 
     <string name="cam_fail">写真の撮影に失敗しました</string>
     <string name="cam_success">写真を保存しました</string>
-    <string name="cam_start">写真を撮って、その後添付として選択します。</string>
 
 
     //File chooser
 
-    <string name="title_choose">選択</string>
-    <string name="dialog_cancel">キャンセル</string>
     <string name="choose_att">添付を選択</string>
 
 
@@ -236,18 +228,77 @@
     <string name="a_dateFormat">日付形式</string>
     <string name="a_dateFormat_summary">希望する日付形式を設定します。 日付を入力するときは、常にそれを使用します。</string>
 
-    <string name="a_changelog">変更履歴</string>
-    <string name="a_changelog_summary">新着情報? … (Webサイトを開きます)</string>
-
-    <string name="a_license">ライセンス</string>
-    <string name="a_license_summary">アプリは完全にオープンソースで、ライセンスは GPL3 に基づきます。</string>
-
-    <string name="a_donate">寄付</string>
-    <string name="a_donate_summary">アプリを気に入っていただけたら、Paypal で寄付することができます。</string>
-
     <string name="a_openSettings">アプリ情報</string>
     <string name="a_openSettings_summary">システム設定で、アプリ情報を開きます。
         お使いの Android バージョンに応じて、いくつか管理できることがあります (ストレージ、ネットワーク通信、アクセス許可 …)。</string>
+
+
+    <string name="note_att">File chosen. Please save.</string>
+
+    <string name="toast_newTitle">Title already exists.</string>
+    <string name="toast_notSave">Can not save entry.</string>
+    <string name="toast_directory">Can\'t open Directory.</string>
+    <string name="toast_files">No files in directory.</string>
+    <string name="toast_delete">All entries will be deleted.</string>
+
+    <string name="action_filter">Search</string>
+    <string name="action_filter_title">Search in titles</string>
+    <string name="action_filter_cont">Search in content</string>
+    <string name="action_filter_create">Search in dates</string>
+
+    <string name="filter_today">Today</string>
+    <string name="filter_yesterday">Yesterday</string>
+    <string name="filter_before">Day before yesterday</string>
+    <string name="filter_month">This month</string>
+    <string name="filter_own">Own search</string>
+    <string name="filter_clear">Cancel search</string>
+
+    <string name="sort_title">title</string>
+    <string name="sort_date">date</string>
+    <string name="sort_pri">emoticon</string>
+
+
+    //Intro
+
+    <string name="intro1_title">Quit Smoking</string>
+    <string name="intro1_text">Thanks for choosing \"Quit Smoking\". It\'s open source and complete free (as in freedom).</string>
+
+    <string name="intro2_title">Features</string>
+    <string name="intro2_text">\"Quit Smoking\" presents you an overview with some statistics and your health benefits.
+        Additionally you can configure a goal (What will you do with the saved money?) and write a diary. </string>
+
+    <string name="intro3_title">Settings</string>
+    <string name="intro3_text">Please configure some informations about your smoking habits in the settings screen. You can
+        also configure some basic settings (date format, currency, …). Now, let\'s start …</string>
+
+    // About
+
+    <string name="about_settings">About … and other things</string>
+    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+
+    <string name="about_title_dev">Developer</string>
+    <string name="about_title_libs">Used resources</string>
+    <string name="about_title_ext">Contributors</string>
+    <string name="about_title_ext3">Japanese translation</string>
+
+    <string name="about_changelog">Changelog</string>
+    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+
+    <string name="about_license">License</string>
+    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+
+    <string name="about_intro">Intro</string>
+    <string name="about_intro_summary">Show the intro screen one more time.</string>
+
+    <string name="about_donate">Donate</string>
+    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+
+    <string name="about_license_3">Used to build the intro screen.</string>
+    <string name="about_license_7">Used to create the \"About screen\".</string>
+    <string name="about_license_8">The source of nearly all icons.</string>
 
 
     //License Dialog
@@ -268,21 +319,7 @@
 
         あなたはこのプログラムと共に、GNU 一般公衆利用許諾書のコピーを一部
         受け取っているはずです。
-        もし受け取っていなければ http://www.gnu.org/licenses/ をご覧ください。&lt;br>&lt;br>
-
-        &lt;b>翻訳&lt;/b>&lt;br>
-        &lt;i>日本語: naofum https://github.com/naofum&lt;/i>&lt;br>&lt;br>&lt;br>
-
-        &lt;b>使用したオープンソース プロジェクト:&lt;/b>&lt;br>&lt;br>
-
-        &lt;i>android-file-chooser&lt;br>
-        https://github.com/hedzr/android-file-chooser&lt;br>&lt;br>
-
-        browser&lt;br>
-        https://github.com/yoshihiroando/browser&lt;br>&lt;br>
-
-        MaterialDesignIcons&lt;br>
-        https://github.com/Templarian/MaterialDesign&lt;/i>
+        もし受け取っていなければ http://www.gnu.org/licenses/ をご覧ください。
     </string>
 
 
