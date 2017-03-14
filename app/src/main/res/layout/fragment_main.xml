@@ -19,6 +19,8 @@
             android:layout_height="wrap_content"
             android:text="@string/last_time_date"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
             android:textSize="@dimen/text_normal"
             android:textColor="@color/colorAccent"
             android:layout_alignParentTop="false"
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/text_big"
             android:layout_below="@+id/text_date"
             android:layout_alignParentStart="true" />
@@ -41,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/text_big"
             android:layout_below="@+id/text_date2"
             android:layout_alignParentStart="true" />
@@ -51,7 +55,9 @@
             android:layout_height="wrap_content"
             android:text="@string/last_since"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:textColor="@color/colorAccent"
             android:layout_below="@+id/text_date3"
             android:layout_alignParentStart="true"
@@ -64,6 +70,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/text_big"
             android:layout_below="@+id/text_time"
             android:layout_alignParentStart="true" />
@@ -74,6 +81,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/text_big"
             android:layout_below="@+id/text_time2"
             android:layout_alignParentStart="true" />
@@ -84,6 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/text_big"
             android:layout_below="@+id/text_time3"
             android:layout_alignParentStart="true" />
@@ -94,6 +103,8 @@
             android:layout_height="wrap_content"
             android:text="@string/stat"
             android:gravity="center_vertical|center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
             android:textSize="@dimen/text_normal"
             android:textColor="@color/colorAccent"
             android:layout_below="@+id/text_time4"
@@ -153,6 +164,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/text_normal"
                 android:text="@string/not_set2"
                 android:layout_marginStart="4dp"
@@ -164,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/not_set2"
                 android:gravity="center_vertical|center_horizontal"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/text_normal"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp" />
@@ -174,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/not_set2"
                 android:gravity="center_vertical|center_horizontal"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/text_normal"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp" />

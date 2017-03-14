@@ -145,6 +145,7 @@
     <string name="toast_restore">復元に成功しました。</string>
     <string name="toast_backup_not">バックアップに失敗しました。</string>
     <string name="toast_restore_not">復元に失敗しました。</string>
+    <string name="toast_save">Entry not saved. Cancel editing?</string>
 
     <string name="paste_date">実際の日付を貼り付け</string>
     <string name="paste_time">実際の時間を貼り付け</string>
@@ -165,6 +166,7 @@
     //File chooser
 
     <string name="choose_att">添付を選択</string>
+    <string name="choose_title">File manager</string>
 
 
     // Goal
@@ -245,6 +247,7 @@
     <string name="action_filter_title">Search in titles</string>
     <string name="action_filter_cont">Search in content</string>
     <string name="action_filter_create">Search in dates</string>
+    <string name="action_save">Save</string>
 
     <string name="filter_today">Today</string>
     <string name="filter_yesterday">Yesterday</string>

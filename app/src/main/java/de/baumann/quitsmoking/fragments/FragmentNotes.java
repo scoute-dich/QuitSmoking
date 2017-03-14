@@ -19,19 +19,15 @@
 
 package de.baumann.quitsmoking.fragments;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -45,23 +41,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,12 +64,10 @@ import java.nio.channels.FileChannel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
+import de.baumann.quitsmoking.helper.Activity_EditNote;
 import de.baumann.quitsmoking.helper.DbAdapter_Notes;
-import de.baumann.quitsmoking.helper.Popup_camera;
-import de.baumann.quitsmoking.helper.Popup_files;
 import de.baumann.quitsmoking.helper.helper_main;
 
 import de.baumann.quitsmoking.R;
@@ -118,6 +110,7 @@ public class FragmentNotes extends Fragment {
                 InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 filter_layout.setVisibility(View.GONE);
+                setTitle();
                 setNotesList();
             }
         });
@@ -127,7 +120,9 @@ public class FragmentNotes extends Fragment {
             @Override
             public void onClick(View view) {
                 sharedPref.edit().putString("handleTextCreate", helper_main.createDate()).apply();
-                newNote(getActivity());
+                Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                getActivity().startActivity(intent);
             }
         });
 
@@ -147,7 +142,9 @@ public class FragmentNotes extends Fragment {
         if (isVisibleToUser && isResumed() && viewPager.getCurrentItem() == 3) {
             setNotesList();
             if (sharedPref.getString("newIntent", "false").equals("true")) {
-                newNote(getActivity());
+                Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                getActivity().startActivity(intent);
             }
         }
     }
@@ -157,7 +154,9 @@ public class FragmentNotes extends Fragment {
         super.onResume();
         setNotesList();
         if (sharedPref.getString("newIntent", "false").equals("true")) {
-            newNote(getActivity());
+            Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            getActivity().startActivity(intent);
         }
     }
 
@@ -343,17 +342,17 @@ public class FragmentNotes extends Fragment {
                         note_attachment.contains(".asf") ||
                         note_attachment.contains(".wmv")) {
                     attImage.setVisibility(View.VISIBLE);
+
                     try {
                         Glide.with(getActivity())
                                 .load(note_attachment) // or URI/path
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
                                 .into(attImage); //imageView to set thumbnail to
                     } catch (Exception e) {
                         Log.w("HHS_Moodle", "Error load thumbnail", e);
                         attImage.setVisibility(View.GONE);
                     }
-
-                    Bitmap myBitmap = BitmapFactory.decodeFile(note_attachment);
-                    attImage.setImageBitmap(myBitmap);
 
                     attImage.setOnClickListener(new View.OnClickListener() {
 
@@ -429,7 +428,9 @@ public class FragmentNotes extends Fragment {
                                         .putString("handleTextAttachment", note_attachment)
                                         .putString("handleTextCreate", note_creation)
                                         .apply();
-                                editNote(getActivity());
+                                Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                getActivity().startActivity(intent);
                             }
                         });
                 dialog.show();
@@ -470,7 +471,9 @@ public class FragmentNotes extends Fragment {
                                             .putString("handleTextAttachment", note_attachment)
                                             .putString("handleTextCreate", note_creation)
                                             .apply();
-                                    editNote(getActivity());
+                                    Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    getActivity().startActivity(intent);
                                 }
 
                                 if (options[item].equals (getString(R.string.note_share))) {
@@ -501,20 +504,6 @@ public class FragmentNotes extends Fragment {
         });
     }
 
-    private static class Item{
-        public final String text;
-        public final int icon;
-        Item(String text, Integer icon) {
-            this.text = text;
-            this.icon = icon;
-        }
-
-        @Override
-        public String toString() {
-            return text;
-        }
-    }
-
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -533,6 +522,7 @@ public class FragmentNotes extends Fragment {
 
             case R.id.filter_title:
                 sharedPref.edit().putString("filter_noteBY", "note_title").apply();
+                setTitle();
                 setNotesList();
                 filter_layout.setVisibility(View.VISIBLE);
                 filter.setText("");
@@ -542,6 +532,7 @@ public class FragmentNotes extends Fragment {
                 return true;
             case R.id.filter_content:
                 sharedPref.edit().putString("filter_noteBY", "note_content").apply();
+                setTitle();
                 setNotesList();
                 filter_layout.setVisibility(View.VISIBLE);
                 filter.setText("");
@@ -722,732 +713,5 @@ public class FragmentNotes extends Fragment {
             assert tab != null;
             tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.sort_date));
         }
-    }
-
-    private void editNote(final Activity from) {
-
-        final Button attachment;
-        final ImageButton attachmentRem;
-        final ImageButton attachmentCam;
-        final EditText titleInput;
-        final EditText textInput;
-        final String priority = sharedPref.getString("handleTextIcon", "");
-
-        LayoutInflater inflater = from.getLayoutInflater();
-
-        final ViewGroup nullParent = null;
-        View dialogView = inflater.inflate(R.layout.dialog_note_edit, nullParent);
-
-        String file = sharedPref.getString("handleTextAttachment", "");
-        final String attName = file.substring(file.lastIndexOf("/")+1);
-
-        attachmentRem = (ImageButton) dialogView.findViewById(R.id.button_rem);
-        attachmentRem.setImageResource(R.drawable.close_red);
-        attachment = (Button) dialogView.findViewById(R.id.button_att);
-        attachmentCam = (ImageButton) dialogView.findViewById(R.id.button_cam);
-        attachmentCam.setImageResource(R.drawable.camera);
-
-        if (attName.equals("")) {
-            attachment.setText(R.string.choose_att);
-            attachmentRem.setVisibility(View.GONE);
-            attachmentCam.setVisibility(View.VISIBLE);
-        } else {
-            attachment.setText(attName);
-            attachmentRem.setVisibility(View.VISIBLE);
-            attachmentCam.setVisibility(View.GONE);
-        }
-        File file2 = new File(file);
-        if (!file2.exists()) {
-            attachment.setText(R.string.choose_att);
-            attachmentRem.setVisibility(View.GONE);
-            attachmentCam.setVisibility(View.VISIBLE);
-        }
-
-        titleInput = (EditText) dialogView.findViewById(R.id.note_title_input);
-        textInput = (EditText) dialogView.findViewById(R.id.note_text_input);
-        titleInput.setText(sharedPref.getString("handleTextTitle", ""));
-        titleInput.setSelection(titleInput.getText().length());
-        textInput.setText(sharedPref.getString("handleTextText", ""));
-        textInput.setSelection(textInput.getText().length());
-
-        titleInput.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                sharedPref.edit().putString("editTextFocus", "title").apply();
-                return false;
-            }
-        });
-
-        textInput.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                sharedPref.edit().putString("editTextFocus", "text").apply();
-                return false;
-            }
-        });
-
-        attachment.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent mainIntent = new Intent(getActivity(), Popup_files.class);
-                mainIntent.setAction("file_chooseAttachment");
-                startActivity(mainIntent);
-
-                attachment.setText(getActivity().getString(R.string.note_att));
-                attachmentRem.setVisibility(View.VISIBLE);
-                attachmentCam.setVisibility(View.GONE);
-            }
-        });
-
-        attachmentRem.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                sharedPref.edit().putString("handleTextAttachment", "").apply();
-                attachment.setText(R.string.choose_att);
-                attachmentRem.setVisibility(View.GONE);
-                attachmentCam.setVisibility(View.VISIBLE);
-            }
-        });
-
-        attachmentCam.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                File f = helper_main.newFile();
-                final String fileName = f.getAbsolutePath();
-                String attName = fileName.substring(fileName.lastIndexOf("/")+1);
-                String att = from.getString(R.string.note_attachment) + ": " + attName;
-                attachment.setText(att);
-                attachmentRem.setVisibility(View.VISIBLE);
-                attachmentCam.setVisibility(View.GONE);
-                sharedPref.edit().putString("handleTextAttachment", fileName).apply();
-
-                InputMethodManager imm = (InputMethodManager)from.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(titleInput.getWindowToken(), 0);
-                helper_main.switchToActivity(from, Popup_camera.class, false);
-            }
-        });
-        helper_main.showKeyboard(from,titleInput);
-
-        final ImageButton be = (ImageButton) dialogView.findViewById(R.id.imageButtonPri);
-        ImageButton ib_paste = (ImageButton) dialogView.findViewById(R.id.imageButtonPaste);
-        assert be != null;
-
-        switch (priority) {
-            case "1":
-                be.setImageResource(R.drawable.emoticon_neutral);
-                sharedPref.edit().putString("handleTextIcon", "1").apply();
-                break;
-            case "2":
-                be.setImageResource(R.drawable.emoticon_happy);
-                sharedPref.edit().putString("handleTextIcon", "2").apply();
-                break;
-            case "3":
-                be.setImageResource(R.drawable.emoticon_sad);
-                sharedPref.edit().putString("handleTextIcon", "3").apply();
-                break;
-            case "4":
-                be.setImageResource(R.drawable.emoticon);
-                sharedPref.edit().putString("handleTextIcon", "4").apply();
-                break;
-            case "5":
-                be.setImageResource(R.drawable.emoticon_cool);
-                sharedPref.edit().putString("handleTextIcon", "5").apply();
-                break;
-            case "6":
-                be.setImageResource(R.drawable.emoticon_dead);
-                sharedPref.edit().putString("handleTextIcon", "6").apply();
-                break;
-            case "7":
-                be.setImageResource(R.drawable.emoticon_excited);
-                sharedPref.edit().putString("handleTextIcon", "7").apply();
-                break;
-            case "8":
-                be.setImageResource(R.drawable.emoticon_tongue);
-                sharedPref.edit().putString("handleTextIcon", "8").apply();
-                break;
-            case "9":
-                be.setImageResource(R.drawable.emoticon_devil);
-                sharedPref.edit().putString("handleTextIcon", "9").apply();
-                break;
-            case "":
-                be.setImageResource(R.drawable.emoticon_neutral);
-                sharedPref.edit().putString("handleTextIcon", "1").apply();
-                break;
-        }
-
-        be.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                final Item[] items = {
-                        new Item(from.getString(R.string.text_tit_1), R.drawable.emoticon_neutral),
-                        new Item(from.getString(R.string.text_tit_2), R.drawable.emoticon_happy),
-                        new Item(from.getString(R.string.text_tit_3), R.drawable.emoticon_sad),
-                        new Item(from.getString(R.string.text_tit_4), R.drawable.emoticon),
-                        new Item(from.getString(R.string.text_tit_5), R.drawable.emoticon_cool),
-                        new Item(from.getString(R.string.text_tit_6), R.drawable.emoticon_dead),
-                        new Item(from.getString(R.string.text_tit_7), R.drawable.emoticon_excited),
-                        new Item(from.getString(R.string.text_tit_8), R.drawable.emoticon_tongue),
-                        new Item(from.getString(R.string.text_tit_9), R.drawable.emoticon_devil)
-                };
-
-                ListAdapter adapter = new ArrayAdapter<Item>(
-                        from,
-                        android.R.layout.select_dialog_item,
-                        android.R.id.text1,
-                        items){
-                    @NonNull
-                    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                        //Use super class to create the View
-                        View v = super.getView(position, convertView, parent);
-                        TextView tv = (TextView)v.findViewById(android.R.id.text1);
-                        tv.setTextSize(18);
-                        tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
-                        //Add margin between image and text (support various screen densities)
-                        int dp5 = (int) (24 * from.getResources().getDisplayMetrics().density + 0.5f);
-                        tv.setCompoundDrawablePadding(dp5);
-
-                        return v;
-                    }
-                };
-
-                new android.app.AlertDialog.Builder(from)
-                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (item == 0) {
-                                    be.setImageResource(R.drawable.emoticon_neutral);
-                                    sharedPref.edit().putString("handleTextIcon", "1").apply();
-                                } else if (item == 1) {
-                                    be.setImageResource(R.drawable.emoticon_happy);
-                                    sharedPref.edit().putString("handleTextIcon", "2").apply();
-                                } else if (item == 2) {
-                                    be.setImageResource(R.drawable.emoticon_sad);
-                                    sharedPref.edit().putString("handleTextIcon", "3").apply();
-                                } else if (item == 3) {
-                                    be.setImageResource(R.drawable.emoticon);
-                                    sharedPref.edit().putString("handleTextIcon", "4").apply();
-                                } else if (item == 4) {
-                                    be.setImageResource(R.drawable.emoticon_cool);
-                                    sharedPref.edit().putString("handleTextIcon", "5").apply();
-                                } else if (item == 5) {
-                                    be.setImageResource(R.drawable.emoticon_dead);
-                                    sharedPref.edit().putString("handleTextIcon", "6").apply();
-                                } else if (item == 6) {
-                                    be.setImageResource(R.drawable.emoticon_excited);
-                                    sharedPref.edit().putString("handleTextIcon", "7").apply();
-                                } else if (item == 7) {
-                                    be.setImageResource(R.drawable.emoticon_tongue);
-                                    sharedPref.edit().putString("handleTextIcon", "8").apply();
-                                } else if (item == 8) {
-                                    be.setImageResource(R.drawable.emoticon_devil);
-                                    sharedPref.edit().putString("handleTextIcon", "9").apply();
-                                }
-                            }
-                        }).show();
-            }
-        });
-
-        ib_paste.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                final CharSequence[] options = {
-                        from.getString(R.string.paste_date),
-                        from.getString(R.string.paste_time),
-                        from.getString(R.string.paste_line)};
-                new android.app.AlertDialog.Builder(from)
-                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(from.getString(R.string.paste_date))) {
-                                    String dateFormat = sharedPref.getString("dateFormat", "1");
-
-                                    switch (dateFormat) {
-                                        case "1":
-
-                                            Date date = new Date();
-                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                                            String dateNow = format.format(date);
-
-                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow);
-                                            } else {
-                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow);
-                                            }
-                                            break;
-
-                                        case "2":
-
-                                            Date date2 = new Date();
-                                            SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-                                            String dateNow2 = format2.format(date2);
-
-                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow2);
-                                            } else {
-                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow2);
-                                            }
-                                            break;
-                                    }
-                                }
-
-                                if (options[item].equals (from.getString(R.string.paste_time))) {
-                                    Date date = new Date();
-                                    SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
-                                    String timeNow = format.format(date);
-                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                        textInput.getText().insert(textInput.getSelectionStart(), timeNow);
-                                    } else {
-                                        titleInput.getText().insert(titleInput.getSelectionStart(), timeNow);
-                                    }
-                                }
-
-                                if (options[item].equals (from.getString(R.string.paste_line))) {
-                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                        textInput.getText().insert(textInput.getSelectionStart(), "==========");
-                                    } else {
-                                        titleInput.getText().insert(titleInput.getSelectionStart(), "==========");
-                                    }
-                                }
-                            }
-                        }).show();
-            }
-        });
-
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(from);
-        builder.setTitle(R.string.note_edit);
-        builder.setView(dialogView);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int whichButton) {
-                DbAdapter_Notes db = new DbAdapter_Notes(from);
-                db.open();
-
-                String inputTitle = titleInput.getText().toString().trim();
-                String inputContent = textInput.getText().toString().trim();
-                String attachment = sharedPref.getString("handleTextAttachment", "");
-                String create = sharedPref.getString("handleTextCreate", "");
-                String seqno = sharedPref.getString("handleTextSeqno", "");
-
-                db.update(Integer.parseInt(seqno), inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment, create);
-                dialog.dismiss();
-                setNotesList();
-            }
-        })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        sharedPref.edit()
-                                .putString("handleTextTitle", "")
-                                .putString("handleTextText", "")
-                                .putString("handleTextIcon", "")
-                                .putString("handleTextAttachment", "")
-                                .putString("handleTextCreate", "")
-                                .putString("editTextFocus", "")
-                                .apply();
-                        dialog.cancel();
-                    }
-                });
-
-        final android.support.v7.app.AlertDialog dialog = builder.create();
-        dialog.show();
-
-        helper_main.showKeyboard(getActivity(), titleInput);
-    }
-
-    private void newNote(final Activity from) {
-
-        final Button attachment;
-        final ImageButton attachmentRem;
-        final ImageButton attachmentCam;
-        final EditText titleInput;
-        final EditText textInput;
-        final String priority = sharedPref.getString("handleTextIcon", "");
-
-        if (!sharedPref.getString("newIntent", "false").equals("true")) {
-            sharedPref.edit().putString("handleTextText", "").apply();
-        }
-
-        sharedPref.edit()
-                .putString("handleTextTitle", "")
-                .putString("handleTextIcon", "")
-                .putString("handleTextAttachment", "")
-                .putString("handleTextCreate", "")
-                .putString("editTextFocus", "")
-                .putString("newIntent", "false")
-                .apply();
-
-        LayoutInflater inflater = from.getLayoutInflater();
-
-        final ViewGroup nullParent = null;
-        View dialogView = inflater.inflate(R.layout.dialog_note_edit, nullParent);
-
-        String file = sharedPref.getString("handleTextAttachment", "");
-        final String attName = file.substring(file.lastIndexOf("/")+1);
-
-        attachmentRem = (ImageButton) dialogView.findViewById(R.id.button_rem);
-        attachmentRem.setImageResource(R.drawable.close_red);
-        attachment = (Button) dialogView.findViewById(R.id.button_att);
-        attachmentCam = (ImageButton) dialogView.findViewById(R.id.button_cam);
-        attachmentCam.setImageResource(R.drawable.camera);
-
-        if (attName.equals("")) {
-            attachment.setText(R.string.choose_att);
-            attachmentRem.setVisibility(View.GONE);
-            attachmentCam.setVisibility(View.VISIBLE);
-        } else {
-            attachment.setText(attName);
-            attachmentRem.setVisibility(View.VISIBLE);
-            attachmentCam.setVisibility(View.GONE);
-        }
-        File file2 = new File(file);
-        if (!file2.exists()) {
-            attachment.setText(R.string.choose_att);
-            attachmentRem.setVisibility(View.GONE);
-            attachmentCam.setVisibility(View.VISIBLE);
-        }
-
-        titleInput = (EditText) dialogView.findViewById(R.id.note_title_input);
-        textInput = (EditText) dialogView.findViewById(R.id.note_text_input);
-        titleInput.setText(sharedPref.getString("handleTextTitle", ""));
-        titleInput.setSelection(titleInput.getText().length());
-        textInput.setText(sharedPref.getString("handleTextText", ""));
-        textInput.setSelection(textInput.getText().length());
-
-        titleInput.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                sharedPref.edit().putString("editTextFocus", "title").apply();
-                return false;
-            }
-        });
-
-        textInput.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                sharedPref.edit().putString("editTextFocus", "text").apply();
-                return false;
-            }
-        });
-
-        attachment.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent mainIntent = new Intent(getActivity(), Popup_files.class);
-                mainIntent.setAction("file_chooseAttachment");
-                startActivity(mainIntent);
-
-                attachment.setText(getActivity().getString(R.string.note_att));
-                attachmentRem.setVisibility(View.VISIBLE);
-                attachmentCam.setVisibility(View.GONE);
-            }
-        });
-
-        attachmentRem.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                sharedPref.edit().putString("handleTextAttachment", "").apply();
-                attachment.setText(R.string.choose_att);
-                attachmentRem.setVisibility(View.GONE);
-                attachmentCam.setVisibility(View.VISIBLE);
-            }
-        });
-
-        attachmentCam.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                File f = helper_main.newFile();
-                final String fileName = f.getAbsolutePath();
-                String attName = fileName.substring(fileName.lastIndexOf("/")+1);
-                String att = from.getString(R.string.note_att) + ": " + attName;
-                attachment.setText(att);
-                attachmentRem.setVisibility(View.VISIBLE);
-                attachmentCam.setVisibility(View.GONE);
-                sharedPref.edit().putString("handleTextAttachment", fileName).apply();
-
-                InputMethodManager imm = (InputMethodManager)from.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(titleInput.getWindowToken(), 0);
-                helper_main.switchToActivity(from, Popup_camera.class, false);
-            }
-        });
-        helper_main.showKeyboard(from,titleInput);
-
-        final ImageButton be = (ImageButton) dialogView.findViewById(R.id.imageButtonPri);
-        ImageButton ib_paste = (ImageButton) dialogView.findViewById(R.id.imageButtonPaste);
-        assert be != null;
-
-        switch (priority) {
-            case "1":
-                be.setImageResource(R.drawable.emoticon_neutral);
-                sharedPref.edit().putString("handleTextIcon", "1").apply();
-                break;
-            case "2":
-                be.setImageResource(R.drawable.emoticon_happy);
-                sharedPref.edit().putString("handleTextIcon", "2").apply();
-                break;
-            case "3":
-                be.setImageResource(R.drawable.emoticon_sad);
-                sharedPref.edit().putString("handleTextIcon", "3").apply();
-                break;
-            case "4":
-                be.setImageResource(R.drawable.emoticon);
-                sharedPref.edit().putString("handleTextIcon", "4").apply();
-                break;
-            case "5":
-                be.setImageResource(R.drawable.emoticon_cool);
-                sharedPref.edit().putString("handleTextIcon", "5").apply();
-                break;
-            case "6":
-                be.setImageResource(R.drawable.emoticon_dead);
-                sharedPref.edit().putString("handleTextIcon", "6").apply();
-                break;
-            case "7":
-                be.setImageResource(R.drawable.emoticon_excited);
-                sharedPref.edit().putString("handleTextIcon", "7").apply();
-                break;
-            case "8":
-                be.setImageResource(R.drawable.emoticon_tongue);
-                sharedPref.edit().putString("handleTextIcon", "8").apply();
-                break;
-            case "9":
-                be.setImageResource(R.drawable.emoticon_devil);
-                sharedPref.edit().putString("handleTextIcon", "9").apply();
-                break;
-            case "":
-                be.setImageResource(R.drawable.emoticon_neutral);
-                sharedPref.edit().putString("handleTextIcon", "1").apply();
-                break;
-        }
-
-        be.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                final Item[] items = {
-                        new Item(from.getString(R.string.text_tit_1), R.drawable.emoticon_neutral),
-                        new Item(from.getString(R.string.text_tit_2), R.drawable.emoticon_happy),
-                        new Item(from.getString(R.string.text_tit_3), R.drawable.emoticon_sad),
-                        new Item(from.getString(R.string.text_tit_4), R.drawable.emoticon),
-                        new Item(from.getString(R.string.text_tit_5), R.drawable.emoticon_cool),
-                        new Item(from.getString(R.string.text_tit_6), R.drawable.emoticon_dead),
-                        new Item(from.getString(R.string.text_tit_7), R.drawable.emoticon_excited),
-                        new Item(from.getString(R.string.text_tit_8), R.drawable.emoticon_tongue),
-                        new Item(from.getString(R.string.text_tit_9), R.drawable.emoticon_devil)
-                };
-
-                ListAdapter adapter = new ArrayAdapter<Item>(
-                        from,
-                        android.R.layout.select_dialog_item,
-                        android.R.id.text1,
-                        items){
-                    @NonNull
-                    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                        //Use super class to create the View
-                        View v = super.getView(position, convertView, parent);
-                        TextView tv = (TextView)v.findViewById(android.R.id.text1);
-                        tv.setTextSize(18);
-                        tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
-                        //Add margin between image and text (support various screen densities)
-                        int dp5 = (int) (24 * from.getResources().getDisplayMetrics().density + 0.5f);
-                        tv.setCompoundDrawablePadding(dp5);
-
-                        return v;
-                    }
-                };
-
-                new android.app.AlertDialog.Builder(from)
-                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (item == 0) {
-                                    be.setImageResource(R.drawable.emoticon_neutral);
-                                    sharedPref.edit().putString("handleTextIcon", "1").apply();
-                                } else if (item == 1) {
-                                    be.setImageResource(R.drawable.emoticon_happy);
-                                    sharedPref.edit().putString("handleTextIcon", "2").apply();
-                                } else if (item == 2) {
-                                    be.setImageResource(R.drawable.emoticon_sad);
-                                    sharedPref.edit().putString("handleTextIcon", "3").apply();
-                                } else if (item == 3) {
-                                    be.setImageResource(R.drawable.emoticon);
-                                    sharedPref.edit().putString("handleTextIcon", "4").apply();
-                                } else if (item == 4) {
-                                    be.setImageResource(R.drawable.emoticon_cool);
-                                    sharedPref.edit().putString("handleTextIcon", "5").apply();
-                                } else if (item == 5) {
-                                    be.setImageResource(R.drawable.emoticon_dead);
-                                    sharedPref.edit().putString("handleTextIcon", "6").apply();
-                                } else if (item == 6) {
-                                    be.setImageResource(R.drawable.emoticon_excited);
-                                    sharedPref.edit().putString("handleTextIcon", "7").apply();
-                                } else if (item == 7) {
-                                    be.setImageResource(R.drawable.emoticon_tongue);
-                                    sharedPref.edit().putString("handleTextIcon", "8").apply();
-                                } else if (item == 8) {
-                                    be.setImageResource(R.drawable.emoticon_devil);
-                                    sharedPref.edit().putString("handleTextIcon", "9").apply();
-                                }
-                            }
-                        }).show();
-            }
-        });
-
-
-        ib_paste.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                final CharSequence[] options = {
-                        from.getString(R.string.paste_date),
-                        from.getString(R.string.paste_time),
-                        from.getString(R.string.paste_line)};
-                new android.app.AlertDialog.Builder(from)
-                        .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(from.getString(R.string.paste_date))) {
-                                    String dateFormat = sharedPref.getString("dateFormat", "1");
-
-                                    switch (dateFormat) {
-                                        case "1":
-
-                                            Date date = new Date();
-                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                                            String dateNow = format.format(date);
-
-                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow);
-                                            } else {
-                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow);
-                                            }
-                                            break;
-
-                                        case "2":
-
-                                            Date date2 = new Date();
-                                            SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-                                            String dateNow2 = format2.format(date2);
-
-                                            if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                                textInput.getText().insert(textInput.getSelectionStart(), dateNow2);
-                                            } else {
-                                                titleInput.getText().insert(titleInput.getSelectionStart(), dateNow2);
-                                            }
-                                            break;
-                                    }
-                                }
-
-                                if (options[item].equals (from.getString(R.string.paste_time))) {
-                                    Date date = new Date();
-                                    SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
-                                    String timeNow = format.format(date);
-                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                        textInput.getText().insert(textInput.getSelectionStart(), timeNow);
-                                    } else {
-                                        titleInput.getText().insert(titleInput.getSelectionStart(), timeNow);
-                                    }
-                                }
-
-                                if (options[item].equals (from.getString(R.string.paste_line))) {
-                                    if(sharedPref.getString("editTextFocus", "").equals("text")) {
-                                        textInput.getText().insert(textInput.getSelectionStart(), "==========");
-                                    } else {
-                                        titleInput.getText().insert(titleInput.getSelectionStart(), "==========");
-                                    }
-                                }
-                            }
-                        }).show();
-            }
-        });
-
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(from);
-        builder.setTitle(R.string.note_edit);
-        builder.setView(dialogView);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-            }
-        })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        sharedPref.edit()
-                                .putString("handleTextTitle", "")
-                                .putString("handleTextText", "")
-                                .putString("handleTextIcon", "")
-                                .putString("handleTextAttachment", "")
-                                .putString("handleTextCreate", "")
-                                .putString("editTextFocus", "")
-                                .putString("newIntent", "false")
-                                .apply();
-                        dialog.cancel();
-                    }
-                });
-
-        final android.support.v7.app.AlertDialog dialog = builder.create();
-        dialog.show();
-
-        dialog.getButton(android.support.v7.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Do stuff, possibly set wantToCloseDialog to true then...
-
-                DbAdapter_Notes db = new DbAdapter_Notes(from);
-                db.open();
-
-                String inputTitle = titleInput.getText().toString().trim();
-                String inputContent = textInput.getText().toString().trim();
-                String attachment = sharedPref.getString("handleTextAttachment", "");
-
-                try {
-                    if(db.isExist(inputTitle)){
-                        Snackbar.make(titleInput, getString(R.string.toast_newTitle), Snackbar.LENGTH_LONG).show();
-                    }else{
-                        db.insert(inputTitle, inputContent, sharedPref.getString("handleTextIcon", ""), attachment, helper_main.createDate());
-                        dialog.dismiss();
-                        setNotesList();
-                    }
-                } catch (Exception e) {
-                    Log.w("HHS_Moodle", "Error Package name not found ", e);
-                    Snackbar snackbar = Snackbar
-                            .make(titleInput, R.string.toast_notSave, Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                }
-            }
-        });
-
-        helper_main.showKeyboard(getActivity(), titleInput);
     }
 }

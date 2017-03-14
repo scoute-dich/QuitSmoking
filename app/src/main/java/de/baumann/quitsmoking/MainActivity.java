@@ -216,8 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {

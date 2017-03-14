@@ -35,6 +35,7 @@
     <string name="action_overview">Overview</string>
     <string name="action_diary">Diary</string>
     <string name="action_goal">Goal</string>
+    <string name="action_save">Save</string>
 
 
     // Main Activity
@@ -146,6 +147,7 @@
     <string name="toast_restore">Restore successfully.</string>
     <string name="toast_backup_not">Backup failed.</string>
     <string name="toast_restore_not">Restore failed.</string>
+    <string name="toast_save">Entry not saved. Cancel editing?</string>
 
     <string name="paste_date">Paste actual date</string>
     <string name="paste_time">Paste actual time</string>
@@ -154,7 +156,7 @@
     <string name="action_sort">Sort entries</string>
     <string name="action_sort_title">Sort by title</string>
     <string name="action_sort_icon">Sort by emoticon</string>
-    <string name="action_sort_create">Sort by creation</string>
+    <string name="action_sort_create">Sort by date</string>
 
 
     // Camera
@@ -166,6 +168,7 @@
     //File chooser
 
     <string name="choose_att">Choose attachment</string>
+    <string name="choose_title">File manager</string>
 
 
     // Goal

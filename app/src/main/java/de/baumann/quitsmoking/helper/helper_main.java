@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.text.Html;
@@ -61,7 +62,7 @@ public class helper_main {
         return s;
     }
 
-    public static File newFile () {
+    static File newFile () {
         return  new File(Environment.getExternalStorageDirectory() + newFileDest() + newFileName());
     }
 
@@ -75,10 +76,14 @@ public class helper_main {
         return  dateFormat.format(date) + ".jpg";
     }
 
-    public static void showKeyboard(Activity from, EditText editText) {
-        InputMethodManager imm = (InputMethodManager) from.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
-        editText.setSelection(editText.length());
+    public static void showKeyboard(final Activity from, final EditText editText) {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) from.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                editText.setSelection(editText.length());
+            }
+        }, 200);
     }
 
     public static void openAtt (Activity activity, View view, String fileString) {
@@ -232,14 +237,4 @@ public class helper_main {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         return  format.format(date);
     }
-
-    public static void switchToActivity(Activity from, Class to, boolean finishFromActivity) {
-        Intent intent = new Intent(from, to);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        from.startActivity(intent);
-        if (finishFromActivity) {
-            from.finish();
-        }
-    }
-
 }

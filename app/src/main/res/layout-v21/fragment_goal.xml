@@ -17,10 +17,12 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description1"
@@ -28,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="@string/not_set"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header1"
             android:layout_alignParentStart="true" />
 
@@ -40,7 +42,7 @@
             android:gravity="center_vertical"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description1"
             android:layout_alignParentStart="true" />
 
@@ -48,16 +50,16 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
             android:id="@+id/progressBar"
             android:progressBackgroundTint="@color/colorPrimary"
             android:progressBackgroundTintMode="src_over"
             android:progressTint="@color/colorAccent"
             android:progressTintMode="src_over"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="@dimen/space_bottom"
+            android:layout_marginTop="@dimen/space_normal"
             android:layout_below="@+id/text_description2" />
 
         <ImageView

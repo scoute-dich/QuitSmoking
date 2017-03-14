@@ -36,6 +36,7 @@
     <string name="action_overview">Übersicht</string>
     <string name="action_diary">Tagebuch</string>
     <string name="action_goal">Ziel</string>
+    <string name="action_save">Sparen</string>
 
 
     // Main Activity
@@ -147,6 +148,7 @@
     <string name="toast_restore">Wiederherstellung erfolgreich.</string>
     <string name="toast_backup_not">Sicherung nicht erfolgreich.</string>
     <string name="toast_restore_not">Wiederherstellung nicht erfolgreich.</string>
+    <string name="toast_save">Eintrag nicht gespeichert. Bearbeiten abbrechen?</string>
 
     <string name="paste_date">Aktuelles Datum einfügen</string>
     <string name="paste_time">Aktuelle Zeit einfügen</string>
@@ -155,7 +157,7 @@
     <string name="action_sort">Einträge sortieren</string>
     <string name="action_sort_title">Sortiere nach Titel</string>
     <string name="action_sort_icon">Sortiere nach Smiley</string>
-    <string name="action_sort_create">Sortiere nach Erstellungszeit</string>
+    <string name="action_sort_create">Sortiere nach Datum</string>
 
 
     // Camera
@@ -167,6 +169,7 @@
     //File chooser
 
     <string name="choose_att">Anhang auswählen</string>
+    <string name="choose_title">Dateimanager</string>
 
 
     // Goal
@@ -268,11 +271,11 @@
     //Intro
 
     <string name="intro1_title">Nichtraucher</string>
-    <string name="intro1_text">Danke, dass du dich für \"Nichtraucher\" entschieden hast. \"Nichtraucher\ ist quelloffen und
+    <string name="intro1_text">Danke, dass du dich für \"Nichtraucher\" entschieden hast. \"Nichtraucher\" ist quelloffen und
         komplett frei (wie in Freiheit).</string>
 
     <string name="intro2_title">Funktionen</string>
-    <string name="intro2_text">\"Nichtraucher\ zeigt dir eine Übersicht mit einigen Statistiken und deine gesundheitlichen
+    <string name="intro2_text">\"Nichtraucher\" zeigt dir eine Übersicht mit einigen Statistiken und deine gesundheitlichen
         Fortschritte an. Zusätzlich kannst du dir ein Ziel setzen (Wofür nutzt du das gesparte Geld?) und ein Tagebuch führen. </string>
 
     <string name="intro3_title">Einstellungen</string>

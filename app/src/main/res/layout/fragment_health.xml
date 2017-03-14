@@ -14,10 +14,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header1"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description1"
@@ -25,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description1"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header1"
             android:layout_alignParentStart="true" />
 
@@ -37,7 +39,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description1"
             android:layout_alignParentStart="true" />
 
@@ -45,13 +47,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar"
             android:layout_below="@+id/text_reached1"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header2"
@@ -59,10 +61,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header2"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description2"
@@ -70,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description2"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header2"
             android:layout_alignParentStart="true" />
 
@@ -82,7 +86,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description2"
             android:layout_alignParentStart="true" />
 
@@ -90,13 +94,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar2"
             android:layout_below="@+id/text_reached2"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header3"
@@ -104,10 +108,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header3"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar2"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description3"
@@ -115,7 +121,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description3"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header3"
             android:layout_alignParentStart="true" />
 
@@ -127,7 +133,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description3"
             android:layout_alignParentStart="true" />
 
@@ -135,13 +141,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar3"
             android:layout_below="@+id/text_reached3"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header4"
@@ -149,10 +155,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header4"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar3"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description4"
@@ -160,7 +168,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description4"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header4"
             android:layout_alignParentStart="true" />
 
@@ -172,7 +180,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description4"
             android:layout_alignParentStart="true" />
 
@@ -180,13 +188,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar4"
             android:layout_below="@+id/text_reached4"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header5"
@@ -194,10 +202,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header5"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar4"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description5"
@@ -205,7 +215,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description5"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header5"
             android:layout_alignParentStart="true" />
 
@@ -217,7 +227,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description5"
             android:layout_alignParentStart="true" />
 
@@ -225,13 +235,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar5"
             android:layout_below="@+id/text_reached5"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header6"
@@ -239,10 +249,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header6"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar5"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description6"
@@ -250,7 +262,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description6"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header6"
             android:layout_alignParentStart="true" />
 
@@ -262,7 +274,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description6"
             android:layout_alignParentStart="true" />
 
@@ -270,13 +282,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar6"
             android:layout_below="@+id/text_reached6"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header7"
@@ -284,10 +296,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header7"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar6"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description7"
@@ -295,7 +309,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description7"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header7"
             android:layout_alignParentStart="true" />
 
@@ -307,7 +321,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description7"
             android:layout_alignParentStart="true" />
 
@@ -315,13 +329,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar7"
             android:layout_below="@+id/text_reached7"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header8"
@@ -329,10 +343,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header8"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar7"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description8"
@@ -340,7 +356,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description8"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header8"
             android:layout_alignParentStart="true" />
 
@@ -352,7 +368,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description8"
             android:layout_alignParentStart="true" />
 
@@ -360,13 +376,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar8"
             android:layout_below="@+id/text_reached8"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header9"
@@ -374,10 +390,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header9"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar8"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description9"
@@ -385,7 +403,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description9"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header9"
             android:layout_alignParentStart="true" />
 
@@ -397,7 +415,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description9"
             android:layout_alignParentStart="true" />
 
@@ -405,13 +423,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar9"
             android:layout_below="@+id/text_reached9"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header10"
@@ -419,10 +437,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header10"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar9"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description10"
@@ -430,7 +450,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description10"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header10"
             android:layout_alignParentStart="true" />
 
@@ -442,7 +462,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description10"
             android:layout_alignParentStart="true" />
 
@@ -450,13 +470,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar10"
             android:layout_below="@+id/text_reached10"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header11"
@@ -464,10 +484,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header11"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar10"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description11"
@@ -475,7 +497,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description11"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header11"
             android:layout_alignParentStart="true" />
 
@@ -487,7 +509,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description11"
             android:layout_alignParentStart="true" />
 
@@ -495,13 +517,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar11"
             android:layout_below="@+id/text_reached11"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header12"
@@ -509,10 +531,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header12"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar11"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description12"
@@ -520,7 +544,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description12"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header12"
             android:layout_alignParentStart="true" />
 
@@ -532,7 +556,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description12"
             android:layout_alignParentStart="true" />
 
@@ -540,13 +564,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar12"
             android:layout_below="@+id/text_reached12"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:id="@+id/text_header13"
@@ -554,10 +578,12 @@
             android:layout_height="wrap_content"
             android:text="@string/health_header13"
             android:gravity="center_vertical"
-            android:textSize="24sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
             android:layout_below="@+id/progressBar12"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="@dimen/space_normal" />
 
         <TextView
             android:id="@+id/text_description13"
@@ -565,7 +591,7 @@
             android:layout_height="wrap_content"
             android:text="@string/health_description13"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_header13"
             android:layout_alignParentStart="true" />
 
@@ -577,7 +603,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/text_description13"
             android:layout_alignParentStart="true" />
 
@@ -585,13 +611,13 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:minHeight="3dip"
-            android:maxHeight="3dip"
-            android:layout_marginTop="4dp"
+            android:minHeight="4dip"
+            android:maxHeight="4dip"
+            android:layout_marginTop="@dimen/space_normal"
             android:id="@+id/progressBar13"
             android:layout_below="@+id/text_reached13"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="@dimen/space_bottom" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -599,7 +625,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
             android:gravity="center_vertical"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_small"
             android:layout_below="@+id/progressBar13"
             android:layout_alignParentStart="true" />
 
