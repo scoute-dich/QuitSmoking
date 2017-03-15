@@ -163,7 +163,7 @@ public class FragmentNotes extends Fragment {
     private void setNotesList() {
 
         //display data
-        final int layoutstyle=R.layout.list_item_notes;
+        final int layoutstyle=R.layout.item_list;
         int[] xml_id = new int[] {
                 R.id.textView_title_notes,
                 R.id.textView_des_notes,
@@ -299,10 +299,6 @@ public class FragmentNotes extends Fragment {
                 } else {
                     attachment.setText(att);
                 }
-                File file2 = new File(note_attachment);
-                if (!file2.exists()) {
-                    attachment.setVisibility(View.GONE);
-                }
 
                 textInput = (TextView) dialogView.findViewById(R.id.note_text_input);
                 if (note_content.isEmpty()) {
@@ -323,44 +319,48 @@ public class FragmentNotes extends Fragment {
                 final ImageView be = (ImageView) dialogView.findViewById(R.id.imageButtonPri);
                 final ImageView attImage = (ImageView) dialogView.findViewById(R.id.attImage);
 
-                if (note_attachment.contains(".gif") ||
-                        note_attachment.contains(".bmp") ||
-                        note_attachment.contains(".tiff") ||
-                        note_attachment.contains(".png") ||
-                        note_attachment.contains(".jpg") ||
-                        note_attachment.contains(".JPG") ||
-                        note_attachment.contains(".jpeg") ||
-                        note_attachment.contains(".mpeg") ||
-                        note_attachment.contains(".mp4") ||
-                        note_attachment.contains(".3gp") ||
-                        note_attachment.contains(".3g2") ||
-                        note_attachment.contains(".avi") ||
-                        note_attachment.contains(".flv") ||
-                        note_attachment.contains(".h261") ||
-                        note_attachment.contains(".h263") ||
-                        note_attachment.contains(".h264") ||
-                        note_attachment.contains(".asf") ||
-                        note_attachment.contains(".wmv")) {
-                    attImage.setVisibility(View.VISIBLE);
+                File file2 = new File(note_attachment);
+                if (!file2.exists()) {
+                    attachment.setVisibility(View.GONE);
+                    attImage.setVisibility(View.GONE);
+                } else if (note_attachment.contains(".gif") ||
+                            note_attachment.contains(".bmp") ||
+                            note_attachment.contains(".tiff") ||
+                            note_attachment.contains(".png") ||
+                            note_attachment.contains(".jpg") ||
+                            note_attachment.contains(".JPG") ||
+                            note_attachment.contains(".jpeg") ||
+                            note_attachment.contains(".mpeg") ||
+                            note_attachment.contains(".mp4") ||
+                            note_attachment.contains(".3gp") ||
+                            note_attachment.contains(".3g2") ||
+                            note_attachment.contains(".avi") ||
+                            note_attachment.contains(".flv") ||
+                            note_attachment.contains(".h261") ||
+                            note_attachment.contains(".h263") ||
+                            note_attachment.contains(".h264") ||
+                            note_attachment.contains(".asf") ||
+                            note_attachment.contains(".wmv")) {
+                        attImage.setVisibility(View.VISIBLE);
 
-                    try {
-                        Glide.with(getActivity())
-                                .load(note_attachment) // or URI/path
-                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                .skipMemoryCache(true)
-                                .into(attImage); //imageView to set thumbnail to
-                    } catch (Exception e) {
-                        Log.w("HHS_Moodle", "Error load thumbnail", e);
-                        attImage.setVisibility(View.GONE);
-                    }
-
-                    attImage.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View arg0) {
-                            helper_main.openAtt(getActivity(), attImage, note_attachment);
+                        try {
+                            Glide.with(getActivity())
+                                    .load(note_attachment) // or URI/path
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(attImage); //imageView to set thumbnail to
+                        } catch (Exception e) {
+                            Log.w("HHS_Moodle", "Error load thumbnail", e);
+                            attImage.setVisibility(View.GONE);
                         }
-                    });
+
+                        attImage.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View arg0) {
+                                helper_main.openAtt(getActivity(), attImage, note_attachment);
+                            }
+                        });
                 }
 
                 switch (note_icon) {

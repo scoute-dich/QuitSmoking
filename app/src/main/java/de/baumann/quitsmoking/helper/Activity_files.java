@@ -205,7 +205,7 @@ public class Activity_files extends AppCompatActivity {
         }
 
         //display data
-        final int layoutstyle=R.layout.list_item_notes;
+        final int layoutstyle=R.layout.item_list;
         int[] xml_id = new int[] {
                 R.id.textView_title_notes,
                 R.id.textView_des_notes,

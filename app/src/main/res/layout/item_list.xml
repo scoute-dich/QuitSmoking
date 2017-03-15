@@ -44,13 +44,14 @@
                 android:id="@+id/att_notes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textView_title_notes"
                 android:layout_alignBottom="@+id/textView_title_notes"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/textView_title_notes"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
-                app:srcCompat="@drawable/ic_attachment"
                 android:scaleType="center"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_attachment"
                 tools:ignore="ContentDescription" />
 
         </RelativeLayout>

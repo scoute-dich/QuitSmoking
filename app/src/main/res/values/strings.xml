@@ -237,8 +237,6 @@
     <string name="a_openSettings_summary">Open via the system settings the app info of the app. There you can,
         depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
 
-    <string name="note_att">File chosen. Please save.</string>
-
     <string name="toast_newTitle">Title already exists.</string>
     <string name="toast_notSave">Can not save entry.</string>
     <string name="toast_directory">Can\'t open Directory.</string>

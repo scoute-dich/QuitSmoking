@@ -1,4 +1,5 @@
 ### v 1.5 (WIP)
+- new: build in image picker
 - new: about screen
 - new: intro screen
 - new: database model

@@ -234,9 +234,6 @@
     <string name="a_openSettings_summary">システム設定で、アプリ情報を開きます。
         お使いの Android バージョンに応じて、いくつか管理できることがあります (ストレージ、ネットワーク通信、アクセス許可 …)。</string>
 
-
-    <string name="note_att">File chosen. Please save.</string>
-
     <string name="toast_newTitle">Title already exists.</string>
     <string name="toast_notSave">Can not save entry.</string>
     <string name="toast_directory">Can\'t open Directory.</string>

@@ -1,11 +1,7 @@
 package de.baumann.quitsmoking.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -13,8 +9,6 @@ import android.view.Menu;
 import android.view.View;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -31,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import de.baumann.quitsmoking.R;
+import de.baumann.quitsmoking.helper.Activity_images;
 
 
 public class FragmentGoal extends Fragment {
@@ -57,15 +52,18 @@ public class FragmentGoal extends Fragment {
             viewImage.setRotation(90);
         }
 
-        File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
+        String path = SP.getString("image_goal", "");
+        File imgFile = new File(path);
 
-        if(imgFile.exists()){
+        if(!path.isEmpty() && imgFile.exists()){
             Glide.with(getActivity())
-                    .load(imgFile)
+                    .load(path)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .fitCenter()
                     .into(viewImage); //imageView to set thumbnail to
+        } else {
+            viewImage.setImageResource(R.drawable.file_image_dark);
         }
 
         goalTitle = SP.getString("goalTitle", "");
@@ -92,32 +90,21 @@ public class FragmentGoal extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1) {
+    public void onResume() {
+        super.onResume();
 
-                Uri selectedImage = data.getData();
-                viewImage.setImageURI(selectedImage);
+        String path = SP.getString("image_goal", "");
+        File imgFile = new File(path);
 
-                BitmapDrawable drawable = (BitmapDrawable) viewImage.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-
-                File imgFile = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
-
-                // Encode the file as a PNG image.
-                FileOutputStream outStream;
-                try {
-
-                    outStream = new FileOutputStream(imgFile);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        if(!path.isEmpty() && imgFile.exists()){
+            Glide.with(getActivity())
+                    .load(path)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .fitCenter()
+                    .into(viewImage); //imageView to set thumbnail to
+        } else {
+            viewImage.setImageResource(R.drawable.file_image_dark);
         }
     }
 
@@ -141,8 +128,10 @@ public class FragmentGoal extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_imageLoad) {
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 1);
+
+            Intent intent_in = new Intent(getActivity(), Activity_images.class);
+            startActivity(intent_in);
+            getActivity().overridePendingTransition(0, 0);
         }
 
         if (id == R.id.action_imageRotate) {

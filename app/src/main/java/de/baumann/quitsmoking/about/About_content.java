@@ -89,7 +89,7 @@ class About_content {
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.about_intro)
                 .subText(R.string.about_intro_summary)
-                .icon(R.drawable.information_outline)
+                .icon(R.drawable.information_outline_dark)
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {

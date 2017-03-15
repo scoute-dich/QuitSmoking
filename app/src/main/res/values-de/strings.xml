@@ -124,9 +124,9 @@
     // Notes
 
     <string name="note_remove_confirmation">Eintrag wird entfernt. OK?</string>
-    <string name="note_remove_note">Lösche Eintrag</string>
+    <string name="note_remove_note">Eintrag löschen</string>
     <string name="note_edit">Eintrag bearbeiten</string>
-    <string name="note_share">Teile Eintrag</string>
+    <string name="note_share">Eintrag teilen</string>
     <string name="note_share_2">Eintrag teilen mit:</string>
     <string name="title_hint">Titel</string>
     <string name="text_hint">Inhalt</string>
@@ -241,9 +241,6 @@
     <string name="a_openSettings">App Info</string>
     <string name="a_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
         kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
-
-
-    <string name="note_att">Datei ausgewählt. Bitte speichern.</string>
 
     <string name="toast_newTitle">Titel existiert bereits.</string>
     <string name="toast_notSave">Kann Eintrag nicht speichern.</string>
