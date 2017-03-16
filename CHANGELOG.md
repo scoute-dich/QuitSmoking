@@ -1,4 +1,4 @@
-### v 1.5 (WIP)
+### v 1.5
 - new: build in image picker
 - new: about screen
 - new: intro screen

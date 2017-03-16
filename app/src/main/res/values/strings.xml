@@ -175,7 +175,7 @@
 
     <string name="goal_cancel">Cancel</string>
     <string name="action_image">Picture</string>
-    <string name="action_imageLoad">Load image</string>
+    <string name="action_imageLoad">Choose image</string>
     <string name="action_imageRotate">Rotate image</string>
     <string name="action_imageDelete">Delete image</string>
     <string name="costs">Costs:</string>

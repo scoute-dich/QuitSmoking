@@ -60,7 +60,7 @@ public class Activity_images extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle(R.string.choose_title);
+        setTitle(R.string.action_imageLoad);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
@@ -135,7 +135,7 @@ public class Activity_images extends AppCompatActivity {
                         .load(f.get(position)) // or URI/path
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
-                        .override(200, 200)
+                        .override(150, 150)
                         .centerCrop()
                         .into(holder.imageview); //imageView to set thumbnail to
 
