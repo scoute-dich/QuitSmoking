@@ -299,6 +299,7 @@
     <string name="about_license_3">Used to build the intro screen.</string>
     <string name="about_license_7">Used to create the \"About screen\".</string>
     <string name="about_license_8">The source of nearly all icons.</string>
+    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
 
 
     //License Dialog

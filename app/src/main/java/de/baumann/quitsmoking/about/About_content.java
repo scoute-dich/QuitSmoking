@@ -139,6 +139,13 @@ class About_content {
                 .build());
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Glide")
+                .subText(R.string.about_license_9)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Glide", "https://github.com/bumptech/glide", true, false))
+                .build());
+
+        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Material About Library")
                 .subText(R.string.about_license_7)
                 .icon(R.drawable.github_circle)
