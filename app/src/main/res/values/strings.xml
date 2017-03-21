@@ -122,7 +122,7 @@
 
     // Notes
 
-    <string name="note_remove_confirmation">Entry will be romoved. OK?</string>
+    <string name="note_remove_confirmation">Entry will be removed. OK?</string>
     <string name="note_remove_note">Delete entry</string>
     <string name="note_edit">Edit entry</string>
     <string name="note_share">Share entry</string>
