@@ -122,7 +122,7 @@
 
     // Notes
 
-    <string name="note_remove_confirmation">Entry will be romoved. OK?</string>
+    <string name="note_remove_confirmation">Entry will be removed. OK?</string>
     <string name="note_remove_note">Delete entry</string>
     <string name="note_edit">Edit entry</string>
     <string name="note_share">Share entry</string>
@@ -221,7 +221,7 @@
     <string name="settings_currency_summary">Set your preferred currency</string>
 
     <string name="a_cig">Smoke habits</string>
-    <string name="a_cig_summary">Enter the number of smoked cigarettes per day und the time it took to smoke one cigarette.</string>
+    <string name="a_cig_summary">Enter the number of smoked cigarettes per day and the time it took to smoke one cigarette.</string>
     <string name="a_cig_hintNumb">Number of cigarettes</string>
     <string name="a_cig_hintTime">Time in hours (e.g. 0,2)</string>
 
