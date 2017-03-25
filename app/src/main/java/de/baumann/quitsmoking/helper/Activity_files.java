@@ -19,8 +19,10 @@
 
 package de.baumann.quitsmoking.helper;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
@@ -88,7 +90,16 @@ public class Activity_files extends AppCompatActivity {
         //calling Notes_DbAdapter
         db = new DbAdapter_Files(Activity_files.this);
         db.open();
-        setFilesList();
+
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (hasWRITE_EXTERNAL_STORAGE == PackageManager.PERMISSION_GRANTED) {
+                setFilesList();
+            }
+        } else {
+            setFilesList();
+        }
+
         onNewIntent(getIntent());
     }
 

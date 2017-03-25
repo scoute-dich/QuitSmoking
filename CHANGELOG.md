@@ -1,3 +1,7 @@
+### v 1.6 (WIP)
+- new: choose picture for diary entries
+- fix: crash on choose attachment (Marshmallow+)
+
 ### v 1.5
 - new: build in image picker
 - new: about screen

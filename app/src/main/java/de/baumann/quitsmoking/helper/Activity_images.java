@@ -20,6 +20,7 @@
 package de.baumann.quitsmoking.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
@@ -47,6 +48,8 @@ public class Activity_images extends AppCompatActivity {
 
     private final ArrayList<String> f = new ArrayList<>();// list of file paths
     private SharedPreferences SP;
+    private ImageAdapter imageAdapter;
+    private GridView imageGrid;
 
     /** Called when the activity is first created. */
     @Override
@@ -68,9 +71,28 @@ public class Activity_images extends AppCompatActivity {
         }
 
         getFromSdcard(Environment.getExternalStorageDirectory());
-        GridView imageGrid = (GridView) findViewById(R.id.PhoneImageGrid);
-        ImageAdapter imageAdapter = new ImageAdapter();
+        imageGrid = (GridView) findViewById(R.id.PhoneImageGrid);
+        imageAdapter = new ImageAdapter();
         imageGrid.setAdapter(imageAdapter);
+        onNewIntent(getIntent());
+    }
+
+    protected void onNewIntent(final Intent intent) {
+
+        String action = intent.getAction();
+
+        if ("intent_goal".equals(action)) {
+
+            SP.edit().putInt("image_int", 0).apply();
+            imageAdapter = new ImageAdapter();
+            imageGrid.setAdapter(imageAdapter);
+
+        } else if ("intent_note".equals(action)) {
+
+            SP.edit().putInt("image_int", 1).apply();
+            imageAdapter = new ImageAdapter();
+            imageGrid.setAdapter(imageAdapter);
+        }
     }
 
     private void getFromSdcard(File dir) {
@@ -101,6 +123,7 @@ public class Activity_images extends AppCompatActivity {
     }
 
     private class ImageAdapter extends BaseAdapter {
+
         private final LayoutInflater mInflater;
 
         private ImageAdapter() {
@@ -143,8 +166,15 @@ public class Activity_images extends AppCompatActivity {
 
                     @Override
                     public void onClick(View arg0) {
-                        SP.edit().putString("image_goal", f.get(position)).apply();
-                        finish();
+                        int image_int = SP.getInt("image_int", 0);
+
+                        if (image_int == 0) {
+                            SP.edit().putString("image_goal", f.get(position)).apply();
+                            finish();
+                        } else {
+                            SP.edit().putString("handleTextAttachment", f.get(position)).apply();
+                            finish();
+                        }
                     }
                 });
 

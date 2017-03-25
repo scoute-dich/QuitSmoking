@@ -37,6 +37,7 @@ public class Activity_EditNote extends AppCompatActivity {
     private Button attachment;
     private ImageButton attachmentRem;
     private ImageButton attachmentCam;
+    private ImageButton attachmentPic;
     private EditText titleInput;
     private EditText textInput;
     private SharedPreferences sharedPref;
@@ -65,10 +66,9 @@ public class Activity_EditNote extends AppCompatActivity {
         final String attName = file.substring(file.lastIndexOf("/")+1);
 
         attachmentRem = (ImageButton) findViewById(R.id.button_rem);
-        attachmentRem.setImageResource(R.drawable.close_red);
         attachment = (Button) findViewById(R.id.button_att);
         attachmentCam = (ImageButton) findViewById(R.id.button_cam);
-        attachmentCam.setImageResource(R.drawable.camera);
+        attachmentPic = (ImageButton) findViewById(R.id.button_pic);
 
         String att = getString(R.string.note_attachment) + ": " + attName;
 
@@ -76,16 +76,19 @@ public class Activity_EditNote extends AppCompatActivity {
             attachment.setText(R.string.choose_att);
             attachmentRem.setVisibility(View.GONE);
             attachmentCam.setVisibility(View.VISIBLE);
+            attachmentPic.setVisibility(View.VISIBLE);
         } else {
             attachment.setText(att);
             attachmentRem.setVisibility(View.VISIBLE);
             attachmentCam.setVisibility(View.GONE);
+            attachmentPic.setVisibility(View.GONE);
         }
         File file2 = new File(file);
         if (!file2.exists()) {
             attachment.setText(R.string.choose_att);
             attachmentRem.setVisibility(View.GONE);
             attachmentCam.setVisibility(View.VISIBLE);
+            attachmentPic.setVisibility(View.VISIBLE);
         }
 
         titleInput = (EditText) findViewById(R.id.note_title_input);
@@ -119,9 +122,6 @@ public class Activity_EditNote extends AppCompatActivity {
                 Intent mainIntent = new Intent(Activity_EditNote.this, Activity_files.class);
                 mainIntent.setAction("file_chooseAttachment");
                 startActivity(mainIntent);
-
-                attachmentRem.setVisibility(View.VISIBLE);
-                attachmentCam.setVisibility(View.GONE);
             }
         });
 
@@ -133,6 +133,18 @@ public class Activity_EditNote extends AppCompatActivity {
                 attachment.setText(R.string.choose_att);
                 attachmentRem.setVisibility(View.GONE);
                 attachmentCam.setVisibility(View.VISIBLE);
+                attachmentPic.setVisibility(View.VISIBLE);
+            }
+        });
+
+        attachmentPic.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(Activity_EditNote.this, Activity_images.class);
+                intent.setAction("intent_note");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
             }
         });
 
@@ -375,10 +387,8 @@ public class Activity_EditNote extends AppCompatActivity {
         final String attName = file.substring(file.lastIndexOf("/")+1);
 
         attachmentRem = (ImageButton) findViewById(R.id.button_rem);
-        attachmentRem.setImageResource(R.drawable.close_red);
         attachment = (Button) findViewById(R.id.button_att);
         attachmentCam = (ImageButton) findViewById(R.id.button_cam);
-        attachmentCam.setImageResource(R.drawable.camera);
 
         String att = getString(R.string.note_attachment) + ": " + attName;
 
@@ -386,16 +396,19 @@ public class Activity_EditNote extends AppCompatActivity {
             attachment.setText(R.string.choose_att);
             attachmentRem.setVisibility(View.GONE);
             attachmentCam.setVisibility(View.VISIBLE);
+            attachmentPic.setVisibility(View.VISIBLE);
         } else {
             attachment.setText(att);
             attachmentRem.setVisibility(View.VISIBLE);
             attachmentCam.setVisibility(View.GONE);
+            attachmentPic.setVisibility(View.GONE);
         }
         File file2 = new File(file);
         if (!file2.exists()) {
             attachment.setText(R.string.choose_att);
             attachmentRem.setVisibility(View.GONE);
             attachmentCam.setVisibility(View.VISIBLE);
+            attachmentPic.setVisibility(View.VISIBLE);
         }
     }
 

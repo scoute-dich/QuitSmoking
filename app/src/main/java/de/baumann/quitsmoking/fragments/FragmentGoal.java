@@ -128,8 +128,8 @@ public class FragmentGoal extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_imageLoad) {
-
             Intent intent_in = new Intent(getActivity(), Activity_images.class);
+            intent_in.setAction("intent_goal");
             startActivity(intent_in);
             getActivity().overridePendingTransition(0, 0);
         }
