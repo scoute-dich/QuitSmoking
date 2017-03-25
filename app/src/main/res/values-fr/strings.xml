@@ -1,0 +1,245 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    // App
+    <string name="app_name">Quit Smoking</string>
+    <string name="yes">OK</string>
+    <string name="no">Annuler</string>
+    <string name="app_permissions_title">Permissions requises</string>
+    <string name="app_permissions">
+        &lt;i>Accès au stockage :&lt;/i>&lt;br>
+        &#8226; Journal: sauvegarder et restaurer depuis/vers la sdcard.&lt;br>
+        &#8226; Objectif: charger et enregistrer des images pour vos objectifs personnels.&lt;br>&lt;br>
+        &lt;i>Accorder les permissions ultérieurement:&lt;/i>&lt;br>
+        Si vous ne les acceptez pas maintenant, vous pourrez le faire plus tard. Veuillez ouvrir les \"Paramètres -> Informations sur l\'application\" et sélectionner \"Autorisations\".</string>
+    //Share
+    <string name="share_text">Bonne nouvelle: j'ai arrêté de fumer depuis</string>
+    <string name="share_text2">et</string>
+    <string name="share_text3">j'ai économisé :</string>
+    <string name="share_text4">cigarettes</string>
+    <string name="share_text5">et</string>
+    <string name="share_text6">de mon temps.</string>
+    <string name="share_subject">J'ai arrêté de fumer</string>
+    // Menu
+    <string name="action_settings">Paramètres</string>
+    <string name="action_share">Partager</string>
+    <string name="action_health">Santé</string>
+    <string name="action_overview">Général</string>
+    <string name="action_diary">Journal</string>
+    <string name="action_goal">Objectif</string>
+    <string name="action_save">Enregistrer</string>
+    // Main Activity
+    <string name="not_set">Ajuster les paramètres</string>
+    <string name="not_set2">0.0</string>
+    <string name="money_euro">€</string>
+    <string name="money_dollar">$</string>
+    <string name="money_pound">£</string>
+    <string name="money_yen">¥</string>
+    <string name="time_days">jours</string>
+    <string name="time_hours">heures</string>
+    <string name="time_minutes">minutes</string>
+    <string name="last_time_date">>Arrêt de la cigarette le :</string>
+    <string name="last_since">Pas fumé(e) depuis :</string>
+    <string name="stat">Économies :</string>
+    <string name="stat_h">h</string>
+    // Health Activity
+    <string name="health_congratulations">Félicitations, vous l\'avez fait !</string>
+    <string name="health_reached">Atteint dans :</string>
+    <string name="health_header1">Pression sanguine</string>
+    <string name="health_description1">La pression sanguine et les pulsations du cœur redeviennent normales. (20 minutes)</string>
+    <string name="health_header2">Monoxyde de carbone</string>
+    <string name="health_description2" tools:ignore="StringFormatCount">La quantité de monoxyde de carbone dans le sang diminue de moitié. L’oxygénation des cellules redevient normale. (8 heures)</string>
+    <string name="health_header3">Risque d’infarctus</string>
+    <string name="health_description3">Le risque d’infarctus du myocarde diminue déjà. Les poumons commencent à éliminer le mucus et les résidus de fumée. Le corps ne contient plus de nicotine. (1 jour)</string>
+    <string name="health_header4">Odorat</string>
+    <string name="health_description4">Le goût et l’odorat s’améliorent. Les terminaisons nerveuses gustatives commencent à repousser. (2 jours)</string>
+    <string name="health_header5">Respiration</string>
+    <string name="health_description5">Respirer devient plus facile. Les bronches commencent à se relâcher et on se sent plus énergique. (3 jours)</string>
+    <string name="health_header6">Sevrage de la nicotine</string>
+    <string name="health_description6">Le sevrage physique de la nicotine est terminé. (1 semaine)</string>
+    <string name="health_header7">Performance</string>
+    <string name="health_description7">La circulation sanguine est améliorée. La capacité des poumons est améliorée de 30\%. Ils peuvent absorber encore plus d\'oxygène. Cela accroît les performances physiques. (3 mois)</string>
+    <string name="health_header8">Cils bronchiques</string>
+    <string name="health_description8">Les cils bronchiques repoussent. On est de moins en moins essoufflé. (9 mois)</string>
+    <string name="health_header9">Accident vasculaire cérébral</string>
+    <string name="health_description9">Le risque d’infarctus du myocarde diminue de moitié. Le risque d’accident vasculaire cérébral rejoint celui d’un non-fumeur. (1 an)</string>
+    <string name="health_header10">Crise cardiaque</string>
+    <string name="health_description10">Le risque de crise cardiaque chute significativement. (2 ans)</string>
+    <string name="health_header11">Cancer du poumon</string>
+    <string name="health_description11">Le risque de cancer du poumon diminue presque de moitié. (5 ans)</string>
+    <string name="health_header12">Lung cancer</string>
+    <string name="health_description12">L’espérance de vie redevient identique à celle des personnes n’ayant jamais fumé. Les cellules pré-cancereuses sont remplacées par des cellules saines. (10 ans)</string>
+    <string name="health_header13">Crise cardiaque</string>
+    <string name="health_description13">Le risque de crise cardiaque est quasiment au même niveau qu'une personne n'ayant jamais fumée. (15 ans)</string>
+    // Journal
+    <string name="action_backup">Sauvegarder le journal</string>
+    <string name="action_restore">Restaurer le journal</string>
+    <string name="action_delete">Supprimer le journal</string>
+    // Notes
+    <string name="note_remove_confirmation">Êtes-vous sûr(e) de vouloir la supprimer ?</string>
+    <string name="note_remove_note">Supprimer la note</string>
+    <string name="note_edit">Modifier la note</string>
+    <string name="note_share">Partager la note</string>
+    <string name="note_share_2">Partager avec :</string>
+    <string name="title_hint">Titre</string>
+    <string name="text_hint">Description</string>
+    <string name="toast_extension">Extension de fichier non supportée</string>
+    <string name="toast_install_app">Veuillez installer une application pour effectuer cette opération.</string>
+    <string name="note_attachment">Pièce jointe</string>
+    <string name="text_tit_1">Neutre</string>
+    <string name="text_tit_2">Heureux</string>
+    <string name="text_tit_3">Triste</string>
+    <string name="text_tit_4">Sourire</string>
+    <string name="text_tit_5">Cool</string>
+    <string name="text_tit_6">Mort</string>
+    <string name="text_tit_7">Excité</string>
+    <string name="text_tit_8">Langue</string>
+    <string name="text_tit_9">Diable</string>
+    <string name="toast_backup">Sauvegarde réussie.</string>
+    <string name="toast_restore">Restauration réussie.</string>
+    <string name="toast_backup_not">Échec de la sauvegarde.</string>
+    <string name="toast_restore_not">Échec de la restauration.</string>
+    <string name="toast_save">Note non sauvegardée. Annuler les changements ?</string>
+    <string name="paste_date">Ajouter la date du jour</string>
+    <string name="paste_time">Ajouter l\'heure actuelle</string>
+    <string name="paste_line">Ajouter une lgine</string>
+    <string name="action_sort">Trier les notes</string>
+    <string name="action_sort_title">Trier par titre</string>
+    <string name="action_sort_icon">Trier par humeur</string>
+    <string name="action_sort_create">Trier par date</string>
+    // Camera
+    <string name="cam_fail">Impossible de prendre une photo</string>
+    <string name="cam_success">Photo enregistrée</string>
+    //File chooser
+    <string name="choose_att">Choisir pièce jointe</string>
+    <string name="choose_title">Gestionnaire de fichiers</string>
+    // Goal
+    <string name="goal_cancel">Annuler</string>
+    <string name="action_image">Photo</string>
+    <string name="action_imageLoad">Choisir une image</string>
+    <string name="action_imageRotate">Faire pivoter l\image</string>
+    <string name="action_imageDelete">Supprimer l\'image</string>
+    <string name="costs">Dépenses :</string>
+    <string name="alreadySaved">Déjà economisé :</string>
+    <string name="costsRemaining">Restant :</string>
+    // Settings
+    <string name="settings_category_0">Onglets</string>
+    <string name="settings_category_1">Statistiques</string>
+    <string name="settings_category_2">Onglet Objectif</string>
+    <string name="settings_category_3">App</string>
+    <string name="settings_goalDate">Prochain objectif</string>
+    <string name="settings_tab_overview">Onglet Général</string>
+    <string name="settings_tab_health">Onglet Santé</string>
+    <string name="settings_tab_goal">Onglet Objectif</string>
+    <string name="settings_tab_diary">Onglet Journal</string>
+    <string name="settings_goalDate_summary">Si vous avez atteint votre objectif actuel, vous pouvez ici définir une date de début pour votre votre prochain objectif.
+	Cela est nécessaire pour calculer le nouveau temps quand vous atteindrez l\'objectif suivant, tout en gardant les bonnes statistiques dans l\'onglet Général.</string>
+    <string name="settings_tab_overview_summary">Souhaitez-vous utiliser l\'onglet Général ? Les principaux indicateurs y sont présents :
+        le temps de sevrage, les économies de cigarettes et d\'argent, etc.</string>
+    <string name="settings_tab_health_summary">Souhaitez-vous utiliser l\'onglet Santé ? On y retrouve les bénéfices sur votre santé : crise cardiaque, cancer, etc.</string>
+    <string name="settings_tab_goal_summary">Souhaitez-vous utiliser l\'onglet Objectif ? Définissez votre objectif personnel. Par exemple, quelque chose que vous voulez acheter avec l\'argent économisé.</string>
+    <string name="settings_tab_diary_summary">Souhaitez-vous utiliser l\'onglet Journal ? Dans cet onglet, vous pouvez écrire votre propre journal intime. Peut-être que cela vous aidera.</string>
+    <string name="a_goal">Objectif personnel</string>
+    <string name="a_goal_summary">Comment allez-vous utiliser l\'argent économisé ? Merci de saisir un titre et le coût que cela représente.</string>
+    <string name="settings_goalTitle_hint">Nom de votre objectif</string>
+    <string name="settings_goalCosts_hint">Coût (nombre entier): 199</string>
+    <string name="settings_costs">Dépenses</string>
+    <string name="settings_costs_summary">Prix d\'une seule cigarette. Ceci est utilisé pour calculer l\'argent économisé depuis que vous avez arrêté de fumer.</string>
+    <string name="settings_cost_hint">Quel est le prix d'une cigarette N</string>
+    <string name="settings_currency">Devise</string>
+    <string name="settings_currency_summary">Définissez votre devise</string>
+    <string name="a_cig">Habitudes de tabac</string>
+    <string name="a_cig_summary">Saisir le nombre de cigarettes fumées par jour ainsi que le temps que prend une cigarette pour être fumée.</string>
+    <string name="a_cig_hintNumb">Nombre de cigarettes</string>
+    <string name="a_cig_hintTime">Temps en heures (exemple 0,2)</string>
+    <string name="a_time">Temps</string>
+    <string name="a_time_summary">Quand avez-vous arrêter de fumer ? Veuillez saisir une date et une heure.</string>
+    <string name="a_time_hintDate">Date (format de date préféré)</string>
+    <string name="a_time_hintTime">Temps (format 24h : 22:22)</string>
+    <string name="a_dateFormat">Format de date</string>
+    <string name="a_dateFormat_summary">Définir votre format de date préféré. Toujours l\'utiliser quand vous saisissez une date.</string>
+    <string name="a_openSettings">Informations sur l\'application</string>
+    <string name="a_openSettings_summary">Ouvrir les informations de l\'application depuis les paramètres système. Depuis cet écran, vous pouvez gérer plusieurs éléments (selon votre version Android : stockage, réseau, autorisations,...).</string>
+    <string name="toast_newTitle">Titre déjà saisi.</string>
+    <string name="toast_notSave">Impossible d\'enregistrer la note.</string>
+    <string name="toast_directory">Impossible d\'ouvrir le répertoire.</string>
+    <string name="toast_files">Aucun fichier dans ce répertoire.</string>
+    <string name="toast_delete">Toutes les notes seront supprimés.</string>
+    <string name="action_filter">Rechercher</string>
+    <string name="action_filter_title">Rechercher dans les titres</string>
+    <string name="action_filter_cont">Rechercher dans les descriptions</string>
+    <string name="action_filter_create">Rechercher dans les dates</string>
+    <string name="filter_today">Aujourd\'hui</string>
+    <string name="filter_yesterday">Hier</string>
+    <string name="filter_before">Avant-hier</string>
+    <string name="filter_month">Ce mois</string>
+    <string name="filter_own">Recherche personnalisée</string>
+    <string name="filter_clear">Annuler la recherche</string>
+    <string name="sort_title">titre</string>
+    <string name="sort_date">date</string>
+    <string name="sort_pri">humeur</string>
+    //Intro
+    <string name="intro1_title">Quit Smoking</string>
+    <string name="intro1_text">Merci d\'avoir choisir \"Quit Smoking\". Elle est open source et entièrement libre.</string>
+    <string name="intro2_title">Fonctionnalités</string>
+    <string name="intro2_text">\"Quit Smoking\" vous propose une vue d\'ensemble avec quelques indicateurs et les bénéfices sur votre santé.
+        De plus, vous pouvez définir un objectif (Qu'allez-vous faire avec tout cet argent économisé ?) et écrire un journal intime. </string>
+    <string name="intro3_title">Paramètres</string>
+    <string name="intro3_text">Veuillez renseigner quelques informations à propos de vos habitudes de tabac depuis l\'écran des Paramètres. Vous pouvez également configurer quelques réglages de base (format de date, devise, etc.). Maintenant, allons-y !</string>
+    // About
+    <string name="about_settings">À propos … et d\'autres choses</string>
+    <string name="about_settings_text">Changements, aide, licence, bibliothèques utilisées et plus encore.</string>
+    <string name="about_title_dev">Développeur</string>
+    <string name="about_title_libs">Ressources utilisées</string>
+    <string name="about_title_ext">Contributeurs</string>
+    <string name="about_title_ext3">Traduction japanaise</string>
+    <string name="about_changelog">Changements</string>
+    <string name="about_changelog_summary">Ouvrir le site Github et voir ce qu\'il y a de nouveau (connexion Internet requises)</string>
+    <string name="about_license">Licence</string>
+    <string name="about_license_summary">L\'application est publiée sous licence GPL et est entièrement open source et libre.</string>
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Ouvrir mon profil sur Github (connexion Internet requises).</string>
+    <string name="about_intro">Introduction</string>
+    <string name="about_intro_summary">Afficher l\'écran d\'introduction une nouvelle fois.</string>
+    <string name="about_donate">Dons</string>
+    <string name="about_donate_summary">Si vous aimez l\'application, vous pouvez me faire un don via Paypal (connexion Internet requises).</string>
+    <string name="about_license_3">Utilisé pour faire l\'écran de d\'introduction.</string>
+    <string name="about_license_7">Utilisé pour faire le menu \"À propos\".</string>
+    <string name="about_license_8">La source de presque tous les icônes.</string>
+    <string name="about_license_9">Une bibliothèque puissante pour le cache et le téléchargement d\'image pour Android.</string>
+    //License Dialog
+    <string name="about_title">Copyright © 2016 par Gaukler Faun</string>
+    <string name="about_text">
+        &lt;i>For more informations visit the project site on Github:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see http://www.gnu.org/licenses.
+    </string>
+    //String arrays
+    <string-array name="listCurrency">
+        <item>Euro (€)</item>
+        <item>Dollar ($)</item>
+        <item>Pound (£)</item>
+        <item>Yen (¥)</item>
+    </string-array>
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listDate">
+        <item>International (2016–06–20)</item>
+        <item>Allemand (20.06.2016)</item>
+    </string-array>
+    <string-array name="listValuesDate">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
