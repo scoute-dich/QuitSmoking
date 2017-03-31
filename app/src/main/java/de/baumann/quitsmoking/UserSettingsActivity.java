@@ -37,6 +37,7 @@ public class UserSettingsActivity extends AppCompatActivity {
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+
         PreferenceManager.setDefaultValues(UserSettingsActivity.this, R.xml.user_settings, false);
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);
         boolean show = SP.getBoolean("intro_notShow", true);
