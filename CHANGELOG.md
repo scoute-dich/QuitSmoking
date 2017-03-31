@@ -1,3 +1,6 @@
+### v 1.7
+- new: share diary entries with attachment
+
 ### v 1.6
 - new: French translation
 - new: choose picture for diary entries
