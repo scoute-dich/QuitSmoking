@@ -125,7 +125,14 @@ class About_content {
                 .text("Neofaum")
                 .subText(R.string.about_title_ext3)
                 .icon(R.drawable.github_circle)
-                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/scoute-dich/QuitSmoking/releases")))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/naofum")))
+                .build());
+
+        authorCardBuilder2.addItem(new MaterialAboutActionItem.Builder()
+                .text("Primokorn")
+                .subText(R.string.about_title_ext4)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/Primokorn")))
                 .build());
 
         MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
@@ -143,6 +150,13 @@ class About_content {
                 .subText(R.string.about_license_9)
                 .icon(R.drawable.github_circle)
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Glide", "https://github.com/bumptech/glide", true, false))
+                .build());
+
+        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Image Picker")
+                .subText(R.string.about_license_1)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Image Picker", "https://github.com/Mariovc/ImagePicker", true, false))
                 .build());
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()

@@ -12,6 +12,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +34,8 @@ public class UserSettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             setTitle(R.string.action_settings);
         }
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         PreferenceManager.setDefaultValues(UserSettingsActivity.this, R.xml.user_settings, false);
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(this);

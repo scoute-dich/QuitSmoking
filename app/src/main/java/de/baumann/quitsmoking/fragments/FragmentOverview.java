@@ -196,7 +196,7 @@ public class FragmentOverview extends Fragment {
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
-                    double time = sa * timeMin;
+                    double time = (sa * timeMin) / 60;
                     String savedTimeMinutes = String.format(Locale.GERMANY, "%.1f", time);
                     textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
                     textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));

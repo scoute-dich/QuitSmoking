@@ -159,12 +159,6 @@
     <string name="action_sort_create">Sort by date</string>
 
 
-    // Camera
-
-    <string name="cam_fail">Failed to take picture</string>
-    <string name="cam_success">Picture saved</string>
-
-
     //File chooser
 
     <string name="choose_att">Choose attachment</string>
@@ -223,7 +217,7 @@
     <string name="a_cig">Smoke habits</string>
     <string name="a_cig_summary">Enter the number of smoked cigarettes per day and the time it took to smoke one cigarette.</string>
     <string name="a_cig_hintNumb">Number of cigarettes</string>
-    <string name="a_cig_hintTime">Time in hours (e.g. 0,2)</string>
+    <string name="a_cig_hintTime">Time in minutes</string>
 
     <string name="a_time">Time</string>
     <string name="a_time_summary">When did you stop smoking? Please enter date and time.</string>
@@ -282,6 +276,7 @@
     <string name="about_title_libs">Used resources</string>
     <string name="about_title_ext">Contributors</string>
     <string name="about_title_ext3">Japanese translation</string>
+    <string name="about_title_ext4">French translation</string>
 
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
@@ -302,6 +297,7 @@
     <string name="about_license_7">Used to create the \"About screen\".</string>
     <string name="about_license_8">The source of nearly all icons.</string>
     <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
+    <string name="about_license_1">Android library to easily pick an image from gallery or camera app.</string>
 
 
     //License Dialog

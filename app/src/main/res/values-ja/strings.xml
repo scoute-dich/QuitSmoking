@@ -157,12 +157,6 @@
     <string name="action_sort_create">作成順に並び替え</string>
 
 
-    // Camera
-
-    <string name="cam_fail">写真の撮影に失敗しました</string>
-    <string name="cam_success">写真を保存しました</string>
-
-
     //File chooser
 
     <string name="choose_att">添付を選択</string>
@@ -220,7 +214,7 @@
     <string name="a_cig">喫煙の習慣</string>
     <string name="a_cig_summary">1 日あたり喫煙したタバコの数とタバコを 1 本吸う時間を入力してください。</string>
     <string name="a_cig_hintNumb">タバコの数</string>
-    <string name="a_cig_hintTime">時間 (時間で) (例 0,2)</string>
+    <string name="a_cig_hintTime">時間 (時間で) (Now in minutes!)</string>
 
     <string name="a_time">時間</string>
     <string name="a_time_summary">あなたはいつ禁煙しましたか? 日時を入力してください。</string>

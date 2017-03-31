@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
@@ -37,7 +36,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import java.io.File;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -60,20 +58,6 @@ public class helper_main {
         }
         Linkify.addLinks(s, Linkify.WEB_URLS);
         return s;
-    }
-
-    static File newFile () {
-        return  new File(Environment.getExternalStorageDirectory() + newFileDest() + newFileName());
-    }
-
-    private static String newFileDest () {
-        return  ("/Android/data/quitsmoking/");
-    }
-
-    private static String newFileName () {
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault());
-        return  dateFormat.format(date) + ".jpg";
     }
 
     public static void showKeyboard(final Activity from, final EditText editText) {

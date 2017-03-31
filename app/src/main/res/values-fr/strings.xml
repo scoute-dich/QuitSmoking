@@ -11,13 +11,13 @@
         &lt;i>Accorder les permissions ultérieurement:&lt;/i>&lt;br>
         Si vous ne les acceptez pas maintenant, vous pourrez le faire plus tard. Veuillez ouvrir les \"Paramètres -> Informations sur l\'application\" et sélectionner \"Autorisations\".</string>
     //Share
-    <string name="share_text">Bonne nouvelle: j'ai arrêté de fumer depuis</string>
+    <string name="share_text">Bonne nouvelle: j\'ai arrêté de fumer depuis</string>
     <string name="share_text2">et</string>
-    <string name="share_text3">j'ai économisé :</string>
+    <string name="share_text3">j\'ai économisé :</string>
     <string name="share_text4">cigarettes</string>
     <string name="share_text5">et</string>
     <string name="share_text6">de mon temps.</string>
-    <string name="share_subject">J'ai arrêté de fumer</string>
+    <string name="share_subject">J\'ai arrêté de fumer</string>
     // Menu
     <string name="action_settings">Paramètres</string>
     <string name="action_share">Partager</string>
@@ -68,7 +68,7 @@
     <string name="health_header12">Lung cancer</string>
     <string name="health_description12">L’espérance de vie redevient identique à celle des personnes n’ayant jamais fumé. Les cellules pré-cancereuses sont remplacées par des cellules saines. (10 ans)</string>
     <string name="health_header13">Crise cardiaque</string>
-    <string name="health_description13">Le risque de crise cardiaque est quasiment au même niveau qu'une personne n'ayant jamais fumée. (15 ans)</string>
+    <string name="health_description13">Le risque de crise cardiaque est quasiment au même niveau qu\'une personne n\'ayant jamais fumée. (15 ans)</string>
     // Journal
     <string name="action_backup">Sauvegarder le journal</string>
     <string name="action_restore">Restaurer le journal</string>
@@ -105,9 +105,7 @@
     <string name="action_sort_title">Trier par titre</string>
     <string name="action_sort_icon">Trier par humeur</string>
     <string name="action_sort_create">Trier par date</string>
-    // Camera
-    <string name="cam_fail">Impossible de prendre une photo</string>
-    <string name="cam_success">Photo enregistrée</string>
+
     //File chooser
     <string name="choose_att">Choisir pièce jointe</string>
     <string name="choose_title">Gestionnaire de fichiers</string>
@@ -143,13 +141,13 @@
     <string name="settings_goalCosts_hint">Coût (nombre entier): 199</string>
     <string name="settings_costs">Dépenses</string>
     <string name="settings_costs_summary">Prix d\'une seule cigarette. Ceci est utilisé pour calculer l\'argent économisé depuis que vous avez arrêté de fumer.</string>
-    <string name="settings_cost_hint">Quel est le prix d'une cigarette N</string>
+    <string name="settings_cost_hint">Quel est le prix d\'une cigarette N</string>
     <string name="settings_currency">Devise</string>
     <string name="settings_currency_summary">Définissez votre devise</string>
     <string name="a_cig">Habitudes de tabac</string>
     <string name="a_cig_summary">Saisir le nombre de cigarettes fumées par jour ainsi que le temps que prend une cigarette pour être fumée.</string>
     <string name="a_cig_hintNumb">Nombre de cigarettes</string>
-    <string name="a_cig_hintTime">Temps en heures (exemple 0,2)</string>
+    <string name="a_cig_hintTime">Temps en minutes</string>
     <string name="a_time">Temps</string>
     <string name="a_time_summary">Quand avez-vous arrêter de fumer ? Veuillez saisir une date et une heure.</string>
     <string name="a_time_hintDate">Date (format de date préféré)</string>
@@ -157,7 +155,7 @@
     <string name="a_dateFormat">Format de date</string>
     <string name="a_dateFormat_summary">Définir votre format de date préféré. Toujours l\'utiliser quand vous saisissez une date.</string>
     <string name="a_openSettings">Informations sur l\'application</string>
-    <string name="a_openSettings_summary">Ouvrir les informations de l\'application depuis les paramètres système. Depuis cet écran, vous pouvez gérer plusieurs éléments (selon votre version Android : stockage, réseau, autorisations,...).</string>
+    <string name="a_openSettings_summary">Ouvrir les informations de l\'application depuis les paramètres système. Depuis cet écran, vous pouvez gérer plusieurs éléments (selon votre version Android : stockage, réseau, autorisations,…).</string>
     <string name="toast_newTitle">Titre déjà saisi.</string>
     <string name="toast_notSave">Impossible d\'enregistrer la note.</string>
     <string name="toast_directory">Impossible d\'ouvrir le répertoire.</string>
@@ -181,7 +179,7 @@
     <string name="intro1_text">Merci d\'avoir choisir \"Quit Smoking\". Elle est open source et entièrement libre.</string>
     <string name="intro2_title">Fonctionnalités</string>
     <string name="intro2_text">\"Quit Smoking\" vous propose une vue d\'ensemble avec quelques indicateurs et les bénéfices sur votre santé.
-        De plus, vous pouvez définir un objectif (Qu'allez-vous faire avec tout cet argent économisé ?) et écrire un journal intime. </string>
+        De plus, vous pouvez définir un objectif (Qu\'allez-vous faire avec tout cet argent économisé ?) et écrire un journal intime. </string>
     <string name="intro3_title">Paramètres</string>
     <string name="intro3_text">Veuillez renseigner quelques informations à propos de vos habitudes de tabac depuis l\'écran des Paramètres. Vous pouvez également configurer quelques réglages de base (format de date, devise, etc.). Maintenant, allons-y !</string>
     // About

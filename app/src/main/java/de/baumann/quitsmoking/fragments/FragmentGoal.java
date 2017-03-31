@@ -1,13 +1,20 @@
 package de.baumann.quitsmoking.fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,9 +30,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.mvc.imagepicker.ImagePicker;
 
 import de.baumann.quitsmoking.R;
-import de.baumann.quitsmoking.helper.Activity_images;
 
 
 public class FragmentGoal extends Fragment {
@@ -128,10 +135,7 @@ public class FragmentGoal extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_imageLoad) {
-            Intent intent_in = new Intent(getActivity(), Activity_images.class);
-            intent_in.setAction("intent_goal");
-            startActivity(intent_in);
-            getActivity().overridePendingTransition(0, 0);
+            onPickImage();
         }
 
         if (id == R.id.action_imageRotate) {
@@ -152,6 +156,39 @@ public class FragmentGoal extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
+
+        if (bitmap != null) {
+            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+            Uri tempUri = getImageUri(getActivity().getApplicationContext(), bitmap);
+            String path = getRealPathFromURI(tempUri);
+            SP.edit().putString("image_goal", path).apply();
+        }
+    }
+
+    private Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    private String getRealPathFromURI(Uri uri) {
+        @SuppressLint("Recycle") Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+        assert cursor != null;
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+    private void onPickImage() {
+        // Click on image button
+        ImagePicker.pickImage(this, "Select your image:");
     }
 
     private void calculate(View rootView, String DateFormat) {

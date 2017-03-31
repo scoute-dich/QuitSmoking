@@ -1,5 +1,7 @@
-### v 1.6 (WIP)
+### v 1.6
+- new: French translation
 - new: choose picture for diary entries
+- improved: time format in settings (duration)
 - fix: crash on choose attachment (Marshmallow+)
 
 ### v 1.5

@@ -160,12 +160,6 @@
     <string name="action_sort_create">Sortiere nach Datum</string>
 
 
-    // Camera
-
-    <string name="cam_fail">Konnte Bild nicht erstellen</string>
-    <string name="cam_success">Bild gespeichert</string>
-
-
     //File chooser
 
     <string name="choose_att">Anhang auswählen</string>
@@ -228,7 +222,7 @@
     <string name="a_cig_summary">Gib die Anzahl der Zigaretten, die du am Tag geraucht hast und die Zeit, die du für eine Zigarette
         gebraucht hast, an.</string>
     <string name="a_cig_hintNumb">Anzahl der Zigaretten</string>
-    <string name="a_cig_hintTime">Zeit in Stunden (z.B. 0,2)</string>
+    <string name="a_cig_hintTime">Zeit in Minuten</string>
 
     <string name="a_time">Zeitpunkt</string>
     <string name="a_time_summary">Wann hast du mit Rauchen aufgehört? Gib Datum und Uhrzeit an.</string>
@@ -289,6 +283,7 @@
     <string name="about_title_libs">Benutzte Ressourcen</string>
     <string name="about_title_ext">Beteiligte</string>
     <string name="about_title_ext3">Japanische Übersetzung</string>
+    <string name="about_title_ext4">Französische Übersetzung</string>
 
     <string name="about_changelog">Änderungen</string>
     <string name="about_changelog_summary">Öffne die Github Seite und schaue, was es Neues gibt … (braucht eine Internetverbindung)</string>
@@ -311,6 +306,7 @@
     <string name="about_license_7">Gebraucht um den \"About screen\" zu erstellen.</string>
     <string name="about_license_8">Die Quelle von fast allen Icons.</string>
     <string name="about_license_9">Bibliothek zum Downloaden und Anzeigen von Bildern.</string>
+    <string name="about_license_1">Android Bibliothek um Bilder zu machen oder auszuwählen.</string>
 
 
     //License Dialog
