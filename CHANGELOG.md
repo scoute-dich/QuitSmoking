@@ -1,4 +1,4 @@
-### v 1.7
+### v 1.7 - v 1.8
 - new: share diary entries with attachment
 
 ### v 1.6
