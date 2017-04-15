@@ -153,7 +153,9 @@ public class FragmentNotes extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        setNotesList();
+        if (filter_layout.getVisibility() == View.GONE) {
+            setNotesList();
+        }
         if (sharedPref.getString("newIntent", "false").equals("true")) {
             Intent intent = new Intent(getActivity(), Activity_EditNote.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -557,7 +559,9 @@ public class FragmentNotes extends Fragment {
                 assert tab != null;
                 tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_today));
                 setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
                 filter.setText(search);
+                filter.setHint(R.string.action_filter_create);
                 return true;
             case R.id.filter_yesterday:
                 DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -568,7 +572,9 @@ public class FragmentNotes extends Fragment {
                 assert tab != null;
                 tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_yesterday));
                 setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
                 filter.setText(search2);
+                filter.setHint(R.string.action_filter_create);
                 return true;
             case R.id.filter_before:
                 DateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -579,7 +585,9 @@ public class FragmentNotes extends Fragment {
                 assert tab != null;
                 tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_before));
                 setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
                 filter.setText(search3);
+                filter.setHint(R.string.action_filter_create);
                 return true;
             case R.id.filter_month:
                 DateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
@@ -589,7 +597,9 @@ public class FragmentNotes extends Fragment {
                 assert tab != null;
                 tab.setText(getString(R.string.action_diary) + " | " + getString(R.string.filter_month));
                 setNotesList();
+                filter_layout.setVisibility(View.VISIBLE);
                 filter.setText(search4);
+                filter.setHint(R.string.action_filter_create);
                 return true;
             case R.id.filter_own:
                 sharedPref.edit().putString("filter_noteBY", "note_creation").apply();

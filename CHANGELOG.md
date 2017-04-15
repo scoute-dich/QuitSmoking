@@ -1,3 +1,7 @@
+### v 2.0
+- improved: search
+- improved: font sizes
+
 ### v 1.7 - v 1.9
 - new: share diary entries with attachment
 
