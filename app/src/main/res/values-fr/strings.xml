@@ -114,7 +114,6 @@
     <string name="action_image">Photo</string>
     <string name="action_imageLoad">Choisir une image</string>
     <string name="action_imageRotate">Faire pivoter l\image</string>
-    <string name="action_imageDelete">Supprimer l\'image</string>
     <string name="costs">Dépenses :</string>
     <string name="alreadySaved">Déjà economisé :</string>
     <string name="costsRemaining">Restant :</string>
@@ -170,7 +169,6 @@
     <string name="filter_before">Avant-hier</string>
     <string name="filter_month">Ce mois</string>
     <string name="filter_own">Recherche personnalisée</string>
-    <string name="filter_clear">Annuler la recherche</string>
     <string name="sort_title">titre</string>
     <string name="sort_date">date</string>
     <string name="sort_pri">humeur</string>

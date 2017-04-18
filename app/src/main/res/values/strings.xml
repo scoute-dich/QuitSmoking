@@ -171,7 +171,6 @@
     <string name="action_image">Picture</string>
     <string name="action_imageLoad">Choose image</string>
     <string name="action_imageRotate">Rotate image</string>
-    <string name="action_imageDelete">Delete image</string>
     <string name="costs">Costs:</string>
     <string name="alreadySaved">Already saved:</string>
     <string name="costsRemaining">Remaining:</string>
@@ -247,7 +246,6 @@
     <string name="filter_before">Day before yesterday</string>
     <string name="filter_month">This month</string>
     <string name="filter_own">Own search</string>
-    <string name="filter_clear">Cancel search</string>
 
     <string name="sort_title">title</string>
     <string name="sort_date">date</string>

@@ -169,7 +169,6 @@
     <string name="action_image">画像を</string>
     <string name="action_imageLoad">画像を読み込む</string>
     <string name="action_imageRotate">画像を回転</string>
-    <string name="action_imageDelete">画像を削除</string>
     <string name="costs">費用:</string>
     <string name="alreadySaved">すでに保存済:</string>
     <string name="costsRemaining">残り:</string>
@@ -245,7 +244,6 @@
     <string name="filter_before">Day before yesterday</string>
     <string name="filter_month">This month</string>
     <string name="filter_own">Own search</string>
-    <string name="filter_clear">Cancel search</string>
 
     <string name="sort_title">title</string>
     <string name="sort_date">date</string>
