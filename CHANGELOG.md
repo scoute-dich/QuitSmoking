@@ -1,3 +1,8 @@
+### v 2.1 (WIP)
+- improved: filter by date
+- improved: backup / restore diary
+- improved: layout goal / health
+
 ### v 2.0
 - improved: search
 - improved: font sizes

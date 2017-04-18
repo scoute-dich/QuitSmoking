@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/backup/");
+        File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking.backup");
         if (!directory.exists()) {
             directory.mkdirs();
         }

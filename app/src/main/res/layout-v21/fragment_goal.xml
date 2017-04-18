@@ -64,13 +64,18 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
             android:id="@+id/imageView"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/file_image_dark"
             android:layout_below="@+id/progressBar"
             android:layout_alignParentStart="true"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="46dp"
+            android:layout_below="@+id/imageView" />
 
     </RelativeLayout>
 

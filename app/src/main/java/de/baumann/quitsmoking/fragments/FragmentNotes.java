@@ -612,11 +612,6 @@ public class FragmentNotes extends Fragment {
                 filter.requestFocus();
                 helper_main.showKeyboard(getActivity(), filter);
                 return true;
-            case R.id.filter_clear:
-                filter.setText("");
-                setTitle();
-                setNotesList();
-                return true;
 
             case R.id.sort_title:
                 sharedPref.edit().putString("sortDB", "title").apply();
@@ -648,7 +643,7 @@ public class FragmentNotes extends Fragment {
                     if (sd.canWrite()) {
                         String currentDBPath = "//data//" + "de.baumann.quitsmoking"
                                 + "//databases//" + "notes_DB_v01.db";
-                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking//" + "//backup//" + "notes_DB_v01.db";
+                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking.backup//" + "notes_DB_v01.db";
                         File currentDB = new File(data, currentDBPath);
                         File backupDB = new File(sd, backupDBPath);
 
@@ -679,7 +674,7 @@ public class FragmentNotes extends Fragment {
 
                         String currentDBPath = "//data//" + "de.baumann.quitsmoking"
                                 + "//databases//" + "notes_DB_v01.db";
-                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking//" + "//backup//" + "notes_DB_v01.db";
+                        String backupDBPath = "//Android//" + "//data//" + "//quitsmoking.backup//" + "notes_DB_v01.db";
                         File currentDB = new File(data, currentDBPath);
                         File backupDB = new File(sd, backupDBPath);
 
@@ -688,6 +683,7 @@ public class FragmentNotes extends Fragment {
                         dst.transferFrom(src, 0, src.size());
                         src.close();
                         dst.close();
+                        setNotesList();
 
                         Snackbar snackbar = Snackbar
                                 .make(lv, R.string.toast_restore, Snackbar.LENGTH_LONG);
@@ -707,7 +703,7 @@ public class FragmentNotes extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 getActivity().deleteDatabase("notes_DB_v01.db");
-                                setNotesList();
+                                getActivity().recreate();
                             }
                         });
                 snackbar.show();

@@ -147,13 +147,6 @@ public class FragmentGoal extends Fragment {
                 SP.edit().putBoolean(rotate, true).apply();
             }
         }
-        if (id == R.id.action_imageDelete) {
-            File f = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking/goal_picture.jpg");
-            if(f.exists()){
-                f.delete();
-                viewImage.setImageResource(R.drawable.file_image_dark);
-            }
-        }
 
         return super.onOptionsItemSelected(item);
     }

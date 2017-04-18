@@ -622,12 +622,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="46dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/text_small"
-            android:layout_below="@+id/progressBar13"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/progressBar13" />
 
     </RelativeLayout>
 

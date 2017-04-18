@@ -29,8 +29,6 @@
                 app:showAsAction="ifRoom" >
                 <!-- "file" submenu -->
                 <menu>
-                    <item android:id="@+id/filter_clear"
-                        android:title="@string/filter_clear" />
                     <item android:id="@+id/filter_own"
                         android:title="@string/filter_own" />
                     <item android:id="@+id/filter_month"
@@ -92,8 +90,6 @@
                 android:title="@string/action_imageLoad" />
             <item android:id="@+id/action_imageRotate"
                 android:title="@string/action_imageRotate" />
-            <item android:id="@+id/action_imageDelete"
-                android:title="@string/action_imageDelete" />
         </menu>
     </item>
 
