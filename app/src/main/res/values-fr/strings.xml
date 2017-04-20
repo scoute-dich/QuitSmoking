@@ -36,8 +36,8 @@
     <string name="time_days">jours</string>
     <string name="time_hours">heures</string>
     <string name="time_minutes">minutes</string>
-    <string name="last_time_date">>Arrêt de la cigarette le :</string>
-    <string name="last_since">Pas fumé(e) depuis :</string>
+    <string name="last_time_date">Arrêt de la cigarette le :</string>
+    <string name="last_since">Pas fumé depuis :</string>
     <string name="stat">Économies :</string>
     <string name="stat_h">h</string>
     // Health Activity
