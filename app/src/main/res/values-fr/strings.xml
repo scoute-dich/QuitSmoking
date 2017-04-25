@@ -149,10 +149,8 @@
     <string name="a_cig_hintTime">Temps en minutes</string>
     <string name="a_time">Temps</string>
     <string name="a_time_summary">Quand avez-vous arrêter de fumer ? Veuillez saisir une date et une heure.</string>
-    <string name="a_time_hintDate">Date (format de date préféré)</string>
-    <string name="a_time_hintTime">Temps (format 24h : 22:22)</string>
     <string name="a_dateFormat">Format de date</string>
-    <string name="a_dateFormat_summary">Définir votre format de date préféré. Toujours l\'utiliser quand vous saisissez une date.</string>
+    <string name="a_dateFormat_summary">Définir votre format de date préféré.</string>
     <string name="a_openSettings">Informations sur l\'application</string>
     <string name="a_openSettings_summary">Ouvrir les informations de l\'application depuis les paramètres système. Depuis cet écran, vous pouvez gérer plusieurs éléments (selon votre version Android : stockage, réseau, autorisations,…).</string>
     <string name="toast_newTitle">Titre déjà saisi.</string>

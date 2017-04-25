@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -186,24 +185,24 @@ public class FragmentGoal extends Fragment {
 
     private void calculate(View rootView, String DateFormat) {
 
+        long goalDate_next = SP.getLong("goalDate_next", 0);
+
         String currency = SP.getString("currency", "1");
         String cigNumb = SP.getString("cig", "");
-        String dateQuit = SP.getString("date", "");
-        String timeQuit = SP.getString("time", "");
         String savedMoney = SP.getString("costs", "");
         String goalCosts = SP.getString("goalCosts", "");
-        String goalDate = SP.getString("goalDate", "");
 
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat(DateFormat, Locale.getDefault());
 
-        String dateStart = dateQuit + " " + timeQuit;
+        String dateStart = format.format(SP.getLong("startTime", 0));
+        String goalDate = format.format(SP.getLong("goalDate_next", 0));
+
         String dateStop = format.format(date);
-        String dateGoal = goalDate + " " + "00:00";
 
         try {
 
-            if (goalDate.isEmpty()) {
+            if (goalDate_next == 0) {
 
                 //Time Difference
                 Date d1 = format.parse(dateStart);
@@ -288,7 +287,7 @@ public class FragmentGoal extends Fragment {
             } else {
 
                 //Time Difference
-                Date d1 = format.parse(dateGoal);
+                Date d1 = format.parse(goalDate);
                 Date d2 = format.parse(dateStop);
                 long diff = d2.getTime() - d1.getTime();
 

@@ -3,7 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="text_big">28sp</dimen>
     <dimen name="text_normal">20sp</dimen>
     <dimen name="text_small">12sp</dimen>
 

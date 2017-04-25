@@ -220,11 +220,9 @@
 
     <string name="a_time">Time</string>
     <string name="a_time_summary">When did you stop smoking? Please enter date and time.</string>
-    <string name="a_time_hintDate">Date (preferred date format)</string>
-    <string name="a_time_hintTime">Time (24h format: 22:22)</string>
 
     <string name="a_dateFormat">Date format</string>
-    <string name="a_dateFormat_summary">Set your preferred date format. Use it always, when you enter a date.</string>
+    <string name="a_dateFormat_summary">Set your preferred date format.</string>
 
     <string name="a_openSettings">App info</string>
     <string name="a_openSettings_summary">Open via the system settings the app info of the app. There you can,
@@ -296,6 +294,7 @@
     <string name="about_license_8">The source of nearly all icons.</string>
     <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
     <string name="about_license_1">Android library to easily pick an image from gallery or camera app.</string>
+    <string name="about_license_2">Used for date and time pickers in the settings.</string>
 
 
     //License Dialog

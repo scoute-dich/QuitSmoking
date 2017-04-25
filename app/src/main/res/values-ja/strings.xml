@@ -217,8 +217,6 @@
 
     <string name="a_time">時間</string>
     <string name="a_time_summary">あなたはいつ禁煙しましたか? 日時を入力してください。</string>
-    <string name="a_time_hintDate">日付 (希望の日付形式)</string>
-    <string name="a_time_hintTime">時間 (24時間形式: 22:22)</string>
 
     <string name="a_dateFormat">日付形式</string>
     <string name="a_dateFormat_summary">希望する日付形式を設定します。 日付を入力するときは、常にそれを使用します。</string>

@@ -1,4 +1,7 @@
-### v 2.1 (WIP)
+### v 2.1
+- new: time picker in settings
+- fix: wrong saved time in overview (international date format)
+- improved: French translation (@Primokorn)
 - improved: filter by date
 - improved: backup / restore diary
 - improved: layout goal / health

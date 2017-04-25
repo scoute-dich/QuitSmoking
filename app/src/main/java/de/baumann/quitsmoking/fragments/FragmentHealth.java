@@ -126,7 +126,7 @@ public class FragmentHealth extends Fragment {
                 Date date2 = new Date();
                 SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
-                String dateStart2 = dateQuit + " " + timeQuit;
+                String dateStart2 = format2.format(SP.getLong("startTime", 0));
                 String dateStop2 = format2.format(date2);
 
                 ProgressBar progressBar2;
@@ -223,13 +223,10 @@ public class FragmentHealth extends Fragment {
 
     private void setProgressCase1 (View view, int hourTime, int progressBarC1, int text) {
 
-        String dateQuit = SP.getString("date", "");
-        String timeQuit = SP.getString("time", "");
-
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
-        String dateStart = dateQuit + " " + timeQuit;
+        String dateStart = format.format(SP.getLong("startTime", 0));
         String dateStop = format.format(date);
 
         ProgressBar progressBar;
@@ -295,13 +292,10 @@ public class FragmentHealth extends Fragment {
 
     private void setProgressCase2 (View view, int hourTime, int progressBarC2, int text) {
 
-        String dateQuit = SP.getString("date", "");
-        String timeQuit = SP.getString("time", "");
-
         Date date2 = new Date();
         SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
-        String dateStart2 = dateQuit + " " + timeQuit;
+        String dateStart2 = format2.format(SP.getLong("startTime", 0));
         String dateStop2 = format2.format(date2);
 
         ProgressBar progressBar2;

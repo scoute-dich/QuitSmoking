@@ -17,6 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+import java.util.Calendar;
+
 import de.baumann.quitsmoking.about.About_activity;
 import de.baumann.quitsmoking.helper.Activity_intro;
 import de.baumann.quitsmoking.helper.helper_main;
@@ -54,7 +59,9 @@ public class UserSettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public static class SettingsFragment extends PreferenceFragment {
+    public static class SettingsFragment extends PreferenceFragment implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+
+
 
 
         private void addLicenseListener() {
@@ -101,49 +108,74 @@ public class UserSettingsActivity extends AppCompatActivity {
 
                     PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
                     final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    sharedPref.edit().putInt("DatePicker", 0).apply();
 
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    View dialogView = View.inflate(getActivity(), R.layout.dialog_date, null);
-
-                    final EditText editDate = (EditText) dialogView.findViewById(R.id.textDate);
-                    editDate.setText(sharedPref.getString("date", ""));
-                    final EditText editTime = (EditText) dialogView.findViewById(R.id.textTime);
-                    editTime.setText(sharedPref.getString("time", ""));
-
-                    builder.setView(dialogView);
-                    builder.setTitle(R.string.a_time);
-                    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-
-                            String inputTag = editDate.getText().toString().trim();
-                            sharedPref.edit().putString("date", inputTag).apply();
-
-                            String inputTag2 = editTime.getText().toString().trim();
-                            sharedPref.edit().putString("time", inputTag2).apply();
-                        }
-                    });
-                    builder.setNegativeButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    final AlertDialog dialog2 = builder.create();
-                    // Display the custom alert dialog on interface
-                    dialog2.show();
-
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            helper_main.showKeyboard(getActivity(), editDate);
-                        }
-                    }, 200);
+                    Calendar now = Calendar.getInstance();
+                    DatePickerDialog dpd = DatePickerDialog.newInstance(
+                            SettingsFragment.this,
+                            now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+                    );
+                    dpd.show(getFragmentManager(), "DatePickerDialog");
+                    dpd.setThemeDark(true);
 
                     return true;
                 }
             });
+        }
+
+        @Override
+        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+            PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            if (sharedPref.getInt("DatePicker", 0) == 0) {
+                sharedPref.edit().putInt("start_year", year).apply();
+                sharedPref.edit().putInt("start_month", monthOfYear).apply();
+                sharedPref.edit().putInt("start_day", dayOfMonth).apply();
+
+                Calendar now = Calendar.getInstance();
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                        SettingsFragment.this,
+                        now.get(Calendar.HOUR_OF_DAY),
+                        now.get(Calendar.MINUTE),
+                        true
+                );
+                tpd.show(getFragmentManager(), "DatePickerDialog");
+                tpd.setThemeDark(true);
+            } else {
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, monthOfYear);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                cal.set(Calendar.HOUR_OF_DAY, 0);
+                cal.set(Calendar.MINUTE, 0);
+
+                sharedPref.edit().putLong("goalDate_next", cal.getTimeInMillis()).apply();
+            }
+        }
+
+        @Override
+        public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+
+            PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
+            final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, sharedPref.getInt("start_year", 0));
+            cal.set(Calendar.MONTH, sharedPref.getInt("start_month", 0));
+            cal.set(Calendar.DAY_OF_MONTH, sharedPref.getInt("start_day", 0));
+            cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            cal.set(Calendar.MINUTE, minute);
+
+            sharedPref.edit().putLong("startTime", cal.getTimeInMillis()).apply();
+            sharedPref.edit().putInt("start_year", 0).apply();
+            sharedPref.edit().putInt("start_month", 0).apply();
+            sharedPref.edit().putInt("start_day", 0).apply();
+
+            sharedPref.edit().putString("entry_date", "").apply();
         }
 
         private void addCigListener() {
@@ -306,40 +338,17 @@ public class UserSettingsActivity extends AppCompatActivity {
 
                     PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
                     final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    sharedPref.edit().putInt("DatePicker", 1).apply();
 
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    View dialogView = View.inflate(getActivity(), R.layout.dialog_goal_date, null);
-
-                    final EditText editDate = (EditText) dialogView.findViewById(R.id.textDate);
-                    editDate.setText(sharedPref.getString("goalDate", ""));
-
-                    builder.setView(dialogView);
-                    builder.setTitle(R.string.settings_goalDate);
-                    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-
-                            String inputTag = editDate.getText().toString().trim();
-                            sharedPref.edit().putString("goalDate", inputTag).apply();
-                        }
-                    });
-                    builder.setNegativeButton(R.string.goal_cancel, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    final AlertDialog dialog2 = builder.create();
-                    // Display the custom alert dialog on interface
-                    dialog2.show();
-
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            helper_main.showKeyboard(getActivity(), editDate);
-                        }
-                    }, 200);
+                    Calendar now = Calendar.getInstance();
+                    DatePickerDialog dpd = DatePickerDialog.newInstance(
+                            SettingsFragment.this,
+                            now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+                    );
+                    dpd.show(getFragmentManager(), "DatePickerDialog");
+                    dpd.setThemeDark(true);
 
                     return true;
                 }

@@ -167,6 +167,13 @@ class About_content {
                 .build());
 
         convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Material Date Time Picker")
+                .subText(R.string.about_license_2)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Material Date Time Picker", "https://github.com/wdullaer/MaterialDateTimePicker", true, false))
+                .build());
+
+        convenienceCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Material Design Icons")
                 .subText(R.string.about_license_8)
                 .icon(R.drawable.github_circle)

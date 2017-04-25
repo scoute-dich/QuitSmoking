@@ -56,8 +56,11 @@ public class FragmentOverview extends Fragment {
                 Date date = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
-                String dateStart = dateQuit + " " + timeQuit;
+                String dateStart = format.format(SP.getLong("startTime", 0));
                 String dateStop = format.format(date);
+
+                dateQuit = dateStart.substring(0, 10);
+                timeQuit = dateStart.substring(11, 16);
 
                 try {
                     Date d1 = format.parse(dateStart);
@@ -119,7 +122,7 @@ public class FragmentOverview extends Fragment {
 
                     //Saved Time
                     double timeMin = Double.valueOf(savedTime.trim());
-                    double time = sa * timeMin;
+                    double time = (sa * timeMin) / 60;
                     String savedTimeMinutes = String.format(Locale.US, "%.1f", time);
                     textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
                     textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));
@@ -130,11 +133,15 @@ public class FragmentOverview extends Fragment {
                 break;
 
             case "2":
+
                 Date date2 = new Date();
                 SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 
-                String dateStart2 = dateQuit + " " + timeQuit;
+                String dateStart2 = format2.format(SP.getLong("startTime", 0));
                 String dateStop2 = format2.format(date2);
+
+                dateQuit = dateStart2.substring(0, 10);
+                timeQuit = dateStart2.substring(11, 16);
 
                 try {
                     Date d1 = format2.parse(dateStart2);
