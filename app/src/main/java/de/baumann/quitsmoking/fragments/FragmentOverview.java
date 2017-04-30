@@ -3,7 +3,9 @@ package de.baumann.quitsmoking.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,10 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import de.baumann.quitsmoking.MainActivity;
 import de.baumann.quitsmoking.R;
+import de.baumann.quitsmoking.helper.Activity_EditNote;
+import de.baumann.quitsmoking.helper.helper_main;
 
 public class FragmentOverview extends Fragment {
 
@@ -35,13 +41,15 @@ public class FragmentOverview extends Fragment {
     private String savedMoney;
     private String savedTime;
 
+    private SharedPreferences SP;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
-        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         currency = SP.getString("currency", "1");
         dateFormat = SP.getString("dateFormat", "1");
@@ -263,6 +271,61 @@ public class FragmentOverview extends Fragment {
                             saved_money + " "  + getString(R.string.share_text5) + " " +
                             saved_time + " " + getString(R.string.share_text6));
                     startActivity(Intent.createChooser(sharingIntent, "Share using"));
+
+                }
+                return true;
+
+            case R.id.action_reset:
+
+
+
+                if (currency != null  && currency.length() > 0 &&
+                        dateFormat != null  && dateFormat.length() > 0 &&
+                        cigNumb != null  && cigNumb.length() > 0 &&
+                        dateQuit != null  && dateQuit.length() > 0 &&
+                        timeQuit != null  && timeQuit.length() > 0 &&
+                        savedMoney != null  && savedMoney.length() > 0 &&
+                        savedTime != null  && savedTime.length() > 0 ) {
+
+                    Snackbar snackbar = Snackbar
+                            .make(textView_time2, R.string.reset_confirm, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.yes, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    String days = textView_time2.getText().toString();
+                                    String hours = textView_time3.getText().toString();
+                                    String minutes = textView_time4.getText().toString();
+
+                                    String saved_cigarettes = textView_cig2.getText().toString();
+                                    String saved_money = textView_cig2_cost.getText().toString();
+                                    String saved_time = textView_duration.getText().toString();
+
+                                    String title = String.valueOf(getString(R.string.share_subject_fail) + " " +
+                                            saved_time);
+
+                                    String text = String.valueOf(getString(R.string.share_text_fail) + " " +
+                                            days + " " + hours + " " + getString(R.string.share_text2)) + " " + minutes + ". " +
+                                            getString(R.string.share_text3) + " " + saved_cigarettes + " " + getString(R.string.share_text4) + ", " +
+                                            saved_money + " "  + getString(R.string.share_text5) + " " +
+                                            saved_time + " " + getString(R.string.share_text6);
+
+                                    SP.edit()
+                                            .putString("handleTextTitle", title)
+                                            .putString("handleTextText", text)
+                                            .putString("handleTextCreate", helper_main.createDate())
+                                            .apply();
+                                    Intent intent = new Intent(getActivity(), Activity_EditNote.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    getActivity().startActivity(intent);
+
+                                    SP.edit().putLong("startTime", Calendar.getInstance().getTimeInMillis()).apply();
+                                    getActivity().finish();
+                                }
+                            });
+                    snackbar.show();
+
+
 
                 }
                 return true;

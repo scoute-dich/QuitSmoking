@@ -16,15 +16,18 @@
         If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
 
 
-    //Share
+    //Share //Reset
 
     <string name="share_text">Great news: I stopped smoking since</string>
+    <string name="share_text_fail">Bad news: I failed stop smoking after</string>
     <string name="share_text2">and</string>
     <string name="share_text3">I saved:</string>
     <string name="share_text4">cigarettes</string>
     <string name="share_text5">and</string>
     <string name="share_text6">of time.</string>
     <string name="share_subject">I stopped smoking</string>
+    <string name="share_subject_fail">Failed after:</string>
+    <string name="reset_confirm">Reset the time and create a diary entry?</string>
 
 
     // Menu
@@ -36,6 +39,7 @@
     <string name="action_diary">Diary</string>
     <string name="action_goal">Goal</string>
     <string name="action_save">Save</string>
+    <string name="action_reset">Reset</string>
 
 
     // Main Activity

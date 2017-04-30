@@ -11,6 +11,13 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_reset"
+        android:orderInCategory="100"
+        android:title="@string/action_reset"
+        android:icon="@drawable/backup_restore"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_filter"
         android:orderInCategory="100"
         android:title="@string/action_filter"

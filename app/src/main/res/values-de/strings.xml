@@ -17,15 +17,18 @@
         dort den Bereich \"Berechtigungen\" auswählst.</string>
 
 
-    //Share
+    //Share //Reset
 
     <string name="share_text">Gute Neuigkeiten: ich rauche nicht mehr seit</string>
+    <string name="share_text_fail">Schlechte Neuigkeiten: ich habe wieder angefangen zu rauchen. Nach</string>
     <string name="share_text2">und</string>
     <string name="share_text3">Ich habe gespart:</string>
     <string name="share_text4">Zigaretten</string>
     <string name="share_text5">und</string>
     <string name="share_text6">an Zeit.</string>
     <string name="share_subject">Ich habe mit dem Rauchen aufgehört</string>
+    <string name="share_subject_fail">Rückfall nach:</string>
+    <string name="reset_confirm">Zeit zurücksetzen und Tagebucheintrag erstellen?</string>
 
 
     // Menu
@@ -37,6 +40,7 @@
     <string name="action_diary">Tagebuch</string>
     <string name="action_goal">Ziel</string>
     <string name="action_save">Sparen</string>
+    <string name="action_reset">Zurücksetzen</string>
 
 
     // Main Activity
