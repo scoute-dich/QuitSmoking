@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         calculate();
     }
 
-    public void calculate () {
+    private void calculate() {
 
         SP = PreferenceManager.getDefaultSharedPreferences(this);
 

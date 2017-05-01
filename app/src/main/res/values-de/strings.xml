@@ -20,7 +20,7 @@
     //Share //Reset
 
     <string name="share_text">Gute Neuigkeiten: ich rauche nicht mehr seit</string>
-    <string name="share_text_fail">Schlechte Neuigkeiten: ich habe wieder angefangen zu rauchen. Nach</string>
+    <string name="share_text_fail">Ich habe wieder angefangen zu rauchen. Nach</string>
     <string name="share_text2">und</string>
     <string name="share_text3">Ich habe gespart:</string>
     <string name="share_text4">Zigaretten</string>

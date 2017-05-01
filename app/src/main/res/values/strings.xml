@@ -19,7 +19,7 @@
     //Share //Reset
 
     <string name="share_text">Great news: I stopped smoking since</string>
-    <string name="share_text_fail">Bad news: I failed stop smoking after</string>
+    <string name="share_text_fail">I failed stop smoking after</string>
     <string name="share_text2">and</string>
     <string name="share_text3">I saved:</string>
     <string name="share_text4">cigarettes</string>
