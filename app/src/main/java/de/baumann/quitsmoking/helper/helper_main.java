@@ -23,9 +23,11 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.text.Html;
@@ -44,6 +46,63 @@ import de.baumann.quitsmoking.R;
 
 
 public class helper_main {
+
+    public static void calculate(Activity activity) {
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(activity);
+
+        String cigNumb = SP.getString("cig", "");
+        String savedMoney = SP.getString("costs", "");
+        String savedTime = SP.getString("duration", "");
+
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+
+        String dateStart = format.format(SP.getLong("startTime", 0));
+        String dateStop = format.format(date);
+
+        try {
+
+            Date d1 = format.parse(dateStart);
+            Date d2 = format.parse(dateStop);
+
+            //Time Difference
+            long diff = d2.getTime() - d1.getTime();
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            String days = Long.toString(diffDays);
+            String hours = Long.toString(diffHours);
+            String minutes = Long.toString(diffMinutes);
+
+            SP.edit().putString("SPtimeDiffDays", days).apply();
+            SP.edit().putString("SPtimeDiffHours", hours).apply();
+            SP.edit().putString("SPtimeDiffMinutes", minutes).apply();
+
+            //Saved Cigarettes
+            long cigNumber = Long.parseLong(cigNumb);
+            long cigDay = 86400000 / cigNumber;
+            long savedCig = diff / cigDay;
+            String cigSavedString = Long.toString(savedCig);
+            SP.edit().putString("SPcigSavedString", cigSavedString).apply();
+
+            //Saved Money
+            double costCig = Double.valueOf(savedMoney.trim());
+            double sa = Long.parseLong(cigSavedString);
+            double moneySaved = sa * costCig;
+            String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
+            SP.edit().putString("SPmoneySavedString", moneySavedString).apply();
+
+            //Saved Time
+            double timeMin = Double.valueOf(savedTime.trim());
+            double time = sa * timeMin;
+            String timeSavedString = String.format(Locale.US, "%.1f", time);
+            SP.edit().putString("SPtimeSavedString", timeSavedString).apply();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

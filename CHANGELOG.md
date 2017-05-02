@@ -1,3 +1,7 @@
+### v 2.2
+- improved: code simplified
+- added: fail button on overview fragment
+
 ### v 2.1
 - new: time picker in settings
 - fix: wrong saved time in overview (international date format)

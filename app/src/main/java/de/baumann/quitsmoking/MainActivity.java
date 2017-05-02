@@ -21,11 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import de.baumann.quitsmoking.fragments.FragmentGoal;
 import de.baumann.quitsmoking.fragments.FragmentHealth;
@@ -36,15 +33,6 @@ import de.baumann.quitsmoking.helper.helper_main;
 public class MainActivity extends AppCompatActivity {
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
-
-    private static final String SPtimeDiffDays = "SPtimeDiffDays";
-    private static final String SPtimeDiffHours = "SPtimeDifHours";
-    private static final String SPtimeDiffMinutes = "SPtimeDiffMinutes";
-
-    private static final String SPcigSavedString = "SPcigSavedString";
-    private static final String SPmoneySavedString = "SPmoneySavedString";
-    private static final String SPtimeSavedString = "SPtimeSavedString";
-
     private SharedPreferences SP;
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -102,119 +90,6 @@ public class MainActivity extends AppCompatActivity {
         File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking.backup");
         if (!directory.exists()) {
             directory.mkdirs();
-        }
-
-        calculate();
-    }
-
-    private void calculate() {
-
-        SP = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String dateFormat = SP.getString("dateFormat", "1");
-        String cigNumb = SP.getString("cig", "");
-        String dateQuit = SP.getString("date", "");
-        String timeQuit = SP.getString("time", "");
-        String savedMoney = SP.getString("costs", "");
-        String savedTime = SP.getString("duration", "");
-
-        switch (dateFormat) {
-            case "1":
-                Date date = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-
-                String dateStart = dateQuit + " " + timeQuit;
-                String dateStop = format.format(date);
-
-                try {
-                    Date d1 = format.parse(dateStart);
-                    Date d2 = format.parse(dateStop);
-
-                    //Time Difference
-                    long timeDiff = d2.getTime() - d1.getTime();
-                    long timeDiffMinutes = timeDiff / (60 * 1000) % 60;
-                    long timeDiffHours = timeDiff / (60 * 60 * 1000) % 24;
-                    long timeDiffDays = timeDiff / (24 * 60 * 60 * 1000);
-                    String timeDiffDaysString = Long.toString(timeDiffDays);
-                    String timeDiffHoursString = Long.toString(timeDiffHours);
-                    String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
-
-                    //Saved Cigarettes
-                    long cigNumber = Long.parseLong(cigNumb);
-                    long cigDay = 86400000 / cigNumber;
-                    long savedCig = timeDiff / cigDay;
-                    String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
-
-                    //Saved Money
-                    double costCig = Double.valueOf(savedMoney.trim());
-                    double sa = Long.parseLong(cigSavedString);
-                    double moneySaved = sa * costCig;
-                    String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
-
-                    //Saved Time
-                    double timeMin = Double.valueOf(savedTime.trim());
-                    double time = sa * timeMin;
-                    String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-
-            case "2":
-                Date date2 = new Date();
-                SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
-
-                String dateStart2 = dateQuit + " " + timeQuit;
-                String dateStop2 = format2.format(date2);
-
-                try {
-                    Date d1 = format2.parse(dateStart2);
-                    Date d2 = format2.parse(dateStop2);
-
-                    //Time Difference
-                    long timeDiff = d2.getTime() - d1.getTime();
-                    long timeDiffMinutes = timeDiff / (60 * 1000) % 60;
-                    long timeDiffHours = timeDiff / (60 * 60 * 1000) % 24;
-                    long timeDiffDays = timeDiff / (24 * 60 * 60 * 1000);
-                    String timeDiffDaysString = Long.toString(timeDiffDays);
-                    String timeDiffHoursString = Long.toString(timeDiffHours);
-                    String timeDiffMinutesString = Long.toString(timeDiffMinutes);
-                    SP.edit().putString(SPtimeDiffDays, timeDiffDaysString).apply();
-                    SP.edit().putString(SPtimeDiffHours, timeDiffHoursString).apply();
-                    SP.edit().putString(SPtimeDiffMinutes, timeDiffMinutesString).apply();
-
-                    //Saved Cigarettes
-                    long cigNumber = Long.parseLong(cigNumb);
-                    long cigDay = 86400000 / cigNumber;
-                    long savedCig = timeDiff / cigDay;
-                    String cigSavedString = Long.toString(savedCig);
-                    SP.edit().putString(SPcigSavedString, cigSavedString).apply();
-
-                    //Saved Money
-                    double costCig = Double.valueOf(savedMoney.trim());
-                    double sa = Long.parseLong(cigSavedString);
-                    double moneySaved = sa * costCig;
-                    String moneySavedString = String.format(Locale.US, "%.2f", moneySaved);
-                    SP.edit().putString(SPmoneySavedString, moneySavedString).apply();
-
-                    //Saved Time
-                    double timeMin = Double.valueOf(savedTime.trim());
-                    double time = sa * timeMin;
-                    String timeSavedString = String.format(Locale.US, "%.1f", time);
-                    SP.edit().putString(SPtimeSavedString, timeSavedString).apply();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                break;
         }
     }
 

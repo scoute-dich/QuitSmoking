@@ -29,7 +29,7 @@ public class FragmentHealth extends Fragment {
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        setProgress(rootView,  (1/3),  R.id.progressBar,  R.id.text_reached1);
+        setProgress(rootView, (0.33),   R.id.progressBar,  R.id.text_reached1);
         setProgress(rootView,      8,  R.id.progressBar2,  R.id.text_reached2);
         setProgress(rootView,     24,  R.id.progressBar3,  R.id.text_reached3);
         setProgress(rootView,     48,  R.id.progressBar4,  R.id.text_reached4);

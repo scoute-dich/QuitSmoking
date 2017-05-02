@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import de.baumann.quitsmoking.R;
@@ -36,11 +35,8 @@ public class FragmentOverview extends Fragment {
 
     private String currency;
     private String dateFormat;
-    private String cigNumb;
     private String dateQuit;
     private String timeQuit;
-    private String savedMoney;
-    private String savedTime;
 
     private SharedPreferences SP;
 
@@ -62,13 +58,13 @@ public class FragmentOverview extends Fragment {
         textView_time3 = (TextView) rootView.findViewById(R.id.text_time3);
         textView_time4 = (TextView) rootView.findViewById(R.id.text_time4);
 
+        assert textView_date2 != null;
+        assert textView_date3 != null;
+
         currency = SP.getString("currency", "1");
         dateFormat = SP.getString("dateFormat", "1");
-        cigNumb = SP.getString("cig", "");
         dateQuit = SP.getString("date", "");
         timeQuit = SP.getString("time", "");
-        savedMoney = SP.getString("costs", "");
-        savedTime = SP.getString("duration", "");
 
         switch (dateFormat) {
             case "1":
@@ -87,70 +83,44 @@ public class FragmentOverview extends Fragment {
     }
 
     private void setText (SimpleDateFormat format) {
-        Date date = new Date();
 
         String dateStart = format.format(SP.getLong("startTime", 0));
-        String dateStop = format.format(date);
-
         dateQuit = dateStart.substring(0, 10);
         timeQuit = dateStart.substring(11, 16);
 
         try {
-            Date d1 = format.parse(dateStart);
-            Date d2 = format.parse(dateStop);
 
-            //Time Difference
-            long diff = d2.getTime() - d1.getTime();
-            long diffMinutes = diff / (60 * 1000) % 60;
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-            String days = Long.toString(diffDays);
-            String hours = Long.toString(diffHours);
-            String minutes = Long.toString(diffMinutes);
+            helper_main.calculate(getActivity());
 
-            textView_time2.setText(String.valueOf(days + " " + getString(R.string.time_days)));
-            textView_time3.setText(String.valueOf(hours + " " + getString(R.string.time_hours)));
-            textView_time4.setText(String.valueOf(minutes + " " + getString(R.string.time_minutes)));
+            textView_time2.setText(String.valueOf(SP.getString("SPtimeDiffDays", "0") + " " + getString(R.string.time_days)));
+            textView_time3.setText(String.valueOf(SP.getString("SPtimeDiffHours", "0") + " " + getString(R.string.time_hours)));
+            textView_time4.setText(String.valueOf(SP.getString("SPtimeDiffMinutes", "0") + " " + getString(R.string.time_minutes)));
 
-            assert textView_date2 != null;
             textView_date2.setText(String.valueOf(dateQuit));
-            assert textView_date3 != null;
             textView_date3.setText(String.valueOf(timeQuit));
 
             //Number of Cigarettes
-            long cigNumber = Long.parseLong(cigNumb);
-            long cigDay = 86400000 / cigNumber;
-            long diffCig = diff / cigDay;
-            String cigSaved = Long.toString(diffCig);
-            textView_cig2.setText(String.valueOf(cigSaved));
+            textView_cig2.setText(String.valueOf(SP.getString("SPcigSavedString", "0")));
 
             //Saved Money
-            double costCig = Double.valueOf(savedMoney.trim());
-            double sa = Long.parseLong(cigSaved);
-            double cost = sa * costCig;
-            String cigCost = String.format(Locale.US, "%.2f", cost);
 
             switch (currency) {
                 case "1":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_euro)));
+                    textView_cig2_cost.setText(String.valueOf(String.valueOf(SP.getString("SPmoneySavedString", "0"))) + " " + getString(R.string.money_euro));
                     break;
                 case "2":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_dollar)));
+                    textView_cig2_cost.setText(String.valueOf(String.valueOf(SP.getString("SPmoneySavedString", "0")) + " " + getString(R.string.money_dollar)));
                     break;
                 case "3":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_pound)));
+                    textView_cig2_cost.setText(String.valueOf(String.valueOf(SP.getString("SPmoneySavedString", "0")) + " " + getString(R.string.money_pound)));
                     break;
                 case "4":
-                    textView_cig2_cost.setText(String.valueOf(String.valueOf(cigCost) + " " + getString(R.string.money_yen)));
+                    textView_cig2_cost.setText(String.valueOf(String.valueOf(SP.getString("SPmoneySavedString", "0")) + " " + getString(R.string.money_yen)));
                     break;
             }
 
             //Saved Time
-            double timeMin = Double.valueOf(savedTime.trim());
-            double time = (sa * timeMin) / 60;
-            String savedTimeMinutes = String.format(Locale.US, "%.1f", time);
-
-            textView_duration.setText(String.valueOf(savedTimeMinutes + " " + getString(R.string.stat_h)));
+            textView_duration.setText(String.valueOf(SP.getString("SPtimeSavedString", "0") + " " + getString(R.string.stat_h)));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,11 +153,8 @@ public class FragmentOverview extends Fragment {
 
         if (currency != null  && currency.length() > 0 &&
                 dateFormat != null  && dateFormat.length() > 0 &&
-                cigNumb != null  && cigNumb.length() > 0 &&
                 dateQuit != null  && dateQuit.length() > 0 &&
-                timeQuit != null  && timeQuit.length() > 0 &&
-                savedMoney != null  && savedMoney.length() > 0 &&
-                savedTime != null  && savedTime.length() > 0 ) {
+                timeQuit != null  && timeQuit.length() > 0) {
 
             switch (item.getItemId()) {
 
@@ -211,8 +178,7 @@ public class FragmentOverview extends Fragment {
                                 @Override
                                 public void onClick(View view) {
 
-                                    String title = String.valueOf(getString(R.string.share_subject_fail) + " " +
-                                            days + " " + hours + " " + getString(R.string.share_text2)) + " " + minutes;
+                                    String title = String.valueOf(days + " " + hours + " " + getString(R.string.share_text2)) + " " + minutes;
 
                                     String text = String.valueOf(getString(R.string.share_text_fail) + " " +
                                             days + " " + hours + " " + getString(R.string.share_text2)) + " " + minutes + ". " +
