@@ -82,23 +82,15 @@ class DbAdapter_Files {
     }
 
     //fetch data
-    Cursor fetchAllData(Context context) {
+    Cursor fetchAllData() {
 
-        PreferenceManager.setDefaultValues(context, R.xml.user_settings, false);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         String[] columns = new String[]{"_id", "files_title", "files_content", "files_icon","files_attachment","files_creation"};
 
-        if (sp.getString("sortDBF", "title").equals("title")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "files_icon");
-        } else if (sp.getString("sortDBF", "title").equals("file_Size")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "files_icon");
-        } else if (sp.getString("sortDBF", "title").equals("file_ext")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "files_icon");
-        } else if (sp.getString("sortDBF", "title").equals("file_date")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "files_icon");
-        }
+        String orderBy = "files_icon" + "," +
+                "files_title" + " COLLATE NOCASE ASC;";
 
-        return null;
+
+        return sqlDb.query(dbTable, columns, null, null, null, null, orderBy);
     }
 }

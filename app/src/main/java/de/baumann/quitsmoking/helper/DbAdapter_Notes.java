@@ -80,16 +80,22 @@ public class DbAdapter_Notes {
         String[] columns = new String[]{"_id", "note_title", "note_content", "note_icon","note_attachment","note_creation"};
 
         if (sp.getString("sortDB", "title").equals("title")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "note_title");
+            return sqlDb.query(dbTable, columns, null, null, null, null, "note_title" + " COLLATE NOCASE ASC;");
 
         } else if (sp.getString("sortDB", "title").equals("icon")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "note_icon");
+            String orderBy = "note_icon" + "," +
+                    "note_title" + " COLLATE NOCASE ASC;";
+            return sqlDb.query(dbTable, columns, null, null, null, null, orderBy);
 
         } else if (sp.getString("sortDB", "title").equals("create")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "note_creation");
+            String orderBy = "note_creation" + "," +
+                    "note_title" + " COLLATE NOCASE ASC;";
+            return sqlDb.query(dbTable, columns, null, null, null, null, orderBy);
 
         } else if (sp.getString("sortDB", "title").equals("attachment")) {
-            return sqlDb.query(dbTable, columns, null, null, null, null, "note_attachment");
+            String orderBy = "note_attachment" + "," +
+                    "note_title" + " COLLATE NOCASE ASC;";
+            return sqlDb.query(dbTable, columns, null, null, null, null, orderBy);
         }
 
         return null;

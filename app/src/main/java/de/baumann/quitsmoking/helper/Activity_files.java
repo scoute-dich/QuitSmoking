@@ -71,7 +71,7 @@ public class Activity_files extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.user_settings, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPref.edit().putString("files_startFolder",
-                Environment.getExternalStorageDirectory().getPath() + "/Android/data/quitsmoking/").apply();
+                Environment.getExternalStorageDirectory().getPath()).apply();
 
         setContentView(R.layout.activity_files);
 
@@ -150,27 +150,8 @@ public class Activity_files extends AppCompatActivity {
         Activity_files.this.deleteDatabase("files_DB_v01.db");
 
         File f = new File(sharedPref.getString("files_startFolder",
-                Environment.getExternalStorageDirectory().getPath() + "/Android/data/quitsmoking/"));
+                Environment.getExternalStorageDirectory().getPath()));
         final File[] files = f.listFiles();
-
-        Arrays.sort(files, new Comparator<File>() {
-            @Override
-            public int compare(File file1, File file2) {
-                if(file1.isDirectory()){
-                    if (file2.isDirectory()){
-                        return String.valueOf(file1.getName().toLowerCase()).compareTo(file2.getName().toLowerCase());
-                    }else{
-                        return -1;
-                    }
-                }else {
-                    if (file2.isDirectory()){
-                        return 1;
-                    }else{
-                        return String.valueOf(file1.getName().toLowerCase()).compareTo(file2.getName().toLowerCase());
-                    }
-                }
-            }
-        });
 
         // looping through all items <item>
         if (files.length == 0) {
@@ -181,7 +162,7 @@ public class Activity_files extends AppCompatActivity {
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
-            String file_Name = file.getName().substring(0,1).toUpperCase() + file.getName().substring(1);
+            String file_Name = file.getName();
             String file_Size = getReadableFileSize(file.length());
             String file_date = formatter.format(new Date(file.lastModified()));
             String file_path = file.getAbsolutePath();
@@ -204,15 +185,7 @@ public class Activity_files extends AppCompatActivity {
         try {
             db.insert("...", "", "", "", "");
         } catch (Exception e) {
-            Snackbar snackbar = Snackbar
-                    .make(lv, R.string.toast_directory, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            sharedPref.edit().putInt("keyboard", 0).apply();
-                        }
-                    });
-            snackbar.show();
+            Snackbar.make(lv, R.string.toast_directory, Snackbar.LENGTH_LONG).show();
         }
 
         //display data
@@ -227,7 +200,7 @@ public class Activity_files extends AppCompatActivity {
                 "files_content",
                 "files_creation"
         };
-        final Cursor row = db.fetchAllData(Activity_files.this);
+        final Cursor row = db.fetchAllData();
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(Activity_files.this, layoutstyle, row, column, xml_id, 0) {
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {

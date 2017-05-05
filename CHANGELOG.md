@@ -1,3 +1,7 @@
+### v 2.3
+- improved: sorting diary
+- improved: file manager
+
 ### v 2.2
 - improved: code simplified
 - added: fail button on overview fragment
