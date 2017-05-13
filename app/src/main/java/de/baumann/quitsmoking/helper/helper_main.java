@@ -95,7 +95,7 @@ public class helper_main {
 
             //Saved Time
             double timeMin = Double.valueOf(savedTime.trim());
-            double time = sa * timeMin;
+            double time = (sa * timeMin) / 60;
             String timeSavedString = String.format(Locale.US, "%.1f", time);
             SP.edit().putString("SPtimeSavedString", timeSavedString).apply();
 

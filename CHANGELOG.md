@@ -1,3 +1,6 @@
+### v 2.4
+- fixed: calculation of saved time
+
 ### v 2.3
 - improved: sorting diary
 - improved: file manager
