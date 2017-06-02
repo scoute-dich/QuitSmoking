@@ -140,7 +140,7 @@
     <string name="settings_goalCosts_hint">Coût (nombre entier): 199</string>
     <string name="settings_costs">Dépenses</string>
     <string name="settings_costs_summary">Prix d\'une seule cigarette. Ceci est utilisé pour calculer l\'argent économisé depuis que vous avez arrêté de fumer.</string>
-    <string name="settings_cost_hint">Quel est le prix d\'une cigarette N</string>
+    <string name="settings_cost_hint">Quel est le prix d\'une cigarette ?</string>
     <string name="settings_currency">Devise</string>
     <string name="settings_currency_summary">Définissez votre devise</string>
     <string name="a_cig">Habitudes de tabac</string>
