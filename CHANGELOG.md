@@ -1,3 +1,6 @@
+### v 2.5
+- updated: French translation
+
 ### v 2.4
 - fixed: calculation of saved time
 
