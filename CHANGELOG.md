@@ -1,3 +1,7 @@
+### v 2.6
+- fix: typo in health fragment
+
+
 ### v 2.5
 - updated: French translation
 
