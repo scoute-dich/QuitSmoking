@@ -331,6 +331,18 @@
     </string>
 
 
+    //Info Dialog
+
+    <string name="info_title">Informationsquelle</string>
+    <string name="info_text">
+        http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>
+        &lt;i>Die Quellen der oben genannten Internetseite sind:&lt;/i>&lt;br>&lt;br>
+        Online-Informationen der American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>
+        Online-Informationen des Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>
+        Online-Informationen der Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)
+    </string>
+
+
     //String arrays
 
     <string-array name="listCurrency">

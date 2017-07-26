@@ -522,6 +522,7 @@ public class FragmentNotes extends Fragment {
         menu.findItem(R.id.action_image).setVisible(false);
         menu.findItem(R.id.action_share).setVisible(false);
         menu.findItem(R.id.action_reset).setVisible(false);
+        menu.findItem(R.id.action_info).setVisible(false);
     }
 
     @Override

@@ -1,6 +1,8 @@
+### v 2.7
+- new: source of health info
+
 ### v 2.6
 - fixed: typo in health fragment
-
 
 ### v 2.5
 - updated: French translation

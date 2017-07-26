@@ -220,6 +220,7 @@ public class FragmentGoal extends Fragment {
         menu.findItem(R.id.action_sort).setVisible(false);
         menu.findItem(R.id.action_filter).setVisible(false);
         menu.findItem(R.id.action_reset).setVisible(false);
+        menu.findItem(R.id.action_info).setVisible(false);
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

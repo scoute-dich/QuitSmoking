@@ -135,6 +135,7 @@ public class FragmentOverview extends Fragment {
         menu.findItem(R.id.action_image).setVisible(false);
         menu.findItem(R.id.action_filter).setVisible(false);
         menu.findItem(R.id.action_sort).setVisible(false);
+        menu.findItem(R.id.action_info).setVisible(false);
     }
 
     @Override

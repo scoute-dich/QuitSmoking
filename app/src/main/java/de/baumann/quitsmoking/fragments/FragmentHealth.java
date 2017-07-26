@@ -1,11 +1,18 @@
 package de.baumann.quitsmoking.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -57,6 +64,42 @@ public class FragmentHealth extends Fragment {
         menu.findItem(R.id.action_filter).setVisible(false);
         menu.findItem(R.id.action_sort).setVisible(false);
         menu.findItem(R.id.action_reset).setVisible(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        switch (item.getItemId()) {
+
+            case R.id.action_info:
+
+                SpannableString s;
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    s = new SpannableString(Html.fromHtml(getString(R.string.info_text),Html.FROM_HTML_MODE_LEGACY));
+                } else {
+                    //noinspection deprecation
+                    s = new SpannableString(Html.fromHtml(getString(R.string.info_text)));
+                }
+
+                Linkify.addLinks(s, Linkify.WEB_URLS);
+
+                final AlertDialog d = new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.info_title)
+                        .setMessage(s)
+                        .setPositiveButton(getString(R.string.yes),
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                }).show();
+                d.show();
+                ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setProgress (View view, double hourTime, int progressBar_ID, int text) {
