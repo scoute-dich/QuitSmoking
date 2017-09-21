@@ -18,7 +18,7 @@
 
     //Share //Reset
 
-    <string name="share_text">Great news: I stopped smoking since</string>
+    <string name="share_text">Great news: I haven\'t smoked since</string>
     <string name="share_text_fail">I failed stop smoking after</string>
     <string name="share_text2">and</string>
     <string name="share_text3">I saved:</string>
@@ -71,30 +71,29 @@
     <string name="health_description1">Blood pressure, body temperature and heart rate return to normal. (20 minutes)</string>
 
     <string name="health_header2">Carbon monoxide</string>
-    <string name="health_description2" tools:ignore="StringFormatCount">The smoker breath disappears. The poisonous gas carbon monoxide blocks
-         for a smoker about 10% of the red blood cells. These cells are now available again
-         for oxygen. (8 hours)</string>
+    <string name="health_description2" tools:ignore="StringFormatCount">Smoker\'s breath disappears. For a smoker, about 10% of 
+        the red blood cells are blocked by the poisonous gas carbon monoxide. These cells are now available again for oxygen. 
+        (8 hours)</string>
 
     <string name="health_header3">Heart attack</string>
-    <string name="health_description3">The risk of sudden cardiac death decreases. (1 day)</string>
+    <string name="health_description3">The risk of death sudden cardiac arrest decreases. (1 day)</string>
 
     <string name="health_header4">Sense of smell</string>
-    <string name="health_description4">The sense of smell and the taste buds becoming more sensitive; smelling
+    <string name="health_description4">Your sense of smell and taste buds become more sensitive; smelling
          and taste is refined. (2 days)</string>
 
     <string name="health_header5">Breathing</string>
     <string name="health_description5">Breathing becomes easier. (3 days)</string>
 
     <string name="health_header6">Nicotine withdrawal</string>
-    <string name="health_description6">The physical nicotine withdrawal is made. (1 week)</string>
+    <string name="health_description6">The physical withdrawal from nicotine is made. (1 week)</string>
 
     <string name="health_header7">Capacity</string>
-    <string name="health_description7">The entire blood circulation improves. The increased lung capacity
-         by up to 30 %, they can absorb more oxygen again. This increases the physical
-         Performance. (3 months)</string>
+    <string name="health_description7">The entire blood circulation improves. Increased lung capacity is
+         up by 30 %, The lungs can once more absorb more oxygen. This add an increase to physical performance. (3 months)</string>
 
     <string name="health_header8">Lung hairs</string>
-    <string name="health_description8">By now, the fine hairs are regrow in the lungs, the smokers cough
+    <string name="health_description8">By now, the fine hairs in the lungs are regrown and smokers cough
         disappears. Exhaustion and shortness of breath improve progressively. (9 months)</string>
 
     <string name="health_header9">Coronary arteries</string>
@@ -105,16 +104,16 @@
     <string name="health_description10">The risk of heart attack drops significantly. (2 years)</string>
 
     <string name="health_header11">Stroke</string>
-    <string name="health_description11">The risk of having a stroke or a lung cancer
-         die, is substantially lower than earlier. Also the risk of cancers of the mouth is
+    <string name="health_description11">The risk of having a stroke or developing lung cancer
+         is substantially lower than earlier. Also, the risk of mouth cancer is
          reduced. (5 years)</string>
 
     <string name="health_header12">Lung cancer</string>
-    <string name="health_description12">The lung cancer risk is as high as a Non smoking. The lung
-         has almost fully recovered, pre-cancerous cells are replaced by healthy cells. (10 years)</string>
+    <string name="health_description12">The risk of lung cancer is the same as a non-smoker. The lungs
+         have almost fully recovered. Pre-cancerous cells are replaced by healthy cells. (10 years)</string>
 
     <string name="health_header13">Heart attack</string>
-    <string name="health_description13">The risk of heart attack is barely higher than in a Non smoking. (15 years)</string>
+    <string name="health_description13">The risk of heart attack is barely higher than that of a Non-smoker. (15 years)</string>
 
 
     // Diary
@@ -147,8 +146,8 @@
     <string name="text_tit_8">Tongue</string>
     <string name="text_tit_9">Devil</string>
 
-    <string name="toast_backup">Backup successfully.</string>
-    <string name="toast_restore">Restore successfully.</string>
+    <string name="toast_backup">Backup successfull.</string>
+    <string name="toast_restore">Restore successfull.</string>
     <string name="toast_backup_not">Backup failed.</string>
     <string name="toast_restore_not">Restore failed.</string>
     <string name="toast_save">Entry not saved. Cancel editing?</string>
@@ -193,8 +192,8 @@
     <string name="settings_tab_goal">Goal tab</string>
     <string name="settings_tab_diary">Diary tab</string>
 
-    <string name="settings_goalDate_summary">If you reached your current goal, you can set here a start date for your next goal. This
-        is necessary to calculate the new time when you reach the next goal, while keeping the right statistics from the
+    <string name="settings_goalDate_summary">If you have reached your current goal, you can set here a start date for your next goal. This
+        is necessary to calculate the new time of when you reach the next goal, while keeping the right statistics in the
         overview tab.</string>
     <string name="settings_tab_overview_summary">Do you want to use the overview tab? In this tab the main statistics are presented:
         the time of quitting, saved cigarettes, saved money and so on.</string>
@@ -206,30 +205,30 @@
         problems and something like this. Perhaps it will help you.</string>
 
     <string name="a_goal">Personal goal</string>
-    <string name="a_goal_summary">For what will you use the saved money? Please enter title and the costs of your personal goal.</string>
+    <string name="a_goal_summary">What will you use the saved money for? Please enter a title and the costs of your personal goal.</string>
     <string name="settings_goalTitle_hint">Name of your goal</string>
     <string name="settings_goalCosts_hint">Costs (integer number): 199</string>
 
     <string name="settings_costs">Costs</string>
     <string name="settings_costs_summary">Costs of a single cigarette. This is used to calculate the saved money since quitting.</string>
-    <string name="settings_cost_hint">What costs one cigarette?</string>
+    <string name="settings_cost_hint">What does one cigarette cost?</string>
 
     <string name="settings_currency">Currency</string>
     <string name="settings_currency_summary">Set your preferred currency</string>
 
     <string name="a_cig">Smoke habits</string>
-    <string name="a_cig_summary">Enter the number of smoked cigarettes per day and the time it took to smoke one cigarette.</string>
+    <string name="a_cig_summary">Enter the number of cigarettes smoked per day and the time it takes to smoke one cigarette.</string>
     <string name="a_cig_hintNumb">Number of cigarettes</string>
     <string name="a_cig_hintTime">Time in minutes</string>
 
     <string name="a_time">Time</string>
-    <string name="a_time_summary">When did you stop smoking? Please enter date and time.</string>
+    <string name="a_time_summary">When did you stop smoking? Please enter a date and time.</string>
 
     <string name="a_dateFormat">Date format</string>
     <string name="a_dateFormat_summary">Set your preferred date format.</string>
 
     <string name="a_openSettings">App info</string>
-    <string name="a_openSettings_summary">Open via the system settings the app info of the app. There you can,
+    <string name="a_openSettings_summary">Open via the system settings the app info. There you can,
         depending on your Android version, manage several things (Storage, network traffic, permissions, …).</string>
 
     <string name="toast_newTitle">Title already exists.</string>
@@ -264,8 +263,8 @@
         Additionally you can configure a goal (What will you do with the saved money?) and write a diary. </string>
 
     <string name="intro3_title">Settings</string>
-    <string name="intro3_text">Please configure some informations about your smoking habits in the settings screen. You can
-        also configure some basic settings (date format, currency, …). Now, let\'s start …</string>
+    <string name="intro3_text">Please configure some information about your smoking habits in the settings screen. You can
+        also configure some basic settings (date format, currency, …). Now, let\'s get started …</string>
 
     // About
 
