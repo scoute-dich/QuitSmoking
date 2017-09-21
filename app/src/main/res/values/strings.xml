@@ -76,7 +76,7 @@
         (8 hours)</string>
 
     <string name="health_header3">Heart attack</string>
-    <string name="health_description3">The risk of death sudden cardiac arrest decreases. (1 day)</string>
+    <string name="health_description3">The risk of death by sudden cardiac arrest decreases. (1 day)</string>
 
     <string name="health_header4">Sense of smell</string>
     <string name="health_description4">Your sense of smell and taste buds become more sensitive; smelling
@@ -146,8 +146,8 @@
     <string name="text_tit_8">Tongue</string>
     <string name="text_tit_9">Devil</string>
 
-    <string name="toast_backup">Backup successfull.</string>
-    <string name="toast_restore">Restore successfull.</string>
+    <string name="toast_backup">Backup successful.</string>
+    <string name="toast_restore">Restore successful.</string>
     <string name="toast_backup_not">Backup failed.</string>
     <string name="toast_restore_not">Restore failed.</string>
     <string name="toast_save">Entry not saved. Cancel editing?</string>
