@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -74,6 +75,7 @@ import de.baumann.quitsmoking.helper.helper_main;
 import de.baumann.quitsmoking.R;
 
 
+@SuppressWarnings("ConstantConditions")
 public class FragmentNotes extends Fragment {
 
     //calling variables
@@ -89,22 +91,22 @@ public class FragmentNotes extends Fragment {
     private TabLayout tabLayout;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_screen_notes, container, false);
 
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        filter_layout = (RelativeLayout) rootView.findViewById(R.id.filter_layout);
+        filter_layout = rootView.findViewById(R.id.filter_layout);
         filter_layout.setVisibility(View.GONE);
-        lv = (ListView) rootView.findViewById(R.id.listNotes);
-        filter = (EditText) rootView.findViewById(R.id.myFilter);
-        viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-        tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
+        lv = rootView.findViewById(R.id.listNotes);
+        filter = rootView.findViewById(R.id.myFilter);
+        viewPager = getActivity().findViewById(R.id.viewpager);
+        tabLayout = getActivity().findViewById(R.id.tabs);
         setTitle();
 
-        ImageButton ib_hideKeyboard =(ImageButton) rootView.findViewById(R.id.ib_hideKeyboard);
+        ImageButton ib_hideKeyboard = rootView.findViewById(R.id.ib_hideKeyboard);
         ib_hideKeyboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +118,7 @@ public class FragmentNotes extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        FloatingActionButton fab = rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,8 +189,8 @@ public class FragmentNotes extends Fragment {
                 final String note_attachment = row2.getString(row2.getColumnIndexOrThrow("note_attachment"));
 
                 View v = super.getView(position, convertView, parent);
-                ImageView iv_icon = (ImageView) v.findViewById(R.id.icon_notes);
-                ImageView iv_attachment = (ImageView) v.findViewById(R.id.att_notes);
+                ImageView iv_icon = v.findViewById(R.id.icon_notes);
+                ImageView iv_attachment = v.findViewById(R.id.att_notes);
 
                 switch (note_icon) {
                     case "1":
@@ -296,14 +298,14 @@ public class FragmentNotes extends Fragment {
                 final String attName = note_attachment.substring(note_attachment.lastIndexOf("/")+1);
                 final String att = getString(R.string.note_attachment) + ": " + attName;
 
-                attachment = (Button) dialogView.findViewById(R.id.button_att);
+                attachment = dialogView.findViewById(R.id.button_att);
                 if (attName.equals("")) {
                     attachment.setVisibility(View.GONE);
                 } else {
                     attachment.setText(att);
                 }
 
-                textInput = (TextView) dialogView.findViewById(R.id.note_text_input);
+                textInput = dialogView.findViewById(R.id.note_text_input);
                 if (note_content.isEmpty()) {
                     textInput.setVisibility(View.GONE);
                 } else {
@@ -319,8 +321,8 @@ public class FragmentNotes extends Fragment {
                     }
                 });
 
-                final ImageView be = (ImageView) dialogView.findViewById(R.id.imageButtonPri);
-                final ImageView attImage = (ImageView) dialogView.findViewById(R.id.attImage);
+                final ImageView be = dialogView.findViewById(R.id.imageButtonPri);
+                final ImageView attImage = dialogView.findViewById(R.id.attImage);
 
                 File file2 = new File(note_attachment);
                 if (!file2.exists()) {

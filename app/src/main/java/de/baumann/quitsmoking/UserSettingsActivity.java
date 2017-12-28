@@ -191,9 +191,9 @@ public class UserSettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     View dialogView = View.inflate(getActivity(), R.layout.dialog_cig, null);
 
-                    final EditText editNumber = (EditText) dialogView.findViewById(R.id.editNumber);
+                    final EditText editNumber = dialogView.findViewById(R.id.editNumber);
                     editNumber.setText(sharedPref.getString("cig", ""));
-                    final EditText editTime = (EditText) dialogView.findViewById(R.id.editTime);
+                    final EditText editTime = dialogView.findViewById(R.id.editTime);
                     editTime.setText(sharedPref.getString("duration", ""));
 
                     builder.setView(dialogView);
@@ -243,7 +243,7 @@ public class UserSettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     View dialogView = View.inflate(getActivity(), R.layout.dialog_cig_cost, null);
 
-                    final EditText editNumber = (EditText) dialogView.findViewById(R.id.editNumber);
+                    final EditText editNumber = dialogView.findViewById(R.id.editNumber);
                     editNumber.setText(sharedPref.getString("costs", ""));
 
                     builder.setView(dialogView);
@@ -291,9 +291,9 @@ public class UserSettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     View dialogView = View.inflate(getActivity(), R.layout.dialog_goal, null);
 
-                    final EditText editNumber = (EditText) dialogView.findViewById(R.id.editTitle);
+                    final EditText editNumber = dialogView.findViewById(R.id.editTitle);
                     editNumber.setText(sharedPref.getString("goalTitle", ""));
-                    final EditText editTime = (EditText) dialogView.findViewById(R.id.editCost);
+                    final EditText editTime = dialogView.findViewById(R.id.editCost);
                     editTime.setText(sharedPref.getString("goalCosts", ""));
 
                     builder.setView(dialogView);

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.SpannableString;
@@ -29,7 +30,7 @@ public class FragmentHealth extends Fragment {
     private SharedPreferences SP;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_health, container, false);
@@ -132,7 +133,7 @@ public class FragmentHealth extends Fragment {
             double diffHours = diffCount / (60 * 60 * 1000) % 24;
             double diffMinutes = diffCount / (60 * 1000) % 60;
 
-            progressBar = (ProgressBar) view.findViewById(progressBar_ID);
+            progressBar = view.findViewById(progressBar_ID);
             assert progressBar != null;
             progressBar.setRotation(180);
             int max = (int) (plus2);
@@ -145,7 +146,7 @@ public class FragmentHealth extends Fragment {
             String minutes = String.format(Locale.GERMANY, "%.0f", diffMinutes);
 
             TextView textView_reached13;
-            textView_reached13 = (TextView) view.findViewById(text);
+            textView_reached13 = view.findViewById(text);
             assert textView_reached13 != null;
 
             if (diffMinutes < 0) {

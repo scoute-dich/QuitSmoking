@@ -41,6 +41,9 @@
     <string name="action_reset">Reset</string>
     <string name="action_info">Info</string>
 
+    <string name="choose_camera">Camera</string>
+    <string name="choose_gallery">Gallery</string>
+
 
     // Main Activity
 
@@ -328,9 +331,9 @@
     <string name="info_text">
         http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>
         &lt;i>The sources of the above mentioned website are:&lt;/i>&lt;br>&lt;br>
-        Online-Informationen der American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>
-        Online-Informationen des Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>
-        Online-Informationen der Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)
+        Online-information of American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>
+        Online-information of Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>
+        Online-information of Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)
     </string>
 
 

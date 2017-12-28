@@ -38,6 +38,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -105,6 +106,11 @@ public class helper_main {
     }
 
 
+    public static String newFileName () {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault());
+        return  dateFormat.format(date) + ".jpg";
+    }
 
     public static SpannableString textSpannable (String text) {
         SpannableString s;

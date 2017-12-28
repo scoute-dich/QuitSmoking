@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(MainActivity.this, R.xml.user_settings, false);
         SP = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         assert tabLayout != null;
         tabLayout.setupWithViewPager(viewPager);
 
@@ -90,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         File directory = new File(Environment.getExternalStorageDirectory() + "/Android/data/quitsmoking.backup");
         if (!directory.exists()) {
             directory.mkdirs();
+        }
+
+        File directory_data = new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking");
+        if (!directory_data.exists()) {
+            directory_data.mkdirs();
         }
     }
 

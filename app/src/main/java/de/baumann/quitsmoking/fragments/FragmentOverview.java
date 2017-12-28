@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -41,22 +42,22 @@ public class FragmentOverview extends Fragment {
     private SharedPreferences SP;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        textView_cig2_cost = (TextView) rootView.findViewById(R.id.text_cigs2_cost);
-        textView_cig2 = (TextView) rootView.findViewById(R.id.text_cigs2);
-        textView_duration = (TextView) rootView.findViewById(R.id.text_duration);
-        textView_date2 = (TextView) rootView.findViewById(R.id.text_date2);
-        textView_date3 = (TextView) rootView.findViewById(R.id.text_date3);
+        textView_cig2_cost = rootView.findViewById(R.id.text_cigs2_cost);
+        textView_cig2 = rootView.findViewById(R.id.text_cigs2);
+        textView_duration = rootView.findViewById(R.id.text_duration);
+        textView_date2 = rootView.findViewById(R.id.text_date2);
+        textView_date3 = rootView.findViewById(R.id.text_date3);
 
-        textView_time2 = (TextView) rootView.findViewById(R.id.text_time2);
-        textView_time3 = (TextView) rootView.findViewById(R.id.text_time3);
-        textView_time4 = (TextView) rootView.findViewById(R.id.text_time4);
+        textView_time2 = rootView.findViewById(R.id.text_time2);
+        textView_time3 = rootView.findViewById(R.id.text_time3);
+        textView_time4 = rootView.findViewById(R.id.text_time4);
 
         assert textView_date2 != null;
         assert textView_date3 != null;
@@ -176,6 +177,7 @@ public class FragmentOverview extends Fragment {
                     Snackbar snackbar = Snackbar
                             .make(textView_time2, R.string.reset_confirm, Snackbar.LENGTH_LONG)
                             .setAction(R.string.yes, new View.OnClickListener() {
+                                @SuppressWarnings("ConstantConditions")
                                 @Override
                                 public void onClick(View view) {
 

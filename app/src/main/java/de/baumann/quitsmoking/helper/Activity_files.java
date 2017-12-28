@@ -46,8 +46,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -75,7 +73,7 @@ public class Activity_files extends AppCompatActivity {
 
         setContentView(R.layout.activity_files);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setTitle(R.string.choose_title);
@@ -85,7 +83,7 @@ public class Activity_files extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        lv = (ListView)findViewById(R.id.dialogList);
+        lv = findViewById(R.id.dialogList);
 
         //calling Notes_DbAdapter
         db = new DbAdapter_Files(Activity_files.this);
@@ -211,7 +209,7 @@ public class Activity_files extends AppCompatActivity {
                 final File pathFile = new File(files_attachment);
 
                 View v = super.getView(position, convertView, parent);
-                final ImageView iv = (ImageView) v.findViewById(R.id.icon_notes);
+                final ImageView iv = v.findViewById(R.id.icon_notes);
 
                 iv.setVisibility(View.VISIBLE);
 

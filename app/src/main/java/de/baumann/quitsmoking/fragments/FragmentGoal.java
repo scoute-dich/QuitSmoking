@@ -1,20 +1,18 @@
 package de.baumann.quitsmoking.fragments;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.View;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -29,9 +27,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.mvc.imagepicker.ImagePicker;
+import com.mlsdev.rximagepicker.RxImageConverters;
+import com.mlsdev.rximagepicker.RxImagePicker;
+import com.mlsdev.rximagepicker.Sources;
 
 import de.baumann.quitsmoking.R;
+import de.baumann.quitsmoking.helper.helper_main;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 
 public class FragmentGoal extends Fragment {
@@ -42,14 +46,14 @@ public class FragmentGoal extends Fragment {
     private SharedPreferences SP;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_goal, container, false);
         PreferenceManager.setDefaultValues(getActivity(), R.xml.user_settings, false);
         SP = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        viewImage=(ImageView)rootView.findViewById(R.id.imageView);
+        viewImage= rootView.findViewById(R.id.imageView);
 
         if (SP.getBoolean (rotate, false)){
             viewImage.setRotation(0);
@@ -73,7 +77,7 @@ public class FragmentGoal extends Fragment {
 
         String goalTitle = SP.getString("goalTitle", "");
         TextView textView_goalTitle;
-        textView_goalTitle = (TextView) rootView.findViewById(R.id.text_header1);
+        textView_goalTitle = rootView.findViewById(R.id.text_header1);
         if (goalTitle.isEmpty()) {
             textView_goalTitle.setText(String.valueOf(getString(R.string.not_set)));
         } else {
@@ -135,7 +139,7 @@ public class FragmentGoal extends Fragment {
             String remTimeString = String.format(Locale.US, "%.1f", remTime);
 
             TextView textView_goalCost;
-            textView_goalCost = (TextView) rootView.findViewById(R.id.text_description1);
+            textView_goalCost = rootView.findViewById(R.id.text_description1);
             if (goalTitle.isEmpty()) {
                 textView_goalCost.setText(String.valueOf(getString(R.string.not_set)));
             } else {
@@ -164,7 +168,7 @@ public class FragmentGoal extends Fragment {
             }
 
             TextView textView_goalTime;
-            textView_goalTime = (TextView) rootView.findViewById(R.id.text_description2);
+            textView_goalTime = rootView.findViewById(R.id.text_description2);
             if (goalTitle.isEmpty()) {
                 textView_goalTime.setText(String.valueOf(getString(R.string.not_set)));
             } else {
@@ -177,7 +181,7 @@ public class FragmentGoal extends Fragment {
             }
 
             ProgressBar progressBar;
-            progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+            progressBar = rootView.findViewById(R.id.progressBar);
             assert progressBar != null;
             int max = (int) (goalCost);
             int actual = (int) (cost);
@@ -233,7 +237,70 @@ public class FragmentGoal extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_imageLoad) {
-            onPickImage();
+            final CharSequence[] options = {
+                    getString(R.string.choose_gallery),
+                    getString(R.string.choose_camera)};
+
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+            dialog.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.cancel();
+                }
+            });
+            dialog.setItems(options, new DialogInterface.OnClickListener() {
+                @SuppressWarnings("ResultOfMethodCallIgnored")
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+
+                    if (options[item].equals(getString(R.string.choose_gallery))) {
+                        RxImagePicker.with(getActivity()).requestImage(Sources.GALLERY)
+                                .flatMap(new Function<Uri, ObservableSource<File>>() {
+                                    @Override
+                                    public ObservableSource<File> apply(@NonNull Uri uri) throws Exception {
+                                        return RxImageConverters.uriToFile(getActivity(), uri, new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/" + helper_main.newFileName()));
+                                    }
+                                }).subscribe(new Consumer<File>() {
+                            @Override
+                            public void accept(@NonNull File file) throws Exception {
+                                // Do something with your file copy
+                                SP.edit().putString("image_goal", file.getAbsolutePath()).apply();
+                                Glide.with(getActivity())
+                                        .load(file)
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true)
+                                        .fitCenter()
+                                        .into(viewImage);
+                            }
+                        });
+                    }
+                    if (options[item].equals(getString(R.string.choose_camera))) {
+
+                        RxImagePicker.with(getActivity()).requestImage(Sources.CAMERA)
+                                .flatMap(new Function<Uri, ObservableSource<File>>() {
+                                    @Override
+                                    public ObservableSource<File> apply(@NonNull Uri uri) throws Exception {
+                                        return RxImageConverters.uriToFile(getActivity(), uri, new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/" + helper_main.newFileName()));
+                                    }
+                                }).subscribe(new Consumer<File>() {
+                            @Override
+                            public void accept(@NonNull File file) throws Exception {
+                                // Do something with your file copy
+                                SP.edit().putString("image_goal", file.getAbsolutePath()).apply();
+                                Glide.with(getActivity())
+                                        .load(file)
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true)
+                                        .fitCenter()
+                                        .into(viewImage);
+                                File f = lastFileModified(Environment.getExternalStorageDirectory() + File.separator + "Pictures");
+                                f.delete();
+                            }
+                        });
+                    }
+                }
+            });
+            dialog.show();
         }
 
         if (id == R.id.action_imageRotate) {
@@ -249,36 +316,21 @@ public class FragmentGoal extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Bitmap bitmap = ImagePicker.getImageFromResult(getActivity(), requestCode, resultCode, data);
-
-        if (bitmap != null) {
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getActivity().getApplicationContext(), bitmap);
-            String path = getRealPathFromURI(tempUri);
-            SP.edit().putString("image_goal", path).apply();
+    private static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
         }
-    }
-
-    private Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    private String getRealPathFromURI(Uri uri) {
-        @SuppressLint("Recycle") Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-        assert cursor != null;
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }
-
-    private void onPickImage() {
-        // Click on image button
-        ImagePicker.pickImage(this, "Select your image:");
+        return choice;
     }
 }

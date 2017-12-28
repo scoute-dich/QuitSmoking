@@ -1,16 +1,13 @@
 package de.baumann.quitsmoking.helper;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,15 +25,22 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.mvc.imagepicker.ImagePicker;
+import com.mlsdev.rximagepicker.RxImageConverters;
+import com.mlsdev.rximagepicker.RxImagePicker;
+import com.mlsdev.rximagepicker.Sources;
 
-import java.io.ByteArrayOutputStream;
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
+import java.io.FileFilter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import de.baumann.quitsmoking.R;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 
 public class Activity_EditNote extends AppCompatActivity {
@@ -53,7 +57,7 @@ public class Activity_EditNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_edit);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setTitle(R.string.note_edit);
@@ -71,9 +75,9 @@ public class Activity_EditNote extends AppCompatActivity {
         String file = sharedPref.getString("handleTextAttachment", "");
         final String attName = file.substring(file.lastIndexOf("/")+1);
 
-        attachmentRem = (ImageButton) findViewById(R.id.button_rem);
-        attachment = (Button) findViewById(R.id.button_att);
-        attachmentCam = (ImageButton) findViewById(R.id.button_cam);
+        attachmentRem = findViewById(R.id.button_rem);
+        attachment = findViewById(R.id.button_att);
+        attachmentCam = findViewById(R.id.button_cam);
 
         String att = getString(R.string.note_attachment) + ": " + attName;
 
@@ -93,8 +97,8 @@ public class Activity_EditNote extends AppCompatActivity {
             attachmentCam.setVisibility(View.VISIBLE);
         }
 
-        titleInput = (EditText) findViewById(R.id.note_title_input);
-        textInput = (EditText) findViewById(R.id.note_text_input);
+        titleInput = findViewById(R.id.note_title_input);
+        textInput = findViewById(R.id.note_text_input);
         helper_main.showKeyboard(Activity_EditNote.this, titleInput);
 
         titleInput.setText(sharedPref.getString("handleTextTitle", ""));
@@ -142,12 +146,65 @@ public class Activity_EditNote extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                onPickImage();
+                final CharSequence[] options = {
+                        getString(R.string.choose_gallery),
+                        getString(R.string.choose_camera)};
+
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(Activity_EditNote.this);
+                dialog.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.setItems(options, new DialogInterface.OnClickListener() {
+                    @SuppressWarnings("ResultOfMethodCallIgnored")
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        if (options[item].equals(getString(R.string.choose_gallery))) {
+                            RxImagePicker.with(Activity_EditNote.this).requestImage(Sources.GALLERY)
+                                    .flatMap(new Function<Uri, ObservableSource<File>>() {
+                                        @Override
+                                        public ObservableSource<File> apply(@NonNull Uri uri) throws Exception {
+                                            return RxImageConverters.uriToFile(Activity_EditNote.this, uri, new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/" + helper_main.newFileName()));
+                                        }
+                                    }).subscribe(new Consumer<File>() {
+                                @Override
+                                public void accept(@NonNull File file) throws Exception {
+                                    // Do something with your file copy
+                                    sharedPref.edit().putString("handleTextAttachment", file.getAbsolutePath()).apply();
+                                    attachment.setText(FilenameUtils.getName(file.getAbsolutePath()));
+                                }
+                            });
+                        }
+                        if (options[item].equals(getString(R.string.choose_camera))) {
+
+                            RxImagePicker.with(Activity_EditNote.this).requestImage(Sources.CAMERA)
+                                    .flatMap(new Function<Uri, ObservableSource<File>>() {
+                                        @Override
+                                        public ObservableSource<File> apply(@NonNull Uri uri) throws Exception {
+                                            return RxImageConverters.uriToFile(Activity_EditNote.this, uri, new File(Environment.getExternalStorageDirectory() + "/Android/data/de.baumann.quitsmoking/" + helper_main.newFileName()));
+                                        }
+                                    }).subscribe(new Consumer<File>() {
+                                @Override
+                                public void accept(@NonNull File file) throws Exception {
+                                    // Do something with your file copy
+                                    sharedPref.edit().putString("handleTextAttachment", file.getAbsolutePath()).apply();
+                                    attachment.setText(FilenameUtils.getName(file.getAbsolutePath()));
+                                    File f = lastFileModified(Environment.getExternalStorageDirectory() + File.separator + "Pictures");
+                                    f.delete();
+                                }
+                            });
+                        }
+                    }
+                });
+                dialog.show();
             }
         });
 
-        final ImageButton be = (ImageButton) findViewById(R.id.imageButtonPri);
-        ImageButton ib_paste = (ImageButton) findViewById(R.id.imageButtonPaste);
+        final ImageButton be = findViewById(R.id.imageButtonPri);
+        ImageButton ib_paste = findViewById(R.id.imageButtonPaste);
         assert be != null;
 
         switch (priority) {
@@ -219,7 +276,7 @@ public class Activity_EditNote extends AppCompatActivity {
                     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
                         //Use super class to create the View
                         View v = super.getView(position, convertView, parent);
-                        TextView tv = (TextView)v.findViewById(android.R.id.text1);
+                        TextView tv = v.findViewById(android.R.id.text1);
                         tv.setTextSize(18);
                         tv.setCompoundDrawablesWithIntrinsicBounds(items[position].icon, 0, 0, 0);
                         //Add margin between image and text (support various screen densities)
@@ -346,6 +403,24 @@ public class Activity_EditNote extends AppCompatActivity {
         });
     }
 
+    private static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
+        }
+        return choice;
+    }
+
     private static class Item{
         public final String text;
         public final int icon;
@@ -361,48 +436,15 @@ public class Activity_EditNote extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
-
-        if (bitmap != null) {
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getApplicationContext(), bitmap);
-            String path = getRealPathFromURI(tempUri);
-            sharedPref.edit().putString("handleTextAttachment", path).apply();
-        }
-    }
-
-    private Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
-    private String getRealPathFromURI(Uri uri) {
-        @SuppressLint("Recycle") Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        assert cursor != null;
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }
-
-    private void onPickImage() {
-        // Click on image button
-        ImagePicker.pickImage(this, "Select your image:");
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
 
         String file = sharedPref.getString("handleTextAttachment", "");
         final String attName = file.substring(file.lastIndexOf("/")+1);
 
-        attachmentRem = (ImageButton) findViewById(R.id.button_rem);
-        attachment = (Button) findViewById(R.id.button_att);
-        attachmentCam = (ImageButton) findViewById(R.id.button_cam);
+        attachmentRem = findViewById(R.id.button_rem);
+        attachment = findViewById(R.id.button_att);
+        attachmentCam = findViewById(R.id.button_cam);
 
         String att = getString(R.string.note_attachment) + ": " + attName;
 

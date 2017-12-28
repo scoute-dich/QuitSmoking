@@ -1,7 +1,11 @@
-### v 2.7
-- new: source of health info
+### v 2.7 (WIP)
+- new: full Oreo support
+- new: changed image picker library
+- removed: permission "Vibrate"
+- improved: English translation (@nuxnik)
 
 ### v 2.6
+- new: source of health info
 - fixed: typo in health fragment
 
 ### v 2.5

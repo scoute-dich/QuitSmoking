@@ -16,6 +16,9 @@
         Wenn du die Berechtigung verweigerst, kannst du sie nachträglich erteilen, indem du \"Einstellungen -> App Info\" öffnest und
         dort den Bereich \"Berechtigungen\" auswählst.</string>
 
+    <string name="choose_camera">Kamera</string>
+    <string name="choose_gallery">Galerie</string>
+
 
     //Share //Reset
 
@@ -90,7 +93,7 @@
 
     <string name="health_header7">Leistungsfähigkeit</string>
     <string name="health_description7">Der gesamte Blutkreislauf verbessert sich. Die Lungenkapazität erhöht
-        sich um bis zu 30 %, sie kann wieder mehr Sauerstoff aufnehmen. Dadurch erhöht sich die körperliche
+        sich um bis zu 30 Prozent, sie kann wieder mehr Sauerstoff aufnehmen. Dadurch erhöht sich die körperliche
         Leistungsfähigkeit. (3 Monate)</string>
 
     <string name="health_header8">Lungenhärchen</string>

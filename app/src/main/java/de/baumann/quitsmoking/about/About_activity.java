@@ -15,7 +15,7 @@ public class About_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, About_fragment.newInstance(new About_fragment()))
