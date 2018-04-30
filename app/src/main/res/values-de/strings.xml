@@ -286,6 +286,7 @@
     <string name="about_title_ext">Beteiligte</string>
     <string name="about_title_ext3">Japanische Übersetzung</string>
     <string name="about_title_ext4">Französische Übersetzung</string>
+    <string name="about_title_ext5">Russische Übersetzung</string>
 
     <string name="about_changelog">Änderungen</string>
     <string name="about_changelog_summary">Öffne die Github Seite und schaue, was es Neues gibt … (braucht eine Internetverbindung)</string>

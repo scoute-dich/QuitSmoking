@@ -185,6 +185,8 @@
     <string name="about_title_libs">Ressources utilisées</string>
     <string name="about_title_ext">Contributeurs</string>
     <string name="about_title_ext3">Traduction japanaise</string>
+    <string name="about_title_ext4">Traduction française</string>
+    <string name="about_title_ext5">Traduction russe</string>
     <string name="about_changelog">Changements</string>
     <string name="about_changelog_summary">Ouvrir le site Github et voir ce qu\'il y a de nouveau (connexion Internet requises)</string>
     <string name="about_license">Licence</string>

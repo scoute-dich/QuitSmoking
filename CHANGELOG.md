@@ -1,3 +1,7 @@
+### v 2.8
+- updated: Russian translation (@mesnevi)
+- fixed: commons-io library package ID
+
 ### v 2.7 (WIP)
 - new: full Oreo support
 - new: changed image picker library
