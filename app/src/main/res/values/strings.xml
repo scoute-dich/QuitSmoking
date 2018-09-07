@@ -74,8 +74,8 @@
     <string name="health_description1">Blood pressure, body temperature and heart rate return to normal. (20 minutes)</string>
 
     <string name="health_header2">Carbon monoxide</string>
-    <string name="health_description2" tools:ignore="StringFormatCount">Smoker\'s breath disappears. For a smoker, about 10% of 
-        the red blood cells are blocked by the poisonous gas carbon monoxide. These cells are now available again for oxygen. 
+    <string name="health_description2" tools:ignore="StringFormatCount">Smoker\'s breath disappears. For a smoker, about 10% of
+        the red blood cells are blocked by the poisonous gas carbon monoxide. These cells are now available again for oxygen.
         (8 hours)</string>
 
     <string name="health_header3">Heart attack</string>
@@ -279,6 +279,7 @@
     <string name="about_title_ext">Contributors</string>
     <string name="about_title_ext3">Japanese translation</string>
     <string name="about_title_ext4">French translation</string>
+    <string name="about_title_ext5">Russian translation</string>
 
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>

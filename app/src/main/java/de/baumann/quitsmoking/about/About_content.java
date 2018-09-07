@@ -135,6 +135,13 @@ class About_content {
                 .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/Primokorn")))
                 .build());
 
+        authorCardBuilder2.addItem(new MaterialAboutActionItem.Builder()
+                .text("Mesnevi")
+                .subText(R.string.about_title_ext5)
+                .icon(R.drawable.github_circle)
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/mesnevi")))
+                .build());
+
         MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
         convenienceCardBuilder.title(R.string.about_title_libs);
 
@@ -179,7 +186,7 @@ class About_content {
                 .icon(R.drawable.github_circle)
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "RxImagePicker", "https://github.com/MLSDev/RxImagePicker", true, false))
                 .build());
-        
+
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), authorCardBuilder2.build(), convenienceCardBuilder.build());
     }
 

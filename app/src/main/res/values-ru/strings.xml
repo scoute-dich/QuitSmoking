@@ -1,0 +1,350 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    // App
+
+    <string name="app_name">Бросай курить!</string>
+    <string name="yes">OK</string>
+    <string name="no">Отмена</string>
+    <string name="app_permissions_title">Разрешения:</string>
+    <string name="app_permissions">
+
+        &lt;i>Доступ к хранилищу данных:&lt;/i>&lt;br>
+        &#8226; Дневник: чтобы создать резервную копию на SD-карту, развернуть существующую копию.&lt;br>
+        &#8226; Цели: чтобы сохранять и загружать изображения для личных планов.&lt;br>&lt;br>
+
+        &lt;i>Разрешить потом:&lt;/i>&lt;br>
+        Можно дать эти разрешения не сейчас, а потом. Пройдите, пожалуйста, в  \"Настройки -> О приложении\" и выберите пункт \"Разрешения\".</string>
+
+
+    //Share //Reset
+
+    <string name="share_text">Успех! Я не курю уже </string>
+    <string name="share_text_fail">Опять курю после паузы в </string>
+    <string name="share_text2">и</string>
+    <string name="share_text3">Получилось сэкономить </string>
+    <string name="share_text4">сигарет</string>
+    <string name="share_text5">и</string>
+    <string name="share_text6">чистого времени.</string>
+    <string name="share_subject">Бросаю курить!</string>
+    <string name="reset_confirm">Обнулить время и создать новую запись в дневнике?</string>
+
+
+    // Menu
+
+    <string name="action_settings">Настройки</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_health">Состояние здоровья</string>
+    <string name="action_overview">Общая информация</string>
+    <string name="action_diary">Дневник</string>
+    <string name="action_goal">Цели</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_reset">Сбросить</string>
+    <string name="action_info">Информация</string>
+
+    <string name="choose_camera">Камера</string>
+    <string name="choose_gallery">Изображения</string>
+
+
+    // Main Activity
+
+    <string name="not_set">Выставить значение в Настройках</string>
+    <string name="not_set2">0.0</string>
+
+    <string name="money_euro">€</string>
+    <string name="money_dollar">$</string>
+    <string name="money_pound">£</string>
+    <string name="money_yen">¥</string>
+
+    <string name="time_days">дней</string>
+    <string name="time_hours">часов</string>
+    <string name="time_minutes">минут</string>
+
+    <string name="last_time_date">Последняя сигарета :</string>
+    <string name="last_since">Уже не курю:</string>
+    <string name="stat">Экономия:</string>
+    <string name="stat_h">ч</string>
+
+
+    // Health Activity
+
+    <string name="health_congratulations">Ура! Получилось!</string>
+    <string name="health_reached">Наступает спустя</string>
+
+    <string name="health_header1">Артериальное давление</string>
+    <string name="health_description1">Давление, температура и пульс приходят в норму (через 20 минут)</string>
+
+    <string name="health_header2">Содержание угарного газа</string>
+    <string name="health_description2" tools:ignore="StringFormatCount">Пропадает эффект "дыхание курильщика". У курящих людей гемоглобин примерно в 10% эритроцитов временно связывается с угарным газом и превращается в карбоксигемоглобин. Такие эритроциты не могут переносить кислород органам и тканям. Эритроциты восстанавливаются и снова могут связывать кислород (через 8 часов)</string>
+
+    <string name="health_header3">Нарушения кровообращения</string>
+    <string name="health_description3">Снижается риск умереть от острой сердечно-сосудистой недостаточности (через 1 день)</string>
+
+    <string name="health_header4">Обоняние</string>
+    <string name="health_description4">Восстанавливается чувствительность обонятельных и вкусовых рецепторов. Люди лучше чувствуют запахи и вкусы (через 2 дня)</string>
+
+    <string name="health_header5">Дыхание</string>
+    <string name="health_description5">Становится легче дышать (через 3 дня)</string>
+
+    <string name="health_header6">Никотиновая зависимость</string>
+    <string name="health_description6">Зависимость от никотина снижается (через 1 неделю)</string>
+
+    <string name="health_header7">Эффективный объём лёгких</string>
+    <string name="health_description7">Улучшается циркуляция крови. Эффективный объём лёгких увеличивается почти на 30%. За счёт положительных изменений становится легче переносить физические нагрузки (через 3 месяца)</string>
+
+    <string name="health_header8">Мерцательный эпителий бронхов</string>
+    <string name="health_description8">Повреждённый курением мерцательный эпителий бронхов (реснитчатые клетки, выстилающие их поверхность) восстанавливаются. Проходит кашель курильщика. Постепенно пропадают утомляемость и одышка (через 9 месяцев)</string>
+
+    <string name="health_header9">Коронарные артерии</string>
+    <string name="health_description9">Вполовину снижается образование атеросклеротичеких бляшек в коронарных артериях сердца (через 1 год)</string>
+
+    <string name="health_header10">Инфаркт</string>
+    <string name="health_description10">Значительно снижается вероятность инфаркта миокарда (через 2 года)</string>
+
+    <string name="health_header11">Инсульт</string>
+    <string name="health_description11">Сильно снижается вероятность инсульта (через 5 лет)</string>
+
+    <string name="health_header12">Рак лёгких</string>
+    <string name="health_description12">Вероятность возникновения злокачественных опухолей (рака лёгких, злокачественных новообразований в ротовой полости) становится такая же, как у ранее не куривших людей. Ткани лёгких восстанавливаются. Клетки, находившиеся в предопухолевом состоянии, исчезают: их замещают здоровые клетки (через 10 лет) </string>
+
+    <string name="health_header13">Сердечно-сосудистые заболевания</string>
+    <string name="health_description13">Риск середечно-сосудистых заболеваний такой же, как у ранее не куривших (через 15 лет)</string>
+
+
+    // Diary
+
+    <string name="action_backup">Сделать резервную копию</string>
+    <string name="action_restore">Восстановить из резервной копии</string>
+    <string name="action_delete">Удалить дневник</string>
+
+
+    // Notes
+
+    <string name="note_remove_confirmation">Запись будет уничтожена. Продолжать?</string>
+    <string name="note_remove_note">Удалить запись</string>
+    <string name="note_edit">Редактировать запись</string>
+    <string name="note_share">Поделиться записью</string>
+    <string name="note_share_2">С кем поделиться:</string>
+    <string name="title_hint">Заголовок</string>
+    <string name="text_hint">Текст</string>
+    <string name="toast_extension">Файлов с поддерживаемыми форматами расширения не обнаружено</string>
+    <string name="toast_install_app">Чтобы это сделать, установите приложение</string>
+    <string name="note_attachment">Приложенный файл</string>
+
+    <string name="text_tit_1">Нейтральный</string>
+    <string name="text_tit_2">Довольный</string>
+    <string name="text_tit_3">Грустный</string>
+    <string name="text_tit_4">Весёлый</string>
+    <string name="text_tit_5">Модный</string>
+    <string name="text_tit_6">Мёртвый</string>
+    <string name="text_tit_7">Взволнованный</string>
+    <string name="text_tit_8">Дразнящийся</string>
+    <string name="text_tit_9">Сатанинский</string>
+
+    <string name="toast_backup">Резервная копия успешно создана.</string>
+    <string name="toast_restore">Резервная копия успешно развёрнута.</string>
+    <string name="toast_backup_not">Не получилось создать резервную копию.</string>
+    <string name="toast_restore_not">Не получилось развернуть резервную копию.</string>
+    <string name="toast_save">Запись не сохранилась. Отменить изменения?</string>
+
+    <string name="paste_date">Выставить текущую дату</string>
+    <string name="paste_time">Выставить текущее время</string>
+    <string name="paste_line">Вставить строчку</string>
+
+    <string name="action_sort">Фильтровать записи в дневнике</string>
+    <string name="action_sort_title">Фильтровать по названию</string>
+    <string name="action_sort_icon">Фильтровать по значку настроения</string>
+    <string name="action_sort_create">Фильтровать по дате</string>
+
+
+    //File chooser
+
+    <string name="choose_att">Выбрать файл (и прикрепить его)</string>
+    <string name="choose_title">Файловый менеджер</string>
+
+
+    // Goal
+
+    <string name="goal_cancel">Отмена</string>
+    <string name="action_image">Изображение</string>
+    <string name="action_imageLoad">Выбрать изображение</string>
+    <string name="action_imageRotate">Повернуть изображение</string>
+    <string name="costs">Стоимость:</string>
+    <string name="alreadySaved">Уже накопилось:</string>
+    <string name="costsRemaining">Осталось:</string>
+
+
+    // Settings
+
+    <string name="settings_category_0">Вкладки</string>
+    <string name="settings_category_1">Статистика</string>
+    <string name="settings_category_2">Цели</string>
+    <string name="settings_category_3">Приложение</string>
+
+    <string name="settings_goalDate">Следующая цель</string>
+    <string name="settings_tab_overview">Общая информация</string>
+    <string name="settings_tab_health">Состояние здоровья</string>
+    <string name="settings_tab_goal">Цели</string>
+    <string name="settings_tab_diary">Дневник</string>
+
+    <string name="settings_goalDate_summary">Если добились предыдущей цели, поставьте новую. Это нужно для того, чтобы правильно рассчитать, когда её можно будет достичь, в то же время сохраняя статистику для всех целей во вкладке \"Общая информация\".</string>
+    <string name="settings_tab_overview_summary">Хотите видеть вкладку \"Общая информация\" на главном экране? В ней находится основная статистика: время, прошедшее с последнего перекура, количество невыкуренных сигарет и сэкономленные деньги.</string>
+    <string name="settings_tab_health_summary">Хотите видеть вкладку \"Состояние здоровья\" на главном экране? В ней описаны положительные изменения в состоянии здоровья бросивших курить.</string>
+    <string name="settings_tab_goal_summary">Хотите видеть вкладку \"Цели\" на главном экране? В ней можно добавлять личные цели (что-то, на что можно потратить сэкономленные на сигаретах деньги).</string>
+    <string name="settings_tab_diary_summary">Хотите видеть вкладку \"Дневник\" на главном экране? В ней можно записывать своё состояние, настроение и сходные вещи. Считается, что это помогает сохранить мотивацию.</string>
+
+    <string name="a_goal">Личные цели</string>
+    <string name="a_goal_summary">На что вы собираетесь потратить сэкономленные деньги? Выставьте, пожалуйста, название и стоимость.</string>
+    <string name="settings_goalTitle_hint">Название цели</string>
+    <string name="settings_goalCosts_hint">Стоимость (число): 199</string>
+
+    <string name="settings_costs">Стоимость</string>
+    <string name="settings_costs_summary">Цена одной сигареты. С её помощью рассчитывают сэкономленное количество денег с тех пор, как выкурена последняя сигарета.</string>
+    <string name="settings_cost_hint">Сколько стоит одна сигарета?</string>
+
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_currency_summary">Валюта для расчёта стоимости</string>
+
+    <string name="a_cig">Курящий</string>
+    <string name="a_cig_summary">Введите количество выкуриваемых в день сигарет и время, которое требуется, чтобы выкурить одну.</string>
+    <string name="a_cig_hintNumb">Количество сигарет в день</string>
+    <string name="a_cig_hintTime">Время (в минутах)</string>
+
+    <string name="a_time">Время</string>
+    <string name="a_time_summary">Когда бросили курить? Выставьте, пожалуйста, дату и время.</string>
+
+    <string name="a_dateFormat">Формат даты</string>
+    <string name="a_dateFormat_summary">Выберите формат даты.</string>
+
+    <string name="a_openSettings">О приложении</string>
+    <string name="a_openSettings_summary">Открывает информацию о приложении в системных настройках. В зависимости от версии Android здесь можно настроить разрешения, уведомления, хранилище файлов и т.п.</string>
+
+    <string name="toast_newTitle">Запись с таким названием уже есть.</string>
+    <string name="toast_notSave">Не получилось сохранить запись.</string>
+    <string name="toast_directory">Открыть директорию не получилось.</string>
+    <string name="toast_files">Директория пустая.</string>
+    <string name="toast_delete">Все записи будут уничтожены.</string>
+
+    <string name="action_filter">Поиск</string>
+    <string name="action_filter_title">Искать в названиях</string>
+    <string name="action_filter_cont">Искать в содержимом</string>
+    <string name="action_filter_create">Искать в датах</string>
+
+    <string name="filter_today">Сегодня</string>
+    <string name="filter_yesterday">Вчера</string>
+    <string name="filter_before">Позавчера</string>
+    <string name="filter_month">В этом месяце</string>
+    <string name="filter_own">Другие условия поиска</string>
+
+    <string name="sort_title">название</string>
+    <string name="sort_date">дата</string>
+    <string name="sort_pri">значок настроения</string>
+
+
+    //Intro
+
+    <string name="intro1_title">Бросай курить!</string>
+    <string name="intro1_text">Спасибо, что выбрали \"Бросай курить!\". Это свободное приложение с открытым исходным кодом.</string>
+
+    <string name="intro2_title">Что умеет приложение</string>
+    <string name="intro2_text">\"Бросай курить!\" показывает статистику о бросившем курить и положительные изменения в состоянии его здоровья. К тому же можно ставить цели (что-то, на что можно будет потратить сэкономленные на сигаретах денежки) и вести дневник.</string>
+
+    <string name="intro3_title">Настройки</string>
+    <string name="intro3_text">Данные о режиме курения можно ввести в "Настройках". Там же можно настроить формат даты, валюту и т.п. Поехали!</string>
+
+    // About
+
+    <string name="about_settings">О приложении и всякой всячине</string>
+    <string name="about_settings_text">Изменения в проекте, помощь, лицензия, используемые библиотеки и т.д.</string>
+
+    <string name="about_title_dev">Разработчик</string>
+    <string name="about_title_libs">В проекте использовались</string>
+    <string name="about_title_ext">Участники</string>
+    <string name="about_title_ext3">Перевод на японский язык</string>
+    <string name="about_title_ext4">Перевод на французский язык</string>
+    <string name="about_title_ext5">Перевод на русский язык</string>
+
+    <string name="about_changelog">Изменения в проекте</string>
+    <string name="about_changelog_summary">Открывает страницу проекта на Github (необходимо соединение с интернетом)</string>
+
+    <string name="about_license">Лицензия</string>
+    <string name="about_license_summary">Приложение распространяется на условиях GPL. Оно свободное, с открытым исходным кодом.</string>
+
+    <string name="about_dev">Гауклер Фаун</string>
+    <string name="about_dev_summary">Открыть профайл автора на странице Github (необходимо соединение с интернетом).</string>
+
+    <string name="about_intro">Заставка</string>
+    <string name="about_intro_summary">Показать экран заставки ещё раз.</string>
+
+    <string name="about_donate">Пожертвования</string>
+    <string name="about_donate_summary">Если вам понравилось приложение, помогите автору материально с помощью PayPal (необходимо соединение с интернетом).</string>
+
+    <string name="about_license_3">Использовалось для экрана заставки.</string>
+    <string name="about_license_7">Использовалось для экрана \"О приложении\".</string>
+    <string name="about_license_8">Почти все иконки — оттуда.</string>
+    <string name="about_license_9">Выдающаяся библиотека для загрузки и кэширования изображений.</string>
+    <string name="about_license_1">Библиотека Android, реализующая простой выбор изображения из галереи или приложения камеры.</string>
+    <string name="about_license_2">Использовалось для настроек времени и даты.</string>
+
+
+    //License Dialog
+
+    <string name="about_title">Авторские права  © 2016 Гауклер Фаун</string>
+    <string name="about_text">
+        &lt;i>Если нужны дополнительные сведения, зайдите на страницу проекта
+        на Github:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+
+        Это приложение — свободное: его можно распространять и изменять
+        на условиях третьей или более поздней версии Универсальной
+        общественной лицензии GNU GPL в том виде, в каком она
+        опубликована Фондом свободного ПО.
+
+        Приложение распространяется для пользы дела, но БЕЗ КАКИХ БЫ ТО
+        ни было гарантий, в том числе без подразумеваемой гарантии
+        коммерческой ценности или пригодности для определённой цели.
+        Подробности — в Универсальной общественной лицензии GNU GPL.
+
+        Вместе с приложением вы должны были получить копию Универсальной
+        общественной лицензии GNU GPL. Если этого не произошло, пройдите
+        по ссылке: http://www.gnu.org/licenses.
+    </string>
+
+
+    //Info Dialog
+
+    <string name="info_title">Источники информации</string>
+    <string name="info_text">
+        http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>
+        &lt;i>Источники, которые использовались на этой странице:&lt;/i>&lt;br>&lt;br>
+        Данные Американского общества по борьбе с раком: www.cancer.org (31.01.2011)&lt;br>&lt;br>
+        Данные Федерального центра медицинского образования (BZgA): www.rauchfrei-info.de (основано: 2010)&lt;br>&lt;br>
+        Данные Основного немецкого комитета по вопросам зависимостей (DHS): www.dhs.de (основано: 2007)
+    </string>
+
+
+    //String arrays
+
+    <string-array name="listCurrency">
+        <item>Евро (€)</item>
+        <item>Доллар ($)</item>
+        <item>Фунт(£)</item>
+        <item>Йена (¥)</item>
+    </string-array>
+
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="listDate">
+        <item>Американский (2016–06–20)</item>
+        <item>Европейский (20.06.2016)</item>
+    </string-array>
+
+    <string-array name="listValuesDate">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
