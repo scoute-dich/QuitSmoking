@@ -129,7 +129,7 @@ public class FragmentHealth extends Fragment {
             double diffCount = date1 + plusDay - date2;
             double diff2 = diffCount / 1000;
 
-            double diffDays = diffCount / (24 * 60 * 60 * 1000);
+            double diffDays = Math.floor(diffCount / (24 * 60 * 60 * 1000));
             double diffHours = diffCount / (60 * 60 * 1000) % 24;
             double diffMinutes = diffCount / (60 * 1000) % 60;
 
