@@ -8,7 +8,7 @@
     android:paddingStart="20dp"
     android:paddingTop="15dp">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="false" >
@@ -20,6 +20,6 @@
             android:inputType="numberDecimal"
             android:hint="@string/settings_cost_hint"/>
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
