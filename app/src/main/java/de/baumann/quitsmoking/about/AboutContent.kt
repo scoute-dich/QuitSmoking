@@ -34,7 +34,7 @@ internal object AboutContent {
         try {
             appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                     ContextCompat.getDrawable(c, R.drawable.earth2),
-                    "Version",
+                    c.getString(R.string.about_version),
                     false))
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()

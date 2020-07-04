@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                             requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                                     REQUEST_CODE_ASK_PERMISSIONS)
                         }
-                        .setNegativeButton(getString(R.string.no), null)
+                        .setNegativeButton(getString(R.string.cancel), null)
                         .show()
                 return
             }

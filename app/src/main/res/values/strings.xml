@@ -4,16 +4,8 @@
 
     <string name="app_name">Quit Smoking</string>
     <string name="yes">OK</string>
-    <string name="no">Cancel</string>
     <string name="app_permissions_title">Used permission</string>
-    <string name="app_permissions">
-
-        &lt;i>Access Storage Permission:&lt;/i>&lt;br>
-        &#8226; Diary: backup and restore to/from sd-card.&lt;br>
-        &#8226; Goal: load and save images for your personal goal.&lt;br>&lt;br>
-
-        &lt;i>Grant permissions later:&lt;/i>&lt;br>
-        If you don\'t permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\".</string>
+    <string name="app_permissions">"          &lt;i>Access Storage Permission:&lt;/i>&lt;br>         &#8226; Diary: backup and restore to/from sd-card.&lt;br>         &#8226; Goal: load and save images for your personal goal.&lt;br>&lt;br>          &lt;i>Grant permissions later:&lt;/i>&lt;br>         If you don't permit this now, you can do it later. Please open then \"Settings -> App info\" and choose \"Permissions\"."</string>
 
 
     //Share //Reset
@@ -23,7 +15,6 @@
     <string name="share_text2">and</string>
     <string name="share_text3">I saved:</string>
     <string name="share_text4">cigarettes</string>
-    <string name="share_text5">and</string>
     <string name="share_text6">of time.</string>
     <string name="share_subject">I stopped smoking</string>
     <string name="reset_confirm">Reset the time and create a diary entry?</string>
@@ -47,14 +38,14 @@
 
     // Main Activity
 
-    <string name="not_set">Configure in settings</string>
-    <string name="not_set2">0.0</string>
+    <string name="not_set1">Configure in settings</string>
+    <string name="not_set2" translatable="false">0.0</string>
 
-    <string name="money_euro">€</string>
-    <string name="money_dollar">$</string>
-    <string name="money_pound">£</string>
-    <string name="money_yen">¥</string>
-    <string name="money_rupees">₹</string>
+    <string name="money_euro" translatable="false">€</string>
+    <string name="money_dollar" translatable="false">$</string>
+    <string name="money_pound" translatable="false">£</string>
+    <string name="money_yen" translatable="false">¥</string>
+    <string name="money_rupees" translatable="false">₹</string>
 
     <string name="time_days">days</string>
     <string name="time_hours">hours</string>
@@ -104,7 +95,6 @@
     <string name="health_description9">The risk of diseases of the coronary vessels is reduced by half.
         (1 year)</string>
 
-    <string name="health_header10">Heart attack</string>
     <string name="health_description10">The risk of heart attack drops significantly. (2 years)</string>
 
     <string name="health_header11">Stroke</string>
@@ -116,7 +106,6 @@
     <string name="health_description12">The risk of lung cancer is the same as a non-smoker. The lungs
          have almost fully recovered. Pre-cancerous cells are replaced by healthy cells. (10 years)</string>
 
-    <string name="health_header13">Heart attack</string>
     <string name="health_description13">The risk of heart attack is barely higher than that of a Non-smoker. (15 years)</string>
 
 
@@ -174,7 +163,7 @@
 
     // Goal
 
-    <string name="goal_cancel">Cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="action_image">Picture</string>
     <string name="action_imageLoad">Choose image</string>
     <string name="action_imageRotate">Rotate image</string>
@@ -215,7 +204,7 @@
 
     <string name="settings_costs">Costs</string>
     <string name="settings_costs_summary">Costs of a single cigarette. This is used to calculate the saved money since quitting.</string>
-    <string name="settings_cost_hint">What does one cigarette cost?</string>
+    <string name="settings_cost_hint">How much does one cigarette cost?</string>
 
     <string name="settings_currency">Currency</string>
     <string name="settings_currency_summary">Set your preferred currency</string>
@@ -288,7 +277,7 @@
     <string name="about_license">License</string>
     <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
 
-    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev" translatable="false">Gaukler Faun</string>
     <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
 
     <string name="about_intro">Intro</string>
@@ -308,8 +297,8 @@
     //License Dialog
 
     <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
-    <string name="about_text">
-        &lt;i>For more informations visit the project site on Github:&lt;br>
+    <string name="about_text" translatable="false">
+        &lt;i>For more information visit the project site on Github:&lt;br>
         https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
 
         This program is free software: you can redistribute it and/or modify
@@ -330,14 +319,10 @@
     //Info Dialog
 
     <string name="info_title">Source of information</string>
-    <string name="info_text">
-        http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>
-        &lt;i>The sources of the above mentioned website are:&lt;/i>&lt;br>&lt;br>
-        Online-information of American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>
-        Online-information of Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>
-        Online-information of Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)
-    </string>
+    <string name="info_text">"         http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>         &lt;i>The sources of the above mentioned website are:&lt;/i>&lt;br>&lt;br>         Online-information of American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>         Online-information of Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>         Online-information of Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)     "</string>
 
+    // About dialog
+    <string name="about_version">Version</string>
 
     //String arrays
 

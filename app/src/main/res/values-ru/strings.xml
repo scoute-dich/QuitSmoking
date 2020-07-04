@@ -4,7 +4,7 @@
 
     <string name="app_name">Бросай курить!</string>
     <string name="yes">OK</string>
-    <string name="no">Отмена</string>
+    <string name="cancel">Отмена</string>
     <string name="app_permissions_title">Разрешения:</string>
     <string name="app_permissions">
 
@@ -23,7 +23,6 @@
     <string name="share_text2">и</string>
     <string name="share_text3">Получилось сэкономить </string>
     <string name="share_text4">сигарет</string>
-    <string name="share_text5">и</string>
     <string name="share_text6">чистого времени.</string>
     <string name="share_subject">Бросаю курить!</string>
     <string name="reset_confirm">Обнулить время и создать новую запись в дневнике?</string>
@@ -47,7 +46,7 @@
 
     // Main Activity
 
-    <string name="not_set">Выставить значение в Настройках</string>
+    <string name="not_set1">Выставить значение в Настройках</string>
     <string name="not_set2">0.0</string>
 
     <string name="money_euro">€</string>
@@ -97,7 +96,6 @@
     <string name="health_header9">Коронарные артерии</string>
     <string name="health_description9">Вполовину снижается образование атеросклеротичеких бляшек в коронарных артериях сердца (через 1 год)</string>
 
-    <string name="health_header10">Инфаркт</string>
     <string name="health_description10">Значительно снижается вероятность инфаркта миокарда (через 2 года)</string>
 
     <string name="health_header11">Инсульт</string>
@@ -106,7 +104,6 @@
     <string name="health_header12">Рак лёгких</string>
     <string name="health_description12">Вероятность возникновения злокачественных опухолей (рака лёгких, злокачественных новообразований в ротовой полости) становится такая же, как у ранее не куривших людей. Ткани лёгких восстанавливаются. Клетки, находившиеся в предопухолевом состоянии, исчезают: их замещают здоровые клетки (через 10 лет) </string>
 
-    <string name="health_header13">Сердечно-сосудистые заболевания</string>
     <string name="health_description13">Риск середечно-сосудистых заболеваний такой же, как у ранее не куривших (через 15 лет)</string>
 
 
@@ -164,7 +161,6 @@
 
     // Goal
 
-    <string name="goal_cancel">Отмена</string>
     <string name="action_image">Изображение</string>
     <string name="action_imageLoad">Выбрать изображение</string>
     <string name="action_imageRotate">Повернуть изображение</string>
@@ -325,17 +321,11 @@
     //String arrays
 
     <string-array name="listCurrency">
-        <item>Евро (€)</item>
         <item>Доллар ($)</item>
+        <item>Евро (€)</item>
         <item>Фунт(£)</item>
         <item>Йена (¥)</item>
-    </string-array>
-
-    <string-array name="listValuesCurrency">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>Rupees (₹)</item>
     </string-array>
 
     <string-array name="listDate">
