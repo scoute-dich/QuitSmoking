@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // App
+
+    <string name="app_name">Nichtraucher</string>
+    <string name="yes">OK</string>
+    <string name="no">Abbrechen</string>
+    <string name="app_permissions_title">Verlangte Berechtigung</string>
+    <string name="app_permissions">
+
+        &lt;i>Zugriff auf SD Karte:&lt;/i>&lt;br>
+        &#8226; Tagebuch: um dein Tagebuch zu sichern bzw. wiederherzustellen.&lt;br>
+        &#8226; Ziel: um ein Bild für dein persönliches Ziel zu laden und zu speichern.&lt;br>&lt;br>
+
+        &lt;i>Berechtigung nachträglich erteilen:&lt;/i>&lt;br>
+        Wenn du die Berechtigung verweigerst, kannst du sie nachträglich erteilen, indem du \"Einstellungen -> App Info\" öffnest und
+        dort den Bereich \"Berechtigungen\" auswählst.</string>
+
+    <string name="choose_camera">Kamera</string>
+    <string name="choose_gallery">Galerie</string>
+
+
+    //Share //Reset
+
+    <string name="share_text">Gute Neuigkeiten: ich rauche nicht mehr seit</string>
+    <string name="share_text_fail">Ich habe wieder angefangen zu rauchen. Nach</string>
+    <string name="share_text2">und</string>
+    <string name="share_text3">Ich habe gespart:</string>
+    <string name="share_text4">Zigaretten</string>
+    <string name="share_text5">und</string>
+    <string name="share_text6">an Zeit.</string>
+    <string name="share_subject">Ich habe mit dem Rauchen aufgehört</string>
+    <string name="reset_confirm">Zeit zurücksetzen und Tagebucheintrag erstellen?</string>
+
+
+    // Menu
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_share">Teilen</string>
+    <string name="action_health">Gesundheit</string>
+    <string name="action_overview">Übersicht</string>
+    <string name="action_diary">Tagebuch</string>
+    <string name="action_goal">Ziel</string>
+    <string name="action_save">Sparen</string>
+    <string name="action_reset">Zurücksetzen</string>
+
+
+    // Main Activity
+
+    <string name="not_set">Bitte einstellen</string>
+    <string name="not_set2">0.0</string>
+
+    <string name="money_euro">€</string>
+    <string name="money_dollar">$</string>
+    <string name="money_pound">£</string>
+    <string name="money_yen">¥</string>
+
+    <string name="time_days">Tagen</string>
+    <string name="time_hours">Stunden</string>
+    <string name="time_minutes">Minuten</string>
+
+    <string name="last_time_date">Aufgehört zu rauchen am:</string>
+    <string name="last_since">Nicht geraucht seit:</string>
+    <string name="stat">Gespart:</string>
+    <string name="stat_h">h</string>
+
+
+    // Health Activity
+
+    <string name="health_congratulations">Glückwunsch - das hast du geschafft!</string>
+    <string name="health_reached">Erreicht in:</string>
+
+    <string name="health_header1">Blutdruck</string>
+    <string name="health_description1">Blutdruck, Körpertemperatur und Herzfrequenz normalisieren sich. (20 Minuten)</string>
+
+    <string name="health_header2">Kohlenmonoxid</string>
+    <string name="health_description2">Der Raucheratem verschwindet. Das Giftgas Kohlenmonoxid blockiert
+        bei einem Raucher etwa 10% der roten Blutkörperchen. Diese Blutkörperchen sind jetzt wieder verfügbar
+        für Sauerstoff. (8 Stunden)</string>
+
+    <string name="health_header3">Herzinfarkt</string>
+    <string name="health_description3">Das Risiko für einen plötzlichen Herztod sinkt. (1 Tag)</string>
+
+    <string name="health_header4">Geruchssinn</string>
+    <string name="health_description4">Der Geruchssinn und die Geschmacksnerven werden wieder sensibler; das Riechen
+        und Schmecken verfeinert sich. (2 Tage)</string>
+
+    <string name="health_header5">Atmen</string>
+    <string name="health_description5">Das Atmen fällt leichter. (3 Tage)</string>
+
+    <string name="health_header6">Nikotinentzug</string>
+    <string name="health_description6">Der körperliche Nikotinentzug ist geschafft. (1 Woche)</string>
+
+    <string name="health_header7">Leistungsfähigkeit</string>
+    <string name="health_description7">Der gesamte Blutkreislauf verbessert sich. Die Lungenkapazität erhöht
+        sich um bis zu 30 Prozent, sie kann wieder mehr Sauerstoff aufnehmen. Dadurch erhöht sich die körperliche
+        Leistungsfähigkeit. (3 Monate)</string>
+
+    <string name="health_header8">Lungenhärchen</string>
+    <string name="health_description8">Spätestens jetzt sind die feinen Härchen in der Lunge nachgewachsen,
+        der Raucherhusten verschwindet. Abgespanntheit und Kurzatmigkeit verbessern sich zunehmend. (9 Monate)</string>
+
+    <string name="health_header9">Herzkranzgefäße</string>
+    <string name="health_description9">Das Risiko für Erkrankungen an den Herzkranzgefäßen sinkt um die Hälfte.
+        (1 Jahr)</string>
+
+    <string name="health_header10">Herzinfarkt</string>
+    <string name="health_description10">Das Risiko für einen Herzinfarkt sinkt deutlich. (2 Jahre)</string>
+
+    <string name="health_header11">Schlaganfall</string>
+    <string name="health_description11">Das Risiko, einen Schlaganfall zu bekommen oder an einem Lungenkrebs
+        zu sterben, ist wesentlich geringer als früher. Auch das Risiko für Krebserkrankungen im Mundbereich ist
+        reduziert. (5 Jahre)</string>
+
+    <string name="health_header12">Lungenkrebs</string>
+    <string name="health_description12">Die Lungenkrebsgefahr ist so hoch wie bei einem Nichtraucher. Die Lunge
+        hat sich fast vollständig erholt, präkanzeröse Zellen sind durch gesunde Zellen ersetzt worden. (10 Jahre)</string>
+
+    <string name="health_header13">Herzinfarkt</string>
+    <string name="health_description13">Das Herzinfarktrisiko ist kaum höher als bei einem Nichtraucher. (15 Jahre)</string>
+
+
+    // Diary
+
+    <string name="action_backup">Tagebuch sichern</string>
+    <string name="action_restore">Tagebuch wiederherstellen</string>
+    <string name="action_delete">Tagebuch löschen</string>
+
+
+    // Notes
+
+    <string name="note_remove_confirmation">Eintrag wird entfernt. OK?</string>
+    <string name="note_remove_note">Eintrag löschen</string>
+    <string name="note_edit">Eintrag bearbeiten</string>
+    <string name="note_share">Eintrag teilen</string>
+    <string name="note_share_2">Eintrag teilen mit:</string>
+    <string name="title_hint">Titel</string>
+    <string name="text_hint">Inhalt</string>
+    <string name="toast_extension">Keine unterstützte Dateiendung</string>
+    <string name="toast_install_app">Bitte eine App installieren um die Aktion ausführen zu können.</string>
+    <string name="note_attachment">Anhang</string>
+
+    <string name="text_tit_1">Neutral</string>
+    <string name="text_tit_2">Glücklich</string>
+    <string name="text_tit_3">Traurig</string>
+    <string name="text_tit_4">Lächelnd</string>
+    <string name="text_tit_5">Cool</string>
+    <string name="text_tit_6">Tot</string>
+    <string name="text_tit_7">Erregt</string>
+    <string name="text_tit_8">Zunge</string>
+    <string name="text_tit_9">Teufel</string>
+
+    <string name="toast_backup">Sicherung erfolgreich.</string>
+    <string name="toast_restore">Wiederherstellung erfolgreich.</string>
+    <string name="toast_backup_not">Sicherung nicht erfolgreich.</string>
+    <string name="toast_restore_not">Wiederherstellung nicht erfolgreich.</string>
+    <string name="toast_save">Eintrag nicht gespeichert. Bearbeiten abbrechen?</string>
+
+    <string name="paste_date">Aktuelles Datum einfügen</string>
+    <string name="paste_time">Aktuelle Zeit einfügen</string>
+    <string name="paste_line">Trennlinie einfügen</string>
+
+    <string name="action_sort">Einträge sortieren</string>
+    <string name="action_sort_title">Sortiere nach Titel</string>
+    <string name="action_sort_icon">Sortiere nach Smiley</string>
+    <string name="action_sort_create">Sortiere nach Datum</string>
+
+
+    //File chooser
+
+    <string name="choose_att">Anhang auswählen</string>
+    <string name="choose_title">Dateimanager</string>
+
+
+    // Goal
+
+    <string name="goal_cancel">Abbrechen</string>
+    <string name="action_image">Bild</string>
+    <string name="action_imageLoad">Bild aussuchen</string>
+    <string name="action_imageRotate">Bild drehen</string>
+    <string name="costs">Kosten:</string>
+    <string name="alreadySaved">Bereits gespart:</string>
+    <string name="costsRemaining">Noch übrig:</string>
+
+
+
+    // Settings
+
+    <string name="settings_category_0">Tabs</string>
+    <string name="settings_category_1">Statistiken</string>
+    <string name="settings_category_2">Ziel Tab</string>
+    <string name="settings_category_3">Anwendung</string>
+
+    <string name="settings_goalDate">Nächstes Ziel</string>
+    <string name="settings_tab_overview">Übersichtstab</string>
+    <string name="settings_tab_health">Gesundheitstab</string>
+    <string name="settings_tab_goal">Zieltab</string>
+    <string name="settings_tab_diary">Tagebuchtab</string>
+
+    <string name="settings_goalDate_summary">Wenn du dein aktuelles Ziel erreicht hast, kannst du hier das Startdatum für dein
+        nächstes Ziel einstellen. Dies ist notwendig um den Zeitpunkt, wann du dein nächstes Ziel erreichen wirst, zu
+        berechnen und gleichzeitig die Gesamtstatistiken in der Übersicht zu behalten.</string>
+    <string name="settings_tab_overview_summary">Möchtest du den Übersichtstab verwenden? Dort werden grundlegende Statistiken
+        angezeigt:
+        Zeit als Nichtraucher, gespartes Geld und so weiter.</string>
+    <string name="settings_tab_health_summary">Möchtest du den Gesundheitstab verweden? Dort werden Fortschritte angezeigt, die
+        deine Gesundheit
+        betreffen: Wahrscheinlichkeit eines Herzinfarktes, Verbesserung der Lungentätigkeit und so weiter.</string>
+    <string name="settings_tab_goal_summary">Möchtest du den Zieltab verwenden? Hier kannst du dir ein persönliches Ziel setzen. Etwas
+        wofür du das gesparte Geld ausgeben möchtest.</string>
+    <string name="settings_tab_diary_summary">Möchtest du den Tagebuchtab verwenden? Hier kannst du deine Gedanken, Gefühle oder
+        ähnliches notieren. Vielleicht hilft es dir.</string>
+
+    <string name="a_goal">Persönliches Ziel</string>
+    <string name="a_goal_summary">Für was willst du das gesparte Geld nutzen? Gib Namen und Kosten deines persönlichen Ziels an.</string>
+    <string name="settings_goalTitle_hint">Name deines Ziels</string>
+    <string name="settings_goalCosts_hint">Kosten (ganze Zahl eingeben): 199</string>
+
+    <string name="settings_costs">Kosten</string>
+    <string name="settings_costs_summary">Die Kosten einer einzelnen Zigarette. Wird gebraucht um das bis jetzt gesparte Geld zu berechnen.</string>
+    <string name="settings_cost_hint">Was kostet eine Zigarette?</string>
+
+    <string name="settings_currency">Währung</string>
+    <string name="settings_currency_summary">Wähle deine bevorzugte Währungseinheit</string>
+
+    <string name="a_cig">Rauchgewohnheiten</string>
+    <string name="a_cig_summary">Gib die Anzahl der Zigaretten, die du am Tag geraucht hast und die Zeit, die du für eine Zigarette
+        gebraucht hast, an.</string>
+    <string name="a_cig_hintNumb">Anzahl der Zigaretten</string>
+    <string name="a_cig_hintTime">Zeit in Minuten</string>
+
+    <string name="a_time">Zeitpunkt</string>
+    <string name="a_time_summary">Wann hast du mit Rauchen aufgehört? Gib Datum und Uhrzeit an.</string>
+
+    <string name="a_dateFormat">Datumsformat</string>
+    <string name="a_dateFormat_summary">Wähle dein bevorzgtes Datumsformat.</string>
+
+    <string name="a_openSettings">App Info</string>
+    <string name="a_openSettings_summary">Öffne über die Systemeinstellungen die App Info der App. Je nach Androidversion
+        kannst du dort verschiedene Einstellungen vornehmen (Speicherplatz, Netzwerkverkehr, Berechtigungen, …).</string>
+
+    <string name="toast_newTitle">Titel existiert bereits.</string>
+    <string name="toast_notSave">Kann Eintrag nicht speichern.</string>
+    <string name="toast_directory">Kann Verzeichnis nicht öffnen.</string>
+    <string name="toast_files">Keine Dateien im Verzeichnis.</string>
+    <string name="toast_delete">Alle Einträge werden gelöscht.</string>
+
+    <string name="action_filter">Suche</string>
+    <string name="action_filter_title">Suche nach Titel</string>
+    <string name="action_filter_cont">Suche nach Eintrag</string>
+    <string name="action_filter_create">Suche nach Datum</string>
+
+    <string name="filter_today">Heute</string>
+    <string name="filter_yesterday">Gestern</string>
+    <string name="filter_before">Vorgestern</string>
+    <string name="filter_month">Dieser Monat</string>
+    <string name="filter_own">Eigene Suche</string>
+
+    <string name="sort_title">Titel</string>
+    <string name="sort_date">Datum</string>
+    <string name="sort_pri">Smiley</string>
+
+
+    //Intro
+
+    <string name="intro1_title">Nichtraucher</string>
+    <string name="intro1_text">Danke, dass du dich für \"Nichtraucher\" entschieden hast. \"Nichtraucher\" ist quelloffen und
+        komplett frei (wie in Freiheit).</string>
+
+    <string name="intro2_title">Funktionen</string>
+    <string name="intro2_text">\"Nichtraucher\" zeigt dir eine Übersicht mit einigen Statistiken und deine gesundheitlichen
+        Fortschritte an. Zusätzlich kannst du dir ein Ziel setzen (Wofür nutzt du das gesparte Geld?) und ein Tagebuch führen. </string>
+
+    <string name="intro3_title">Einstellungen</string>
+    <string name="intro3_text">Bitte fülle ein paar Informationen zu deinen Rauchgewohnheiten in den Einstellungen aus. Es gibt
+        dort ebenfalls einige einfache Einstellungen (Datumsformat, Währungseinheit, …). So, und jetzt geht\'s los …</string>
+
+
+    // About
+
+    <string name="about_settings">Über die App … und Anderes</string>
+    <string name="about_settings_text">Changelog, Hilfe, Lizenz, benutzte Bibliotheken und mehr.</string>
+
+    <string name="about_title_dev">Entwickler</string>
+    <string name="about_title_libs">Benutzte Ressourcen</string>
+    <string name="about_title_ext">Beteiligte</string>
+    <string name="about_title_ext3">Japanische Übersetzung</string>
+    <string name="about_title_ext4">Französische Übersetzung</string>
+    <string name="about_title_ext5">Russische Übersetzung</string>
+
+    <string name="about_changelog">Änderungen</string>
+    <string name="about_changelog_summary">Öffne die Github Seite und schaue, was es Neues gibt … (braucht eine Internetverbindung)</string>
+
+    <string name="about_license">Lizenz</string>
+    <string name="about_license_summary">Die App steht unter der GPL Lizenz und ist komplett frei (wie in Freiheit). Der Quellcode kann
+        eingesehen werden.</string>
+
+    <string name="about_dev">Gaukler Faun</string>
+    <string name="about_dev_summary">Öffne mein Github Profil (braucht eine Internetverbindung).</string>
+
+    <string name="about_intro">Einführung</string>
+    <string name="about_intro_summary">Zeige noch einmal die Einführung an.</string>
+
+    <string name="about_donate">Spende</string>
+    <string name="about_donate_summary">Wenn dir die App gefällt, kannst du mir gerne etwas über Paypal spenden (braucht eine
+        Internetverbindung).</string>
+
+    <string name="about_license_3">Gebraucht um den \"Introschirm\" zu erstellen.</string>
+    <string name="about_license_7">Gebraucht um den \"About screen\" zu erstellen.</string>
+    <string name="about_license_8">Die Quelle von fast allen Icons.</string>
+    <string name="about_license_9">Bibliothek zum Downloaden und Anzeigen von Bildern.</string>
+    <string name="about_license_1">Android Bibliothek um Bilder zu machen oder auszuwählen.</string>
+    <string name="about_license_2">Gebraucht für die Datums- und Zeitauswahl in den Einstellungen.</string>
+
+
+    //License Dialog
+
+    <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
+    <string name="about_text">
+        &lt;i>Besuche für mehr Informationen die Projektseite suf Github:&lt;br>
+        https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program.  If not, see http://www.gnu.org/licenses.
+    </string>
+
+
+    //Info Dialog
+
+    <string name="info_title">Informationsquelle</string>
+    <string name="info_text">
+        http://www.onmeda.de/rauchen/rauchfrei.html&lt;br>&lt;br>
+        &lt;i>Die Quellen der oben genannten Internetseite sind:&lt;/i>&lt;br>&lt;br>
+        Online-Informationen der American Cancer Society: www.cancer.org (31.01.2011)&lt;br>&lt;br>
+        Online-Informationen des Bundeszentrale für gesundheitliche Aufklärung (BZgA): www.rauchfrei-info.de (Stand: 2010)&lt;br>&lt;br>
+        Online-Informationen der Deutschen Hauptstelle für Suchtfragen e.V. (DHS): www.dhs.de (Stand: 2007)
+    </string>
+
+
+    //String arrays
+
+    <string-array name="listCurrency">
+        <item>Euro (€)</item>
+        <item>Dollar ($)</item>
+        <item>Pfund (£)</item>
+        <item>Yen (¥)</item>
+    </string-array>
+
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="listDate">
+        <item>International (2016–06–20)</item>
+        <item>Deutsch (20.06.2016)</item>
+    </string-array>
+
+    <string-array name="listValuesDate">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>
