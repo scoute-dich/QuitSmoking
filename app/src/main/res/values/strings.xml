@@ -343,7 +343,7 @@
 
     <string-array name="listCurrency">
         <item>Dollar ($)</item>
-        <item>EURO (€)</item>
+        <item>Euro (€)</item>
         <item>Pound (£)</item>
         <item>Yen (¥)</item>
         <item>Rupees (₹)</item>
