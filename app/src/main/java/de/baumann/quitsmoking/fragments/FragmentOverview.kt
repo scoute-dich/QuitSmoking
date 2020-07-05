@@ -122,7 +122,7 @@ class FragmentOverview : Fragment() {
                     sharingIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " " +
                             days + " " + hours + " " + getString(R.string.share_text2) + " " + minutes + ". " +
                             getString(R.string.share_text3) + " " + savedCigarettes + " " + getString(R.string.share_text4) + ", " +
-                            savedMoney + " " + getString(R.string.share_text5) + " " +
+                            savedMoney + " " + getString(R.string.share_text2) + " " +
                             savedTime + " " + getString(R.string.share_text6))
                     startActivity(Intent.createChooser(sharingIntent, "Share using"))
                     return true
@@ -135,7 +135,7 @@ class FragmentOverview : Fragment() {
                                 val text = getString(R.string.share_text_fail) + " " +
                                         days + " " + hours + " " + getString(R.string.share_text2) + " " + minutes + ". " +
                                         getString(R.string.share_text3) + " " + savedCigarettes + " " + getString(R.string.share_text4) + ", " +
-                                        savedMoney + " " + getString(R.string.share_text5) + " " +
+                                        savedMoney + " " + getString(R.string.share_text2) + " " +
                                         savedTime + " " + getString(R.string.share_text6)
                                 sharedPreferences.edit()
                                         .putString("handleTextTitle", title)

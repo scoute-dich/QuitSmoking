@@ -51,7 +51,7 @@ class FragmentGoal : Fragment() {
         val goalTitle = sharedPreferences.getString("goalTitle", "")
         val textviewGoaltitle = rootView.findViewById<TextView>(R.id.text_header1)
         if (goalTitle!!.isEmpty()) {
-            textviewGoaltitle.text = getString(R.string.not_set)
+            textviewGoaltitle.text = getString(R.string.not_set1)
         } else {
             textviewGoaltitle.text = goalTitle
         }
@@ -100,7 +100,7 @@ class FragmentGoal : Fragment() {
             val remTimeString = String.format(Locale.US, "%.1f", remTime)
             val textviewGoalcost: TextView = rootView.findViewById(R.id.text_description1)
             if (goalTitle.isEmpty()) {
-                textviewGoalcost.text = getString(R.string.not_set)
+                textviewGoalcost.text = getString(R.string.not_set1)
             } else {
                 when (currency) {
                     "1" -> textviewGoalcost.text = getString(R.string.costs) + " " + goalCostString + " " + getString(R.string.money_euro) +
@@ -119,7 +119,7 @@ class FragmentGoal : Fragment() {
             }
             val textviewGoaltime: TextView = rootView.findViewById(R.id.text_description2)
             if (goalTitle.isEmpty()) {
-                textviewGoaltime.text = getString(R.string.not_set)
+                textviewGoaltime.text = getString(R.string.not_set1)
             } else {
                 if (remTime < 0) {
                     textviewGoaltime.text = getString(R.string.health_congratulations)
@@ -178,7 +178,7 @@ class FragmentGoal : Fragment() {
                     getString(R.string.choose_gallery),
                     getString(R.string.choose_camera))
             val dialog = AlertDialog.Builder(activity)
-            dialog.setPositiveButton(R.string.no) { dialog, _ -> dialog.cancel() }
+            dialog.setPositiveButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
             dialog.setItems(options) { _, item ->
                 if (options[item] == getString(R.string.choose_gallery)) {
                     RxImagePicker.with(activity).requestImage(Sources.GALLERY)

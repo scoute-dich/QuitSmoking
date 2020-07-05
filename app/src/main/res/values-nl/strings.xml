@@ -4,7 +4,7 @@
 
     <string name="app_name">Stoppen met roken</string>
     <string name="yes">Oké</string>
-    <string name="no">Annuleren</string>
+    <string name="cancel">Annuleren</string>
     <string name="app_permissions_title">Gebruikte machtigingen</string>
     <string name="app_permissions">
 
@@ -23,7 +23,6 @@
     <string name="share_text2">en</string>
     <string name="share_text3">Ik heb opgeslagen:</string>
     <string name="share_text4">sigaretten</string>
-    <string name="share_text5">en</string>
     <string name="share_text6">tijd.</string>
     <string name="share_subject">Ik ben gestopt met roken</string>
     <string name="reset_confirm">Tijd terugzetten en dagboekitem creëren?</string>
@@ -47,7 +46,7 @@
 
     // Main Activity
 
-    <string name="not_set">Instellen in instellingen</string>
+    <string name="not_set1">Instellen in instellingen</string>
     <string name="not_set2">0.0</string>
 
     <string name="money_euro">€</string>
@@ -103,7 +102,6 @@
     <string name="health_description9">De kans op infecties van de kransslagader neemt 50% af.
         (1 jaar)</string>
 
-    <string name="health_header10">Hartaanval</string>
     <string name="health_description10">De kans op een hartaanval neemt zeer sterk af. (2 jaar)</string>
 
     <string name="health_header11">Beroerte</string>
@@ -115,7 +113,6 @@
     <string name="health_description12">De kans op longkanker is even hoog als dat van een niet-roker. De longen
          zijn nagenoeg volledig hersteld. Kankerachtige cellen worden vervangen door gezonde. (10 jaar)</string>
 
-    <string name="health_header13">Hartaanval</string>
     <string name="health_description13">De kans op een hartaanval is nauwelijks hoger dan dat van een niet-roker. (15 years)</string>
 
 
@@ -173,7 +170,6 @@
 
     // Goal
 
-    <string name="goal_cancel">Annuleren</string>
     <string name="action_image">Afbeelding</string>
     <string name="action_imageLoad">Afbeelding kiezen</string>
     <string name="action_imageRotate">Afbeelding draaien</string>
@@ -259,7 +255,7 @@
     //Intro
 
     <string name="intro1_title">Stoppen met roken</string>
-    <string name="intro1_text">Bedankt voor het kiezen voor \"Stoppen met roken\". De app is open source en volledig vrij (als in 'vrijheid').</string>
+    <string name="intro1_text">Bedankt voor het kiezen voor \"Stoppen met roken\". De app is open source en volledig vrij (als in \'vrijheid\').</string>
 
     <string name="intro2_title">Mogelijkheden</string>
     <string name="intro2_text">\"Stoppen met roken\" geeft je een overzicht met statistieken en gezondheidsvoordelen.
@@ -285,7 +281,7 @@
     <string name="about_changelog_summary">Open GitHub en bekijk wat er nieuw is… (internetverbinding vereist)</string>
 
     <string name="about_license">Licentie</string>
-    <string name="about_license_summary">De app wordt uitgegeven onder de GPL en is volledig open source en vrij (als in 'vrijheid').</string>
+    <string name="about_license_summary">De app wordt uitgegeven onder de GPL en is volledig open source en vrij (als in \'vrijheid\').</string>
 
     <string name="about_dev">Gaukler Faun</string>
     <string name="about_dev_summary">Open mijn profiel op GitHub (internetverbinding vereist).</string>
@@ -341,17 +337,11 @@
     //String arrays
 
     <string-array name="listCurrency">
-        <item>Euro (€)</item>
         <item>Dollar ($)</item>
+        <item>Euro (€)</item>
         <item>Pound (£)</item>
         <item>Yen (¥)</item>
-    </string-array>
-
-    <string-array name="listValuesCurrency">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>Rupees (₹)</item>
     </string-array>
 
     <string-array name="listDate">

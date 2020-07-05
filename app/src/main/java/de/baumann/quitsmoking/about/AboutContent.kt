@@ -34,7 +34,7 @@ internal object AboutContent {
         try {
             appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                     ContextCompat.getDrawable(c, R.drawable.earth2),
-                    "Version",
+                    c.getString(R.string.about_version),
                     false))
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
@@ -108,6 +108,11 @@ internal object AboutContent {
                 .subText(R.string.about_title_ext5)
                 .icon(R.drawable.github_circle)
                 .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/mesnevi")))
+                .build())
+        authorCardBuilder2.addItem(MaterialAboutActionItem.Builder()
+                .text("igi0")
+                .subText(R.string.about_title_ext6)
+                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://gitlab.com/igi0")))
                 .build())
         val convenienceCardBuilder = MaterialAboutCard.Builder()
         convenienceCardBuilder.title(R.string.about_title_libs)

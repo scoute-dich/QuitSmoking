@@ -4,7 +4,7 @@
 
     <string name="app_name">Nichtraucher</string>
     <string name="yes">OK</string>
-    <string name="no">Abbrechen</string>
+    <string name="cancel">Abbrechen</string>
     <string name="app_permissions_title">Verlangte Berechtigung</string>
     <string name="app_permissions">
 
@@ -27,7 +27,6 @@
     <string name="share_text2">und</string>
     <string name="share_text3">Ich habe gespart:</string>
     <string name="share_text4">Zigaretten</string>
-    <string name="share_text5">und</string>
     <string name="share_text6">an Zeit.</string>
     <string name="share_subject">Ich habe mit dem Rauchen aufgehört</string>
     <string name="reset_confirm">Zeit zurücksetzen und Tagebucheintrag erstellen?</string>
@@ -47,7 +46,7 @@
 
     // Main Activity
 
-    <string name="not_set">Bitte einstellen</string>
+    <string name="not_set1">Bitte einstellen</string>
     <string name="not_set2">0.0</string>
 
     <string name="money_euro">€</string>
@@ -104,7 +103,6 @@
     <string name="health_description9">Das Risiko für Erkrankungen an den Herzkranzgefäßen sinkt um die Hälfte.
         (1 Jahr)</string>
 
-    <string name="health_header10">Herzinfarkt</string>
     <string name="health_description10">Das Risiko für einen Herzinfarkt sinkt deutlich. (2 Jahre)</string>
 
     <string name="health_header11">Schlaganfall</string>
@@ -116,7 +114,6 @@
     <string name="health_description12">Die Lungenkrebsgefahr ist so hoch wie bei einem Nichtraucher. Die Lunge
         hat sich fast vollständig erholt, präkanzeröse Zellen sind durch gesunde Zellen ersetzt worden. (10 Jahre)</string>
 
-    <string name="health_header13">Herzinfarkt</string>
     <string name="health_description13">Das Herzinfarktrisiko ist kaum höher als bei einem Nichtraucher. (15 Jahre)</string>
 
 
@@ -174,7 +171,6 @@
 
     // Goal
 
-    <string name="goal_cancel">Abbrechen</string>
     <string name="action_image">Bild</string>
     <string name="action_imageLoad">Bild aussuchen</string>
     <string name="action_imageRotate">Bild drehen</string>
@@ -350,17 +346,11 @@
     //String arrays
 
     <string-array name="listCurrency">
-        <item>Euro (€)</item>
         <item>Dollar ($)</item>
+        <item>Euro (€)</item>
         <item>Pfund (£)</item>
         <item>Yen (¥)</item>
-    </string-array>
-
-    <string-array name="listValuesCurrency">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>Rupees (₹)</item>
     </string-array>
 
     <string-array name="listDate">
