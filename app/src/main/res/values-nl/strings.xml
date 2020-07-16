@@ -259,7 +259,7 @@
     //Intro
 
     <string name="intro1_title">Stoppen met roken</string>
-    <string name="intro1_text">Bedankt voor het kiezen voor \"Stoppen met roken\". De app is open source en volledig vrij (als in 'vrijheid').</string>
+    <string name="intro1_text">Bedankt voor het kiezen voor \"Stoppen met roken\". De app is open source en volledig vrij (als in \'vrijheid\').</string>
 
     <string name="intro2_title">Mogelijkheden</string>
     <string name="intro2_text">\"Stoppen met roken\" geeft je een overzicht met statistieken en gezondheidsvoordelen.
@@ -285,7 +285,7 @@
     <string name="about_changelog_summary">Open GitHub en bekijk wat er nieuw is… (internetverbinding vereist)</string>
 
     <string name="about_license">Licentie</string>
-    <string name="about_license_summary">De app wordt uitgegeven onder de GPL en is volledig open source en vrij (als in 'vrijheid').</string>
+    <string name="about_license_summary">De app wordt uitgegeven onder de GPL en is volledig open source en vrij (als in \'vrijheid\').</string>
 
     <string name="about_dev">Gaukler Faun</string>
     <string name="about_dev_summary">Open mijn profiel op GitHub (internetverbinding vereist).</string>
