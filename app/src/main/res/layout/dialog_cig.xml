@@ -8,7 +8,7 @@
     android:paddingStart="20dp"
     android:paddingTop="15dp">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="false" >
@@ -20,9 +20,9 @@
             android:inputType="number"
             android:hint="@string/a_cig_hintNumb"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true" >
@@ -34,6 +34,6 @@
             android:inputType="numberDecimal"
             android:hint="@string/a_cig_hintTime"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

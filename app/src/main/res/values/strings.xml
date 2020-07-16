@@ -54,7 +54,6 @@
     <string name="money_dollar">$</string>
     <string name="money_pound">£</string>
     <string name="money_yen">¥</string>
-    <string name="money_rupees">₹</string>
 
     <string name="time_days">days</string>
     <string name="time_hours">hours</string>
@@ -342,11 +341,10 @@
     //String arrays
 
     <string-array name="listCurrency">
+        <item>Euro (€)</item>
         <item>Dollar ($)</item>
-        <item>EURO (€)</item>
         <item>Pound (£)</item>
         <item>Yen (¥)</item>
-        <item>Rupees (₹)</item>
     </string-array>
 
     <string-array name="listValuesCurrency">
@@ -354,7 +352,6 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>5</item>
     </string-array>
 
     <string-array name="listDate">
