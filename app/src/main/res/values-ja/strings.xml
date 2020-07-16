@@ -4,7 +4,7 @@
 
     <string name="app_name">禁煙</string>
     <string name="yes">OK</string>
-    <string name="cancel">いいえ</string>
+    <string name="no">いいえ</string>
     <string name="app_permissions_title">使用するアクセス許可</string>
     <string name="app_permissions">
 
@@ -22,6 +22,7 @@
     <string name="share_text2">から喫煙をやめて</string>
     <string name="share_text3">私は:</string>
     <string name="share_text4">本のタバコ</string>
+    <string name="share_text5">と</string>
     <string name="share_text6">の時間を節約しました。</string>
     <string name="share_subject">禁煙しました</string>
 
@@ -38,7 +39,7 @@
 
     // Main Activity
 
-    <string name="not_set1">設定で構成</string>
+    <string name="not_set">設定で構成</string>
     <string name="not_set2">0.0</string>
 
     <string name="money_euro">€</string>
@@ -95,6 +96,7 @@
     <string name="health_description9">冠状動脈の疾患のリスクが半減します。
         (1 年)</string>
 
+    <string name="health_header10">心臓発作</string>
     <string name="health_description10">心臓発作のリスクが大幅に低下します。 (2 年)</string>
 
     <string name="health_header11">脳卒中</string>
@@ -105,6 +107,7 @@
     <string name="health_description12">肺がんのリスクは非喫煙者と同じくらいの高さです。
          肺はほぼ完全に回復し、前がん細胞は健康な細胞に入れ替わりました。 (10 年)</string>
 
+    <string name="health_header13">心臓発作</string>
     <string name="health_description13">心臓発作のリスクは非喫煙者に比べてわずかに高い程度です。 (15 年)</string>
 
 
@@ -162,6 +165,7 @@
 
     // Goal
 
+    <string name="goal_cancel">キャンセル</string>
     <string name="action_image">画像を</string>
     <string name="action_imageLoad">画像を読み込む</string>
     <string name="action_imageRotate">画像を回転</string>
@@ -267,7 +271,7 @@
     <string name="about_title_ext">Contributors</string>
     <string name="about_title_ext3">Japanese translation</string>
     <string name="about_title_ext4">French translation</string>
-    <string name="about_title_ext5">Russian translation</string>
+    <string name="about_title_ext4">Russian translation</string>
 
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
@@ -315,11 +319,17 @@
     //String arrays
 
     <string-array name="listCurrency">
-        <item>ドル ($)</item>
         <item>ユーロ (€)</item>
+        <item>ドル ($)</item>
         <item>ポンド (£)</item>
         <item>円 (¥)</item>
-        <item>Rupees (₹)</item>
+    </string-array>
+
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 
     <string-array name="listDate">

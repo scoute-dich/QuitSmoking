@@ -361,7 +361,7 @@ class FragmentNotes : Fragment() {
                     getString(R.string.note_share),
                     getString(R.string.note_remove_note))
             AlertDialog.Builder(activity)
-                    .setPositiveButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                    .setPositiveButton(R.string.no) { dialog, _ -> dialog.cancel() }
                     .setItems(options) { _, item ->
                         if (options[item] == getString(R.string.note_edit)) {
                             sharedPref.edit()

@@ -163,7 +163,7 @@ class UserSettingsActivity : AppCompatActivity() {
                     val inputTag2 = editTime.text.toString().trim { it <= ' ' }
                     sharedPref.edit().putString("duration", inputTag2).apply()
                 }
-                builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                builder.setNegativeButton(R.string.goal_cancel) { dialog, _ -> dialog.cancel() }
                 val dialog2 = builder.create()
                 // Display the custom alert dialog on interface
                 dialog2.show()
@@ -187,7 +187,7 @@ class UserSettingsActivity : AppCompatActivity() {
                     val inputTag = editNumber.text.toString().trim { it <= ' ' }
                     sharedPref.edit().putString("costs", inputTag).apply()
                 }
-                builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                builder.setNegativeButton(R.string.goal_cancel) { dialog, _ -> dialog.cancel() }
                 val dialog2 = builder.create()
                 // Display the custom alert dialog on interface
                 dialog2.show()
@@ -215,7 +215,7 @@ class UserSettingsActivity : AppCompatActivity() {
                     val inputTag2 = editTime.text.toString().trim { it <= ' ' }
                     sharedPref.edit().putString("goalCosts", inputTag2).apply()
                 }
-                builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                builder.setNegativeButton(R.string.goal_cancel) { dialog, _ -> dialog.cancel() }
                 val dialog2 = builder.create()
                 // Display the custom alert dialog on interface
                 dialog2.show()

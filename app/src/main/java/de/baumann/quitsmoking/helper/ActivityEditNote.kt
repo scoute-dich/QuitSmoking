@@ -95,7 +95,7 @@ class ActivityEditNote : AppCompatActivity() {
                     getString(R.string.choose_gallery),
                     getString(R.string.choose_camera))
             val dialog = AlertDialog.Builder(this@ActivityEditNote)
-            dialog.setPositiveButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+            dialog.setPositiveButton(R.string.no) { dialog, _ -> dialog.cancel() }
             dialog.setItems(options) { _, item ->
                 if (options[item] == getString(R.string.choose_gallery)) {
                     RxImagePicker.with(this@ActivityEditNote).requestImage(Sources.GALLERY)
@@ -191,7 +191,7 @@ class ActivityEditNote : AppCompatActivity() {
                 }
             }
             AlertDialog.Builder(this@ActivityEditNote)
-                    .setPositiveButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                    .setPositiveButton(R.string.no) { dialog, _ -> dialog.cancel() }
                     .setAdapter(adapter) { _, item ->
                         if (item == 0) {
                             be.setImageResource(R.drawable.emoticon_neutral)
@@ -229,7 +229,7 @@ class ActivityEditNote : AppCompatActivity() {
                     getString(R.string.paste_time),
                     getString(R.string.paste_line))
             AlertDialog.Builder(this@ActivityEditNote)
-                    .setPositiveButton(R.string.cancel) { dialog, whichButton -> dialog.dismiss() }
+                    .setPositiveButton(R.string.no) { dialog, whichButton -> dialog.dismiss() }
                     .setItems(options) { dialog, item ->
                         if (options[item] == getString(R.string.paste_date)) {
                             val dateFormat = sharedPref.getString("dateFormat", "1")

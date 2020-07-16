@@ -2,7 +2,7 @@
     // App
     <string name="app_name">Quit Smoking</string>
     <string name="yes">OK</string>
-    <string name="cancel">Annuler</string>
+    <string name="no">Annuler</string>
     <string name="app_permissions_title">Permissions requises</string>
     <string name="app_permissions">
         &lt;i>Accès au stockage :&lt;/i>&lt;br>
@@ -15,6 +15,7 @@
     <string name="share_text2">et</string>
     <string name="share_text3">j\'ai économisé :</string>
     <string name="share_text4">cigarettes</string>
+    <string name="share_text5">et</string>
     <string name="share_text6">de mon temps.</string>
     <string name="share_subject">J\'ai arrêté de fumer</string>
     // Menu
@@ -26,7 +27,7 @@
     <string name="action_goal">Objectif</string>
     <string name="action_save">Enregistrer</string>
     // Main Activity
-    <string name="not_set1">Ajuster les paramètres</string>
+    <string name="not_set">Ajuster les paramètres</string>
     <string name="not_set2">0.0</string>
     <string name="money_euro">€</string>
     <string name="money_dollar">$</string>
@@ -60,11 +61,13 @@
     <string name="health_description8">Les cils bronchiques repoussent. On est de moins en moins essoufflé. (9 mois)</string>
     <string name="health_header9">Accident vasculaire cérébral</string>
     <string name="health_description9">Le risque d’infarctus du myocarde diminue de moitié. Le risque d’accident vasculaire cérébral rejoint celui d’un non-fumeur. (1 an)</string>
+    <string name="health_header10">Crise cardiaque</string>
     <string name="health_description10">Le risque de crise cardiaque chute significativement. (2 ans)</string>
     <string name="health_header11">Cancer du poumon</string>
     <string name="health_description11">Le risque de cancer du poumon diminue presque de moitié. (5 ans)</string>
     <string name="health_header12">Lung cancer</string>
     <string name="health_description12">L’espérance de vie redevient identique à celle des personnes n’ayant jamais fumé. Les cellules pré-cancereuses sont remplacées par des cellules saines. (10 ans)</string>
+    <string name="health_header13">Crise cardiaque</string>
     <string name="health_description13">Le risque de crise cardiaque est quasiment au même niveau qu\'une personne n\'ayant jamais fumée. (15 ans)</string>
     // Journal
     <string name="action_backup">Sauvegarder le journal</string>
@@ -107,6 +110,7 @@
     <string name="choose_att">Choisir pièce jointe</string>
     <string name="choose_title">Gestionnaire de fichiers</string>
     // Goal
+    <string name="goal_cancel">Annuler</string>
     <string name="action_image">Photo</string>
     <string name="action_imageLoad">Choisir une image</string>
     <string name="action_imageRotate">Faire pivoter l\image</string>
@@ -215,13 +219,17 @@
     </string>
     //String arrays
     <string-array name="listCurrency">
-        <item>Dollar ($)</item>
         <item>Euro (€)</item>
+        <item>Dollar ($)</item>
         <item>Pound (£)</item>
         <item>Yen (¥)</item>
-        <item>Rupees (₹)</item>
     </string-array>
-
+    <string-array name="listValuesCurrency">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
     <string-array name="listDate">
         <item>International (2016–06–20)</item>
         <item>Allemand (20.06.2016)</item>
