@@ -270,7 +270,6 @@
     <string name="about_title_ext3">Japanese translation</string>
     <string name="about_title_ext4">French translation</string>
     <string name="about_title_ext5">Russian translation</string>
-    <string name="about_title_ext6">Italian translation</string>
 
     <string name="about_changelog">Changelog</string>
     <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
