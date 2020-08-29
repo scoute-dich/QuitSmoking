@@ -221,78 +221,77 @@
     <string name="a_openSettings_summary">システム設定で、アプリ情報を開きます。
         お使いの Android バージョンに応じて、いくつか管理できることがあります (ストレージ、ネットワーク通信、アクセス許可 …)。</string>
 
-    <string name="toast_newTitle">Title already exists.</string>
-    <string name="toast_notSave">Can not save entry.</string>
-    <string name="toast_directory">Can\'t open Directory.</string>
-    <string name="toast_files">No files in directory.</string>
-    <string name="toast_delete">All entries will be deleted.</string>
+    <string name="toast_newTitle">タイトルはすでに存在します。</string>
+    <string name="toast_notSave">イベントを保存できません</string>
+    <string name="toast_directory">フォルダーが開けません</string>
+    <string name="toast_files">このディレクトリにはファイルが存在しません</string>
+    <string name="toast_delete">すべての項目が削除されます</string>
 
-    <string name="action_filter">Search</string>
-    <string name="action_filter_title">Search in titles</string>
-    <string name="action_filter_cont">Search in content</string>
-    <string name="action_filter_create">Search in dates</string>
-    <string name="action_save">Save</string>
+    <string name="action_filter">検索</string>
+    <string name="action_filter_title">タイトルで検索</string>
+    <string name="action_filter_cont">コンテンツで検索</string>
+    <string name="action_filter_create">日付で検索</string>
+    <string name="action_save">保存</string>
 
-    <string name="filter_today">Today</string>
-    <string name="filter_yesterday">Yesterday</string>
-    <string name="filter_before">Day before yesterday</string>
-    <string name="filter_month">This month</string>
-    <string name="filter_own">Own search</string>
+    <string name="filter_today">今日</string>
+    <string name="filter_yesterday">昨日</string>
+    <string name="filter_before">一昨日</string>
+    <string name="filter_month">今月</string>
+    <string name="filter_own">独自の検索</string>
 
-    <string name="sort_title">title</string>
-    <string name="sort_date">date</string>
-    <string name="sort_pri">emoticon</string>
+    <string name="sort_title">タイトル</string>
+    <string name="sort_date">日付</string>
+    <string name="sort_pri">顔文字</string>
 
 
     //Intro
 
-    <string name="intro1_title">Quit Smoking</string>
-    <string name="intro1_text">Thanks for choosing \"Quit Smoking\". It\'s open source and complete free (as in freedom).</string>
+    <string name="intro1_title">禁煙</string>
+    <string name="intro1_text">\"禁煙\"を選んでくれてありがとう。これはオープンソースで完全無料です。</string>
 
-    <string name="intro2_title">Features</string>
-    <string name="intro2_text">\"Quit Smoking\" presents you an overview with some statistics and your health benefits.
-        Additionally you can configure a goal (What will you do with the saved money?) and write a diary. </string>
+    <string name="intro2_title">機能</string>
+    <string name="intro2_text">\"禁煙\" の概要を統計と健康上の利点を用いてプレゼンします。
+        加えてゴールを設定でき（例えば、貯めたお金で何をしますか？）、日記を付けます。</string>
 
-    <string name="intro3_title">Settings</string>
-    <string name="intro3_text">Please configure some informations about your smoking habits in the settings screen. You can
-        also configure some basic settings (date format, currency, …). Now, let\'s start …</string>
+    <string name="intro3_title">設定</string>
+    <string name="intro3_text">設定画面にあなたの喫煙習慣の情報を設定してください.
+        基本設定（日付、通貨）も設定できます。では、始めましょう …</string>
 
     // About
 
-    <string name="about_settings">About … and other things</string>
-    <string name="about_settings_text">Changelog, help, license, used libraries and more.</string>
+    <string name="about_settings">概要について</string>
+    <string name="about_settings_text">変更履歴、ヘルプ、ライセンス、ライブラリなど。</string>
 
-    <string name="about_title_dev">Developer</string>
-    <string name="about_title_libs">Used resources</string>
-    <string name="about_title_ext">Contributors</string>
-    <string name="about_title_ext3">Japanese translation</string>
-    <string name="about_title_ext4">French translation</string>
-    <string name="about_title_ext5">Russian translation</string>
+    <string name="about_title_dev">開発者</string>
+    <string name="about_title_libs">リソース</string>
+    <string name="about_title_ext">寄稿者</string>
+    <string name="about_title_ext3">邦訳</string>
+    <string name="about_title_ext4">仏訳</string>
+    <string name="about_title_ext5">露訳</string>
 
-    <string name="about_changelog">Changelog</string>
-    <string name="about_changelog_summary">Open Github site and see what\'s new … (needs internet connection)</string>
+    <string name="about_changelog">変更履歴</string>
+    <string name="about_changelog_summary">ギットハブページを開くと新しいものをみつけます。(インターネット接続が必要です)</string>
 
-    <string name="about_license">License</string>
-    <string name="about_license_summary">The app is licensed under GPL and completely open source and free (as in freedom).</string>
+    <string name="about_license">ライセンス</string>
+    <string name="about_license_summary">アプリはGPLのライセンス許可の基、オープンソースであり完全に無料です。</string>
 
-    <string name="about_dev">Gaukler Faun</string>
-    <string name="about_dev_summary">Open my profile on Github (needs internet connection).</string>
+    <string name="about_dev">ゴックラー フォーン</string>
+    <string name="about_dev_summary">私のプロフィールはギットハブで見られます。(インターネット接続が必要です)。</string>
 
-    <string name="about_intro">Intro</string>
-    <string name="about_intro_summary">Show the intro screen one more time.</string>
+    <string name="about_intro">イントロ</string>
+    <string name="about_intro_summary">もう一度をみせなさい。</string>
 
-    <string name="about_donate">Donate</string>
-    <string name="about_donate_summary">If you like the app, you can donate to me via Paypal (needs internet connection).</string>
+    <string name="about_donate">寄付</string>
+    <string name="about_donate_summary">このアプリが気に入られた場合には、ペイパルにて寄付をすることができます。（インターネット接続が必要です)。</string>
 
-    <string name="about_license_3">Used to build the intro screen.</string>
-    <string name="about_license_7">Used to create the \"About screen\".</string>
-    <string name="about_license_8">The source of nearly all icons.</string>
-    <string name="about_license_9">A powerful image downloading and caching library for Android.</string>
-
+    <string name="about_license_3">初期画面を構成する</string>
+    <string name="about_license_7"> \"概要画面\"を作成する</string>
+    <string name="about_license_8">ほぼすべてのアイコンのソース</string>
+    <string name="about_license_9">アンドロイドの為のパワフルなイメージのダウンロードキャッシングライブラリ。</string>
 
     //License Dialog
 
-    <string name="about_title">Copyright © 2016 by Gaukler Faun</string>
+    <string name="about_title">著作権 © 2016 ゴックラー フォーンによって</string>
     <string name="about_text">
          &lt;i>詳細は Github のプロジェクトサイトをご覧ください:&lt;br>
         https://github.com/scoute-dich/QuitSmoking&lt;/i>&lt;br>&lt;br>
